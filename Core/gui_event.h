@@ -19,7 +19,9 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
+
+#define GUI_EVENT_NONE 0
 
 #define GUI_EVENT_KEY_ENTER_PRESS 1
 #define GUI_EVENT_KEY_ENTER_LONG_PRESS 2
@@ -41,8 +43,17 @@ extern "C" {
 #define GUI_EVENT_KEY_DOWN_LONG_PRESS 14
 #define GUI_EVENT_KEY_DOWN_RELEASE 15
 
-#define GUI_EVENT_TOUCH_PRESSED 16
-#define GUI_EVENT_TOUCH_RELEASED 17
+#define GUI_EVENT_TOUCH_ON_PRESSED 16
+#define GUI_EVENT_TOUCH_PRESSED 17
+#define GUI_EVENT_TOUCH_ON_RELEASED 18
+
+#define GUI_EVENT_DATE_TIME_CHANGED 19
+#define GUI_EVENT_DATE_CHANGED 20
+#define GUI_EVENT_TIME_CHANGED 21
+
+#define GUI_EVENT_NAVIGATE_TO_HOME 22
+
+#define GUI_EVENT_DEFAULT_MAX 100u
 
 
 typedef struct gui_event_s

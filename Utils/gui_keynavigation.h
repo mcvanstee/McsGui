@@ -12,13 +12,13 @@
 extern "C" {
 #endif
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
 
 #include <stdbool.h>
 
-#include "McsGui/Core/gui_event.h"
+#include "Core/gui_event.h"
 
 
 /** @struct KeyNavigation_s
@@ -36,11 +36,8 @@ typedef struct key_kavigation_s
 } KeyNavigation_s;
 
 
-#if GUI_USE_DYNAMIC_MEMORY
 KeyNavigation_s *keynav_new(void);
 void keynav_delete(KeyNavigation_s *p_keyNavigation);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
-
 void keynav_init(KeyNavigation_s *p_keyNavigation);
 bool keynav_handleEvent(KeyNavigation_s *p_keyNavigation, const GuiEvent_s *p_event);
 void keynav_left(void *p_from, void *p_to);

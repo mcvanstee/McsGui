@@ -1,22 +1,57 @@
 #include "gui_button.h"
 
 #include <stddef.h>
+#include <string.h>
 
-#include "McsGui/Utils/gui_memory.h"
+#include "Utils/gui_log.h"
+#include "Utils/gui_memory.h"
 
 
-#if GUI_USE_DYNAMIC_MEMORY
+#if !GUI_USE_DYNAMIC_MEMORY
+static bool staticButtonMemInUse[GUI_CONFIG_BUTTON_BUFFER_SIZE] = {0};
+static Button_s staticButtonMem[GUI_CONFIG_BUTTON_BUFFER_SIZE] = {0};
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+
 /**
  * @brief Creates a new malloced Button component.
- * @return Pointer to the malloced  memory.
+ * @return Pointer to the malloced memory.
  *
  * @warning The returned component is not initialized.
  */
 Button_s *button_new(void)
 {
+#if GUI_USE_DYNAMIC_MEMORY
     return gui_mem_malloc(sizeof(Button_s));
-}
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_BUTTON_BUFFER_SIZE; i++)
+    {
+    	if (!staticButtonMemInUse[i])
+    	{
+    		staticButtonMemInUse[i] = true;
+
+    		return &staticButtonMem[i];
+    	}
+    }
+
+    gui_log_write(GUI_LOG_LEVEL_ERROR, "No Button_s static memory");
+
+    return NULL;
 #endif /* GUI_USE_DYNAMIC_MEMORY */
+}
+
+
+/**
+ * @brief Creates a new Button_s component and initializes it to default values.
+ * @return Pointer to the Button_s component.
+ *
+ */
+Button_s *button_newInit(void)
+{
+	Button_s *p_newButton = button_new();
+	button_init(p_newButton);
+
+	return p_newButton;
+}
 
 
 /**
@@ -29,7 +64,16 @@ void button_delete(BaseComponent_s *p_buttonBase)
     base_clear(p_buttonBase);
 #if GUI_USE_DYNAMIC_MEMORY
     gui_mem_free(p_buttonBase, sizeof(Button_s));
-    p_buttonBase = NULL;
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_BUTTON_BUFFER_SIZE; i++)
+    {
+    	if (&staticButtonMem[i].base == p_buttonBase)
+    	{
+    		memset(&staticButtonMem[i], 0, sizeof(Button_s));
+    		staticButtonMemInUse[i] = false;
+    		break;
+    	}
+    }
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 }
 
@@ -47,11 +91,11 @@ void button_init(Button_s *p_button)
     base_initImageComp(&p_button->base, button_delete);
     p_button->base.onHandleEvent = button_handleEvent;
     p_button->onPressed = NULL;
+    p_button->pressed = NULL;
     p_button->onReleased = NULL;
-#if !GUI_USE_DYNAMIC_MEMORY
-    p_button->bmpName[0] = '\0';
-    p_button->base.p_bmpName = p_button->bmpName;
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+    p_button->onPressedEvent = NULL;
+    p_button->pressedEvent = NULL;
+    p_button->onReleasedEvent = NULL;
 }
 
 
@@ -59,18 +103,30 @@ void button_init(Button_s *p_button)
  * @brief Initialize the Button_s to the given values.
  * params[in] p_button Pointer to the button component.
  * params[in] p_bmpName Pointer to the bmp-name.
- * params[in] xPos.
- * params[in] yPos.
  *
  */
-void button_init_1(
-        Button_s *p_button, const char *p_bmpName,
-        const uint16_t xPos, const uint16_t yPos)
+void button_initBmp(Button_s *p_button, const uint32_t bmpKey)
 {
     button_init(p_button);
-    p_button->base.xPos = xPos;
-    p_button->base.yPos = yPos;
-    base_setBmp(&p_button->base, p_bmpName);
+    p_button->base.bmpKey = bmpKey;
+}
+
+/**
+ * @brief Initialize the Button_s to the given values.
+ * params[in] p_button Pointer to the button component.
+ * params[in] p_bmpName Pointer to the bmp-name.
+ * params[in] x x-position of the button.
+ * params[in] y y-position of the button.
+ *
+ */
+void button_initBmpPos(
+        Button_s *p_button, const uint32_t bmpKey,
+        const uint16_t x, const uint16_t y)
+{
+    button_init(p_button);
+    p_button->base.x = x;
+    p_button->base.y = y;
+    p_button->base.bmpKey = bmpKey;
 }
 
 
@@ -78,18 +134,18 @@ void button_init_1(
  * @brief Initialize the Button_s to the given values.
  * params[in] p_button Pointer to the button component.
  * params[in] p_bmpName Pointer to the bmp-name.
- * params[in] xPos.
- * params[in] yPos.
+ * params[in] x x-position of the button.
+ * params[in] y y-position of the button.
  * params[in] width.
  * params[in] height.
  *
  */
-void button_init_2(
-        Button_s *p_button, const char *p_bmpName,
-        const uint16_t xPos, const uint16_t yPos,
+void button_initBmpPosSize(
+        Button_s *p_button, const uint32_t bmpKey,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height)
 {
-    button_init_1(p_button, p_bmpName, xPos, yPos);
+    button_initBmpPos(p_button, bmpKey, x, y);
     p_button->base.width = width;
     p_button->base.height = height;
 }
@@ -108,6 +164,18 @@ void button_setOnPressed(Button_s *p_button, void (*onPressed)(Button_s *p_butto
 
 
 /**
+ * @brief Set the pressed callback function.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] onTouchPressed Pointer to the callback function, with a Button_s pointer variable.
+ *
+ */
+void button_setPressed(Button_s *p_button, void (*pressed)(Button_s *p_buttonPressed))
+{
+	p_button->pressed = pressed;
+}
+
+
+/**
  * @brief Set the on-release callback function.
  * @param[in] p_button Pointer to the button component.
  * @param[in] onTouchReleased Pointer to the callback function, with a Button_s pointer variable.
@@ -118,50 +186,127 @@ void button_setOnReleased(Button_s *p_button, void (*onReleased)(Button_s *p_but
     p_button->onReleased = onReleased;
 }
 
+
+/**
+ * @brief Set the on-pressed-event callback function.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] onTouchPressed Pointer to the callback function.
+ *
+ */
+void button_setOnPressedEvent(Button_s *p_button, void (*onPressedEvent)(void))
+{
+	p_button->onPressedEvent = onPressedEvent;
+}
+
+
+/**
+ * @brief Set the pressed-event callback function.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] onTouchPressed Pointer to the callback function.
+ *
+ */
+void button_setPressedEvent(Button_s *p_button, void (*pressedEvent)(void))
+{
+	p_button->onPressedEvent = pressedEvent;
+}
+
+
+/**
+ * @brief Set the on-release-event callback function.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] onTouchReleased Pointer to the callback function.
+ *
+ */
+void button_setOnReleasedEvent(Button_s *p_button, void (*onReleasedEvent)(void))
+{
+	p_button->onReleasedEvent = onReleasedEvent;
+}
+
 bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event)
 {
     Button_s *p_button = (Button_s *)p_buttonBase;
-    bool eventHandled = false;
+    bool eventHandled = true;
 
 #if GUI_CONFIG_USE_TOUCH
     bool isInTouchArea = touch_isInTouchArea(p_buttonBase->p_touch, p_event);
 #endif /* GUI_CONFIG_USE_TOUCH */
 
     if ((GUI_EVENT_KEY_ENTER_PRESS == p_event->event) &&
-        (p_button->onPressed != NULL))
+       ((NULL != p_button->onPressed) || (NULL != p_button->onPressedEvent)))
     {
-        p_button->onPressed(p_button);
-        eventHandled = true;
+    	if (NULL != p_button->onPressed)
+    	{
+    		p_button->onPressed(p_button);
+    	}
+
+    	if (NULL != p_button->onPressedEvent)
+    	{
+    		p_button->onPressedEvent();
+    	}
     }
     else if ((GUI_EVENT_KEY_ENTER_RELEASE == p_event->event) &&
-             (p_button->onReleased != NULL))
+            ((NULL != p_button->onReleased) || (NULL != p_button->onReleasedEvent)))
     {
-        p_button->onReleased(p_button);
-        eventHandled = true;
+    	if (NULL != p_button->onReleased)
+    	{
+    		p_button->onReleased(p_button);
+    	}
+
+    	if (NULL != p_button->onReleasedEvent)
+    	{
+    		p_button->onReleasedEvent();
+    	}
     }
-#if GUI_CONFIG_USE_KEY_NAVIGATION
-    else if (keynav_handleEvent(p_buttonBase->p_keyNavigation, p_event))
-    {
-        base_setFocus(p_buttonBase, false);
-        eventHandled = true;
-    }
-#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+    else
+
 #if GUI_CONFIG_USE_TOUCH
+     if ((GUI_EVENT_TOUCH_ON_PRESSED == p_event->event) &&
+            isInTouchArea &&
+		    ((NULL != p_button->onPressed) || (NULL != p_button->onPressedEvent)))
+	{
+		if (NULL != p_button->onPressed)
+		{
+			p_button->onPressed(p_button);
+		}
+
+		if (NULL != p_button->onPressedEvent)
+		{
+			p_button->onPressedEvent();
+		}
+	}
     else if ((GUI_EVENT_TOUCH_PRESSED == p_event->event) &&
-             isInTouchArea &&
-             (p_button->onPressed != NULL))
-    {
-        p_button->onPressed(p_button);
-        eventHandled = true;
+    		isInTouchArea &&
+			((NULL != p_button->pressed) || (NULL != p_button->pressedEvent)))
+	{
+    	if (NULL != p_button->pressed)
+    	{
+    		p_button->pressed(p_button);
+    	}
+
+    	if (NULL != p_button->pressedEvent)
+    	{
+    		p_button->pressedEvent();
+    	}
+	}
+    else if ((GUI_EVENT_TOUCH_ON_RELEASED == p_event->event) &&
+    		isInTouchArea &&
+			((NULL != p_button->onReleased) || (NULL != p_button->onReleasedEvent)))
+	{
+		if (NULL != p_button->onReleased)
+		{
+			p_button->onReleased(p_button);
+		}
+
+		if (NULL != p_button->onReleasedEvent)
+		{
+			p_button->onReleasedEvent();
+		}
     }
-    else if ((GUI_EVENT_TOUCH_RELEASED == p_event->event) &&
-             isInTouchArea &&
-             (p_button->onReleased != NULL))
-    {
-        p_button->onReleased(p_button);
-        eventHandled = true;
-    }
+    else
 #endif /* GUI_CONFIG_USE_TOUCH */
+    {
+    	eventHandled = false;
+    }
 
     return eventHandled;
 }

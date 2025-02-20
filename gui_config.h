@@ -16,114 +16,151 @@ extern "C" {
 
 typedef unsigned long Color_t;
 
-#define CONFIG_ON  1 /* Enable option */
-#define CONFIG_OFF 0 /* Disable option */
 
-#define GUI_EVENT_ARGS_SIZE 4 /* Defines the eventArgs buffer size on GuiEvent_s, must be 4 or greater when using touch */
+/** Define the string length for the TextBlock component */
+#define GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH 64
+#define GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL (GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH + 1)
 
-#define GUI_USE_DYNAMIC_MEMORY (CONFIG_ON)
-#define GUI_CONFIG_GRAPHICS_BUFFER_SIZE 50
+/** Defines the eventArgs buffer size on GuiEvent_s, must be 4 or greater when using touch */
+#define GUI_EVENT_ARGS_SIZE 8
+
+#define GUI_USE_DYNAMIC_MEMORY 0
+/* This option enables the use of dynamic memory allocation
+ *  0: Use static memory allocation
+ *  1: Use dynamic memory allocation (malloc/free)
+ */
 
 
-/*_____________________________________________________
-|                                                      |
-|          Component configuration options             |
-|______________________________________________________|
+/**  Static memory allocation of components */
+#define GUI_CONFIG_GRAPHICS_BUFFER_SIZE 100
+
+#if !GUI_USE_DYNAMIC_MEMORY
+#define GUI_CONFIG_BUTTON_BUFFER_SIZE 10
+#define GUI_CONFIG_CHECKBOX_BUFFER_SIZE 10
+#define GUI_CONFIG_LABEL_BUFFER_SIZE 20
+#define GUI_CONFIG_LISTVIEW_BUFFER_SIZE 2
+#define GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE 25
+#define GUI_CONFIG_ITEM_BUFFER_SIZE 5
+#define GUI_CONFIG_RADIOGROUP_BUFFER_SIZE 2
+#define GUI_CONFIG_RECTANGLE_BUFFER_SIZE 20
+#define GUI_CONFIG_TEXTBLOCK_BUFFER_SIZE 20
+#define GUI_CONFIG_KEYNAVIGATION_BUFFER_SIZE 15
+#define GUI_CONFIG_ANCHOR_BUFFER_SIZE 25
+#define GUI_CONFIG_TOUCH_BUFFER_SIZE 15
+#define GUI_CONFIG_ROW_BUFFER_SIZE 10
+#define GUI_CONFIG_COLUMN_BUFFER_SIZE 10
+#define GUI_CONFIG_GRID_BUFFER_SIZE 10
+#endif
+
+#define GUI_USE_EXTERNAL_DISPLAY 1
+/* This option enables the use of an external display
+ *  0: Do not use external display
+ *  1: Use external display
+ */
+
+
+
+/*----------------------------------------------------------------*
+ *          View_s configuration options
+ *----------------------------------------------------------------*/
+#define GUI_CONFIG_RESET_BOFORE_NAVIGATE_TO 1
+/* This option set the view's onBeforeNavigateTo callback to NULL after it has been called by view_navigateTo
+/   0: Do not set the callback to NULL
+/   1: Set the callback to NULL
 */
 
-#define GUI_CONFIG_USE_RADIO_BUTTON_GROUP (CONFIG_ON)
-/* This option removes the RadioButtonGroup_s component
-/  from the GUI module, when CONFIG_OFF */
-
-#define GUI_CONFIG_USE_LIST_VIEW (CONFIG_ON)
-/* This option removes the ListView_s component
-/  from the GUI module, when CONFIG_OFF */
-
-
-/*_____________________________________________________
-|                                                      |
-|         Checkbox_s configuration options             |
-|______________________________________________________|
+#define GUI_CONFIG_RESET_AFTER_NAVIGATE_TO 1
+/* This option set the view's onAfterNavigatedTo callback to NULL after it has been called by view_navigateTo
+/   0: Do not set the callback to NULL
+/   1: Set the callback to NULL
 */
 
-#define GUI_CONFIG_CHECKBOX_BUTTON_BEHAVIOR 0
+#define GUI_CONFIG_RESET_NAVIGATE_AWAY 1
+/* This option set the view's onNavigateAway callback to NULL after it has been called by view_navigateAway
+/   0: Do not set the callback to NULL
+/   1: Set the callback to NULL
+*/
+
+
+
+/*----------------------------------------------------------------*
+ *          BaseComponent_s configuration options
+ *----------------------------------------------------------------*/
+#define GUI_CONFIG_USE_ANCHOR 1
+/* This option adds the Anchor_s component to the BaseComponent_s and enables the use of anchors
+ * for positioning components.
+ *  0: Do not use anchors
+ *  1: Use anchors
+ */
+
+#define GUI_CONFIG_USE_KEY_NAVIGATION 1
+/* This option adds the KeyNavigation_s component to the BaseComponent_s and enables the use of key navigation
+ * for navigating through components.
+ *  0: Do not use key navigation
+ *  1: Use key navigation
+ */
+
+#define GUI_CONFIG_USE_TOUCH 1
+/* This option adds the Touch_s component to the BaseComponent_s and enables the use of touch
+ * for interacting with components.
+ *  0: Do not use touch
+ *  1: Use touch
+ */
+
+#define GUI_CONFIG_USE_ON_BEFORE_DISPLAY 1
+/* This option adds the onBeforeDisplay callback function to the BaseComponent_s
+ *  0: Do not use onBeforeDisplay
+ *  1: Use onBeforeDisplay
+ */
+
+#define GUI_CONFIG_USE_FILE_PROPERTIES 1
+/* This option adds the properties array to the BaseComponent_s
+ *  0: Do not use file properties
+ *  1: Use file properties
+ */
+
+#define GUI_CONFIG_NUMBER_OF_PROPERTIES 5
+/*  This option defines the number of properties in the properties array
+ *  Must be 1 or greater when using GUI_CONFIG_USE_FILE_PROPERTIES. If using
+ *  file properties generated by the GUI Designer, this value must greater then of match the
+ *  FS_MAX_FILE_PROPERTIES value in fs_file_search.h
+ */
+
+
+
+/*----------------------------------------------------------------*
+ *          Component configuration options
+ *----------------------------------------------------------------*/
+#define GUI_CONFIG_USE_RADIO_BUTTON_GROUP 1
+/* This option adds the RadioGroup_s component to the GUI module
+ *  0: Do not use RadioGroup_s
+ *  1: Use RadioGroup_s
+ */
+
+#define GUI_CONFIG_USE_LIST_VIEW 1
+/* This option adds the ListView_s component to the GUI module
+ *  0: Do not use ListView_s
+ *  1: Use ListView_s
+ */
+
+#define GUI_CONFIG_CHECKBOX_BUTTON_BEHAVIOR 1
 /* This option defines the behavior of the button
-/
 /   0: Checkbox responds to Pressed event
 /   1: Checkbox responds to Released event
 */
 
-
-/*_____________________________________________________
-|                                                      |
-|        KeyNavigation_s configuration options         |
-|______________________________________________________|
-*/
-
-#define GUI_CONFIG_KEYNAVIGATION_BUTTON_BEHAVIOR 0
+#define GUI_CONFIG_KEYNAVIGATION_BUTTON_BEHAVIOR 1
 /* This option defines the behavior of the button
-/
 /   0: KeyNavigation responds to Pressed event
 /   1: KeyNavigation responds to Released event
 */
 
-
-/*_____________________________________________________
-|                                                      |
-|           ListView_s configuration options           |
-|______________________________________________________|
-*/
-
 #define GUI_CONFIG_LISTVIEW_BUTTON_BEHAVIOR 0
 /* This option defines the behavior of the button
-/
 /   0: ListView responds to Pressed event
 /   1: ListView responds to Released event
 */
 
-
-/*_____________________________________________________
-|                                                      |
-|        BaseComponent_s configuration options         |
-|______________________________________________________|
-*/
-
-#define GUI_CONFIG_USE_STRICT_TYPES (CONFIG_OFF)
-/* If
- *
- */
-
-#define GUI_CONFIG_BITMAP_NAME_LENGTH 30
-#define GUI_CONFIG_BITMAP_NAME_LENGTH_INC_NULL (GUI_CONFIG_BITMAP_NAME_LENGTH + 1)
-
-/* KeyNavigation
- *
- * Select CONFIG_ON to use key-navigation,
- */
-#define GUI_CONFIG_USE_KEY_NAVIGATION (CONFIG_ON)
-#define GUI_CONFIG_KEYNAVIGATION_BUTTON_BEHAVIOR 0
-
-/* TouchArea
- *
- */
-#define GUI_CONFIG_USE_TOUCH (CONFIG_ON)
-
-/* Margin
- *
- */
-#define GUI_CONFIG_USE_MARGIN (CONFIG_ON)
-
-/* Alignment
- *
- */
-#define GUI_CONFIG_USE_ALIGNMENT (CONFIG_ON)
-
-/* Background
- *
- */
-#define GUI_CONFIG_USE_BACKGROUND (CONFIG_ON)
-
-#define GUI_CONFIG_USE_ON_BEFORE_DISPLAY (CONFIG_ON)
 
 #ifdef __cplusplus
 } /* extern "C" */

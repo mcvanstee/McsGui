@@ -1,11 +1,17 @@
 #include "gui_listviewitem.h"
 
 #include <stddef.h>
+#include <string.h>
 
-#include "McsGui/Utils/gui_memory.h"
+#include "Utils/gui_log.h"
+#include "Utils/gui_memory.h"
 
 
-#if GUI_USE_DYNAMIC_MEMORY
+#if !GUI_USE_DYNAMIC_MEMORY
+static bool staticLVMIMemInUse[GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE] = {0};
+static ListViewItem_s staticLVMIMem[GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE] = {0};
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+
 /**
  * @brief Creates a new malloced ListViewItem component.
  * @return Pointer to the malloced  memory.
@@ -14,11 +20,39 @@
  */
 ListViewItem_s *listviewitem_new(void)
 {
-    ListViewItem_s *p_listViewItem = gui_mem_malloc(sizeof(ListViewItem_s));
+#if GUI_USE_DYNAMIC_MEMORY
+    return gui_mem_malloc(sizeof(ListViewItem_s));
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE; i++)
+    {
+    	if (!staticLVMIMemInUse[i])
+    	{
+    		memset(&staticLVMIMem[i], 0, sizeof(ListViewItem_s));
+    		staticLVMIMemInUse[i] = true;
+
+    		return &staticLVMIMem[i];
+    	}
+    }
+
+    gui_log_write(GUI_LOG_LEVEL_ERROR, "No ListViewItem_s static memory");
+
+    return NULL;
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+}
+
+
+/**
+ * @brief Creates a new ListViewItem component and initializes it to default values.
+ * @return Pointer to the ListViewItem component.
+ *
+ */
+ListViewItem_s *listviewitem_newInit(void)
+{
+    ListViewItem_s *p_listViewItem = listviewitem_new();
+    listviewitem_init(p_listViewItem);
 
     return p_listViewItem;
 }
-#endif /* GUI_USE_DYNAMIC_MEMORY */
 
 
 /**
@@ -31,7 +65,15 @@ void listviewitem_delete(BaseComponent_s *p_itemBase)
     base_clear(p_itemBase);
 #if GUI_USE_DYNAMIC_MEMORY
     gui_mem_free(p_itemBase, sizeof(ListViewItem_s));
-    p_itemBase = NULL;
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE; i++)
+    {
+    	if (&staticLVMIMem[i].base == p_itemBase)
+    	{
+    		staticLVMIMemInUse[i] = false;
+    		break;
+    	}
+    }
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 }
 
@@ -44,7 +86,11 @@ void listviewitem_delete(BaseComponent_s *p_itemBase)
 void listviewitem_init(ListViewItem_s *p_listViewItem)
 {
     base_initParentComp(&p_listViewItem->base, listviewitem_delete);
+    p_listViewItem->index = -1;
     p_listViewItem->base.onHandleEvent = listviewitem_handleEvent;
+    p_listViewItem->onPressed = NULL;
+    p_listViewItem->pressed = NULL;
+    p_listViewItem->onReleased = NULL;
 }
 
 
@@ -60,8 +106,9 @@ void listviewitem_add(ListViewItem_s *p_listViewItem, void *p_component)
     if (p_listViewItem->base.p_childList == NULL)
     {
         p_listViewItem->base.p_childList = p_base;
-        p_base->xPos = p_listViewItem->base.xPos;
-        p_base->yPos = p_listViewItem->base.yPos;
+        p_base->x = p_listViewItem->base.x;
+        p_base->y = p_listViewItem->base.y;
+        p_base->p_parent = &p_listViewItem->base;
 
         return;
     }
@@ -73,29 +120,60 @@ void listviewitem_add(ListViewItem_s *p_listViewItem, void *p_component)
     }
 
     p_iterator->p_nextBaseComponent = p_base;
-    p_base->xPos = p_iterator->xPos + p_iterator->width;
-    p_base->yPos = p_iterator->yPos;
+    p_base->x = p_iterator->x + p_iterator->width;
+    p_base->y = p_iterator->y;
+    p_base->p_parent = &p_listViewItem->base;
 }
 
 
+/**
+ * @brief Set the data object of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_dataObject Pointer to the data object.
+ *
+ */
+void listviewitem_setDataObject(ListViewItem_s *p_listViewItem, void *p_dataObject)
+{
+    p_listViewItem->base.p_data = p_dataObject;
+}
+
 bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_event)
 {
-    bool eventHandled = false;
+    ListViewItem_s *p_listViewItem = (ListViewItem_s *)p_itemBase;
+    bool eventHandled = true;
 
-    BaseComponent_s *p_iterator = p_itemBase->p_childList;
-    while (p_iterator != NULL)
+    if ((NULL != p_listViewItem->onPressed) &&
+       ((GUI_EVENT_KEY_ENTER_PRESS == p_event->event) || (GUI_EVENT_TOUCH_ON_PRESSED == p_event->event)))
     {
-        if (p_iterator->onHandleEvent != NULL)
+        p_listViewItem->onPressed(p_listViewItem);
+    }
+    else if ((NULL != p_listViewItem->onReleased) &&
+            ((GUI_EVENT_KEY_ENTER_RELEASE == p_event->event) || (GUI_EVENT_TOUCH_ON_RELEASED == p_event->event)))
+    {
+        p_listViewItem->onReleased(p_listViewItem);
+    }
+    else if ((NULL != p_listViewItem->pressed) &&
+            (GUI_EVENT_TOUCH_PRESSED == p_event->event))
+    {
+        p_listViewItem->pressed(p_listViewItem);
+    }
+    else
+    {
+        BaseComponent_s *p_iterator = p_itemBase->p_childList;
+        while (p_iterator != NULL)
         {
-            eventHandled = p_iterator->onHandleEvent(p_iterator, p_event);
-
-            if (eventHandled)
+            if (p_iterator->onHandleEvent != NULL)
             {
-                break;
-            }
-        }
+                eventHandled = p_iterator->onHandleEvent(p_iterator, p_event);
 
-        p_iterator = p_iterator->p_nextBaseComponent;
+                if (eventHandled)
+                {
+                    break;
+                }
+            }
+
+            p_iterator = p_iterator->p_nextBaseComponent;
+        }
     }
 
     return eventHandled;

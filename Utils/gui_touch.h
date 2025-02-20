@@ -12,14 +12,14 @@
 extern "C" {
 #endif
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
 
 #if GUI_CONFIG_USE_TOUCH
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "McsGui/Core/gui_event.h"
+#include "Core/gui_event.h"
 
 /** @struct Touch_s
  *
@@ -34,30 +34,32 @@ extern "C" {
  *            width
  *
  */
-typedef struct touch_s
+typedef struct
 {
-    uint16_t xPos;      /**< x-position of the touch area. */
-    uint16_t yPos;      /**< y-position of the touch area. */
+    uint16_t x;      /**< x-position of the touch area. */
+    uint16_t y;      /**< y-position of the touch area. */
     uint16_t width;     /**< width of the touch area. */
     uint16_t height;    /**< height of the touch area. */
-    void (*onTouchPressed)(void *p_baseComponent);      /**< Callback function called when the touch area is pressed. */
-    void (*onTouchReleased)(void *p_baseComponent);     /**< Callback function called when the touch area is released. */
+    void (*onPressed)(void *p_baseComponent);      /**< Callback function called when the touch area is pressed. */
+    void (*pressed)(void *p_baseComponent);      /**< Callback function called when the touch area is pressed. */
+    void (*onReleased)(void *p_baseComponent);     /**< Callback function called when the touch area is released. */
 } Touch_s;
 
-#if GUI_USE_DYNAMIC_MEMORY
 Touch_s *touch_new(void);
-
 void touch_delete(Touch_s *p_touch);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
-
 void touch_init(Touch_s *p_touch);
 void touch_init_1(
         Touch_s *p_touch,
-        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height);
 
-void touch_setOnPressed(Touch_s *p_touch, void (*onTouchPressed)(void *p_baseComponent));
-void touch_setOnReleased(Touch_s *p_touch, void (*onTouchReleased)(void *p_baseComponent));
+void touch_setOnPressed(Touch_s *p_touch, void (*onPressed)(void *p_baseComponent));
+void touch_setPressed(Touch_s *p_touch, void (*pressed)(void *p_baseComponent));
+void touch_setOnReleased(Touch_s *p_touch, void (*onReleased)(void *p_baseComponent));
+void touch_setTouchArea(
+		Touch_s *p_touch,
+        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t width, const uint16_t height);
 bool touch_isInTouchArea(const Touch_s *p_touch, const GuiEvent_s *p_event);
 bool touch_handleEvent(const Touch_s *p_touch, void *p_baseComponent, const GuiEvent_s *p_event);
 

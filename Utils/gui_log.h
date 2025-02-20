@@ -13,18 +13,12 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include <stddef.h>
-
-#define GUI_LOG_MAX_MESSAGE_LENGTH 50
-#define GUI_LOG_MAX_MESSAGE_LENGTH_INC_NULL (GUI_LOG_MAX_MESSAGE_LENGTH + 1)
 
 #define GUI_LOG_LEVEL_ERROR 0
 #define GUI_LOG_LEVEL_WARNING 1
-#define GUI_LOG_LEVEL_INFO 2
-#define GUI_LOG_LEVEL_DEBUG 3
+#define GUI_LOG_LEVEL_DEBUG 2
 
-void gui_log_write(const uint8_t logLevel, const char *p_message);
-void gui_log_writeUInt(const uint8_t logLevel, const char *p_message, const uint32_t number);
+extern void gui_log_write(const uint8_t logLevel, const char *p_message);
 
 #ifdef __cplusplus
 } /* extern "C" */

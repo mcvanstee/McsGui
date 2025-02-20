@@ -2,10 +2,15 @@
 
 #include <stddef.h>
 
-#include "McsGui/Utils/gui_memory.h"
+#include "Utils/gui_log.h"
+#include "Utils/gui_memory.h"
 
 
-#if GUI_USE_DYNAMIC_MEMORY
+#if !GUI_USE_DYNAMIC_MEMORY
+static bool staticRectMemInUse[GUI_CONFIG_RECTANGLE_BUFFER_SIZE] = {0};
+static Rectangle_s staticRectMem[GUI_CONFIG_RECTANGLE_BUFFER_SIZE] = {0};
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+
 /**
  * @brief Creates a new malloced Rectangle component.
  * @return Pointer to the malloced memory.
@@ -15,9 +20,38 @@
  */
 Rectangle_s *rectangle_new(void)
 {
+#if GUI_USE_DYNAMIC_MEMORY
     return gui_mem_malloc(sizeof(Rectangle_s));
-}
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_RECTANGLE_BUFFER_SIZE; i++)
+    {
+    	if (!staticRectMemInUse[i])
+    	{
+    		staticRectMemInUse[i] = true;
+
+    		return &staticRectMem[i];
+    	}
+    }
+
+    gui_log_write(GUI_LOG_LEVEL_ERROR, "No Rectangle_s static memory");
+
+    return NULL;
 #endif /* GUI_USE_DYNAMIC_MEMORY */
+}
+
+
+/**
+ * @brief Creates a new Rectangle_s component and initializes it to default values.
+ * @return Pointer to the Rectangle_s component.
+ *
+ */
+Rectangle_s *rectangle_newInit(void)
+{
+	Rectangle_s *p_rectangle = rectangle_new();
+	rectangle_init(p_rectangle);
+
+	return p_rectangle;
+}
 
 
 /**
@@ -30,7 +64,15 @@ void rectangle_delete(BaseComponent_s *p_rectangleBase)
     base_clear(p_rectangleBase);
 #if GUI_USE_DYNAMIC_MEMORY
     gui_mem_free(p_rectangleBase, sizeof(Rectangle_s));
-    p_rectangleBase = NULL;
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_RECTANGLE_BUFFER_SIZE; i++)
+    {
+    	if (&staticRectMem[i].base == p_rectangleBase)
+    	{
+    		staticRectMemInUse[i] = false;
+    		break;
+    	}
+    }
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 }
 
@@ -42,8 +84,8 @@ void rectangle_delete(BaseComponent_s *p_rectangleBase)
  */
 void rectangle_init(Rectangle_s *p_rectangle)
 {
-    filldata_init(&p_rectangle->fillData);
-    base_initFillComp(&p_rectangle->base, &p_rectangle->fillData, rectangle_delete);
+    borderdata_init(&p_rectangle->borderData);
+    base_initFillComp(&p_rectangle->base, &p_rectangle->borderData, rectangle_delete);
     p_rectangle->base.transparent = false;
 }
 
@@ -52,23 +94,64 @@ void rectangle_init(Rectangle_s *p_rectangle)
  * @brief Initialize the Rectangle component to the given values.
  * @param[in] p_rectangle Pointer to the Rectangle component.
  * @param[in] color
- * @param[in] xPos.
- * @param[in] yPos.
  * @param[in] width.
  * @param[in] height.
  *
  */
-void rectangle_init_1(
+void rectangle_initFillSize(
         Rectangle_s *p_rectangle, const Color_t color,
-        const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height)
 {
     rectangle_init(p_rectangle);
     p_rectangle->base.background = color;
-    p_rectangle->base.xPos = xPos;
-    p_rectangle->base.yPos = yPos;
     p_rectangle->base.width = width;
     p_rectangle->base.height = height;
+}
+
+
+/**
+ * @brief Initialize the Rectangle component to the given values.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] color
+ * @param[in] x x-position
+ * @param[in] y y-position
+ * @param[in] width.
+ * @param[in] height.
+ *
+ */
+void rectangle_initFillPosSize(
+        Rectangle_s *p_rectangle, const Color_t color,
+        const uint16_t x, const uint16_t y,
+        const uint16_t width, const uint16_t height)
+{
+    rectangle_init(p_rectangle);
+    p_rectangle->base.background = color;
+    p_rectangle->base.x = x;
+    p_rectangle->base.y = y;
+    p_rectangle->base.width = width;
+    p_rectangle->base.height = height;
+}
+
+
+/**
+ * @brief Initialize the Rectangle component as a border.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] color
+ * @param[in] width.
+ * @param[in] height.
+ * @param[in] borderThickness.
+ * @param[in] borderColor.
+ *
+ */
+void rectangle_initFillBorderSize(
+        Rectangle_s *p_rectangle, const Color_t color,
+        const uint16_t width, const uint16_t height,
+        const uint8_t borderThickness, const Color_t borderColor)
+{
+    rectangle_initFillSize(p_rectangle, color, width, height);
+    BorderData_s *p_borderData = (BorderData_s*) p_rectangle->base.p_data;
+    p_borderData->borderColor = borderColor;
+    p_borderData->borderThickness = borderThickness;
 }
 
 
@@ -76,45 +159,64 @@ void rectangle_init_1(
  * @brief Initialize the Rectangle component with a border.
  * @param[in] p_rectangle Pointer to the Rectangle component.
  * @param[in] color
- * @param[in] xPos.
- * @param[in] yPos.
+ * @param[in] x x-position
+ * @param[in] y y-position
  * @param[in] width.
  * @param[in] height.
  * @param[in] borderThickness.
  * @param[in] borderColor.
  *
  */
-void rectangle_init_2(
+void rectangle_initFillBorderPosSize(
         Rectangle_s *p_rectangle, const Color_t color,
-        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height,
         const uint8_t borderThickness, const Color_t borderColor)
 {
-    rectangle_init_1(p_rectangle, color, xPos, yPos, width, height);
-    FillData_s *p_fillData = (FillData_s *)p_rectangle->base.p_data;
-    p_fillData->borderColor = borderColor;
-    p_fillData->borderThickness = borderThickness;
+    rectangle_initFillPosSize(p_rectangle, color, x, y, width, height);
+    BorderData_s *p_borderData = (BorderData_s *)p_rectangle->base.p_data;
+    p_borderData->borderColor = borderColor;
+    p_borderData->borderThickness = borderThickness;
 }
 
 
 /**
  * @brief Initialize the Rectangle component as a border.
  * @param[in] p_rectangle Pointer to the Rectangle component.
- * @param[in] xPos.
- * @param[in] yPos.
  * @param[in] width.
  * @param[in] height.
  * @param[in] borderThickness.
  * @param[in] borderColor.
  *
  */
-void rectangle_initBorder(
+void rectangle_initBorderSize(
         Rectangle_s *p_rectangle,
-        const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
         const uint8_t borderThickness, const Color_t borderColor)
 {
-    rectangle_init_2(p_rectangle, 0, xPos, yPos, width, height, borderThickness, borderColor);
+    rectangle_initFillBorderSize(p_rectangle, 0, width, height, borderThickness, borderColor);
+    p_rectangle->base.transparent = true;
+}
+
+
+/**
+ * @brief Initialize the Rectangle component as a border.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] x x-position
+ * @param[in] y y-position
+ * @param[in] width.
+ * @param[in] height.
+ * @param[in] borderThickness.
+ * @param[in] borderColor.
+ *
+ */
+void rectangle_initBorderPosSize(
+        Rectangle_s *p_rectangle,
+        const uint16_t x, const uint16_t y,
+        const uint16_t width, const uint16_t height,
+        const uint8_t borderThickness, const Color_t borderColor)
+{
+    rectangle_initFillBorderPosSize(p_rectangle, 0, x, y, width, height, borderThickness, borderColor);
     p_rectangle->base.transparent = true;
 }
 
@@ -142,6 +244,15 @@ void rectangle_setColor(Rectangle_s *p_rectangle, const Color_t color)
 }
 
 
+/*
+ *
+ */
+void rectangle_showBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly)
+{
+    p_rectangle->base.transparent = showBorderOnly;
+}
+
+
 /**
  * @brief Set the border color of the Rectangle component.
  * @param[in] p_rectangle Pointer to the Rectangle component.
@@ -155,8 +266,8 @@ void rectangle_setBorderColor(Rectangle_s *p_rectangle, const Color_t color)
         return;
     }
 
-    FillData_s *p_fillData = (FillData_s *)p_rectangle->base.p_data;
-    p_fillData->borderColor = color;
+    BorderData_s *p_borderData = (BorderData_s *)p_rectangle->base.p_data;
+    p_borderData->borderColor = color;
 }
 
 
@@ -173,8 +284,23 @@ void rectangle_setBorderThickness(Rectangle_s *p_rectangle, const uint8_t thickn
         return;
     }
 
-    FillData_s *p_fillData = (FillData_s *)p_rectangle->base.p_data;
-    p_fillData->borderThickness = thickness;
+    BorderData_s *p_borderData = (BorderData_s *)p_rectangle->base.p_data;
+    p_borderData->borderThickness = thickness;
+}
+
+
+/**
+ *
+ */
+void rectangle_setRadius(Rectangle_s *p_rectangle, const uint8_t radius)
+{
+    if (p_rectangle->base.p_data == NULL)
+    {
+        return;
+    }
+
+    BorderData_s *p_borderData = (BorderData_s*) p_rectangle->base.p_data;
+    p_borderData->radius = radius;
 }
 
 

@@ -14,12 +14,14 @@ extern "C" {
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
 #include "gui_event.h"
-#include "gui_filldata.h"
+#include "gui_border_data.h"
 #include "gui_fontdata.h"
-#include "McsGui/Utils/gui_keynavigation.h"
-#include "McsGui/Utils/gui_touch.h"
+#include "Utils/gui_action.h"
+#include "Utils/gui_anchor.h"
+#include "Utils/gui_keynavigation.h"
+#include "Utils/gui_touch.h"
 
 
 /** @enum GuiAlignment_e
@@ -28,12 +30,19 @@ extern "C" {
  */
 typedef enum
 {
-  AlignLeft = 1,   /**/
-  AlignRight = 2,  /**/
-  AlignCenter = 3, /**/
-  AlignTop = 4,    /**/
-  AlignBottom = 5  /**/
+  Gui_Align_Left = 1,   /**/
+  Gui_Align_Right = 2,  /**/
+  Gui_Align_Center = 3, /**/
+  Gui_Align_Top = 4,    /**/
+  Gui_Align_Bottom = 5  /**/
 } GuiAlignment_e;
+
+
+typedef enum
+{
+    Gui_Visibility_Visible = 0,
+    Gui_Visibility_Hidden = 1,
+} GuiVisibility_e;
 
 
 /** @enum BaseComponentType_e
@@ -42,18 +51,23 @@ typedef enum
  */
 typedef enum
 {
-    BaseType_Parent = 0, /**< Component type to hold children components, only background can be drawn if transparent = true */
-    BaseType_Image = 1,  /**< Component type to hold a Bitmap, background can be drawn if transparent = true */
+    BaseType_Parent = 0, /**< Component type to hold children components, only background can be drawn if transparent = false */
+    BaseType_Image = 1,  /**< Component type to hold a Bitmap, background can be drawn if transparent = false */
     BaseType_Fill = 2,   /**< Component type to hold a Rectangle */
-    BaseType_Text = 3    /**< */
+    BaseType_Text = 3    /**< Component type to hold text, background can be drawn if transparent = false */
 } BaseComponentType_e;
 
-typedef struct text_data_s
+typedef struct
 {
-    uint8_t fontId;
-    uint8_t fontFocused;
-} TextData_s;
+    uint16_t x;
+    uint16_t y;
+} GuiPoint_s;
 
+typedef struct
+{
+    uint16_t width;
+    uint16_t height;
+} GuiSize_s;
 
 /** @struct BaseComponent_s
  *
@@ -63,12 +77,16 @@ typedef struct text_data_s
 typedef struct base_component_s
 {
     BaseComponentType_e baseType;   /**< Type of the BaseComponent */
-    uint16_t xPos;                  /**< X position */
-    uint16_t yPos;                  /**< Y position */
+    uint16_t x;                     /**< X position */
+    uint16_t y;                     /**< Y position */
     uint16_t width;                 /**< Width */
     uint16_t height;                /**< Height */
+    uint32_t bmpKey;
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    uint8_t properties[GUI_CONFIG_NUMBER_OF_PROPERTIES];
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+    char *p_text;                /**< String, pointer to dynamic text buffer */
     bool visible;                   /**< If visible component is displayed when onDisplay is called */
-    char *p_bmpName;                /**< String, bitmap name */
     void *p_data;                   /**< Depending on BaseType, NULL, FillData_s or TextData_s */
     bool transparent;
     Color_t background;
@@ -78,17 +96,18 @@ typedef struct base_component_s
     struct base_component_s *p_parent;               /**< Pointer to the parent if added in a childlist */
     struct base_component_s *p_childList;            /**< Pointer to the list of child components */
     struct base_component_s *p_nextBaseComponent;    /**< Pointer to the next BaseComponent if used in a list */
-#if GUI_CONFIG_USE_ALIGNMENT
     uint8_t horizontalAlignment;    /**< Horizontal alignment relative to parent if added as child */
     uint8_t verticalAlignment;      /**< Vertical alignment relative to parent if added as child */
-#if GUI_CONFIG_USE_MARGIN
-    uint8_t leftMargin;
-    uint8_t topMargin;
-    uint8_t rightMargin;
-    uint8_t bottomMargin;
-#endif /* GUI_CONFIG_USE_MARGIN */
-#endif /* GUI_CONFIG_USE_ALIGNMENT */
+    uint8_t leftPadding;
+    uint8_t rightPadding;
+    uint8_t topPadding;
+    uint8_t bottomPadding;
     uint8_t memToFree;
+    uint8_t id;
+    GuiAction_s *p_action;
+#if GUI_CONFIG_USE_ANCHOR
+    GuiAnchor_s *p_anchor;
+#endif /* GUI_CONFIG_USE_ANCHOR */
 #if GUI_CONFIG_USE_KEY_NAVIGATION
     KeyNavigation_s *p_keyNavigation;
     bool focused; /**< Component has focus */
@@ -113,59 +132,75 @@ void base_initImageComp(
 
 void base_initFillComp(
         BaseComponent_s *p_base,
-        FillData_s *p_fillData,
+        BorderData_s *p_borderData,
         void (*onDeleteComponent)(BaseComponent_s *p_baseToDelete));
 
 void base_initTextComp(
         BaseComponent_s *p_base,
+        char *p_text,
         FontData_s *p_fontData,
         void (*onDeleteComponent)(BaseComponent_s *p_baseToDelete));
 
 void base_clear(BaseComponent_s *p_base);
 void base_clearChildList(BaseComponent_s *p_base);
-void base_clearBmp(const BaseComponent_s *p_base);
 void base_addChild(BaseComponent_s *p_parentBase, BaseComponent_s *p_childBase);
+void base_display(void *p_component);
 
-void base_setXPos(void *p_component, const uint16_t xPos);
-void base_setYPos(void *p_component, const uint16_t yPos);
+void base_setBmpKey(void *p_component, const uint32_t fileKey);
+void base_setXPos(void *p_component, const uint16_t x);
+void base_setYPos(void *p_component, const uint16_t y);
 void base_setWidth(void *p_component, const uint16_t width);
 void base_setHeight(void *p_component, const uint16_t height);
-void base_setPosition(void *p_component, const uint16_t xPos, const uint16_t yPos);
+void base_setPosition(void *p_component, const uint16_t x, const uint16_t y);
 void base_setDimensions(void *p_component, const uint16_t width, const uint16_t height);
-void base_setBmp(void *p_component, const char *p_bmpName);
+void base_setSize(void *p_component, const uint16_t width, const uint16_t height);
+void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue);
 void base_setBackground(void *p_component, const Color_t color);
+void base_setTransparent(void *p_component, const bool transparent);
+void base_setVisibility(void *p_component, const GuiVisibility_e visibility);
+void base_setVisible(void *p_component, const bool visible);
+void base_setId(void *p_component, const uint8_t id);
+void base_setOnDelete(void *p_component, void (*onDelete)(BaseComponent_s *p_base));
+void base_setOnDisplay(void *p_component, void (*onDisplay)(BaseComponent_s *p_base));
+void base_setOnHandleEvent(void *p_component, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event));
 
-#if GUI_CONFIG_USE_ALIGNMENT
+GuiVisibility_e base_getVisibility(void *p_component);
+
+bool base_iterateNextChild(BaseComponent_s *p_parentBase, BaseComponent_s **p_iterator);
+void base_executeForEachChild(BaseComponent_s *p_parentBase, void(*functionToExecute)(void *p_childBase));
+
+/* BMP Alignment */
 void base_setAlignment(void *p_component, const GuiAlignment_e horizontal, const GuiAlignment_e vertical);
 void base_setHorizontalAlignment(void *p_component, const GuiAlignment_e alignment);
 void base_setVerticalAlignment(void *p_component, const GuiAlignment_e alignment);
-#if GUI_CONFIG_USE_MARGIN
-void base_setMargin(void *p_component, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
-void base_setLeftMargin(void *p_component, const uint8_t margin);
-void base_setTopMargin(void *p_component, const uint8_t margin);
-void base_setRightMargin(void *p_component, const uint8_t margin);
-void base_setBottomMargin(void *p_component, const uint8_t margin);
-#endif /* GUI_CONFIG_USE_MARGIN */
-#endif /* GUI_CONFIG_USE_ALIGNMENT */
+
+void base_setPadding(void *p_component, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
+void base_setLeftPadding(void *p_component, const uint8_t padding);
+void base_setTopPadding(void *p_component, const uint8_t padding);
+void base_setRightPadding(void *p_component, const uint8_t padding);
+void base_setBottomPadding(void *p_component, const uint8_t padding);
 
 #if GUI_CONFIG_USE_ON_BEFORE_DISPLAY
 void base_setOnBeforeDisplay(void *p_component, void (*onBeforeDisplay)(BaseComponent_s *p_base));
 #endif /* GUI_CONFIG_USE_ON_BEFORE_DISPLAY */
 
+#if GUI_CONFIG_USE_ANCHOR
+void base_addAnchor(void *p_component, GuiAnchor_s *p_anchor);
+void base_addNewInitAnchor(void *p_component);
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
 #if GUI_CONFIG_USE_KEY_NAVIGATION
 void base_addKeyNavigation(void *p_component, KeyNavigation_s *p_keyNavigation);
-#if GUI_USE_DYNAMIC_MEMORY
-void base_addNewInitKeyNavigation(BaseComponent_s *p_base);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
-bool base_setActiveFocus(BaseComponent_s *p_base);
-void base_setFocus(BaseComponent_s *p_base, const bool focus);
+void base_addNewInitKeyNavigation(void *p_component);
+bool base_setActiveFocus(void *p_component);
+void base_setFocus(void *p_component, const bool focus);
+void base_setFocusNotifyChanged(void *p_component, const bool focus);
+void base_setOnFocusChanged(void *p_component, void (*onFocusChanged)(BaseComponent_s *p_base));
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 #if GUI_CONFIG_USE_TOUCH
 void base_addTouch(void *p_component, Touch_s *p_touch);
-#if GUI_USE_DYNAMIC_MEMORY
-void base_addNewInitTouch(BaseComponent_s *p_base);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+void base_addNewInitTouch(void *p_component);
 #endif /* GUI_CONFIG_USE_TOUCH */
 
 #ifdef __cplusplus

@@ -43,19 +43,26 @@ extern "C" {
 
 #include "gui_config.h"
 
-#include "McsGui/Components/gui_button.h"
-#include "McsGui/Components/gui_checkbox.h"
-#include "McsGui/Components/gui_label.h"
-#include "McsGui/Components/gui_listview.h"
-#include "McsGui/Components/gui_listviewitem.h"
-#include "McsGui/Components/gui_radiogroup.h"
-#include "McsGui/Components/gui_rectangle.h"
-#include "McsGui/Components/gui_textblock.h"
-#include "McsGui/Core/gui_view.h"
-#include "McsGui/Utils/gui_touch.h"
-#include "McsGui/Utils/gui_keynavigation.h"
+#include "Components/gui_button.h"
+#include "Components/gui_checkbox.h"
+#include "Components/gui_label.h"
+#include "Components/gui_item.h"
+#include "Components/gui_listview.h"
+#include "Components/gui_listviewitem.h"
+#include "Components/gui_radiogroup.h"
+#include "Components/gui_rectangle.h"
+#include "Components/gui_textblock.h"
+#include "Components/gui_column.h"
+#include "Components/gui_row.h"
+#include "Components/gui_grid.h"
+#include "Core/gui_view.h"
+#include "Utils/gui_touch.h"
+#include "Utils/gui_keynavigation.h"
+#include "Utils/utils_array.h"
+#include "Utils/gui_anchor.h"
+#include "ExternalDisplay/external_display.h"
 
-#define MCSGUI_VERSION_MAJOR 1
+#define MCSGUI_VERSION_MAJOR 2
 #define MCSGUI_VERSION_MINOR 0
 #define MCSGUI_VERSION_PATCH 0
 

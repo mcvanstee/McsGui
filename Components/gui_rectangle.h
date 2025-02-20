@@ -15,44 +15,60 @@ extern "C" {
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "McsGui/gui_config.h"
-#include "McsGui/Core/gui_basecomponent.h"
+#include "gui_config.h"
+#include "Core/gui_basecomponent.h"
 
 
 typedef struct rectangle_s
 {
     BaseComponent_s base;
-    FillData_s fillData;
+    BorderData_s borderData;
 } Rectangle_s;
 
 
-#if GUI_USE_DYNAMIC_MEMORY
 Rectangle_s *rectangle_new(void);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+Rectangle_s *rectangle_newInit(void);
 
 void rectangle_delete(BaseComponent_s *p_rectangleBase);
 void rectangle_init(Rectangle_s *p_rectangle);
-void rectangle_init_1(
+
+void rectangle_initFillSize(
         Rectangle_s *p_rectangle, const Color_t color,
-        const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height);
 
-void rectangle_init_2(
+void rectangle_initFillPosSize(
         Rectangle_s *p_rectangle, const Color_t color,
-        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t x, const uint16_t y,
+        const uint16_t width, const uint16_t height);
+
+void rectangle_initFillBorderSize(
+        Rectangle_s *p_rectangle, const Color_t color,
         const uint16_t width, const uint16_t height,
         const uint8_t borderThickness, const Color_t borderColor);
 
-void rectangle_initBorder(
+void rectangle_initFillBorderPosSize(
+        Rectangle_s *p_rectangle, const Color_t color,
+        const uint16_t x, const uint16_t y,
+        const uint16_t width, const uint16_t height,
+        const uint8_t borderThickness, const Color_t borderColor);
+
+void rectangle_initBorderSize(
         Rectangle_s *p_rectangle,
-        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t width, const uint16_t height,
+        const uint8_t borderThickness, const Color_t borderColor);
+
+void rectangle_initBorderPosSize(
+        Rectangle_s *p_rectangle,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height,
         const uint8_t borderThickness, const Color_t borderColor);
 
 void rectangle_displayDirect(Rectangle_s *p_rectangle);
 void rectangle_setColor(Rectangle_s *p_rectangle, const Color_t color);
+void rectangle_showBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly);
 void rectangle_setBorderColor(Rectangle_s *p_rectangle, const Color_t color);
 void rectangle_setBorderThickness(Rectangle_s *p_rectangle, const uint8_t thickness);
+void rectangle_setRadius(Rectangle_s *p_rectangle, const uint8_t radius);
 
 #ifdef __cplusplus
 } /* extern "C" */

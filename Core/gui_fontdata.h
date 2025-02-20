@@ -14,7 +14,7 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
 
 
 typedef struct font_data_s

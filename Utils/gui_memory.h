@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#include "McsGui/gui_config.h"
+#include "gui_config.h"
 
 #if GUI_USE_DYNAMIC_MEMORY
 

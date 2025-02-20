@@ -2,15 +2,9 @@
 
 #include <stddef.h>
 
-#include "McsGui/Utils/gui_memory.h"
-
-
-#if GUI_USE_DYNAMIC_MEMORY
-ListView_s *listview_new(void)
-{
-    return gui_mem_malloc(sizeof(ListView_s));
-}
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+#include "Utils/gui_log.h"
+#include "Utils/gui_memory.h"
+#include "Graphics/gui_graphics.h"
 
 
 /* Private function declarations */
@@ -20,6 +14,50 @@ static void listview_onFocusChanged(BaseComponent_s *p_listBase);
 
 static void listview_updateVisibleItems(ListView_s *p_listView);
 static inline void listview_activeItemChanged(ListView_s *p_listView);
+static BaseComponent_s *listview_getTouchedItem(ListView_s *p_listView, const GuiEvent_s *p_event);
+static void listview_onDisplay(BaseComponent_s *p_listViewBase);
+
+
+#if !GUI_USE_DYNAMIC_MEMORY
+static bool staticLVMemInUse[GUI_CONFIG_LISTVIEW_BUFFER_SIZE] = {0};
+static ListView_s staticLVMem[GUI_CONFIG_LISTVIEW_BUFFER_SIZE] = {0};
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+
+
+ListView_s *listview_new(void)
+{
+#if GUI_USE_DYNAMIC_MEMORY
+    return gui_mem_malloc(sizeof(ListView_s));
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_LISTVIEW_BUFFER_SIZE; i++)
+    {
+    	if (!staticLVMemInUse[i])
+    	{
+    		staticLVMemInUse[i] = true;
+
+    		return &staticLVMem[i];
+    	}
+    }
+
+    gui_log_write(GUI_LOG_LEVEL_ERROR, "No ListView_s static memory");
+
+    return NULL;
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+}
+
+
+/**
+ * @brief Creates a new ListView_s component and initializes it to default values.
+ * @return Pointer to the ListView_s component.
+ *
+ */
+ListView_s *listview_newInit(void)
+{
+	ListView_s *p_listView = listview_new();
+	listview_init(p_listView);
+
+	return p_listView;
+}
 
 
 void listview_delete(BaseComponent_s *p_listViewBase)
@@ -27,50 +65,70 @@ void listview_delete(BaseComponent_s *p_listViewBase)
     base_clear(p_listViewBase);
 #if GUI_USE_DYNAMIC_MEMORY
     gui_mem_free(p_listViewBase, sizeof(ListView_s));
-    p_listViewBase = NULL;
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_LISTVIEW_BUFFER_SIZE; i++)
+    {
+    	if (&staticLVMem[i].base == p_listViewBase)
+    	{
+    		staticLVMemInUse[i] = false;
+    		break;
+    	}
+    }
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 }
 
-static void listview_init(
+void listview_init(
         ListView_s *p_listView)
 {
-    filldata_init(&p_listView->fillData);
-    base_initFillComp(&p_listView->base, &p_listView->fillData, listview_delete);
+    base_initParentComp(&p_listView->base, listview_delete);
+    p_listView->base.onDisplay = listview_onDisplay;
 
     p_listView->rowHight = 0;
-    p_listView->itemsVisible = 0;
     p_listView->numberOfItems = 0;
+    p_listView->itemsVisible = 0;
     p_listView->previousActiveIndex = -1;
-    p_listView->activeIndex = 0;
+    p_listView->activeIndex = -1;
     p_listView->firstVisibleItemIndex = 0;
     p_listView->onActiveItemChanged = NULL;
+    p_listView->onBeforeMoveUp = NULL;
+    p_listView->onBeforeMoveDown = NULL;
+    p_listView->onDisplayed = NULL;
     p_listView->base.onHandleEvent = listview_handleEvent;
-    p_listView->base.onFocusChanged = listview_onFocusChanged;
     p_listView->viewWindowChanged = false;
 #if GUI_CONFIG_USE_KEY_NAVIGATION
+    p_listView->base.onFocusChanged = listview_onFocusChanged;
     p_listView->onFocused = NULL;
     p_listView->onFocusLost = NULL;
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 }
 
-void listview_init_1(
+void listview_initPosSize(
         ListView_s *p_listView,
-        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height)
 {
     listview_init(p_listView);
-    base_setPosition(&p_listView->base, xPos, yPos);
+    base_setPosition(&p_listView->base, x, y);
     base_setWidth(&p_listView->base, width);
     base_setHeight(&p_listView->base, height);
+}
+
+void listview_setRowHight(ListView_s *p_listView, const uint8_t rowHight)
+{
+    p_listView->rowHight = rowHight;
 }
 
 void listview_addComponent(
         ListView_s *p_listView, BaseComponent_s *p_itemBase)
 {
+	p_itemBase->p_parent = &p_listView->base;
+
     if (p_listView->base.p_childList == NULL)
     {
         p_listView->base.p_childList = p_itemBase;
-        p_listView->numberOfItems += 1;
+        p_listView->numberOfItems = 1;
+
+        listview_updateVisibleItems(p_listView);
 
         return;
     }
@@ -90,26 +148,32 @@ void listview_addComponent(
 void listview_addItem(
         ListView_s *p_listView, ListViewItem_s *p_listViewItem)
 {
+	p_listViewItem->base.p_parent = &p_listView->base;
+	p_listViewItem->base.x = p_listView->base.x;
     p_listViewItem->base.width = p_listView->base.width;
     p_listViewItem->base.height = p_listView->rowHight;
 
     if (p_listView->base.p_childList == NULL)
     {
         p_listView->base.p_childList = &p_listViewItem->base;
-        p_listView->numberOfItems += 1;
+        p_listView->numberOfItems = 1;
+        p_listViewItem->index = 0;
 
         listview_updateVisibleItems(p_listView);
 
         return;
     }
 
+    int32_t index = 0;
     BaseComponent_s *p_iterator = p_listView->base.p_childList;
     while (p_iterator->p_nextBaseComponent != NULL)
     {
         p_iterator = p_iterator->p_nextBaseComponent;
+        index++;
     }
 
     p_iterator->p_nextBaseComponent = &p_listViewItem->base;
+    p_listViewItem->index = index + 1;
     p_listView->numberOfItems += 1;
 
     listview_updateVisibleItems(p_listView);
@@ -121,6 +185,7 @@ bool listview_handleEvent(
     bool eventHandled = false;
     ListView_s *p_listView = (ListView_s *)p_listViewBase;
     BaseComponent_s *p_activeItem = listview_getActive(p_listView);
+
 
 #if GUI_CONFIG_LISTVIEW_BUTTON_BEHAVIOR == 1
     if (GUI_EVENT_KEY_ENTER_RELEASE == p_event->event &&
@@ -158,19 +223,72 @@ bool listview_handleEvent(
         eventHandled = keynav_handleEvent(p_listViewBase->p_keyNavigation, p_event);
         if (eventHandled)
         {
-            base_setFocus(p_listViewBase, false);
+            base_setFocusNotifyChanged(p_listViewBase, false);
         }
     }
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
+#if GUI_CONFIG_USE_TOUCH
+    if (!eventHandled)
+    {
+        BaseComponent_s *p_touchedItem = listview_getTouchedItem(p_listView, p_event);
+        if ((p_touchedItem != NULL) && (p_touchedItem->onHandleEvent != NULL))
+        {
+            eventHandled = p_touchedItem->onHandleEvent(p_touchedItem, p_event);
+        }
+    }
+#endif /* GUI_CONFIG_USE_TOUCH */
+
     return eventHandled;
+}
+
+static BaseComponent_s *listview_getTouchedItem(ListView_s *p_listView, const GuiEvent_s *p_event)
+{
+    if ((p_listView == NULL) || (p_listView->numberOfItems == 0))
+    {
+        return NULL;
+    }
+
+    BaseComponent_s *p_iterator = p_listView->base.p_childList;
+    while (p_iterator != NULL)
+    {
+        if (p_iterator->visible)
+        {
+            Touch_s touch = {0};
+            touch_init_1(&touch, p_iterator->x, p_iterator->y, p_iterator->width, p_iterator->height);
+            const bool isInTouchArea = touch_isInTouchArea(&touch, p_event);
+
+            if (isInTouchArea)
+            {
+                return p_iterator;
+            }
+        }
+
+        p_iterator = p_iterator->p_nextBaseComponent;
+    }
+
+    return NULL;
 }
 
 bool listview_moveUp(
         ListView_s *p_listView)
 {
+    if (p_listView == NULL)
+    {
+        return false;
+    }
+
+	if (p_listView->onBeforeMoveUp != NULL)
+	{
+		const bool moveUpHandled = p_listView->onBeforeMoveUp(p_listView);
+		if (moveUpHandled)
+		{
+			return true;
+		}
+	}
+
     if ((p_listView->numberOfItems == 0) ||
-        (p_listView->activeIndex == 0))
+        (p_listView->activeIndex <= 0))
     {
         return false;
     }
@@ -183,8 +301,23 @@ bool listview_moveUp(
 bool listview_moveDown(
         ListView_s *p_listView)
 {
+    if (p_listView == NULL)
+    {
+        return false;
+    }
+
+	if (p_listView->onBeforeMoveDown != NULL)
+	{
+		const bool moveDownHandled = p_listView->onBeforeMoveDown(p_listView);
+		if (moveDownHandled)
+		{
+			return true;
+		}
+	}
+
     if ((p_listView->numberOfItems - 1) == p_listView->activeIndex)
     {
+
         return false;
     }
 
@@ -209,7 +342,7 @@ bool listview_getViewWindowChanged(
 void listview_setActive(
         ListView_s *p_listView, const int8_t index)
 {
-    if (index >= p_listView->numberOfItems)
+    if ((p_listView == NULL) || (index >= p_listView->numberOfItems))
     {
         return;
     }
@@ -225,6 +358,11 @@ BaseComponent_s *listview_getActive(
         ListView_s *p_listView)
 {
     return listview_getAtIndex(p_listView, p_listView->activeIndex);
+}
+
+BaseComponent_s *listview_getPreviousActive(ListView_s *p_listView)
+{
+    return listview_getAtIndex(p_listView, p_listView->previousActiveIndex);
 }
 
 BaseComponent_s *listview_getAtIndex(
@@ -250,6 +388,7 @@ BaseComponent_s *listview_getAtIndex(
     return p_iterator;
 }
 
+#if GUI_CONFIG_USE_KEY_NAVIGATION
 static void listview_onFocusChanged(
         BaseComponent_s *p_listBase)
 {
@@ -257,9 +396,6 @@ static void listview_onFocusChanged(
 
     if (p_listBase->focused)
     {
-        p_listView->activeIndex = 0;
-        p_listView->previousActiveIndex = -1;
-
         if (p_listView->onFocused != NULL)
         {
             p_listView->onFocused(p_listView);
@@ -274,14 +410,12 @@ static void listview_onFocusChanged(
             p_listView->onFocused(p_listView);
         }
 
-        p_listView->activeIndex = -1;
-        p_listView->previousActiveIndex = 0;
+        p_listView->previousActiveIndex = p_listView->activeIndex;
 
         listview_activeItemChanged(p_listView);
-
-        p_listView->previousActiveIndex = -1;
     }
 }
+#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 static void listview_updateVisibleItems(
         ListView_s *p_listView)
@@ -291,7 +425,8 @@ static void listview_updateVisibleItems(
         return;
     }
 
-    if (p_listView->numberOfItems <= p_listView->itemsVisible)
+    if ((p_listView->activeIndex < 0) ||
+        (p_listView->numberOfItems <= p_listView->itemsVisible))
     {
         p_listView->firstVisibleItemIndex = 0;
     }
@@ -309,10 +444,13 @@ static void listview_updateVisibleItems(
 
         p_listView->viewWindowChanged = true;
     }
+    else
+    {
+    }
 
-    uint16_t yPos = p_listView->base.yPos;
-    int_fast8_t index = 0;
-    int_fast8_t lastVisibleItemIndex =
+    uint16_t yPos = p_listView->base.y;
+    int8_t index = 0;
+    int8_t lastVisibleItemIndex =
             (p_listView->firstVisibleItemIndex + p_listView->itemsVisible) - 1;
     BaseComponent_s *p_iterator = p_listView->base.p_childList;
 
@@ -327,23 +465,29 @@ static void listview_updateVisibleItems(
             (index > lastVisibleItemIndex))
         {
             p_iterator->visible = false;
+
+            BaseComponent_s *p_childIterator = p_iterator->p_childList;
+            while (p_childIterator != NULL)
+            {
+                p_childIterator->visible = false;
+                p_childIterator = p_childIterator->p_nextBaseComponent;
+            }
         }
         else
         {
-            p_iterator->yPos = yPos;
+            p_iterator->x = p_listView->base.x;
+            p_iterator->y = yPos;
             p_iterator->visible = true;
 
-            // Update Child components y positions
+            // Update Child components y positions and visibility
             //
-            if (p_iterator->p_childList != NULL)
-            {
-                BaseComponent_s *p_childIterator = p_iterator->p_childList;
-                while (p_childIterator != NULL)
-                {
-                    p_childIterator->yPos = yPos;
-                    p_childIterator = p_childIterator->p_nextBaseComponent;
-                }
-            }
+			BaseComponent_s *p_childIterator = p_iterator->p_childList;
+			while (p_childIterator != NULL)
+			{
+				p_childIterator->y = yPos;
+				p_childIterator->visible = true;
+				p_childIterator = p_childIterator->p_nextBaseComponent;
+			}
 
             yPos += p_listView->rowHight;
         }
@@ -359,6 +503,44 @@ static inline void listview_activeItemChanged(
     if (p_listView->onActiveItemChanged != NULL)
     {
         p_listView->onActiveItemChanged(p_listView);
+    }
+}
+
+static void listview_onDisplay(BaseComponent_s *p_listViewBase)
+{
+#if GUI_CONFIG_USE_ANCHOR
+    if (NULL != p_listViewBase->p_anchor)
+    {
+        graphics_setPosistionFromAnchor(p_listViewBase);
+        listview_updateVisibleItems((ListView_s *)p_listViewBase);
+
+#if GUI_CONFIG_USE_TOUCH
+        if (NULL != p_listViewBase->p_touch)
+        {
+            p_listViewBase->p_touch->x = p_listViewBase->x;
+            p_listViewBase->p_touch->y = p_listViewBase->y;
+
+            if (p_listViewBase->p_touch->width == 0)
+            {
+                p_listViewBase->p_touch->width = p_listViewBase->width;
+            }
+
+            if (p_listViewBase->p_touch->height == 0)
+            {
+                p_listViewBase->p_touch->height = p_listViewBase->height;
+            }
+        }
+#endif /* GUI_CONFIG_USE_TOUCH */
+    }
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+    graphics_displayComponent(p_listViewBase);
+
+    ListView_s *p_listView = (ListView_s*)p_listViewBase;
+
+    if (p_listView->onDisplayed != NULL)
+    {
+        p_listView->onDisplayed(p_listView);
     }
 }
 

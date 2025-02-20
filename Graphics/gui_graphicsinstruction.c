@@ -2,38 +2,12 @@
 
 #include <stddef.h>
 
-#include "McsGui/Utils/gui_memory.h"
-
-
 
 static inline void graphic_instructions_init(
         GraphicsInstruction_s *p_instruction,
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
         const InstructionType_e type);
-
-/* Private function declarations */
-#if GUI_USE_DYNAMIC_MEMORY
-GraphicsInstruction_s *graphics_instruction_new(void)
-{
-    return gui_mem_malloc(sizeof(GraphicsInstruction_s));
-}
-#endif /* GUI_USE_DYNAMIC_MEMORY */
-
-#if GUI_USE_DYNAMIC_MEMORY
-void graphics_instruction_delete(
-        GraphicsInstruction_s *p_graphicsInstruction)
-{
-    if (p_graphicsInstruction == NULL)
-    {
-        return;
-    }
-
-    gui_mem_free(p_graphicsInstruction, sizeof(GraphicsInstruction_s));
-
-    p_graphicsInstruction = NULL;
-}
-#endif /* GUI_USE_DYNAMIC_MEMORY */
 
 void graphics_instruction_image_init(
         GraphicsInstruction_s *p_instruction,
@@ -54,7 +28,8 @@ void graphics_instruction_fill_init(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
         const Color_t fillColor, const Color_t borderColor,
-        const bool fillBackground, const uint8_t borderThickness)
+        const bool fillBackground, const uint8_t borderThickness,
+		const uint8_t radius)
 {
     graphic_instructions_init(
             p_instruction, xPos, yPos,
@@ -64,6 +39,7 @@ void graphics_instruction_fill_init(
     p_instruction->instructionData.fillData.borderColor = borderColor;
     p_instruction->instructionData.fillData.fillBackground = fillBackground;
     p_instruction->instructionData.fillData.borderThickness = borderThickness;
+    p_instruction->instructionData.fillData.radius = radius;
 }
 
 static inline void graphic_instructions_init(
@@ -77,7 +53,6 @@ static inline void graphic_instructions_init(
     p_instruction->yPos = yPos;
     p_instruction->width = width;
     p_instruction->height = height;
-    p_instruction->p_nextInstruction = NULL;
 }
 
 

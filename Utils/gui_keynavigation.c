@@ -4,19 +4,41 @@
 
 #include <stddef.h>
 
-#include "McsGui/Core/gui_basecomponent.h"
-#include "McsGui/Utils/gui_memory.h"
+#include "Core/gui_basecomponent.h"
+#include "Utils/gui_log.h"
+#include "Utils/gui_memory.h"
 
-#if GUI_USE_DYNAMIC_MEMORY
+
+#if !GUI_USE_DYNAMIC_MEMORY
+static bool staticKNMemInUse[GUI_CONFIG_KEYNAVIGATION_BUFFER_SIZE] = {0};
+static KeyNavigation_s staticKNMem[GUI_CONFIG_KEYNAVIGATION_BUFFER_SIZE] = {0};
+#endif /* GUI_USE_DYNAMIC_MEMORY */
+
 /**
- * @brief Creates a new malloced KeyNavigation struct.
- * @return Pointer to the malloced memory.
+ * @brief Creates a new KeyNavigation struct.
+ * @return Pointer to the memory.
  *
  * @warning The returned struct is not initialized.
  */
 KeyNavigation_s *keynav_new(void)
 {
+#if GUI_USE_DYNAMIC_MEMORY
     return gui_mem_malloc(sizeof(KeyNavigation_s));
+#else
+    for (uint32_t i = 0; i < GUI_CONFIG_KEYNAVIGATION_BUFFER_SIZE; i++)
+    {
+    	if (!staticKNMemInUse[i])
+    	{
+    		staticKNMemInUse[i] = true;
+
+    		return &staticKNMem[i];
+    	}
+    }
+
+    gui_log_write(GUI_LOG_LEVEL_ERROR, "No KeyNavigation_s static memory");
+
+    return NULL;
+#endif /* GUI_USE_DYNAMIC_MEMORY */
 }
 
 
@@ -29,11 +51,20 @@ void keynav_delete(KeyNavigation_s *p_keyNavigation)
 {
     if (p_keyNavigation != NULL)
     {
+#if GUI_USE_DYNAMIC_MEMORY
         gui_mem_free(p_keyNavigation, sizeof(KeyNavigation_s));
-        p_keyNavigation = NULL;
+#else
+        for (uint32_t i = 0; i < GUI_CONFIG_KEYNAVIGATION_BUFFER_SIZE; i++)
+        {
+        	if (&staticKNMem[i] == p_keyNavigation)
+        	{
+        		staticKNMemInUse[i] = false;
+        		break;
+        	}
+        }
+#endif /* GUI_USE_DYNAMIC_MEMORY */
     }
 }
-#endif /* GUI_USE_DYNAMIC_MEMORY */
 
 
 /**

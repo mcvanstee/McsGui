@@ -2,7 +2,7 @@
 
 #include <stddef.h>
 
-#include "McsGui/Utils/gui_memory.h"
+#include "Utils/gui_memory.h"
 
 
 #if GUI_USE_DYNAMIC_MEMORY

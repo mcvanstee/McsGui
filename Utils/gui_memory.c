@@ -1,6 +1,6 @@
 #include "gui_memory.h"
 
-#include "McsGui/Utils/gui_log.h"
+#include "Utils/gui_log.h"
 
 #if GUI_USE_DYNAMIC_MEMORY
 
@@ -42,7 +42,6 @@ void gui_mem_free(void *p_mem, size_t size)
     {
         free(p_mem);
         totalFreed += size;
-        p_mem = NULL;
     }
     else
     {

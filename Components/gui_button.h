@@ -12,37 +12,44 @@
 extern "C" {
 #endif
 
-#include "McsGui/gui_config.h"
-#include "McsGui/Core/gui_basecomponent.h"
+#include "gui_config.h"
+#include "Core/gui_basecomponent.h"
 
 
 typedef struct button_s
 {
     BaseComponent_s base;
-    void (*onPressed)(struct button_s *p_button);
-    void (*onReleased)(struct button_s *p_button);
-#if !GUI_USE_DYNAMIC_MEMORY
-    char bmpName[GUI_CONFIG_BITMAP_NAME_LENGTH_INC_NULL];
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+    void (*onPressed)(struct button_s *p_button);    // Callback function called when the button is pressed.
+    void (*pressed)(struct button_s *p_button);    // Callback function called when the button is pressed.
+    void (*onReleased)(struct button_s *p_button);    // Callback function called when the button is released.
+    void (*onPressedEvent)(void);    // Callback function called when the button is pressed.
+    void (*pressedEvent)(void);    // Callback function called when the button is pressed.
+    void (*onReleasedEvent)(void);    // Callback function called when the button is released.
 } Button_s;
 
 
-#if GUI_USE_DYNAMIC_MEMORY
 Button_s *button_new(void);
-#endif /* GUI_USE_DYNAMIC_MEMORY */
+Button_s *button_newInit(void);
+
 void button_delete(BaseComponent_s *p_buttonBase);
 void button_init(Button_s *p_button);
-void button_init_1(
-        Button_s *p_button, const char *p_bmpName,
-        const uint16_t xPos, const uint16_t yPos);
+void button_initBmp(Button_s *p_button, const uint32_t bmpKey);
+void button_initBmpPos(
+        Button_s *p_button, const uint32_t bmpKey,
+        const uint16_t x, const uint16_t y);
 
-void button_init_2(
-        Button_s *p_button, const char *p_bmpName,
-        const uint16_t xPos, const uint16_t yPos,
+void button_initBmpPosSize(
+        Button_s *p_button, const uint32_t bmpKey,
+        const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height);
 
 void button_setOnPressed(Button_s *p_button, void (*onPressed)(Button_s *p_buttonPressed));
+void button_setPressed(Button_s *p_button, void (*pressed)(Button_s *p_buttonPressed));
 void button_setOnReleased(Button_s *p_button, void (*onReleased)(Button_s *p_buttonReleased));
+void button_setOnPressedEvent(Button_s *p_button, void (*onPressedEvent)(void));
+void button_setPressedEvent(Button_s *p_button, void (*pressedEvent)(void));
+void button_setOnReleasedEvent(Button_s *p_button, void (*onReleasedEvent)(void));
+
 bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event);
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION

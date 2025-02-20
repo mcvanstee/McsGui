@@ -12,12 +12,17 @@
 extern "C" {
 #endif
 
-#include "McsGui/gui_config.h"
-#include "McsGui/Core/gui_basecomponent.h"
-#include "McsGui/Graphics/gui_graphicsinstruction.h"
+#include "gui_config.h"
+#include "Core/gui_basecomponent.h"
+#include "Graphics/gui_graphicsinstruction.h"
 
 void graphics_displayComponent(BaseComponent_s *p_base);
 void graphics_flushDisplayUpdates(void);
+void graphics_setSizeFromBmp(BaseComponent_s *p_base);
+
+#if GUI_CONFIG_USE_ANCHOR
+void graphics_setPosistionFromAnchor(BaseComponent_s *p_base);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #ifdef __cplusplus
 } /* extern "C" */
