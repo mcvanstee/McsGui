@@ -1,0 +1,42 @@
+#include "settings_view.h"
+
+#include "gui_app.h"
+#include "gui_custom_components.h"
+
+#include "main_view.h"
+#include "brightness_view.h"
+#include "language_view.h"
+#include "accent_color_view.h"
+#include "theme_view.h"
+#include "set_time_view.h"
+
+static void sv_create(View_s *p_view);
+
+
+void settings_view_navigateTo(void)
+{
+    view_navigateTo(&g_guiApp.view, sv_create);
+}
+
+static void sv_create(View_s *p_view)
+{
+    header_setTitle(FILE_KEY_TITLE_SETTINGS);
+
+    Grid_s *p_grid = gui_addPageButtonGrid(p_view);
+
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_BRUSH, FILE_KEY_TEXT_BUTTON_THEME, theme_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_PALETTE,FILE_KEY_TEXT_BUTTON_ACCENT_COLOR, accent_color_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_BRIGHTNESS, FILE_KEY_TEXT_BUTTON_BRIGHTNESS, brightness_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_GLOBAL, FILE_KEY_TEXT_BUTTON_LANGUAGE, language_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_AGENDA, FILE_KEY_TEXT_BUTTON_DATE, set_time_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_CLOCK, FILE_KEY_TEXT_BUTTON_TIME, set_time_view_navigateTo);
+
+    Row_s *p_footer = gui_addFooterButtonRow(p_view);
+
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+    gui_addFooterSpacer(p_footer);
+    gui_addFooterSpacer(p_footer);
+}
+
+
+

@@ -1,0 +1,6 @@
+#ifndef VIEWS_SETTINGS_DISPLAY_SETTINGS_VIEW_H_
+#define VIEWS_SETTINGS_DISPLAY_SETTINGS_VIEW_H_
+
+void display_settings_view_navigateTo(void);
+
+#endif /* VIEWS_SETTINGS_DISPLAY_SETTINGS_VIEW_H_ */
