@@ -54,6 +54,7 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
     Label_s *p_label = label_new();
     label_initBmpPos(p_label, FILE_KEY_TEXT_DFT_ACCENT_COLOR, 20, 20);
     theme_setTheme(p_label);
+    gui_translate(p_label);
 
     ColorCheckbox_s *p_redCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_redCheckbox, COLOR_ACCENT_RED);

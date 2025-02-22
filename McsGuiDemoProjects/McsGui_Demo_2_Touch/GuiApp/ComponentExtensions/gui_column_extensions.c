@@ -3,7 +3,7 @@
 Column_s *gui_addRadioButtonColumn(View_s *p_view)
 {
     Column_s *p_column = column_newInit();
-    column_setSpacing(p_column, 10);
+    column_setSpacing(p_column, 3);
     base_setPosition(&p_column->base, 20, 55);
     view_addComponent(p_view, p_column);
 

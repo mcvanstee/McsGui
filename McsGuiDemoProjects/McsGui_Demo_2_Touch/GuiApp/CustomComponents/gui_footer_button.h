@@ -11,7 +11,6 @@ typedef struct
 	Button_s button;
 	file_key_e content;
 	Touch_s touch;
-	void (*onPressed)(void);
 } FooterButton_s;
 
 FooterButton_s *footer_btn_new(void);

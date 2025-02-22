@@ -543,6 +543,29 @@ void gui_translate(void *p_component)
             languageProperty = PROPERTY_LANGUAGE_VALUE_DUTCH;
             break;
         case Lanugage_German:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_GERMAN;
+            break;
+        case Language_French:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_FRENCH;
+            break;
+        case Language_Spanish:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_SPANISH;
+            break;
+        case Language_Italian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ITALIAN;
+            break;
+        case Language_Russian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
+            break;
+        case Language_Chinese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
+            break;
+        case Language_Japanese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;
+            break;
+        case Language_Korean:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_KOREAN;
+            break;
         default:
             languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
             break;

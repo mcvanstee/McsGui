@@ -15,7 +15,6 @@ static FooterButton_s staticFooterButtonMem[GUI_FOOTER_BUTTON_BUFFER_SIZE];
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 
 static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase);
-static void footer_btn_released(Button_s *p_button);
 
 FooterButton_s* footer_btn_new(void)
 {
@@ -74,7 +73,6 @@ void footer_btn_init(FooterButton_s *p_footerButton)
     touch_init(&p_footerButton->touch);
     base_addTouch(&p_footerButton->button.base, &p_footerButton->touch);
     p_footerButton->content = FILE_KEY_NONE;
-    p_footerButton->onPressed = NULL;
 }
 
 void footer_btn_initIcon(
@@ -86,20 +84,9 @@ void footer_btn_initIcon(
 
     base_setBmpKey(&p_footerButton->button.base, FILE_KEY_BUTTON_FOOTER_BUTTON);
     base_setSize(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
-    button_setOnReleased(&p_footerButton->button, footer_btn_released);
+    button_setOnReleasedEvent(&p_footerButton->button, onPressed);
 
     p_footerButton->content = icon;
-    p_footerButton->onPressed = onPressed;
-}
-
-static void footer_btn_released(Button_s *p_button)
-{
-    FooterButton_s *p_footerButton = (FooterButton_s*) p_button;
-
-    if (NULL != p_footerButton->onPressed)
-    {
-        p_footerButton->onPressed();
-    }
 }
 
 static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)

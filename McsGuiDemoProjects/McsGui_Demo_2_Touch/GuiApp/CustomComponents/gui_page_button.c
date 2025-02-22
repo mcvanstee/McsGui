@@ -94,7 +94,7 @@ void page_btn_initIconText(
 
 	p_pageButton->icon = icon;
 	p_pageButton->text = text;
-	button_setOnPressedEvent(&p_pageButton->button, onPressed);
+	button_setOnReleasedEvent(&p_pageButton->button, onPressed);
 }
 
 static void page_btn_onDisplay(BaseComponent_s *p_buttonBase)

@@ -15,9 +15,9 @@ extern "C" {
 #define FS_IMAGE_FILE_VERSION_MAJOR  1u
 #define FS_IMAGE_FILE_VERSION_MINOR  0u
 #define FS_IMAGE_FILE_VERSION_PATCH  0u
-#define FS_IMAGE_FILE_VERSION_REVISION  71u
+#define FS_IMAGE_FILE_VERSION_REVISION  72u
 
-#define FS_IMAGE_FILE_NAME "gui_pixeldata_1_0_0_71"
+#define FS_IMAGE_FILE_NAME "gui_pixeldata_1_0_0_72"
 
 #ifdef __cplusplus
 }

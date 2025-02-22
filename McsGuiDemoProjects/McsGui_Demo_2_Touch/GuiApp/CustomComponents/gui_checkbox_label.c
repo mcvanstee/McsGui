@@ -8,7 +8,7 @@
 #include "Utils/gui_log.h"
 #include "Utils/gui_memory.h"
 
-#define GUI_CHECKBOX_LABEL_BUFFER_SIZE 8
+#define GUI_CHECKBOX_LABEL_BUFFER_SIZE 10
 
 #define CHECKBOX_WIDTH 150
 #define CHECKBOX_HEIGHT 30
@@ -109,7 +109,7 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
     theme_setTheme(&label);
     base_setHeight(&label, CHECKBOX_HEIGHT);
     base_setHorizontalAlignment(&label.base, Gui_Align_Left);
-    base_setLeftPadding(&label.base, 40);
+    base_setLeftPadding(&label.base, 30);
     gui_translate(&label);
     base_display(&label);
 }

@@ -8,7 +8,7 @@
 #include "Utils/gui_log.h"
 #include "Utils/gui_memory.h"
 
-#define GUI_CHECKBOX_LABEL_BUFFER_SIZE 8
+#define GUI_CHECKBOX_LABEL_BUFFER_SIZE 10
 
 #define CHECKBOX_WIDTH 150
 #define CHECKBOX_HEIGHT 30
@@ -78,6 +78,7 @@ void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
 {
     checkbox_init(&p_checkboxLabel->checkBox);
     p_checkboxLabel->label = FILE_KEY_NONE;
+    base_setSize(p_checkboxLabel, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
     base_setOnDelete(p_checkboxLabel, checkbox_label_delete);
     base_setOnDisplay(p_checkboxLabel, checkbox_label_onDisplay);
     keynav_init(&p_checkboxLabel->keyNavigation);
@@ -99,8 +100,6 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
     checkbox_label_updateFocus(&p_checkboxLabel->checkBox);
     checkbox_label_updateSelection(&p_checkboxLabel->checkBox);
 
-    p_baseComponent->width = CHECKBOX_WIDTH;
-    p_baseComponent->height = CHECKBOX_HEIGHT;
     theme_setTheme(&p_checkboxLabel->checkBox);
     base_setHorizontalAlignment(p_baseComponent, Gui_Align_Left);
     graphics_displayComponent(p_baseComponent);
@@ -110,7 +109,7 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
     theme_setTheme(&label);
     base_setHeight(&label, CHECKBOX_HEIGHT);
     base_setHorizontalAlignment(&label.base, Gui_Align_Left);
-    base_setLeftPadding(&label.base, 40);
+    base_setLeftPadding(&label.base, 30);
     gui_translate(&label);
     base_display(&label);
 }

@@ -11,6 +11,13 @@ typedef enum
     Language_English = 0,
     Language_Dutch,
     Lanugage_German,
+    Language_French,
+    Language_Spanish,
+    Language_Italian,
+    Language_Russian,
+    Language_Chinese,
+    Language_Japanese,
+    Language_Korean,
 } Language_e;
 
 typedef enum
