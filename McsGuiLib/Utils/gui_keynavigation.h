@@ -45,6 +45,9 @@ void keynav_up(void *p_from, void *p_to);
 void keynav_right(void *p_from, void *p_to);
 void keynav_down(void *p_from, void *p_to);
 
+void keynav_connectLeftRight(void *p_leftComponent, void *p_rightComponent);
+void keynav_connectUpDown(void *p_upComponent, void *p_downComponent);
+
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 #ifdef __cplusplus

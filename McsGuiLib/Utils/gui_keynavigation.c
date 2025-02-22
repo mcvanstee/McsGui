@@ -225,6 +225,34 @@ void keynav_down(void *p_from, void *p_to)
     }
 }
 
+
+/**
+ * @brief Connects two components. When pressed right on the left component, the right component will get focused.
+ * When pressed left on the right component, the left component will get focused.
+ * @param[in] p_leftComponent
+ * @param[in] p_rightComponent
+ *
+ */
+void keynav_connectLeftRight(void *p_leftComponent, void *p_rightComponent)
+{
+    keynav_left(p_rightComponent, p_leftComponent);
+    keynav_right(p_leftComponent, p_rightComponent);
+}
+
+
+/**
+ * @brief Connects two components. When pressed down on the up component, the down component will get focused.
+ * When pressed up on the down component, the up component will get focused.
+ * @param[in] p_upComponent
+ * @param[in] p_downComponent
+ *
+ */
+void keynav_connectUpDown(void *p_upComponent, void *p_downComponent)
+{
+    keynav_up(p_downComponent, p_upComponent);
+    keynav_down(p_upComponent, p_downComponent);
+}
+
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 
