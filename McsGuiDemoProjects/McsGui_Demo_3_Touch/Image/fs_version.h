@@ -12,12 +12,12 @@
 extern "C" {
 #endif
 
-#define FS_IMAGE_FILE_VERSION_MAJOR  1u
+#define FS_IMAGE_FILE_VERSION_MAJOR  2u
 #define FS_IMAGE_FILE_VERSION_MINOR  0u
 #define FS_IMAGE_FILE_VERSION_PATCH  0u
-#define FS_IMAGE_FILE_VERSION_REVISION  50u
+#define FS_IMAGE_FILE_VERSION_REVISION  14u
 
-#define FS_IMAGE_FILE_NAME "demo3_pix_data_1_0_0_50"
+#define FS_IMAGE_FILE_NAME "gui_pixeldata_2_0_0_14"
 
 #ifdef __cplusplus
 }

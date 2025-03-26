@@ -43,7 +43,7 @@ static void sv_create(View_s *p_view)
     view_addComponent(p_view, p_displayGB);
 
     ButtonCustom_s *p_displayButton = custom_cmp_createIconNavButton(
-            FILE_KEY_ICON_DISPLAY, FILE_KEY_TITLE_DISPLAY, display_settings_view_navigateTo);
+            FILE_KEY_ICON_DISPLAY, FILE_KEY_TEXT_DISPLAY, display_settings_view_navigateTo);
     anchor_setTopAnchor(p_displayButton, p_displayGB, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_displayButton, p_displayGB, Gui_Anchor_Left);
     anchor_setTopMargin(p_displayButton, 20);
@@ -51,14 +51,14 @@ static void sv_create(View_s *p_view)
     group_box_addComponent(p_displayGB, p_displayButton);
 
     ButtonCustom_s *p_languageButton = custom_cmp_createIconNavButton(
-            FILE_KEY_ICON_LANGUAGE, FILE_KEY_TITLE_LANGUAGE, language_settings_view_navigateTo);
+            FILE_KEY_ICON_LANGUAGE, FILE_KEY_TEXT_LANGUAGE, language_settings_view_navigateTo);
     anchor_setTopAnchor(p_languageButton, p_displayButton, Gui_Anchor_Bottom);
     anchor_setLeftAnchor(p_languageButton, p_displayButton, Gui_Anchor_Left);
     anchor_setTopMargin(p_languageButton, 15);
     group_box_addComponent(p_displayGB, p_languageButton);
 
     ButtonCustom_s *p_dateTimeButton = custom_cmp_createIconNavButton(
-            FILE_KEY_ICON_CLOCK, FILE_KEY_TITLE_DATE_TIME, datetime_settings_view_navigateTo);
+            FILE_KEY_ICON_CLOCK, FILE_KEY_TEXT_DATE_TIME, datetime_settings_view_navigateTo);
     anchor_setTopAnchor(p_dateTimeButton, p_languageButton, Gui_Anchor_Bottom);
     anchor_setLeftAnchor(p_dateTimeButton, p_languageButton, Gui_Anchor_Left);
     anchor_setTopMargin(p_dateTimeButton, 15);

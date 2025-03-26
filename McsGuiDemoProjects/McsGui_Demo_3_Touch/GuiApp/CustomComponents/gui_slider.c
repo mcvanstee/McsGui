@@ -234,7 +234,7 @@ static void slider_displayValue(Slider_s *p_slider)
 
 	TextBlock_s textBlock;
 	textblock_init(&textBlock);
-	textblock_setFont(&textBlock, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+	textblock_setFont(&textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
 	base_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT));
 	base_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
 	base_setBackground(&textBlock, COLOR_BACKGROUND);
@@ -249,7 +249,7 @@ static void slider_displayKnob(Slider_s *p_slider)
 
     Label_s label;
     label_init(&label);
-    label_initBmpPos(&label, FILE_KEY_SLIDER_KNOB_ROUND, knobX, knobY);
+    label_initBmpPos(&label, FILE_KEY_ICON_SLIDER_KNOB, knobX, knobY);
     base_display(&label);
 }
 

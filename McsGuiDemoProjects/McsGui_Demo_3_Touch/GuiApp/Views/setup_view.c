@@ -73,7 +73,7 @@ static void sv_create(View_s *p_view)
 	sv_addMaxPointsInput(p_grid);
 
 	Button_s *p_saveButton = button_new();
-	button_initBmp(p_saveButton, FILE_KEY_TEXT_BUTTON_SAVE);
+	button_initBmp(p_saveButton, FILE_KEY_TEXT_SAVE);
 	button_setOnReleased(p_saveButton, sv_saveButtonPressed);
 	gui_app_translate(p_saveButton);
 	base_setSize(p_saveButton, 80, 30);
@@ -92,7 +92,7 @@ static void sv_create(View_s *p_view)
 static void sv_addSaveSwitch(Grid_s *p_grid)
 {
     Label_s *p_saveLabel = label_new();
-    label_initBmp(p_saveLabel, FILE_KEY_SAVE_REC);
+    label_initBmp(p_saveLabel, FILE_KEY_TEXT_SAVE_REC);
     gui_app_translate(p_saveLabel);
     base_setHeight(p_saveLabel, 30);
     grid_addComponent(p_grid, p_saveLabel);
@@ -106,7 +106,7 @@ static void sv_addSaveSwitch(Grid_s *p_grid)
 static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
 {
     Label_s *p_tempUnitLabel = label_new();
-    label_initBmp(p_tempUnitLabel, FILE_KEY_UNITS);
+    label_initBmp(p_tempUnitLabel, FILE_KEY_TEXT_UNITS);
     gui_app_translate(p_tempUnitLabel);
     base_setHeight(p_tempUnitLabel, 30);
     grid_addComponent(p_grid, p_tempUnitLabel);
@@ -120,13 +120,13 @@ static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
     pane_addComponent(p_pane, p_radioGroup);
 
     CheckboxLabel_s *p_celsiusCBL = checkbox_label_new();
-    checkbox_label_init_1(p_celsiusCBL, FILE_KEY_DEG_CEL);
+    checkbox_label_init_1(p_celsiusCBL, FILE_KEY_TEXT_DEG_CEL);
     base_setWidth(p_celsiusCBL, 60);
     row_addComponent(p_row, p_celsiusCBL);
     radiogroup_addButton(p_radioGroup, &p_celsiusCBL->checkBox);
 
     CheckboxLabel_s *p_fahrenheitCBL = checkbox_label_new();
-    checkbox_label_init_1(p_fahrenheitCBL, FILE_KEY_DEG_FAR);
+    checkbox_label_init_1(p_fahrenheitCBL, FILE_KEY_TEXT_DEG_FAR);
     base_setWidth(p_fahrenheitCBL, 60);
     row_addComponent(p_row, p_fahrenheitCBL);
     radiogroup_addButton(p_radioGroup, &p_fahrenheitCBL->checkBox);
@@ -137,7 +137,7 @@ static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
 static void sv_addIntervalInput(Grid_s *p_grid)
 {
     Label_s *p_intervalLabel = label_new();
-    label_initBmp(p_intervalLabel, FILE_KEY_INTERVAL);
+    label_initBmp(p_intervalLabel, FILE_KEY_TEXT_INTERVAL);
     gui_app_translate(p_intervalLabel);
     base_setHeight(p_intervalLabel, 30);
     grid_addComponent(p_grid, p_intervalLabel);
@@ -152,7 +152,7 @@ static void sv_addIntervalInput(Grid_s *p_grid)
 static void sv_addMaxPointsInput(Grid_s *p_grid)
 {
     Label_s *p_maxPointsLabel = label_new();
-    label_initBmp(p_maxPointsLabel, FILE_KEY_MAX_DATA_POINTS);
+    label_initBmp(p_maxPointsLabel, FILE_KEY_TEXT_MAX_DATA_POINTS);
     gui_app_translate(p_maxPointsLabel);
     base_setHeight(p_maxPointsLabel, 30);
     grid_addComponent(p_grid, p_maxPointsLabel);
@@ -200,7 +200,7 @@ static void sv_saveButtonPressed(Button_s *p_button)
 
 	Label_s label;
 	label_initBmpPosSize(
-	        &label, FILE_KEY_SAVED,
+	        &label, FILE_KEY_TEXT_SAVED,
 	        p_button->base.x, p_button->base.y,
 	        p_button->base.width, p_button->base.height);
 	base_setBackground(&label, COLOR_BACKGROUND);

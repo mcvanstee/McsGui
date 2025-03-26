@@ -147,11 +147,11 @@ static bool control_bar_handleEvent(BaseComponent_s *p_baseComponent, const GuiE
 
 static void control_bar_displayBtn(file_key_e icon, uint16_t x, uint16_t y, bool selected)
 {
-	const property_value_selected_e propertyValue = selected ? PROPERTY_SELECTED_VALUE_TRUE : PROPERTY_SELECTED_VALUE_FALSE;
+	const property_value_selection_e propertyValue = selected ? PROPERTY_SELECTION_VALUE_TRUE : PROPERTY_SELECTION_VALUE_FALSE;
 
 	Label_s label;
 	label_initBmpPosSize(&label, icon, x, y, CONTROL_BAR_BUTTON_WIDTH, CONTROL_BAR_BUTTON_HEIGHT);
-	base_setProperty(&label.base, FILE_PROPERTY_SELECTED, propertyValue);
+	base_setProperty(&label.base, FILE_PROPERTY_SELECTION, propertyValue);
 	base_display(&label);
 }
 

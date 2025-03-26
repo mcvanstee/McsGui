@@ -151,12 +151,12 @@ static void msmv_addInfoPaneContent(Pane_s *p_infoPane)
     pane_addComponent(p_infoPane, p_grid);
 
     TextBlock_s *p_hashtagTB = textblock_newInit();
-    textblock_setFont(p_hashtagTB, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_hashtagTB, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setText(p_hashtagTB, "#");
     grid_addComponent(p_grid, p_hashtagTB);
 
     TextBlock_s *p_recNumberTB = textblock_newInit();
-    textblock_setFont(p_recNumberTB, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_recNumberTB, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     base_setId(p_recNumberTB, MSMV_TEXTBLOCK_REC_NUMBER_ID);
     base_setBackground(p_recNumberTB, COLOR_BACKGROUND);
     base_setHorizontalAlignment(p_recNumberTB, Gui_Align_Left);
@@ -197,12 +197,12 @@ static TextBlock_s *msmv_addTempLabel(Grid_s *p_grid, int32_t textBlockId, file_
     }
 
     TextBlock_s *p_tempTextRec = textblock_newInit();
-    textblock_setFont(p_tempTextRec, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_tempTextRec, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     base_setId(p_tempTextRec, textBlockId);
     grid_addComponent(p_grid, p_tempTextRec);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
-            FILE_KEY_DEG_CEL : FILE_KEY_DEG_FAR;
+            FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
@@ -220,7 +220,7 @@ static TextBlock_s *msmv_addInfoLabel(Grid_s *p_grid, file_key_e icon)
     grid_addComponent(p_grid, p_icon);
 
     TextBlock_s *p_textBlock = textblock_newInit();
-    textblock_setFont(p_textBlock, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_textBlock, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     grid_addComponent(p_grid, p_textBlock);
 
     return p_textBlock;
@@ -248,7 +248,7 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
 
         msmv_updateRecNumber();
         ControlBar_s *p_controlBar = (ControlBar_s *)view_getComponentById(&g_guiApp.view, CONTROL_BAR_ID);
-        control_bar_setButtonIcon(p_controlBar, 1, FILE_KEY_ICON_BULLSEYE_RED);
+        control_bar_setButtonIcon(p_controlBar, 1, FILE_KEY_ICON_BULLSEYE);
         control_bar_drawButton(p_controlBar, 1);
 
         log_info("Recording started");

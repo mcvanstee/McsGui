@@ -110,7 +110,7 @@ static void pane_onDisplay(BaseComponent_s *p_base)
 	{
 		Rectangle_s paneBackground;
 		rectangle_initFillPosSize(
-				&paneBackground, COLOR_PANE_BACKGROUND_DARK,
+				&paneBackground, COLOR_PANE,
 				p_base->x, p_base->y,
 				p_base->width, p_base->height);
 		rectangle_setRadius(&paneBackground, p_pane->radius);

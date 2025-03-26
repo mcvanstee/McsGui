@@ -2,6 +2,10 @@
 #define GUI_APP_H_
 
 #include "mcsgui.h"
+#include "colors.h"
+#include "fonts.h"
+#include "fs_file_search.h"
+#include "fs_font_search.h"
 #include "Utils/gui_log.h"
 #include "gui_utils_unit_converter.h"
 

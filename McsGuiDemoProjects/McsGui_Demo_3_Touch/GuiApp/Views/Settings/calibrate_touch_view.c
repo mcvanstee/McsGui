@@ -66,11 +66,11 @@ static void ctv_create(View_s *p_view)
 	textblock_initTextPosSize(
 			p_instructionTB, "Touch the crosshair with a stylus",
 			0, 0, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
-	textblock_setFont(p_instructionTB, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+	textblock_setFont(p_instructionTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 
 	TextBlock_s *p_pointTB = textblock_new();
 	textblock_initText(p_pointTB, "(x, y) = (0, 0)");
-	textblock_setFont(p_pointTB, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+	textblock_setFont(p_pointTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 	base_setBackground(p_pointTB, CTV_BACKGROUND_COLOR);
 	base_setWidth(p_pointTB, 200);
 	base_setId(p_pointTB, CTB_POINT_TEXTBLOCK_ID);
@@ -80,7 +80,7 @@ static void ctv_create(View_s *p_view)
 
 	TextBlock_s *p_adcValuesTB = textblock_new();
 	textblock_initText(p_adcValuesTB, "ADC (x,y,z): (0, 0, 0)");
-	textblock_setFont(p_adcValuesTB, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+	textblock_setFont(p_adcValuesTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 	base_setBackground(p_adcValuesTB, CTV_BACKGROUND_COLOR);
 	base_setWidth(p_adcValuesTB, 200);
 	base_setId(p_adcValuesTB, CTB_ADC_VALUES_TEXTBLOCK_ID);
@@ -90,7 +90,7 @@ static void ctv_create(View_s *p_view)
 
 	TextBlock_s *p_button = textblock_new();
 	textblock_initText(p_button, "Exit");
-	textblock_setFont(p_button, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+	textblock_setFont(p_button, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 	base_setId(p_button, CTB_EXIT_BUTTON_TEXT_ID);
 	base_setWidth(p_button, 100);
 	base_setHeight(p_button, 20);
@@ -237,7 +237,7 @@ static void cvt_showCalibrationResult(const bool passed)
 			0, 150);
 	base_setWidth(&resultTB, STYLE_DISPLAY_WIDTH);
 	base_setBackground(&resultTB, CTV_BACKGROUND_COLOR);
-	textblock_setFont(&resultTB, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+	textblock_setFont(&resultTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 	base_display(&resultTB);
 }
 

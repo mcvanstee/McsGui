@@ -105,7 +105,7 @@ static void mv_tempPaneAddContent(Pane_s *p_pane)
 
 	TextBlock_s *p_tempTextBlock = textblock_newInit();
     textblock_initTextSize(p_tempTextBlock, "-", 40, 24);
-    textblock_setFont(p_tempTextBlock, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_tempTextBlock, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     base_setId(p_tempTextBlock, MV_TEMP_TEXTBLOCK_ID);
     base_setBackground(p_tempTextBlock, COLOR_BACKGROUND);
     base_setHorizontalAlignment(p_tempTextBlock, Gui_Align_Right);
@@ -113,7 +113,7 @@ static void mv_tempPaneAddContent(Pane_s *p_pane)
     row_addComponent(p_row, p_tempTextBlock);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
-            FILE_KEY_DEG_CEL : FILE_KEY_DEG_FAR;
+            FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
@@ -149,14 +149,14 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 	if (g_guiApp.showTime)
 	{
 		Label_s *p_timeLabel = label_newInit();
-		label_initBmp(p_timeLabel, FILE_KEY_ICON_CLOCK);
+		label_initBmp(p_timeLabel, FILE_KEY_ICON_PANE_CLOCK);
 		base_setHeight(p_timeLabel, 30);
 		column_addComponent(p_columnLeft, p_timeLabel);
 
 		TextBlock_s *p_timeTextBlock = textblock_newInit();
-		textblock_setFont(p_timeTextBlock, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+		textblock_setFont(p_timeTextBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 		base_setId(p_timeTextBlock, MV_TIME_TEXTBLOCK_ID);
-		base_setBackground(p_timeTextBlock, COLOR_PANE_BACKGROUND_DARK);
+		base_setBackground(p_timeTextBlock, COLOR_PANE);
 		base_setHeight(p_timeTextBlock, 30);
 		base_setHorizontalAlignment(p_timeTextBlock, Gui_Align_Left);
 		base_setTopPadding(p_timeTextBlock, 2);
@@ -168,15 +168,15 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 	if (g_guiApp.showDate)
 	{
 		Label_s *p_dateLabel = label_newInit();
-		label_initBmp(p_dateLabel, FILE_KEY_ICON_AGENDA);
+		label_initBmp(p_dateLabel, FILE_KEY_ICON_PANE_AGENDA);
 		base_setHeight(p_dateLabel, 30);
 		column_addComponent(p_columnLeft, p_dateLabel);
 
 		TextBlock_s *p_dateTextBlock = textblock_newInit();
-		textblock_setFont(p_dateTextBlock, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+		textblock_setFont(p_dateTextBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
 		base_setId(p_dateTextBlock, MV_DATE_TEXTBLOCK_ID);
 		base_setHeight(p_dateTextBlock, 30);
-		base_setBackground(p_dateTextBlock, COLOR_PANE_BACKGROUND_DARK);
+		base_setBackground(p_dateTextBlock, COLOR_PANE);
 		base_setHorizontalAlignment(p_dateTextBlock, Gui_Align_Left);
 		base_setTopPadding(p_dateTextBlock, 2);
 		column_addComponent(p_columnRight, p_dateTextBlock);
@@ -216,7 +216,7 @@ static void mv_historyPaneAddContent(Pane_s *p_pane)
 	}
 
     TextBlock_s *p_maxTB = textblock_newInit();
-    textblock_setFont(p_maxTB, FONT_DARK_BACK_WHITE_FORE_SMALL);
+    textblock_setFont(p_maxTB, FONT_KEY_TEXT_SMALL_ROBOTO_13_R_DEFAULT_TEXT);
     textblock_setText(p_maxTB, "100%");
     base_addNewInitAnchor(p_maxTB);
     anchor_setTopAnchor(p_maxTB, p_row, Gui_Anchor_Top);
@@ -225,7 +225,7 @@ static void mv_historyPaneAddContent(Pane_s *p_pane)
     pane_addComponent(p_pane, p_maxTB);
 
     TextBlock_s *p_minTB = textblock_newInit();
-    textblock_setFont(p_minTB, FONT_DARK_BACK_WHITE_FORE_SMALL);
+    textblock_setFont(p_minTB, FONT_KEY_TEXT_SMALL_ROBOTO_13_R_DEFAULT_TEXT);
     textblock_setText(p_minTB, "0%");
     base_addNewInitAnchor(p_minTB);
     anchor_setBottomAnchor(p_minTB, p_row, Gui_Anchor_Bottom);
@@ -246,14 +246,14 @@ static void mv_infoPaneAddContent(Pane_s *p_pane)
 	pane_addComponent(p_pane, p_irlLogo);
 
 	Rectangle_s *p_irlBorder = rectangle_new();
-	rectangle_initBorderSize(p_irlBorder, 50, 50, 1, COLOR_PANE_BACKGROUND_DARK);
+	rectangle_initBorderSize(p_irlBorder, 50, 50, 1, COLOR_PANE);
 	rectangle_setRadius(p_irlBorder, 3);
 	base_addNewInitAnchor(p_irlBorder);
 	anchor_setCenterInParent(p_irlBorder, p_irlLogo);
 	pane_addComponent(p_pane, p_irlBorder);
 
     TextBlock_s *p_irlTB = textblock_newInit();
-    textblock_setFont(p_irlTB, FONT_DARK_GRAY_WHITE_FORE_SMALL);
+    textblock_setFont(p_irlTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
     textblock_setText(p_irlTB, "IRL Software");
     base_addNewInitAnchor(p_irlTB);
     anchor_setLeftAnchor(p_irlTB, p_irlLogo, Gui_Anchor_Right);
@@ -262,7 +262,7 @@ static void mv_infoPaneAddContent(Pane_s *p_pane)
     pane_addComponent(p_pane, p_irlTB);
 
     TextBlock_s *p_mailTB = textblock_newInit();
-    textblock_setFont(p_mailTB, FONT_DARK_GRAY_WHITE_FORE_SMALL);
+    textblock_setFont(p_mailTB, FONT_KEY_TEXT_SMALL_ROBOTO_13_R_PANE_TEXT);
     textblock_setText(p_mailTB, "info@irlsoftware.nl");
     base_addNewInitAnchor(p_mailTB);
     anchor_setLeftAnchor(p_mailTB, p_irlLogo, Gui_Anchor_Right);
@@ -272,7 +272,7 @@ static void mv_infoPaneAddContent(Pane_s *p_pane)
     pane_addComponent(p_pane, p_mailTB);
 
     TextBlock_s *p_mcsguiTB = textblock_newInit();
-    textblock_setFont(p_mcsguiTB, FONT_DARK_GRAY_WHITE_FORE_REGULAR);
+    textblock_setFont(p_mcsguiTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
     textblock_setText(p_mcsguiTB, "McsGui");
     base_addNewInitAnchor(p_mcsguiTB);
     anchor_setLeftAnchor(p_mcsguiTB, p_irlLogo, Gui_Anchor_Left);
@@ -281,7 +281,7 @@ static void mv_infoPaneAddContent(Pane_s *p_pane)
     pane_addComponent(p_pane, p_mcsguiTB);
 
     TextBlock_s *p_versionTB = textblock_newInit();
-    textblock_setFont(p_versionTB, FONT_DARK_GRAY_WHITE_FORE_SMALL);
+    textblock_setFont(p_versionTB, FONT_KEY_TEXT_SMALL_ROBOTO_13_R_PANE_TEXT);
     snprintf(p_versionTB->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "V%d.%d.%d",
             MCSGUI_VERSION_MAJOR, MCSGUI_VERSION_MINOR, MCSGUI_VERSION_PATCH);
     base_addNewInitAnchor(p_versionTB);

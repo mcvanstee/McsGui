@@ -69,8 +69,8 @@ static void dsv_addDateTimeContent(GroupBox_s *p_dateTimeGB)
     anchor_setTopMargin(p_column, 16);
     group_box_addComponent(p_dateTimeGB, p_column);
 
-    const file_key_e labelTime = g_guiApp.showTime ? FILE_KEY_SHOW_TIME : FILE_KEY_HIDE_TIME;
-    const file_key_e labelDate = g_guiApp.showDate ? FILE_KEY_SHOW_DATE : FILE_KEY_HIDE_DATE;
+    const file_key_e labelTime = g_guiApp.showTime ? FILE_KEY_TEXT_SHOW_TIME : FILE_KEY_TEXT_HIDE_TIME;
+    const file_key_e labelDate = g_guiApp.showDate ? FILE_KEY_TEXT_SHOW_DATE : FILE_KEY_TEXT_HIDE_DATE;
 
     CheckboxLabel_s *p_timeSwitch = dsv_addSwitchLabel(p_column, labelTime);
     CheckboxLabel_s *p_dateSwitch = dsv_addSwitchLabel(p_column, labelDate);
@@ -95,11 +95,11 @@ static void dsv_timeSwitchChanged(CheckboxLabel_s *p_checkboxLabel)
 {
     if (p_checkboxLabel->checkBox.checked)
     {
-        p_checkboxLabel->label = FILE_KEY_SHOW_TIME;
+        p_checkboxLabel->label = FILE_KEY_TEXT_SHOW_TIME;
     }
     else
     {
-        p_checkboxLabel->label = FILE_KEY_HIDE_TIME;
+        p_checkboxLabel->label = FILE_KEY_TEXT_HIDE_TIME;
     }
 
     g_guiApp.showTime = p_checkboxLabel->checkBox.checked;
@@ -110,11 +110,11 @@ static void dsv_dateSwitchChanged(CheckboxLabel_s *p_checkboxLabel)
 {
     if (p_checkboxLabel->checkBox.checked)
     {
-        p_checkboxLabel->label = FILE_KEY_SHOW_DATE;
+        p_checkboxLabel->label = FILE_KEY_TEXT_SHOW_DATE;
     }
     else
     {
-        p_checkboxLabel->label = FILE_KEY_HIDE_DATE;
+        p_checkboxLabel->label = FILE_KEY_TEXT_HIDE_DATE;
     }
 
     g_guiApp.showDate = p_checkboxLabel->checkBox.checked;

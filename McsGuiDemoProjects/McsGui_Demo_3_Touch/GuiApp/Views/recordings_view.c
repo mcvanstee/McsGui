@@ -214,7 +214,7 @@ static void rc_createInfoPane(Item_s *p_item)
     pane_addComponent(p_pane, p_grid);
 
     rc_createInfoLabel(p_grid, FILE_KEY_ICON_PULSE, RV_INTERVAL_TEXTBLOCK_ID);
-    rc_createInfoLabel(p_grid, FILE_KEY_HASHTAG, RV_READINGS_TEXTBLOCK_ID);
+    rc_createInfoLabel(p_grid, FILE_KEY_TEXT_HASHTAG, RV_READINGS_TEXTBLOCK_ID);
     rc_createInfoTempLabel(p_grid, FILE_KEY_ICON_ARROW_UP_SMALL, RV_TEMP_MAX_TEXTBLOCK_ID);
     rc_createInfoTempLabel(p_grid, FILE_KEY_ICON_ARROW_DOWN_SMALL, RV_TEMP_MIN_TEXTBLOCK_ID);
 }
@@ -227,7 +227,7 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
     grid_addComponent(p_grid, p_label);
 
     TextBlock_s *p_textBlock = textblock_newInit();
-    textblock_setFont(p_textBlock, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(p_textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
     base_setBackground(p_textBlock, COLOR_BACKGROUND);
     base_setHorizontalAlignment(p_textBlock, Gui_Align_Left);
@@ -243,7 +243,7 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
 static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t textBlockId)
 {
     TextBlock_s *p_tempTextRec = textblock_newInit();
-    textblock_setFont(p_tempTextRec, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_tempTextRec, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setText(p_tempTextRec, "T");
     grid_addComponent(p_grid, p_tempTextRec);
 
@@ -255,7 +255,7 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
     base_addChild(&p_tempTextRec->base, &p_arrowLabel->base);
 
     TextBlock_s *p_textBlock = textblock_newInit();
-    textblock_setFont(p_textBlock, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(p_textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
     base_setBackground(p_textBlock, COLOR_BACKGROUND);
     base_setHorizontalAlignment(p_textBlock, Gui_Align_Left);
@@ -263,7 +263,7 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
     grid_addComponent(p_grid, p_textBlock);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
-            FILE_KEY_DEG_CEL : FILE_KEY_DEG_FAR;
+            FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_unitLabel = label_new();
     label_initBmp(p_unitLabel, tempUnitKey);
@@ -284,7 +284,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     item_addComponent(p_item, p_pane);
 
     Label_s *p_readingsLabel = label_new();
-    label_initBmp(p_readingsLabel, FILE_KEY_HASHTAG);
+    label_initBmp(p_readingsLabel, FILE_KEY_TEXT_HASHTAG);
     base_addNewInitAnchor(p_readingsLabel);
     anchor_setTopAnchor(p_readingsLabel, p_pane, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_readingsLabel, p_pane, Gui_Anchor_Left);
@@ -293,7 +293,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_readingsLabel);
 
     TextBlock_s *p_tempTextRec = textblock_newInit();
-    textblock_setFont(p_tempTextRec, FONT_DARK_BACK_WHITE_FORE_LARGE);
+    textblock_setFont(p_tempTextRec, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setText(p_tempTextRec, "T");
     base_addNewInitAnchor(p_tempTextRec);
     anchor_setTopAnchor(p_tempTextRec, p_pane, Gui_Anchor_Top);
@@ -303,7 +303,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_tempTextRec);
 
     TextBlock_s *p_parenthesesOpen = textblock_newInit();
-    textblock_setFont(p_parenthesesOpen, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(p_parenthesesOpen, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_parenthesesOpen, "(");
     base_addNewInitAnchor(p_parenthesesOpen);
     anchor_setTopAnchor(p_parenthesesOpen, p_pane, Gui_Anchor_Top);
@@ -313,7 +313,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_parenthesesOpen);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
-            FILE_KEY_DEG_CEL : FILE_KEY_DEG_FAR;
+            FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_unitLabel = label_new();
     label_initBmp(p_unitLabel, tempUnitKey);
@@ -326,7 +326,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_unitLabel);
 
     TextBlock_s *p_parenthesesClose = textblock_newInit();
-    textblock_setFont(p_parenthesesClose, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(p_parenthesesClose, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_parenthesesClose, ")");
     base_addNewInitAnchor(p_parenthesesClose);
     anchor_setTopAnchor(p_parenthesesClose, p_pane, Gui_Anchor_Top);
@@ -380,24 +380,6 @@ static void rc_createReadingsPane(Item_s *p_item)
     anchor_setBottomAnchor(p_downButton, p_pane, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_downButton, p_pane, Gui_Anchor_Right);
     pane_addComponent(p_pane, p_downButton);
-
-
-
-//    ScrollBar_s *p_scrollBar = scrollbar_newInit();
-//    scrollbar_setWidth(p_scrollBar, RV_SCROLLBAR_WIDTH);
-//    scrollbar_setHeight(p_scrollBar, p_listView->base.height);
-//    scrollbar_setThumbMaxSize(p_scrollBar, 20);
-//    scrollbar_setButtonSize(p_scrollBar, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
-//    scrollbar_setThumbAreaWidth(p_scrollBar, 16);
-//    scrollbar_setUpIcon(p_scrollBar, FILE_KEY_ICON_SCROLL_UP);
-//    scrollbar_setDownIcon(p_scrollBar, FILE_KEY_ICON_SCROLL_DOWN);
-//    scrollbar_addListview(p_scrollBar, p_listView);
-//    scrollbar_setThumbAreaColor(p_scrollBar, COLOR_BACKGROUND);
-//    scrollbar_setThumbColor(p_scrollBar, COLOR_ACCENT_RED);
-//    scrollbar_setThumbRadius(p_scrollBar, 4);
-//    anchor_setTopAnchor(p_scrollBar, p_listView, Gui_Anchor_Top);
-//    anchor_setLeftAnchor(p_scrollBar, p_listView, Gui_Anchor_Right);
-//    pane_addComponent(p_pane, p_scrollBar);
 }
 
 static void rc_addRecordingItems(ListView_s *p_listView)
@@ -433,8 +415,8 @@ static void rc_displayRecordingItem(BaseComponent_s *p_itemBase)
     ListView_s *p_listView = (ListView_s*)p_itemBase->p_parent;
 
     const bool activeItem = (p_listView->activeIndex == p_listViewItem->index);
-    const uint8_t fontId = (activeItem) ? FONT_DARK_GRAY_WHITE_FORE_REGULAR : FONT_DARK_BACK_WHITE_FORE_REGULAR;
-    const Color_t backgroundColor = (activeItem) ? COLOR_PANE_BACKGROUND_DARK : COLOR_BACKGROUND;
+    const uint8_t fontId = (activeItem) ? FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT : FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT;
+    const Color_t backgroundColor = (activeItem) ? COLOR_PANE : COLOR_BACKGROUND;
 
     Item_s item;
     item_init(&item);
@@ -475,7 +457,7 @@ static void rc_displayReadingItem(BaseComponent_s *p_itemBase)
 
     TextBlock_s textBlock;
     textblock_init(&textBlock);
-    textblock_setFont(&textBlock, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(&textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "% d       %s", p_reading->id, p_text);
     GuiAnchor_s anchor;
     anchor_init(&anchor);

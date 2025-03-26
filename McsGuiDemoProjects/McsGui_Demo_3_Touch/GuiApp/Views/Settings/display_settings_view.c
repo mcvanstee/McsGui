@@ -13,7 +13,7 @@
 
 #define GROUP_BOX_LARGE_WIDTH 416
 #define GROUP_BOX_SMALL_WIDTH ((GROUP_BOX_LARGE_WIDTH / 2) - 5)
-#define GROUP_BOX_HEIGHT 110//130
+#define GROUP_BOX_HEIGHT 110
 
 
 static void dsv_create(View_s *p_view);
@@ -56,7 +56,7 @@ static void dsv_create(View_s *p_view)
     ButtonCustom_s *p_calibrateButton = button_custom_newInit();
     base_setSize(p_calibrateButton, 150, 36);
     button_custom_setText(p_calibrateButton, "Calibrate");
-    button_custom_setFont(p_calibrateButton, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    button_custom_setFont(p_calibrateButton, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
     button_setOnReleasedEvent(&p_calibrateButton->button, calibrate_touch_view_navigateTo);
     button_custom_setBorderColor(p_calibrateButton, COLOR_ACCENT_RED);
     button_custom_setColor(p_calibrateButton, COLOR_BACKGROUND);

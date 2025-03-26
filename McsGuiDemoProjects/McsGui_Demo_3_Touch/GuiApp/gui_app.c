@@ -491,7 +491,7 @@ void gui_app_translate(void *p_component)
             languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
             break;
         case Language_Chinese:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE_SIMPLIFIED;
+            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
             break;
         case Language_Japanese:
             languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;

@@ -4,9 +4,6 @@
 #include <stdio.h>
 
 #include "gui_app.h"
-#include "colors.h"
-#include "fonts.h"
-#include "fs_file_search.h"
 #include "Graphics/gui_graphics.h"
 #include "Utils/gui_log.h"
 #include "Utils/gui_memory.h"
@@ -87,8 +84,8 @@ void num_input_init(NumberInput_s *p_numberInput)
     touch_init(&p_numberInput->increaseTouch);
     base_addTouch(&p_numberInput->decreaseButton.base, &p_numberInput->decreaseTouch);
     base_addTouch(&p_numberInput->increaseButton.base, &p_numberInput->increaseTouch);
-    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_ICON_BUTTONMINUS);
-    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_BUTTONPLUS);
+    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_BUTTON_MINUS);
+    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_BUTTON_PLUS);
     base_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     base_setSize(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     button_setOnReleased(&p_numberInput->decreaseButton, num_input_decreaseValue);
@@ -188,7 +185,7 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
 {
     TextBlock_s textBlock;
     textblock_init(&textBlock);
-    textblock_setFont(&textBlock, FONT_DARK_BACK_WHITE_FORE_REGULAR);
+    textblock_setFont(&textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
 
     if (p_numberInput->orientation == NumberInput_Orientation_Horizontal)
     {

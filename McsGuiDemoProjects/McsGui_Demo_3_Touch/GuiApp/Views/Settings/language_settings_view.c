@@ -83,16 +83,16 @@ static void lsv_addLanguageContent(GroupBox_s *p_languageGB)
     radiogroup_setOnSelectionChanged(p_radioGroup, lsv_languageChanged);
     group_box_addComponent(p_languageGB, p_radioGroup);
 
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_ENGLISH);
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_DUTCH);
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_GERMAN);
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_FRENCH);
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_SPANISH);
-    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_ITALIAN);
-    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_RUSSIAN);
-    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_CHINESE_SIM);
-    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_JAPANESE);
-    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_KOREAN);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_ENGLISH);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DUTCH);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_GERMAN);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_FRENCH);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_SPANISH);
+    sv_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_ITALIAN);
+    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_RUSSIAN);
+    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_CHINESE_SIM);
+    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_JAPANESE);
+    sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_KOREAN);
     radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.language);
 }
 

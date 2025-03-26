@@ -26,9 +26,9 @@ static void custom_cmp_displayCheckbox(BaseComponent_s *p_base)
 {
     Checkbox_s *p_checkbox = (Checkbox_s *)p_base;
 
-    const property_value_selected_e selected = p_checkbox->checked ?
-            PROPERTY_SELECTED_VALUE_TRUE : PROPERTY_SELECTED_VALUE_FALSE;
-    base_setProperty(p_checkbox, FILE_PROPERTY_SELECTED, selected);
+    const property_value_selection_e selected = p_checkbox->checked ?
+            PROPERTY_SELECTION_VALUE_TRUE : PROPERTY_SELECTION_VALUE_FALSE;
+    base_setProperty(p_checkbox, FILE_PROPERTY_SELECTION, selected);
 
     graphics_displayComponent(p_base);
 }

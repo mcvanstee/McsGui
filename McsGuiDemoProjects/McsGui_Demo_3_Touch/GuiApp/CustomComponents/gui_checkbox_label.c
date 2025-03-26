@@ -89,7 +89,7 @@ void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
 void checkbox_label_init_1(CheckboxLabel_s *p_checkboxLabel, file_key_e label)
 {
     checkbox_label_init(p_checkboxLabel);
-    base_setBmpKey(p_checkboxLabel, FILE_KEY_ICON_RADIO);
+    base_setBmpKey(p_checkboxLabel, FILE_KEY_RADIO_BUTTON);
     p_checkboxLabel->label = label;
     p_checkboxLabel->labelPadding = 30;
 }
@@ -145,8 +145,8 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
 
 static void checkbox_label_updateSelection(Checkbox_s *p_checkbox)
 {
-    const property_value_selected_e selected = p_checkbox->checked ? PROPERTY_SELECTED_VALUE_TRUE : PROPERTY_SELECTED_VALUE_FALSE;
-    base_setProperty(p_checkbox, FILE_PROPERTY_SELECTED, selected);
+    const property_value_selection_e selected = p_checkbox->checked ? PROPERTY_SELECTION_VALUE_TRUE : PROPERTY_SELECTION_VALUE_FALSE;
+    base_setProperty(p_checkbox, FILE_PROPERTY_SELECTION, selected);
 }
 
 static void checkbox_label_selectionChanged(Checkbox_s *p_checkbox)
