@@ -1,0 +1,9 @@
+../Image/gui_image.c:36:6:gui_image_initialize	16	static
+../Image/gui_image.c:47:6:gui_image_drawImage	48	static
+../Image/gui_image.c:103:6:fs_readData	32	static
+../Image/gui_image.c:123:6:graphics_drawRectFillBorder	40	static
+../Image/gui_image.c:143:6:graphics_drawRectBorder	40	static
+../Image/gui_image.c:163:6:graphics_drawRectFill	32	static
+../Image/gui_image.c:179:6:graphics_getBmpFileInfo	40	static
+../Image/gui_image.c:197:6:graphics_getCharacterInfo	40	static
+../Image/gui_image.c:214:6:graphics_drawImage	32	static

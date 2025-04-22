@@ -1,0 +1,34 @@
+/*
+ *
+ * @par COPYRIGHT NOTICE:
+ * Copyright (c) 2024, Marijn van Stee, all rights reserved.
+ *
+ */
+
+#ifndef FS_VERSION_H_
+#define FS_VERSION_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define COLOR_BACKGROUND_LIGHT 0xFFFFFF
+#define COLOR_BACKGROUND_DARK 0x2C2C2C
+#define COLOR_TEXT_LIGHT 0x000000
+#define COLOR_TEXT_DARK 0xE5E5E5
+#define COLOR_IRL_BLUE 0x2195F2
+#define COLOR_FOOTER_BACKGROUND_DARK 0x2C2C2C
+#define COLOR_FOOTER_BACKGROUND_LIGHT 0xF5F5F5
+#define COLOR_HEADER_BACKGROUND_DARK 0x2C2C2C
+#define COLOR_HEADER_BACKGROUND_LIGHT 0x2195F2
+#define COLOR_FOCUS_BACKGROUND_LIGHT 0xEEEEEE
+#define COLOR_FOCUS_BACKGROUND_DARK 0x454545
+#define COLOR_ACCENT_RED 0xE81123
+#define COLOR_ACCENT_GREEN 0x107C10
+#define COLOR_ACCENT_BLUE 0x0078D4
+
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
+
+#endif /*FS_VERSION_H_*/

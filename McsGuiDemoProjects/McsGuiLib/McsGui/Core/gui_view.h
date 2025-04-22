@@ -27,7 +27,7 @@ typedef struct view_s
 } View_s;
 
 void view_init(View_s *p_view);
-void view_navigateTo(View_s *p_view, void (*createView)(View_s *p_viewNavigatingTo));  // void (*onNavigateTo)(View_s *p_viewNavigatingTo));
+void view_navigateTo(View_s *p_view, void (*createView)(View_s *p_viewNavigatingTo));
 void view_beforeNavigateTo(View_s *p_view);
 void view_afterNavigatedTo(View_s *p_view);
 void view_navigateAway(View_s *p_view);

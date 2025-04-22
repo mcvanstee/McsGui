@@ -1,0 +1,6 @@
+../GuiApp/Views/measurement_view.c:20:6:measurement_view_navigateTo	8	static
+../GuiApp/Views/measurement_view.c:25:13:msmv_create	40	static
+../GuiApp/Views/measurement_view.c:75:13:msnv_updateTemp	24	static
+../GuiApp/Views/measurement_view.c:85:13:msnv_setTemp	32	static
+../GuiApp/Views/measurement_view.c:101:14:celsiusToFahrenheit	16	static
+../GuiApp/Views/measurement_view.c:106:19:msmv_getFontKey	16	static

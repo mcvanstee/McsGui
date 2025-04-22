@@ -1,0 +1,10 @@
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:16:13:listview_ext_newNavigationListView	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:31:6:listview_ext_addNavigationItem	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:50:13:listview_ext_newRadioListView	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:65:6:listview_ext_addRadioItem	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:87:6:listview_ext_activeNavigationItemChanged	4
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:113:13:listview_ext_displayNavigationItem	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:144:13:listview_ext_displayRadioItem	2
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:176:13:listview_ext_handleEvent	4
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:195:13:listview_ext_selectionChanged	1
+../GuiApp/ComponentExtensions/gui_listview_extensions.c:201:13:listview_ext_updateSelection	2

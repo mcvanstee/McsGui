@@ -39,23 +39,18 @@ void header_updateDateTime(const bool forceUpdate)
     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
-    if (!forceUpdate && (lastMinute == (int32_t)sTime.Minutes))
+    if (forceUpdate || (lastMinute != (int32_t)sTime.Minutes))
     {
-        return;
+        lastMinute = sTime.Minutes;
+
+        TextBlock_s time;
+        textblock_initTextPosSize(&time, "00:00", 36, 9, 100, 24);
+        sprintf(time.text, "%02d:%02d", sTime.Hours, sTime.Minutes);
+        textblock_setFont(&time, theme_getHeaderFontSmall());
+        base_setHorizontalAlignment(&time.base, Gui_Align_Left);
+        base_setLeftPadding(&time.base, 2);
+        base_display(&time.base);
     }
-
-    lastMinute = sTime.Minutes;
-
-    TextBlock_s time;
-    textblock_initTextPosSize(&time, "00:00", 37, 8, 100, 24);
-    sprintf(time.text, "%02d:%02d", sTime.Hours, sTime.Minutes);
-
-    textblock_setFont(&time, theme_getHeaderFontSmall());
-    base_setHorizontalAlignment(&time.base, Gui_Align_Left);
-    base_setLeftPadding(&time.base, 2);
-    base_display(&time.base);
-
-    return;
 }
 
 void header_showAlarm(const bool showAlarm)

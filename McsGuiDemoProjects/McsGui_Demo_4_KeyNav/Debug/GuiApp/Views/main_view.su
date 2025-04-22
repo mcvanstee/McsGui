@@ -1,0 +1,3 @@
+../GuiApp/Views/main_view.c:15:6:mainview_navigateTo	8	static
+../GuiApp/Views/main_view.c:20:13:mv_create	24	static
+../GuiApp/Views/main_view.c:35:6:mv_navigateToInfoView	8	static

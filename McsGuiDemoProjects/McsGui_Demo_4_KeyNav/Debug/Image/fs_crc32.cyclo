@@ -1,0 +1,2 @@
+../Image/fs_crc32.c:301:10:crc_32	3
+../Image/fs_crc32.c:328:10:update_crc_32	1

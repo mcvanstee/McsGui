@@ -29,5 +29,5 @@ void listview_ext_activeItemChanged(ListView_s *p_listView)
 void listview_ext_itemPressed(ListViewItem_s *p_listViewItem)
 {
     ListView_s *p_listView = (ListView_s*) p_listViewItem->base.p_parent;
-    listview_setActive(p_listView, p_listViewItem->index);
+    listview_setActiveIndexNotifyChanged(p_listView, p_listViewItem->index);
 }

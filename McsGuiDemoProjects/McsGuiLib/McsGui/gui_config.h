@@ -24,7 +24,7 @@ typedef unsigned long Color_t;
 /** Defines the eventArgs buffer size on GuiEvent_s, must be 4 or greater when using touch */
 #define GUI_EVENT_ARGS_SIZE 8
 
-#define GUI_USE_DYNAMIC_MEMORY 0
+#define GUI_USE_DYNAMIC_MEMORY 1
 /* This option enables the use of dynamic memory allocation
  *  0: Use static memory allocation
  *  1: Use dynamic memory allocation (malloc/free)
@@ -75,7 +75,7 @@ typedef unsigned long Color_t;
 /   1: Set the callback to NULL
 */
 
-#define GUI_CONFIG_RESET_NAVIGATE_AWAY 1
+#define GUI_CONFIG_RESET_NAVIGATE_AWAY 0
 /* This option set the view's onNavigateAway callback to NULL after it has been called by view_navigateAway
 /   0: Do not set the callback to NULL
 /   1: Set the callback to NULL
@@ -155,7 +155,7 @@ typedef unsigned long Color_t;
 /   1: KeyNavigation responds to Released event
 */
 
-#define GUI_CONFIG_LISTVIEW_BUTTON_BEHAVIOR 0
+#define GUI_CONFIG_LISTVIEW_BUTTON_BEHAVIOR 1
 /* This option defines the behavior of the button
 /   0: ListView responds to Pressed event
 /   1: ListView responds to Released event

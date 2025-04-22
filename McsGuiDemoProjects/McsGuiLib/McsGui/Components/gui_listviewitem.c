@@ -91,6 +91,9 @@ void listviewitem_init(ListViewItem_s *p_listViewItem)
     p_listViewItem->onPressed = NULL;
     p_listViewItem->pressed = NULL;
     p_listViewItem->onReleased = NULL;
+    p_listViewItem->onPressedEvent = NULL;
+    p_listViewItem->pressedEvent = NULL;
+    p_listViewItem->onReleasedEvent = NULL;
 }
 
 
@@ -100,7 +103,7 @@ void listviewitem_init(ListViewItem_s *p_listViewItem)
  * @param[in] p_base Pointer to the component to add to the ListViewItem
  *
  */
-void listviewitem_add(ListViewItem_s *p_listViewItem, void *p_component)
+void listviewitem_addComponent(ListViewItem_s *p_listViewItem, void *p_component)
 {
     BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     if (p_listViewItem->base.p_childList == NULL)
@@ -157,6 +160,21 @@ bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_e
     {
         p_listViewItem->pressed(p_listViewItem);
     }
+    else if ((NULL != p_listViewItem->pressedEvent) &&
+            (GUI_EVENT_TOUCH_PRESSED == p_event->event))
+    {
+        p_listViewItem->pressedEvent();
+    }
+    else if ((NULL != p_listViewItem->onPressedEvent) &&
+            ((GUI_EVENT_KEY_ENTER_PRESS == p_event->event) || (GUI_EVENT_TOUCH_ON_PRESSED == p_event->event)))
+    {
+        p_listViewItem->onPressedEvent();
+    }
+    else if ((NULL != p_listViewItem->onReleasedEvent) &&
+            ((GUI_EVENT_KEY_ENTER_RELEASE == p_event->event) || (GUI_EVENT_TOUCH_ON_RELEASED == p_event->event)))
+    {
+        p_listViewItem->onReleasedEvent();
+    }
     else
     {
         BaseComponent_s *p_iterator = p_itemBase->p_childList;
@@ -178,5 +196,77 @@ bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_e
 
     return eventHandled;
 }
+
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_pressed Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setOnPressed(ListViewItem_s *p_listViewItem, void (*p_pressed)(ListViewItem_s *p_listViewItem))
+{
+    p_listViewItem->pressed = p_pressed;
+}
+
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_pressed Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setPressed(ListViewItem_s *p_listViewItem, void (*p_pressed)(ListViewItem_s *p_listViewItem))
+{
+    p_listViewItem->pressed = p_pressed;
+}
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_onReleased Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setOnReleased(ListViewItem_s *p_listViewItem, void (*p_onReleased)(ListViewItem_s *p_listViewItem))
+{
+    p_listViewItem->onReleased = p_onReleased;
+}
+
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_onPressed Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setOnPressedEvent(ListViewItem_s *p_listViewItem, void (*p_onPressed)(void))
+{
+    p_listViewItem->onPressedEvent = p_onPressed;
+}
+
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_pressed Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setPressedEvent(ListViewItem_s *p_listViewItem, void (*p_pressed)(void))
+{
+    p_listViewItem->pressedEvent = p_pressed;
+}
+
+
+/**
+ * @brief Set the onPressed event of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] p_onReleased Pointer to the onPressed function.
+ *
+ */
+void listviewitem_setOnReleasedEvent(ListViewItem_s *p_listViewItem, void (*p_onReleased)(void))
+{
+    p_listViewItem->onReleasedEvent = p_onReleased;
+}
+
 
 /*** end of file ***/

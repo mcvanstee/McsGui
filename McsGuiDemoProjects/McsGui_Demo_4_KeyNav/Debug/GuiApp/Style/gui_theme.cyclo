@@ -1,0 +1,10 @@
+../GuiApp/Style/gui_theme.c:5:6:theme_setTheme	1
+../GuiApp/Style/gui_theme.c:11:9:theme_getBackgroundColor	2
+../GuiApp/Style/gui_theme.c:23:9:theme_getSeparatorColor	2
+../GuiApp/Style/gui_theme.c:35:9:theme_getHeaderColor	2
+../GuiApp/Style/gui_theme.c:47:9:theme_getFooterColor	2
+../GuiApp/Style/gui_theme.c:59:9:theme_getFocusItemColor	3
+../GuiApp/Style/gui_theme.c:78:9:theme_getSliderColor	2
+../GuiApp/Style/gui_theme.c:90:9:theme_getNumberInputColor	2
+../GuiApp/Style/gui_theme.c:102:12:theme_getDefaultFont	2
+../GuiApp/Style/gui_theme.c:114:12:theme_getHeaderFont	2

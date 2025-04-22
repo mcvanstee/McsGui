@@ -323,35 +323,33 @@ static void mv_updateDateTime(const bool forceUpdate)
     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
-    if (!forceUpdate && (lastMinute == (int32_t)sTime.Minutes))
+    if (forceUpdate || (lastMinute != (int32_t)sTime.Minutes))
     {
-        return;
-    }
+        lastMinute = sTime.Minutes;
 
-    lastMinute = sTime.Minutes;
+        View_s *p_view = &g_guiApp.view;
 
-    View_s *p_view = &g_guiApp.view;
+        if (g_guiApp.showTime)
+        {
+            TextBlock_s *p_timeTextBlock = (TextBlock_s*)view_getComponentById(p_view, MV_TIME_TEXTBLOCK_ID);
 
-    if (g_guiApp.showTime)
-    {
-    	TextBlock_s *p_timeTextBlock = (TextBlock_s*)view_getComponentById(p_view, MV_TIME_TEXTBLOCK_ID);
+            if (p_timeTextBlock != NULL)
+            {
+                mv_setTime(p_timeTextBlock, &sTime);
+                base_display(p_timeTextBlock);
+            }
+        }
 
-		if (p_timeTextBlock != NULL)
-		{
-	    	mv_setTime(p_timeTextBlock, &sTime);
-	    	base_display(p_timeTextBlock);
-		}
-    }
+        if (g_guiApp.showDate)
+        {
+            TextBlock_s *p_dateTextBlock = (TextBlock_s*)view_getComponentById(p_view, MV_DATE_TEXTBLOCK_ID);
 
-    if (g_guiApp.showDate)
-    {
-    	TextBlock_s *p_dateTextBlock = (TextBlock_s*)view_getComponentById(p_view, MV_DATE_TEXTBLOCK_ID);
-
-		if (p_dateTextBlock != NULL)
-		{
-	    	mv_setDate(p_dateTextBlock, &sDate);
-	    	base_display(p_dateTextBlock);
-		}
+            if (p_dateTextBlock != NULL)
+            {
+                mv_setDate(p_dateTextBlock, &sDate);
+                base_display(p_dateTextBlock);
+            }
+        }
     }
 }
 

@@ -1,0 +1,5 @@
+../GuiApp/Views/Settings/settings_view.c:19:6:settings_view_navigateTo	1
+../GuiApp/Views/Settings/settings_view.c:25:6:settings_view_navigateBackTo	1
+../GuiApp/Views/Settings/settings_view.c:30:13:sv_create	1
+../GuiApp/Views/Settings/settings_view.c:48:6:sv_navigateToInfoView	1
+../GuiApp/Views/Settings/settings_view.c:53:13:sv_activeItemChanged	1

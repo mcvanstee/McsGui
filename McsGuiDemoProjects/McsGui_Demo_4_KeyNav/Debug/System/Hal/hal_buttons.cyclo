@@ -1,0 +1,6 @@
+../System/Hal/hal_buttons.c:28:6:hal_btn_init	2
+../System/Hal/hal_buttons.c:37:6:hal_btn_handler	7
+../System/Hal/hal_buttons.c:66:6:hal_btn_handleButtonEvent	11
+../System/Hal/hal_buttons.c:103:13:hal_btn_checkDebounce	3
+../System/Hal/hal_buttons.c:123:13:hal_btn_handleButtonPressed	6
+../System/Hal/hal_buttons.c:147:13:hal_btn_handleButtonReleased	6

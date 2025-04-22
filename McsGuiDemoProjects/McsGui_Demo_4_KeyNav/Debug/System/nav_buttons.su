@@ -1,0 +1,15 @@
+../System/nav_buttons.c:19:6:nav_btn_init	16	static
+../System/nav_buttons.c:28:6:nav_btn_handleEvent	16	static
+../System/nav_buttons.c:67:6:nav_btn_leftBtnPressed	16	static
+../System/nav_buttons.c:74:6:nav_btn_rightBtnPressed	16	static
+../System/nav_buttons.c:81:6:nav_btn_upBtnPressed	16	static
+../System/nav_buttons.c:88:6:nav_btn_downBtnPressed	16	static
+../System/nav_buttons.c:95:6:nav_btn_okBtnPressed	16	static
+../System/nav_buttons.c:102:6:nav_btn_leftBtnReleased	16	static
+../System/nav_buttons.c:109:6:nav_btn_rightBtnReleased	16	static
+../System/nav_buttons.c:116:6:nav_btn_upBtnReleased	16	static
+../System/nav_buttons.c:123:6:nav_btn_downBtnReleased	16	static
+../System/nav_buttons.c:130:6:nav_btn_okBtnReleased	16	static
+../System/nav_buttons.c:137:25:nav_btn_getBtnStateReleased	16	static
+../System/nav_buttons.c:157:25:nav_btn_getBtnStatePressed	16	static
+../System/nav_buttons.c:182:13:nav_btn_setBtnState	24	static

@@ -1,0 +1,9 @@
+../Image/gui_image.c:36:6:gui_image_initialize	2
+../Image/gui_image.c:47:6:gui_image_drawImage	5
+../Image/gui_image.c:103:6:fs_readData	1
+../Image/gui_image.c:123:6:graphics_drawRectFillBorder	2
+../Image/gui_image.c:143:6:graphics_drawRectBorder	2
+../Image/gui_image.c:163:6:graphics_drawRectFill	2
+../Image/gui_image.c:179:6:graphics_getBmpFileInfo	1
+../Image/gui_image.c:197:6:graphics_getCharacterInfo	1
+../Image/gui_image.c:214:6:graphics_drawImage	1

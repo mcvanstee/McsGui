@@ -113,13 +113,17 @@ void listview_initPosSize(
     base_setHeight(&p_listView->base, height);
 }
 
+void listview_setItemsVisible(ListView_s *p_listView, const int8_t itemsVisible)
+{
+    p_listView->itemsVisible = itemsVisible;
+}
+
 void listview_setRowHight(ListView_s *p_listView, const uint8_t rowHight)
 {
     p_listView->rowHight = rowHight;
 }
 
-void listview_addComponent(
-        ListView_s *p_listView, BaseComponent_s *p_itemBase)
+void listview_addComponent(ListView_s *p_listView, BaseComponent_s *p_itemBase)
 {
 	p_itemBase->p_parent = &p_listView->base;
 
@@ -145,8 +149,7 @@ void listview_addComponent(
     listview_updateVisibleItems(p_listView);
 }
 
-void listview_addItem(
-        ListView_s *p_listView, ListViewItem_s *p_listViewItem)
+void listview_addItem(ListView_s *p_listView, ListViewItem_s *p_listViewItem)
 {
 	p_listViewItem->base.p_parent = &p_listView->base;
 	p_listViewItem->base.x = p_listView->base.x;
@@ -179,13 +182,11 @@ void listview_addItem(
     listview_updateVisibleItems(p_listView);
 }
 
-bool listview_handleEvent(
-        BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event)
+bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event)
 {
     bool eventHandled = false;
     ListView_s *p_listView = (ListView_s *)p_listViewBase;
     BaseComponent_s *p_activeItem = listview_getActive(p_listView);
-
 
 #if GUI_CONFIG_LISTVIEW_BUTTON_BEHAVIOR == 1
     if (GUI_EVENT_KEY_ENTER_RELEASE == p_event->event &&
@@ -270,8 +271,7 @@ static BaseComponent_s *listview_getTouchedItem(ListView_s *p_listView, const Gu
     return NULL;
 }
 
-bool listview_moveUp(
-        ListView_s *p_listView)
+bool listview_moveUp(ListView_s *p_listView)
 {
     if (p_listView == NULL)
     {
@@ -293,13 +293,12 @@ bool listview_moveUp(
         return false;
     }
 
-    listview_setActive(p_listView, p_listView->activeIndex - 1);
+    listview_setActiveIndexNotifyChanged(p_listView, p_listView->activeIndex - 1);
 
     return true;
 }
 
-bool listview_moveDown(
-        ListView_s *p_listView)
+bool listview_moveDown(ListView_s *p_listView)
 {
     if (p_listView == NULL)
     {
@@ -321,13 +320,12 @@ bool listview_moveDown(
         return false;
     }
 
-    listview_setActive(p_listView, p_listView->activeIndex + 1);
+    listview_setActiveIndexNotifyChanged(p_listView, p_listView->activeIndex + 1);
 
     return true;
 }
 
-bool listview_getViewWindowChanged(
-        ListView_s *p_listView)
+bool listview_getViewWindowChanged(ListView_s *p_listView)
 {
     if (p_listView->viewWindowChanged)
     {
@@ -339,8 +337,7 @@ bool listview_getViewWindowChanged(
     return false;
 }
 
-void listview_setActive(
-        ListView_s *p_listView, const int8_t index)
+void listview_setActiveIndex(ListView_s *p_listView, const int8_t index)
 {
     if ((p_listView == NULL) || (index >= p_listView->numberOfItems))
     {
@@ -351,11 +348,52 @@ void listview_setActive(
     p_listView->activeIndex = index;
 
     listview_updateVisibleItems(p_listView);
+}
+
+void listview_setActiveIndexNotifyChanged(ListView_s *p_listView, const int8_t index)
+{
+    listview_setActiveIndex(p_listView, index);
     listview_activeItemChanged(p_listView);
 }
 
-BaseComponent_s *listview_getActive(
-        ListView_s *p_listView)
+void listview_setOnActiveItemChanged(ListView_s *p_listView, void (*p_onActiveItemChanged)(ListView_s *p_listView))
+{
+    p_listView->onActiveItemChanged = p_onActiveItemChanged;
+}
+
+void listview_setOnBeforeMoveUp(ListView_s *p_listView, bool (*p_onBeforeMoveUp)(ListView_s *p_listView))
+{
+    p_listView->onBeforeMoveUp = p_onBeforeMoveUp;
+}
+
+void listview_setOnBeforeMoveDown(ListView_s *p_listView, bool (*p_onBeforeMoveDown)(ListView_s *p_listView))
+{
+    p_listView->onBeforeMoveDown = p_onBeforeMoveDown;
+}
+
+void listview_setOnDisplayed(ListView_s *p_listView, void (*p_onDisplayed)(ListView_s *p_listView))
+{
+    p_listView->onDisplayed = p_onDisplayed;
+}
+
+#if GUI_CONFIG_USE_KEY_NAVIGATION
+void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_s *p_listView))
+{
+    p_listView->onFocused = p_onFocused;
+}
+
+void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListView_s *p_listView))
+{
+    p_listView->onFocusLost = p_onFocusLost;
+}
+#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+int8_t listview_getActiveIndex(ListView_s *p_listView)
+{
+    return p_listView->activeIndex;
+}
+
+BaseComponent_s *listview_getActive(ListView_s *p_listView)
 {
     return listview_getAtIndex(p_listView, p_listView->activeIndex);
 }
@@ -365,8 +403,7 @@ BaseComponent_s *listview_getPreviousActive(ListView_s *p_listView)
     return listview_getAtIndex(p_listView, p_listView->previousActiveIndex);
 }
 
-BaseComponent_s *listview_getAtIndex(
-        ListView_s *p_listView, const int8_t index)
+BaseComponent_s *listview_getAtIndex(ListView_s *p_listView, const int8_t index)
 {
     if ((index < 0) || (index >= p_listView->numberOfItems))
     {
@@ -389,8 +426,7 @@ BaseComponent_s *listview_getAtIndex(
 }
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
-static void listview_onFocusChanged(
-        BaseComponent_s *p_listBase)
+static void listview_onFocusChanged(BaseComponent_s *p_listBase)
 {
     ListView_s *p_listView = (ListView_s *)p_listBase;
 
@@ -417,8 +453,7 @@ static void listview_onFocusChanged(
 }
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
-static void listview_updateVisibleItems(
-        ListView_s *p_listView)
+static void listview_updateVisibleItems(ListView_s *p_listView)
 {
     if (p_listView->numberOfItems == 0)
     {
@@ -497,8 +532,7 @@ static void listview_updateVisibleItems(
     }
 }
 
-static inline void listview_activeItemChanged(
-        ListView_s *p_listView)
+static inline void listview_activeItemChanged(ListView_s *p_listView)
 {
     if (p_listView->onActiveItemChanged != NULL)
     {

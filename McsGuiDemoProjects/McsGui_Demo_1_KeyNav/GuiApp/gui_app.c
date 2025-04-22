@@ -119,7 +119,7 @@ void gui_app_start(void)
         }
         else if (updateDateTime())
         {
-            header_updateDateTime(true);
+            header_updateDateTime(false);
         }
         else if (g_guiApp.alarmActive)
         {

@@ -1,0 +1,3 @@
+../GuiApp/Views/Settings/brightness_view.c:14:6:brightness_view_navigateTo	8	static
+../GuiApp/Views/Settings/brightness_view.c:19:13:bv_create	24	static
+../GuiApp/Views/Settings/brightness_view.c:46:13:bv_sliderValueChanged	16	static

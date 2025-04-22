@@ -1,0 +1,3 @@
+../GuiApp/Views/Settings/language_view.c:11:6:language_view_navigateTo	8	static
+../GuiApp/Views/Settings/language_view.c:16:13:lv_create	24	static
+../GuiApp/Views/Settings/language_view.c:43:13:lv_rgSelectionChanged	16	static
