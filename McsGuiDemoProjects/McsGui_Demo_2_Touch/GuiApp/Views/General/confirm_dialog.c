@@ -37,7 +37,7 @@ static void cd_create(View_s *p_view, const file_key_e title, const file_key_e m
     view_addComponent(p_view, p_message);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_CANCEL, m_p_cancelBtnPressed);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_CANCEL, m_p_cancelBtnPressed);
     gui_addFooterSpacer(p_footer);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_CHECKMARK_LARGE, m_p_okBtnPressed);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_CHECKMARK_LARGE, m_p_okBtnPressed);
 }

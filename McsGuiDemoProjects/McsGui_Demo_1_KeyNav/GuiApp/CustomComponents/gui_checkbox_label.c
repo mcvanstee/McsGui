@@ -19,9 +19,8 @@ static CheckboxLabel_s staticCheckBoxLabelMem[GUI_CHECKBOX_LABEL_BUFFER_SIZE];
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 
 static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent);
-static void checkbox_label_updateFocus(Checkbox_s *p_checkbox);
 static void checkbox_label_focusChanged(BaseComponent_s *p_baseComponent);
-static void checkbox_label_updateSelection(Checkbox_s *p_checkbox);
+static void checbox_label_setCheckboxIcon(CheckboxLabel_s *p_checkboxLabel);
 static void checkbox_label_selectionChanged(Checkbox_s *p_checkbox);
 
 
@@ -96,10 +95,7 @@ void checkbox_label_initLabel(CheckboxLabel_s *p_checkboxLabel, file_key_e label
 static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
 {
     CheckboxLabel_s *p_checkboxLabel = (CheckboxLabel_s*)p_baseComponent;
-
-    checkbox_label_updateFocus(&p_checkboxLabel->checkBox);
-    checkbox_label_updateSelection(&p_checkboxLabel->checkBox);
-
+    checbox_label_setCheckboxIcon(p_checkboxLabel);
     theme_setTheme(&p_checkboxLabel->checkBox);
     base_setHorizontalAlignment(p_baseComponent, Gui_Align_Left);
     graphics_displayComponent(p_baseComponent);
@@ -114,49 +110,30 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
     base_display(&label);
 }
 
-static void checkbox_label_updateFocus(Checkbox_s *p_checkbox)
+static void checbox_label_setCheckboxIcon(CheckboxLabel_s *p_checkboxLabel)
 {
+    Checkbox_s *p_checkbox = &p_checkboxLabel->checkBox;
+
+    const uint32_t icon = p_checkbox->checked ? FILE_KEY_ICON_PANE_RADIO_BUTTON_CHECKED : FILE_KEY_ICON_PANE_RADIO_BUTTON_UNCHECKED;
+    base_setBmpKey(p_checkbox, icon);
+
     if (p_checkbox->base.focused)
     {
         theme_setCursorColor(p_checkbox);
     }
     else
     {
-        if (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_DARK)
-        {
-            base_setProperty(p_checkbox, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_WHITE);
-        }
-        else
-        {
-            base_setProperty(p_checkbox, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_BLACK);
-        }
+        base_setProperty(p_checkbox, FILE_PROPERTY_ACCENT_COLOR, PROPERTY_ACCENT_COLOR_VALUE_WHITE);
     }
 }
 
 static void checkbox_label_focusChanged(BaseComponent_s *p_baseComponent)
 {
-    CheckboxLabel_s *p_checkboxLabel = (CheckboxLabel_s*) p_baseComponent;
-    Checkbox_s *p_checkbox = &p_checkboxLabel->checkBox;
-
-    checkbox_label_updateFocus(p_checkbox);
-    base_display(p_checkbox);
-}
-
-static void checkbox_label_updateSelection(Checkbox_s *p_checkbox)
-{
-    if (p_checkbox->checked)
-    {
-        base_setBmpKey(p_checkbox, FILE_KEY_ICON_DFT_RADIO_BUTTON_CHECKED);
-    }
-    else
-    {
-        base_setBmpKey(p_checkbox, FILE_KEY_ICON_DFT_RADIO_BUTTON_UNCHECKED);
-    }
+    base_display(p_baseComponent);
 }
 
 static void checkbox_label_selectionChanged(Checkbox_s *p_checkbox)
 {
-    checkbox_label_updateSelection(p_checkbox);
     base_display(p_checkbox);
 }
 

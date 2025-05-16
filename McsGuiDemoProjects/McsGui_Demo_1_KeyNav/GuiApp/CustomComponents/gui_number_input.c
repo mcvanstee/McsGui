@@ -86,8 +86,8 @@ void num_input_init(NumberInput_s *p_numberInput)
     button_init(&p_numberInput->increaseButton);
     keynav_init(&p_numberInput->decreaseBtnKeyNav);
     keynav_init(&p_numberInput->increaseBtnKeyNav);
-    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_ICON_BTN_MINUS);
-    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_BTN_PLUS);
+    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_ICON_PANE_MINUS);
+    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_PANE_PLUS);
     base_setBackground(&p_numberInput->decreaseButton, theme_getNumberInputColor());
     base_setBackground(&p_numberInput->increaseButton, theme_getNumberInputColor());
     base_addKeyNavigation(&p_numberInput->decreaseButton, &p_numberInput->decreaseBtnKeyNav);
@@ -101,19 +101,7 @@ void num_input_init(NumberInput_s *p_numberInput)
     theme_setTheme(&p_numberInput->decreaseButton);
     theme_setTheme(&p_numberInput->increaseButton);
 
-    if (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_LIGHT)
-    {
-        base_setProperty(&p_numberInput->decreaseButton, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_BLACK);
-        base_setProperty(&p_numberInput->increaseButton, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_BLACK);
-    }
-    else
-    {
-        base_setProperty(&p_numberInput->decreaseButton, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_WHITE);
-        base_setProperty(&p_numberInput->increaseButton, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_WHITE);
-    }
-
     base_setOnDisplay(&p_numberInput->base, num_input_onDisplay);
-
     base_setOnDelete(&p_numberInput->decreaseButton, num_input_buttonDelete);
     base_setOnDelete(&p_numberInput->increaseButton, num_input_buttonDelete);
     base_addChild(&p_numberInput->base, &p_numberInput->decreaseButton.base);

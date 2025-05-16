@@ -97,8 +97,8 @@ void slider_init(Slider_s *p_slider)
     base_addTouch(&p_slider->minusButton, &p_slider->minusTouch);
     base_addTouch(&p_slider->plusButton, &p_slider->plusTouch);
 
-    base_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_DFT_MINUS);
-    base_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_DFT_PLUS);
+    base_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_PANE_MINUS);
+    base_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PANE_PLUS);
     base_setSize(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
     base_setSize(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
 
@@ -111,11 +111,6 @@ void slider_init(Slider_s *p_slider)
     base_setOnDelete(&p_slider->plusButton.base, slider_buttonDelete);
     base_addChild(&p_slider->base, &p_slider->minusButton.base);
     base_addChild(&p_slider->base, &p_slider->plusButton.base);
-
-    const uint8_t propertyValueAccentColor = (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_DARK) ?
-    		PROPERTY_ACCENTCOLOR_VALUE_WHITE : PROPERTY_ACCENTCOLOR_VALUE_BLACK;
-    base_setProperty(&p_slider->minusButton, FILE_PROPERTY_ACCENTCOLOR, propertyValueAccentColor);
-    base_setProperty(&p_slider->plusButton, FILE_PROPERTY_ACCENTCOLOR, propertyValueAccentColor);
 
     p_slider->value = 0;
     p_slider->minValue = 0;

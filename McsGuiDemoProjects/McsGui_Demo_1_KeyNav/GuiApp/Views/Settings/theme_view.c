@@ -24,8 +24,8 @@ static void tv_create(View_s *p_view)
     RadioGroup_s *p_radioGroup = radiogroup_newInit();
     radiogroup_setOnSelectionChanged(p_radioGroup, tv_rgSelectionChanged);
 
-    CheckboxLabel_s *p_lightCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_DFT_THEME_LIGHT);
-    CheckboxLabel_s *p_darkCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_DFT_THEME_DARK);
+    CheckboxLabel_s *p_lightCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_THEME_LIGHT);
+    CheckboxLabel_s *p_darkCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_THEME_DARK);
 
     if (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_LIGHT)
     {
@@ -38,7 +38,7 @@ static void tv_create(View_s *p_view)
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
     FooterButton_s *p_footerBackButton = gui_addFooterButton(
-            p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+            p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_footerBackButton, true);
@@ -66,5 +66,6 @@ static void tv_rgSelectionChanged(RadioGroup_s *p_radioGroup)
     }
 
     gui_drawBackground();
+    gui_showFooterLogo();
     theme_view_navigateTo();
 }

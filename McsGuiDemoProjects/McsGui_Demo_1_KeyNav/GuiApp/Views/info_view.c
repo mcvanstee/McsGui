@@ -59,7 +59,7 @@ static void iv_create(View_s *p_view)
     view_addComponent(p_view, p_label);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
     base_setFocus(p_footerButton, true);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);

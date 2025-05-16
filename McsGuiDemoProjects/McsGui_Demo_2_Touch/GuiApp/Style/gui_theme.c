@@ -9,22 +9,20 @@ void theme_setTheme(void *p_component)
 
 void theme_setAccentColor(void *p_component)
 {
-    base_setProperty(p_component, FILE_PROPERTY_ACCENTCOLOR, g_guiApp.theme.accentColor);
+    base_setProperty(p_component, FILE_PROPERTY_ACCENT_COLOR, g_guiApp.theme.accentColor);
 }
 
 Color_t theme_getAccentColor(void)
 {
     switch (g_guiApp.theme.accentColor)
     {
-        case PROPERTY_ACCENTCOLOR_VALUE_WHITE:
+        case PROPERTY_ACCENT_COLOR_VALUE_WHITE:
             return COLOR_ACCENT_WHITE;
-        case PROPERTY_ACCENTCOLOR_VALUE_BLACK:
-            return COLOR_ACCENT_BLACK;
-        case PROPERTY_ACCENTCOLOR_VALUE_RED:
+        case PROPERTY_ACCENT_COLOR_VALUE_RED:
             return COLOR_ACCENT_RED;
-        case PROPERTY_ACCENTCOLOR_VALUE_GREEN:
+        case PROPERTY_ACCENT_COLOR_VALUE_GREEN:
             return COLOR_ACCENT_GREEN;
-        case PROPERTY_ACCENTCOLOR_VALUE_BLUE:
+        case PROPERTY_ACCENT_COLOR_VALUE_BLUE:
             return COLOR_ACCENT_BLUE;
         default:
             return COLOR_ACCENT_WHITE;
@@ -168,10 +166,10 @@ font_key_e theme_getKeyboardFont(void)
     switch (g_guiApp.theme.theme)
     {
         case PROPERTY_THEME_VALUE_DARK:
-            return FONT_KEY_KEYBOARD_FONT_000;
+            return FONT_KEY_ROBOTO_22_R_KEYBOARD_DARK;
         case PROPERTY_THEME_VALUE_LIGHT:
         default:
-            return FONT_KEY_KEYBOARD_FONT_001;
+            return FONT_KEY_ROBOTO_22_R_KEYBOARD_LIGHT;
     }
 }
 
@@ -180,10 +178,10 @@ font_key_e theme_getHeaderFontLarge(void)
     switch (g_guiApp.theme.theme)
     {
         case PROPERTY_THEME_VALUE_DARK:
-            return FONT_KEY_TITLE_FONT_000;
+            return FONT_KEY_ROBOTO_22_R_HEADER_DARK;
         case PROPERTY_THEME_VALUE_LIGHT:
         default:
-            return FONT_KEY_TITLE_FONT_001;
+            return FONT_KEY_ROBOTO_22_R_HEADER_LIGHT;
     }
 }
 
@@ -192,10 +190,10 @@ font_key_e theme_getHeaderFontSmall(void)
     switch (g_guiApp.theme.theme)
     {
         case PROPERTY_THEME_VALUE_DARK:
-            return FONT_KEY_TITLE_FONT_002;
+            return FONT_KEY_ROBOTO_20_R_HEADER_DARK;
         case PROPERTY_THEME_VALUE_LIGHT:
         default:
-            return FONT_KEY_TITLE_FONT_003;
+            return FONT_KEY_ROBOTO_20_R_HEADER_LIGHT;
     }
 }
 
@@ -204,10 +202,10 @@ font_key_e theme_getDefaultFont(void)
     switch (g_guiApp.theme.theme)
     {
         case PROPERTY_THEME_VALUE_DARK:
-            return FONT_KEY_DEFAULT_FONT_000;
+            return FONT_KEY_ROBOTO_18_R_PANE_DARK;
         case PROPERTY_THEME_VALUE_LIGHT:
         default:
-            return FONT_KEY_DEFAULT_FONT_001;
+            return FONT_KEY_ROBOTO_18_R_PANE_LIGHT;
     }
 }
 
@@ -216,9 +214,9 @@ font_key_e theme_getComponentFont(void)
     switch (g_guiApp.theme.theme)
     {
         case PROPERTY_THEME_VALUE_DARK:
-            return FONT_KEY_BUTTON_FONT_000;
+            return FONT_KEY_ROBOTO_16_R_BUTTON_DARK;
         case PROPERTY_THEME_VALUE_LIGHT:
         default:
-            return FONT_KEY_BUTTON_FONT_001;
+            return FONT_KEY_ROBOTO_16_R_BUTTON_LIGHT;
     }
 }

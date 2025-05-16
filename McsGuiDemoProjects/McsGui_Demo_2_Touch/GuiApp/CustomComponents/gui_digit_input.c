@@ -162,7 +162,7 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
     {
         Label_s arrowUp;
         label_init(&arrowUp);
-        base_setBmpKey(&arrowUp, FILE_KEY_ICON_DFT_ARROW_UP);
+        base_setBmpKey(&arrowUp, FILE_KEY_ICON_PANE_ARROW_UP);
         theme_setTheme(&arrowUp);
         theme_setAccentColor(&arrowUp);
 
@@ -175,7 +175,7 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
 
         Label_s arrowDown;
         label_init(&arrowDown);
-        base_setBmpKey(&arrowDown, FILE_KEY_ICON_DFT_ARROW_DOWN);
+        base_setBmpKey(&arrowDown, FILE_KEY_ICON_PANE_ARROW_DOWN);
         theme_setTheme(&arrowDown);
         theme_setAccentColor(&arrowDown);
 
@@ -238,7 +238,7 @@ static void digit_input_displayValue(DigitInput_s *p_digitInput)
 static void digit_input_displayTopAndBottomValues(DigitInput_s *p_digitInput)
 {
     const font_key_e inputFont = (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_DARK) ?
-            FONT_KEY_DIGIT_INPUT_FONT_000 : FONT_KEY_DIGIT_INPUT_FONT_001;
+            FONT_KEY_ROBOTO_18_R_PANE_DARK : FONT_KEY_ROBOTO_18_R_PANE_LIGHT;
 
     TextBlock_s valueUpTb;
     textblock_init(&valueUpTb);

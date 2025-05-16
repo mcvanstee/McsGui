@@ -33,7 +33,7 @@ static void md_create(View_s *p_view, const file_key_e title, const file_key_e m
     view_addComponent(p_view, p_message);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_okButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_CHECKMARK_LARGE, m_p_okBtnPressed);
+    FooterButton_s *p_okButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_CHECKMARK_LARGE, m_p_okBtnPressed);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_okButton, true);

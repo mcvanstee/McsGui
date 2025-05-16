@@ -33,7 +33,7 @@ static void set_alarm_view_create(View_s *p_view)
     anchor_setCenterInParent(p_numberInput, p_pane);
 
     Label_s *p_alarmText = label_new();
-    label_initBmp(p_alarmText, FILE_KEY_TEXT_DFT_SET_ALARM_IN);
+    label_initBmp(p_alarmText, FILE_KEY_TEXT_PANE_SET_ALARM_IN);
     theme_setTheme(p_alarmText);
     base_addNewInitAnchor(p_alarmText);
     anchor_setRightAnchor(p_alarmText, p_numberInput, Gui_Anchor_Left);
@@ -41,7 +41,7 @@ static void set_alarm_view_create(View_s *p_view)
     anchor_setVerticalCenter(p_alarmText, p_numberInput);
 
     Label_s *p_minutesText = label_new();
-    label_initBmp(p_minutesText, FILE_KEY_TEXT_DFT_TIME_MM);
+    label_initBmp(p_minutesText, FILE_KEY_TEXT_PANE_TIME_MM);
     theme_setTheme(p_minutesText);
     base_addNewInitAnchor(p_minutesText);
     anchor_setLeftAnchor(p_minutesText, p_numberInput, Gui_Anchor_Right);
@@ -54,11 +54,11 @@ static void set_alarm_view_create(View_s *p_view)
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
     FooterButton_s *p_backButton = gui_addFooterButton(p_footer,
-            FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+            FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
     gui_addFooterSpacer(p_footer);
 
     FooterButton_s *p_saveButton = gui_addFooterButton(p_footer,
-            FILE_KEY_ICON_BTN_CHECKMARK_LARGE, sav_saveAlarm);
+            FILE_KEY_ICON_BUTTON_CHECKMARK_LARGE, sav_saveAlarm);
     base_setFocus(p_backButton, true);
 
     keynav_up(p_backButton, &p_numberInput->decreaseButton);
@@ -75,7 +75,7 @@ static void sav_saveAlarm(void)
 {
     NumberInput_s *p_numberInput = (NumberInput_s*)view_getComponentById(&g_guiApp.view, SAV_INPUT_ID);
     gui_app_setAlarmTime(p_numberInput->value);
-    confirm_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_DFT_ACTIVATE_ALARM, sav_activateAlarm, mainview_navigateTo);
+    confirm_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_PANE_ACTIVATE_ALARM, sav_activateAlarm, mainview_navigateTo);
 }
 
 static void sav_activateAlarm(void)

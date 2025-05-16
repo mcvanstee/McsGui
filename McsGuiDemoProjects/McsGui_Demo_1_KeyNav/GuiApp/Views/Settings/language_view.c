@@ -41,22 +41,22 @@ static void lv_create(View_s *p_view)
     RadioGroup_s *p_radioGroup = radiogroup_newInit();
     radiogroup_setOnSelectionChanged(p_radioGroup, lv_rgSelectionChanged);
 
-    CheckboxLabel_s *p_englishCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_ENGLISH);
-    CheckboxLabel_s *p_dutchCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_DUTCH);
-    CheckboxLabel_s *p_germanCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_GERMAN);
-    CheckboxLabel_s *p_frenchCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_FRENCH);
-    CheckboxLabel_s *p_spanishCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_SPANISH);
+    CheckboxLabel_s *p_englishCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_ENGLISH);
+    CheckboxLabel_s *p_dutchCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_DUTCH);
+    CheckboxLabel_s *p_germanCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_GERMAN);
+    CheckboxLabel_s *p_frenchCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_FRENCH);
+    CheckboxLabel_s *p_spanishCheckBox = gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_SPANISH);
 
-    CheckboxLabel_s *p_italianCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_ITALIAN);
-    CheckboxLabel_s *p_russianCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_RUSSIAN);
-    CheckboxLabel_s *p_chineseCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_CHINESE_SIM);
-    CheckboxLabel_s *p_japaneseCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_JAPANESE);
-    CheckboxLabel_s *p_koreanCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_KOREAN);
+    CheckboxLabel_s *p_italianCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_ITALIAN);
+    CheckboxLabel_s *p_russianCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_RUSSIAN);
+    CheckboxLabel_s *p_chineseCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_CHINESE_SIM);
+    CheckboxLabel_s *p_japaneseCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_JAPANESE);
+    CheckboxLabel_s *p_koreanCheckBox = gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_KOREAN);
 
     radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.language);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_footerBackButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+    FooterButton_s *p_footerBackButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_footerBackButton, true);

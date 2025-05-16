@@ -31,7 +31,7 @@ static void msmv_create(View_s *p_view)
     view_addComponent(p_view, p_pane);
 
     Label_s *p_tempLabel = label_newInit();
-    label_initBmp(p_tempLabel, FILE_KEY_TEXT_DFT_INTERN_TEMP);
+    label_initBmp(p_tempLabel, FILE_KEY_TEXT_PANE_INTERN_TEMP);
     base_addNewInitAnchor(p_tempLabel);
     anchor_setCenterInParent(p_tempLabel, p_pane);
     anchor_setRightMargin(p_tempLabel, 50);
@@ -52,7 +52,7 @@ static void msmv_create(View_s *p_view)
     view_addComponent(p_view, p_tempTextBlock);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
-            FILE_KEY_TEXT_DFT_DEG_CEL : FILE_KEY_TEXT_DFT_DEG_FAR;
+            FILE_KEY_TEXT_PANE_DEG_CEL : FILE_KEY_TEXT_PANE_DEG_FAR;
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
@@ -64,7 +64,7 @@ static void msmv_create(View_s *p_view)
     view_addComponent(p_view, p_tempUnitLabel);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_footerBackButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+    FooterButton_s *p_footerBackButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_footerBackButton, true);

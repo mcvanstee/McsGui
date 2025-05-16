@@ -75,10 +75,10 @@ static void stv_create(View_s *p_view)
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
     FooterButton_s *p_backButton = gui_addFooterButton(p_footer,
-            FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+            FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     FooterButton_s *p_saveButton = gui_addFooterButton(p_footer,
-            FILE_KEY_ICON_BTN_CHECKMARK_LARGE, stv_saveTime);
+            FILE_KEY_ICON_BUTTON_CHECKMARK_LARGE, stv_saveTime);
     base_setFocus(p_backButton, true);
 
     keynav_up(p_backButton, p_hh1);

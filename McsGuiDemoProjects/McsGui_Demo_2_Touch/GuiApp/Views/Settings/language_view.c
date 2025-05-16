@@ -41,22 +41,22 @@ static void lv_create(View_s *p_view)
     RadioGroup_s *p_radioGroup = radiogroup_newInit();
     radiogroup_setOnSelectionChanged(p_radioGroup, lv_rgSelectionChanged);
 
-    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_ENGLISH);
-    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_DUTCH);
-    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_GERMAN);
-    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_FRENCH);
-    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_DFT_SPANISH);
+    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_ENGLISH);
+    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_DUTCH);
+    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_GERMAN);
+    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_FRENCH);
+    gui_addCheckboxLabel(p_columnLeft, p_radioGroup, FILE_KEY_TEXT_PANE_SPANISH);
 
-    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_ITALIAN);
-    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_RUSSIAN);
-    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_CHINESE_SIM);
-    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_JAPANESE);
-    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_DFT_KOREAN);
+    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_ITALIAN);
+    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_RUSSIAN);
+    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_CHINESE_SIM);
+    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_JAPANESE);
+    gui_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_PANE_KOREAN);
 
     radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.language);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
 

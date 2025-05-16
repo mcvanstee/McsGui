@@ -12,8 +12,8 @@
 typedef struct
 {
     property_value_theme_e theme;
-    property_value_accentcolor_e accentColor;
-    property_value_accentcolor_e cursorColor;
+    property_value_accent_color_e accentColor;
+    property_value_accent_color_e cursorColor;
 } GuiTheme_s;
 
 void theme_setTheme(void *p_component);

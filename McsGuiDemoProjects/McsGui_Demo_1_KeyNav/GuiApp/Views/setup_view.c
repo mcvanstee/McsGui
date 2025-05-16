@@ -27,8 +27,8 @@ static void setup_view_create(View_s *p_view)
     radiogroup_setOnSelectionChanged(p_radioGroup, sv_rgSelectionChanged);
     view_addComponent(p_view, p_radioGroup);
 
-    CheckboxLabel_s *p_celsiusCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_DFT_DEG_CEL);
-    CheckboxLabel_s *p_fahrenheitCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_DFT_DEG_FAR);
+    CheckboxLabel_s *p_celsiusCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_DEG_CEL);
+    CheckboxLabel_s *p_fahrenheitCheckBox = gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_DEG_FAR);
 
     if (g_guiApp.temperatureUnit == TemperatureUnit_Celsius)
     {
@@ -40,7 +40,7 @@ static void setup_view_create(View_s *p_view)
     }
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_footerButton, true);

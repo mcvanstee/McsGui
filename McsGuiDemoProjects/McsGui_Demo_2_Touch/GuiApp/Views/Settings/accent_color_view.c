@@ -32,7 +32,7 @@ static void ac_create(View_s *p_view)
     view_getComponentById(p_view, AC_VIEW_ACCENT_GREEN_CHECKBOX_ID);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
 }
@@ -52,7 +52,7 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
     radiogroup_setOnSelectionChanged(p_radioGroup, ac_accentColorSelectionChanged);
 
     Label_s *p_label = label_new();
-    label_initBmpPos(p_label, FILE_KEY_TEXT_DFT_ACCENT_COLOR, 20, 20);
+    label_initBmpPos(p_label, FILE_KEY_TEXT_PANE_ACCENT_COLOR, 20, 20);
     theme_setTheme(p_label);
     gui_translate(p_label);
 
@@ -77,15 +77,15 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
     radiogroup_addButton(p_radioGroup, &p_blueCheckbox->checkbox);
     radiogroup_addButton(p_radioGroup, &p_greenCheckbox->checkbox);
 
-    if (g_guiApp.theme.accentColor == PROPERTY_ACCENTCOLOR_VALUE_RED)
+    if (g_guiApp.theme.accentColor == PROPERTY_ACCENT_COLOR_VALUE_RED)
     {
         radiogroup_setSelectedAtIndex(p_radioGroup, 0);
     }
-    else if (g_guiApp.theme.accentColor == PROPERTY_ACCENTCOLOR_VALUE_BLUE)
+    else if (g_guiApp.theme.accentColor == PROPERTY_ACCENT_COLOR_VALUE_BLUE)
     {
         radiogroup_setSelectedAtIndex(p_radioGroup, 1);
     }
-    else if (g_guiApp.theme.accentColor == PROPERTY_ACCENTCOLOR_VALUE_GREEN)
+    else if (g_guiApp.theme.accentColor == PROPERTY_ACCENT_COLOR_VALUE_GREEN)
     {
         radiogroup_setSelectedAtIndex(p_radioGroup, 2);
     }
@@ -103,15 +103,15 @@ static void ac_accentColorSelectionChanged(RadioGroup_s *p_radioGroup)
 
     if (selectedIndex == 0)
     {
-        g_guiApp.theme.accentColor = PROPERTY_ACCENTCOLOR_VALUE_RED;
+        g_guiApp.theme.accentColor = PROPERTY_ACCENT_COLOR_VALUE_RED;
     }
     else if (selectedIndex == 1)
     {
-        g_guiApp.theme.accentColor = PROPERTY_ACCENTCOLOR_VALUE_BLUE;
+        g_guiApp.theme.accentColor = PROPERTY_ACCENT_COLOR_VALUE_BLUE;
     }
     else if (selectedIndex == 2)
     {
-        g_guiApp.theme.accentColor = PROPERTY_ACCENTCOLOR_VALUE_GREEN;
+        g_guiApp.theme.accentColor = PROPERTY_ACCENT_COLOR_VALUE_GREEN;
     }
     else
     {

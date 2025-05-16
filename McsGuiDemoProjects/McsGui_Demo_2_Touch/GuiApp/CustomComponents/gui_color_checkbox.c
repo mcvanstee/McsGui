@@ -75,7 +75,7 @@ void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox)
 {
     checkbox_init(&p_colorCheckbox->checkbox);
     p_colorCheckbox->color = 0;
-    base_setBmpKey(p_colorCheckbox, FILE_KEY_ICON_DFT_CHECKMARK);
+    base_setBmpKey(p_colorCheckbox, FILE_KEY_ICON_PANE_CHECKMARK);
     base_setSize(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
     base_setOnDisplay(p_colorCheckbox, color_checkbox_onDisplay);
     base_setOnDelete(p_colorCheckbox, color_checkbox_delete);
@@ -124,19 +124,10 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
 
         Label_s label;
         label_initBmpPosSize(
-                &label, FILE_KEY_ICON_DFT_CHECKMARK,
+                &label, FILE_KEY_ICON_PANE_CHECKMARK,
                 p_base->x, p_base->y,
                 CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
         theme_setTheme(&label);
-
-        if (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_DARK)
-        {
-            base_setProperty(&label, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_WHITE);
-        }
-        else
-        {
-            base_setProperty(&label, FILE_PROPERTY_ACCENTCOLOR, PROPERTY_ACCENTCOLOR_VALUE_BLACK);
-        }
 
         GuiAnchor_s anchorLabel;
         anchor_init(&anchorLabel);

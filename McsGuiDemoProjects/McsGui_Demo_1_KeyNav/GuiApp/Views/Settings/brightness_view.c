@@ -31,7 +31,7 @@ static void bv_create(View_s *p_view)
     view_addComponent(p_view, p_slider);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
     base_setFocus(p_footerButton, true);

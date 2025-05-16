@@ -61,9 +61,9 @@ static void stv_create(View_s *p_view)
     row_addComponent(p_timeInput, p_mmInput);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, settings_view_navigateTo);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, settings_view_navigateTo);
     gui_addFooterSpacer(p_footer);
-    gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_CHECKMARK_LARGE, stv_saveTime);
+    gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_CHECKMARK_LARGE, stv_saveTime);
 }
 
 static void stv_saveTime(void)

@@ -24,17 +24,17 @@ static void sv_create(View_s *p_view)
 
     Grid_s *p_grid = gui_addPageButtonGrid(p_view);
 
-    PageButton_s *p_themeButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_BRUSH, FILE_KEY_TEXT_BUTTON_THEME, theme_view_navigateTo);
-    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_PALETTE,FILE_KEY_TEXT_BUTTON_ACCENT_COLOR, accent_color_view_navigateTo);
-    gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_BRIGHTNESS, FILE_KEY_TEXT_BUTTON_BRIGHTNESS, brightness_view_navigateTo);
-    PageButton_s *p_languageButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_GLOBAL, FILE_KEY_TEXT_BUTTON_LANGUAGE, language_view_navigateTo);
-    PageButton_s *p_dateButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_AGENDA, FILE_KEY_TEXT_BUTTON_DATE, set_time_view_navigateTo);
-    PageButton_s *p_timebutton = gui_addPageButton(p_grid, FILE_KEY_ICON_BTN_CLOCK, FILE_KEY_TEXT_BUTTON_TIME, set_time_view_navigateTo);
+    PageButton_s *p_themeButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_BRUSH, FILE_KEY_TEXT_THEME, theme_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_PALETTE,FILE_KEY_TEXT_ACCENT_COLOR, accent_color_view_navigateTo);
+    gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_BRIGHTNESS, FILE_KEY_TEXT_BRIGHTNESS, brightness_view_navigateTo);
+    PageButton_s *p_languageButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_GLOBAL, FILE_KEY_TEXT_LANGUAGE, language_view_navigateTo);
+    PageButton_s *p_dateButton = gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_AGENDA, FILE_KEY_TEXT_DATE, set_time_view_navigateTo);
+    PageButton_s *p_timebutton = gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_CLOCK, FILE_KEY_TEXT_TIME, set_time_view_navigateTo);
     base_setFocus(p_themeButton, true);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
 
-    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BTN_ARROW_BACK, mainview_navigateTo);
+    FooterButton_s *p_footerButton = gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
     gui_addFooterSpacer(p_footer);
     gui_addFooterSpacer(p_footer);
 

@@ -126,7 +126,7 @@ void gui_app_start(void)
             if (HAL_GetTick() >= g_guiApp.alarmTime_ms)
             {
                 g_guiApp.alarmActive = false;
-                message_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_DFT_ALARM, mainview_navigateTo);
+                message_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_ALARM, mainview_navigateTo);
                 header_showAlarm(false);
             }
         }
@@ -183,8 +183,8 @@ static void gui_app_initSettings(void)
     g_guiApp.alarmTime_ms = 0;
     g_guiApp.displayBrightness = DISPLAY_DEFAULT_BRIGTHNESS;
     g_guiApp.theme.theme = PROPERTY_THEME_VALUE_LIGHT;
-    g_guiApp.theme.accentColor = PROPERTY_ACCENTCOLOR_VALUE_RED;
-    g_guiApp.theme.cursorColor = PROPERTY_ACCENTCOLOR_VALUE_RED;
+    g_guiApp.theme.accentColor = PROPERTY_ACCENT_COLOR_VALUE_RED;
+    g_guiApp.theme.cursorColor = PROPERTY_ACCENT_COLOR_VALUE_RED;
 }
 
 static void gui_app_handleUartData(void)
@@ -622,7 +622,7 @@ void gui_showFooterLogo(void)
     base_display(&logo);
 
     Label_s mcsGui;
-    label_initBmp(&mcsGui, FILE_KEY_FOOTER_MCSGUI);
+    label_initBmp(&mcsGui, FILE_KEY_TEXT_FOOTER_MCSGUI);
     theme_setTheme(&mcsGui);
     GuiAnchor_s mcsGuiAnchor;
     anchor_init(&mcsGuiAnchor);
