@@ -1,0 +1,1879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>McsGui_Demo_3</Name>
+  <ProjectFolder>C:\Development\IRL_Development\Gui_Image_Projects\McsGui_Demo_3</ProjectFolder>
+  <UserSourceFolder />
+  <Instructions>
+    <ConverterInstruction xsi:type="FontInstruction">
+      <Name />
+      <FileKeyPrefix />
+      <FontFileKeyFormat>ProjectFontName</FontFileKeyFormat>
+      <FontBitmaps>
+        <FontBitmap>
+          <FontName>Roboto</FontName>
+          <FontSize>18</FontSize>
+          <FontStyle>Regular</FontStyle>
+          <FontConverterId>0</FontConverterId>
+          <FontBitmapStyleIds>
+            <int>0</int>
+            <int>1</int>
+          </FontBitmapStyleIds>
+        </FontBitmap>
+        <FontBitmap>
+          <FontName>Roboto</FontName>
+          <FontSize>16</FontSize>
+          <FontStyle>Regular</FontStyle>
+          <FontConverterId>1</FontConverterId>
+          <FontBitmapStyleIds>
+            <int>0</int>
+            <int>1</int>
+          </FontBitmapStyleIds>
+        </FontBitmap>
+        <FontBitmap>
+          <FontName>Roboto</FontName>
+          <FontSize>18</FontSize>
+          <FontStyle>Regular</FontStyle>
+          <FontConverterId>2</FontConverterId>
+          <FontBitmapStyleIds>
+            <int>0</int>
+            <int>1</int>
+          </FontBitmapStyleIds>
+        </FontBitmap>
+        <FontBitmap>
+          <FontName>Roboto</FontName>
+          <FontSize>13</FontSize>
+          <FontStyle>Regular</FontStyle>
+          <FontConverterId>3</FontConverterId>
+          <FontBitmapStyleIds>
+            <int>0</int>
+            <int>1</int>
+          </FontBitmapStyleIds>
+        </FontBitmap>
+      </FontBitmaps>
+    </ConverterInstruction>
+    <ConverterInstruction xsi:type="IconInstruction">
+      <Name />
+      <FileKeyPrefix />
+      <SvgFileInfos>
+        <SvgFileInfo>
+          <Filename>Agenda</Filename>
+          <IconName>Agenda</IconName>
+          <SvgString>&lt;svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Agenda"&gt;&lt;path id="icon" d="M0 18.125C0 19.1602 0.839844 20 1.875 20H15.625C16.6602 20 17.5 19.1602 17.5 18.125V7.5H0V18.125ZM12.5 10.4688C12.5 10.2109 12.7109 10 12.9688 10H14.5312C14.7891 10 15 10.2109 15 10.4688V12.0312C15 12.2891 14.7891 12.5 14.5312 12.5H12.9688C12.7109 12.5 12.5 12.2891 12.5 12.0312V10.4688ZM12.5 15.4688C12.5 15.2109 12.7109 15 12.9688 15H14.5312C14.7891 15 15 15.2109 15 15.4688V17.0312C15 17.2891 14.7891 17.5 14.5312 17.5H12.9688C12.7109 17.5 12.5 17.2891 12.5 17.0312V15.4688ZM7.5 10.4688C7.5 10.2109 7.71094 10 7.96875 10H9.53125C9.78906 10 10 10.2109 10 10.4688V12.0312C10 12.2891 9.78906 12.5 9.53125 12.5H7.96875C7.71094 12.5 7.5 12.2891 7.5 12.0312V10.4688ZM7.5 15.4688C7.5 15.2109 7.71094 15 7.96875 15H9.53125C9.78906 15 10 15.2109 10 15.4688V17.0312C10 17.2891 9.78906 17.5 9.53125 17.5H7.96875C7.71094 17.5 7.5 17.2891 7.5 17.0312V15.4688ZM2.5 10.4688C2.5 10.2109 2.71094 10 2.96875 10H4.53125C4.78906 10 5 10.2109 5 10.4688V12.0312C5 12.2891 4.78906 12.5 4.53125 12.5H2.96875C2.71094 12.5 2.5 12.2891 2.5 12.0312V10.4688ZM2.5 15.4688C2.5 15.2109 2.71094 15 2.96875 15H4.53125C4.78906 15 5 15.2109 5 15.4688V17.0312C5 17.2891 4.78906 17.5 4.53125 17.5H2.96875C2.71094 17.5 2.5 17.2891 2.5 17.0312V15.4688ZM15.625 2.5H13.75V0.625C13.75 0.28125 13.4688 0 13.125 0H11.875C11.5312 0 11.25 0.28125 11.25 0.625V2.5H6.25V0.625C6.25 0.28125 5.96875 0 5.625 0H4.375C4.03125 0 3.75 0.28125 3.75 0.625V2.5H1.875C0.839844 2.5 0 3.33984 0 4.375V6.25H17.5V4.375C17.5 3.33984 16.6602 2.5 15.625 2.5Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>1</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Arrow-Down-Small</Filename>
+          <IconName>Arrow-Down-Small</IconName>
+          <SvgString>&lt;svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Arrow-Down-Small"&gt;&lt;path id="icon" d="M4.08986 8.40912V0.321428C4.08986 0.14392 3.94347 3.06573e-07 3.76291 3.06573e-07H2.23712C2.05656 3.06573e-07 1.91016 0.14392 1.91016 0.321428V8.40912H0.655229C0.0726502 8.40912 -0.219102 9.10156 0.192834 9.50656L2.53762 11.8117C2.793 12.0628 3.20703 12.0628 3.46238 11.8117L5.80717 9.50656C6.2191 9.10158 5.92735 8.40912 5.34477 8.40912H4.08986Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>12</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Arrow-Up-Small</Filename>
+          <IconName>Arrow-Up-Small</IconName>
+          <SvgString>&lt;svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Arrow-Up-Small"&gt;&lt;path id="icon" d="M1.91014 3.59088V11.6786C1.91014 11.8561 2.05653 12 2.23709 12H3.76288C3.94344 12 4.08984 11.8561 4.08984 11.6786V3.59088H5.34477C5.92735 3.59088 6.2191 2.89844 5.80717 2.49344L3.46238 0.188297C3.207 -0.0627655 2.79297 -0.0627655 2.53762 0.188297L0.192834 2.49344C-0.219102 2.89842 0.0726498 3.59088 0.655229 3.59088H1.91014Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>11</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>back</Filename>
+          <IconName>back</IconName>
+          <SvgString>&lt;svg width="45" height="38" viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="back"&gt;&lt;path id="icon" d="M18 13H42C43.6569 13 45 14.3431 45 16V22C45 23.6569 43.6569 25 42 25H18V13Z" fill="black" /&gt;&lt;path id="icon_2" d="M0 19L18.75 2.54552V35.4545L0 19Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Bullseye</Filename>
+          <IconName>Bullseye</IconName>
+          <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Bullseye"&gt;&lt;circle id="icon_2" cx="11" cy="11" r="6" fill="black" /&gt;&lt;circle id="icon" cx="11" cy="11" r="9.5" stroke="black" stroke-width="3" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>4</int>
+            <int>5</int>
+            <int>6</int>
+            <int>7</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>ButtonMinus</Filename>
+          <IconName>Button_minus</IconName>
+          <SvgString>&lt;svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="MinusButton"&gt;&lt;circle id="fill" cx="15" cy="15" r="15" fill="#D9D9D9" /&gt;&lt;circle id="border" cx="15" cy="15" r="14" stroke="black" stroke-width="2" /&gt;&lt;path id="icon" d="M21.5 13H8.5C7.67188 13 7 13.6719 7 14.5V15.5C7 16.3281 7.67188 17 8.5 17H21.5C22.3281 17 23 16.3281 23 15.5V14.5C23 13.6719 22.3281 13 21.5 13Z" fill="#E5E5E5" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>16</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>ButtonPlus</Filename>
+          <IconName>Button_plus</IconName>
+          <SvgString>&lt;svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="PlusButton"&gt;&lt;circle id="fill" cx="15" cy="15" r="15" fill="#D9D9D9" /&gt;&lt;circle id="border" cx="15" cy="15" r="14" stroke="black" stroke-width="2" /&gt;&lt;path id="icon" d="M21.8571 13.2857H16.7143V8.14286C16.7143 7.51179 16.2025 7 15.5714 7H14.4286C13.7975 7 13.2857 7.51179 13.2857 8.14286V13.2857H8.14286C7.51179 13.2857 7 13.7975 7 14.4286V15.5714C7 16.2025 7.51179 16.7143 8.14286 16.7143H13.2857V21.8571C13.2857 22.4882 13.7975 23 14.4286 23H15.5714C16.2025 23 16.7143 22.4882 16.7143 21.8571V16.7143H21.8571C22.4882 16.7143 23 16.2025 23 15.5714V14.4286C23 13.7975 22.4882 13.2857 21.8571 13.2857Z" fill="#E5E5E5" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>16</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Clock</Filename>
+          <IconName>Clock</IconName>
+          <SvgString>&lt;svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Clock"&gt;&lt;path id="icon" d="M9.44998 3.6001H8.09998V9.0001L12.825 11.8351L13.5 10.7281L9.44998 8.3251V3.6001Z" fill="black" /&gt;&lt;path id="icon_2" d="M8.991 0C4.023 0 0 4.032 0 9C0 13.968 4.023 18 8.991 18C13.968 18 18 13.968 18 9C18 4.032 13.968 0 8.991 0ZM9 16.2C5.022 16.2 1.8 12.978 1.8 9C1.8 5.022 5.022 1.8 9 1.8C12.978 1.8 16.2 5.022 16.2 9C16.2 12.978 12.978 16.2 9 16.2Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+            <int>1</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Data</Filename>
+          <IconName>Data</IconName>
+          <SvgString>&lt;svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Data"&gt;&lt;path id="icon" d="M14.3 11H15.95C16.225 11 16.5 10.725 16.5 10.45V4.675C16.5 4.4 16.225 4.125 15.95 4.125H14.3C14.025 4.125 13.75 4.4 13.75 4.675V10.45C13.75 10.725 14.025 11 14.3 11ZM18.425 11H20.075C20.35 11 20.625 10.725 20.625 10.45V0.55C20.625 0.275 20.35 0 20.075 0H18.425C18.15 0 17.875 0.275 17.875 0.55V10.45C17.875 10.725 18.15 11 18.425 11ZM6.05 11H7.7C7.975 11 8.25 10.725 8.25 10.45V7.425C8.25 7.15 7.975 6.875 7.7 6.875H6.05C5.775 6.875 5.5 7.15 5.5 7.425V10.45C5.5 10.725 5.775 11 6.05 11ZM10.175 11H11.825C12.1 11 12.375 10.725 12.375 10.45V1.925C12.375 1.65 12.1 1.375 11.825 1.375H10.175C9.9 1.375 9.625 1.65 9.625 1.925V10.45C9.625 10.725 9.9 11 10.175 11ZM21.3125 13.75H2.75V0.6875C2.75 0.307656 2.44234 0 2.0625 0H0.6875C0.307656 0 0 0.307656 0 0.6875V15.125C0 15.8843 0.615742 16.5 1.375 16.5H21.3125C21.6923 16.5 22 16.1923 22 15.8125V14.4375C22 14.0577 21.6923 13.75 21.3125 13.75Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>2</int>
+            <int>3</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>display</Filename>
+          <IconName>display</IconName>
+          <SvgString>&lt;svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="display"&gt;&lt;path id="icon" d="M20.625 0H1.875C0.839844 0 0 0.839844 0 1.875V14.375C0 15.4102 0.839844 16.25 1.875 16.25H9.375L8.75 18.125H5.9375C5.41797 18.125 5 18.543 5 19.0625C5 19.582 5.41797 20 5.9375 20H16.5625C17.082 20 17.5 19.582 17.5 19.0625C17.5 18.543 17.082 18.125 16.5625 18.125H13.75L13.125 16.25H20.625C21.6602 16.25 22.5 15.4102 22.5 14.375V1.875C22.5 0.839844 21.6602 0 20.625 0ZM20 13.75H2.5V2.5H20V13.75Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Focus</Filename>
+          <IconName>Focus</IconName>
+          <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Focus"&gt;&lt;path id="icon" d="M0 6.60714V1.07143C0 0.477679 0.477679 0 1.07143 0H6.60714C6.90179 0 7.14286 0.241071 7.14286 0.535714V2.32143C7.14286 2.61607 6.90179 2.85714 6.60714 2.85714H2.85714V6.60714C2.85714 6.90179 2.61607 7.14286 2.32143 7.14286H0.535714C0.241071 7.14286 0 6.90179 0 6.60714ZM12.8571 0.535714V2.32143C12.8571 2.61607 13.0982 2.85714 13.3929 2.85714H17.1429V6.60714C17.1429 6.90179 17.3839 7.14286 17.6786 7.14286H19.4643C19.7589 7.14286 20 6.90179 20 6.60714V1.07143C20 0.477679 19.5223 0 18.9286 0H13.3929C13.0982 0 12.8571 0.241071 12.8571 0.535714ZM19.4643 12.8571H17.6786C17.3839 12.8571 17.1429 13.0982 17.1429 13.3929V17.1429H13.3929C13.0982 17.1429 12.8571 17.3839 12.8571 17.6786V19.4643C12.8571 19.7589 13.0982 20 13.3929 20H18.9286C19.5223 20 20 19.5223 20 18.9286V13.3929C20 13.0982 19.7589 12.8571 19.4643 12.8571ZM7.14286 19.4643V17.6786C7.14286 17.3839 6.90179 17.1429 6.60714 17.1429H2.85714V13.3929C2.85714 13.0982 2.61607 12.8571 2.32143 12.8571H0.535714C0.241071 12.8571 0 13.0982 0 13.3929V18.9286C0 19.5223 0.477679 20 1.07143 20H6.60714C6.90179 20 7.14286 19.7589 7.14286 19.4643Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>2</int>
+            <int>3</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Gear</Filename>
+          <IconName>Gear</IconName>
+          <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Gear"&gt;&lt;path id="icon" d="M17.6502 10.975C17.6888 10.6625 17.7145 10.3375 17.7145 10C17.7145 9.6625 17.6888 9.3375 17.6373 9.025L19.8102 7.375C20.0031 7.225 20.0545 6.95 19.9388 6.7375L17.8816 3.275C17.753 3.05 17.483 2.975 17.2516 3.05L14.693 4.05C14.153 3.65 13.5872 3.325 12.9572 3.075L12.5715 0.425C12.5329 0.175 12.3143 0 12.0572 0H7.94281C7.68566 0 7.47994 0.175 7.44137 0.425L7.05565 3.075C6.42563 3.325 5.84705 3.6625 5.31989 4.05L2.76126 3.05C2.52982 2.9625 2.25982 3.05 2.13124 3.275L0.0740529 6.7375C-0.0545216 6.9625 -0.00309159 7.225 0.202628 7.375L2.37554 9.025C2.32411 9.3375 2.28553 9.675 2.28553 10C2.28553 10.325 2.31125 10.6625 2.36268 10.975L0.18977 12.625C-0.00309189 12.775 -0.0545215 13.05 0.0611955 13.2625L2.11839 16.725C2.24696 16.95 2.51697 17.025 2.7484 16.95L5.30703 15.95C5.84705 16.35 6.41277 16.675 7.04279 16.925L7.42851 19.575C7.47994 19.825 7.68566 20 7.94281 20H12.0572C12.3143 20 12.5329 19.825 12.5586 19.575L12.9444 16.925C13.5744 16.675 14.153 16.3375 14.6801 15.95L17.2387 16.95C17.4702 17.0375 17.7402 16.95 17.8688 16.725L19.9259 13.2625C20.0545 13.0375 20.0031 12.775 19.7974 12.625L17.6502 10.975V10.975ZM10 13.75C7.87852 13.75 6.14277 12.0625 6.14277 10C6.14277 7.9375 7.87852 6.25 10 6.25C12.1215 6.25 13.8572 7.9375 13.8572 10C13.8572 12.0625 12.1215 13.75 10 13.75Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>2</int>
+            <int>3</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Home</Filename>
+          <IconName>Home</IconName>
+          <SvgString>&lt;svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Home"&gt;&lt;path id="icon" d="M10 0L0 7.5V22.5H6.25V13.75H13.75V22.5H20V7.5L10 0Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>2</int>
+            <int>3</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>language</Filename>
+          <IconName>language</IconName>
+          <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="language"&gt;&lt;path id="icon" d="M19.2489 0H2.74984C1.23313 0 0 1.23313 0 2.74984V15.1241C0 16.6408 1.23313 17.874 2.74984 17.874H6.8746V21.4831C6.8746 21.9042 7.35582 22.1491 7.69525 21.8999L13.0617 17.874H19.2489C20.7656 17.874 21.9987 16.6408 21.9987 15.1241V2.74984C21.9987 1.23313 20.7656 0 19.2489 0Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>minus</Filename>
+          <IconName>minus</IconName>
+          <SvgString>&lt;svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="minus"&gt;&lt;path id="icon" d="M14.5 0H1.5C0.671875 0 0 0.671875 0 1.5V2.5C0 3.32812 0.671875 4 1.5 4H14.5C15.3281 4 16 3.32812 16 2.5V1.5C16 0.671875 15.3281 0 14.5 0Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>plus</Filename>
+          <IconName>plus</IconName>
+          <SvgString>&lt;svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="plus"&gt;&lt;path id="icon" d="M14.8571 6.28571H9.71429V1.14286C9.71429 0.511786 9.2025 0 8.57143 0H7.42857C6.7975 0 6.28571 0.511786 6.28571 1.14286V6.28571H1.14286C0.511786 6.28571 0 6.7975 0 7.42857V8.57143C0 9.2025 0.511786 9.71429 1.14286 9.71429H6.28571V14.8571C6.28571 15.4882 6.7975 16 7.42857 16H8.57143C9.2025 16 9.71429 15.4882 9.71429 14.8571V9.71429H14.8571C15.4882 9.71429 16 9.2025 16 8.57143V7.42857C16 6.7975 15.4882 6.28571 14.8571 6.28571Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Pulse</Filename>
+          <IconName>Pulse</IconName>
+          <SvgString>&lt;svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Pulse"&gt;&lt;path id="icon" d="M16.3625 17.5H11.1375C10.8093 17.5 10.4945 17.3518 10.2625 17.0881C10.0304 16.8244 9.9 16.4667 9.9 16.0938V2.5H6.6V8.59375C6.6 8.96671 6.46962 9.3244 6.23754 9.58812C6.00547 9.85184 5.69071 10 5.3625 10H0.55C0.404131 10 0.264236 9.93415 0.161091 9.81694C0.0579463 9.69973 0 9.54076 0 9.375V8.125C0 7.95924 0.0579463 7.80027 0.161091 7.68306C0.264236 7.56585 0.404131 7.5 0.55 7.5H4.4V1.40625C4.4 1.03329 4.53038 0.675604 4.76246 0.411881C4.99453 0.148158 5.30929 0 5.6375 0H10.8625C11.1907 0 11.5055 0.148158 11.7375 0.411881C11.9696 0.675604 12.1 1.03329 12.1 1.40625V15H15.4V8.90625C15.4 8.53329 15.5304 8.1756 15.7625 7.91188C15.9945 7.64816 16.3093 7.5 16.6375 7.5H21.45C21.5959 7.5 21.7358 7.56585 21.8389 7.68306C21.9421 7.80027 22 7.95924 22 8.125V9.375C22 9.54076 21.9421 9.69973 21.8389 9.81694C21.7358 9.93415 21.5959 10 21.45 10H17.6V16.0938C17.6 16.4667 17.4696 16.8244 17.2375 17.0881C17.0055 17.3518 16.6907 17.5 16.3625 17.5Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Radio-Button</Filename>
+          <IconName>Radio-Button</IconName>
+          <SvgString>&lt;svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Radio-Button"&gt;&lt;path id="icon" d="M9.5 0.5C4.532 0.5 0.5 4.532 0.5 9.5C0.5 14.468 4.532 18.5 9.5 18.5C14.468 18.5 18.5 14.468 18.5 9.5C18.5 4.532 14.468 0.5 9.5 0.5ZM9.5 16.7C5.522 16.7 2.3 13.478 2.3 9.5C2.3 5.522 5.522 2.3 9.5 2.3C13.478 2.3 16.7 5.522 16.7 9.5C16.7 13.478 13.478 16.7 9.5 16.7Z" fill="black" /&gt;&lt;circle id="icon_2" cx="9.5" cy="9.5" r="4.5" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>8</int>
+            <int>9</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Scroll-down</Filename>
+          <IconName>Scroll-down</IconName>
+          <SvgString>&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Scroll-down"&gt;&lt;path id="icon" d="M24.2188 12.1094C24.2188 18.7988 18.7988 24.2188 12.1094 24.2188C5.41992 24.2188 0 18.7988 0 12.1094C0 5.41992 5.41992 0 12.1094 0C18.7988 0 24.2188 5.41992 24.2188 12.1094ZM12.9395 17.6709L19.5557 11.0547C20.0146 10.5957 20.0146 9.85352 19.5557 9.39941L18.7256 8.56934C18.2666 8.11035 17.5244 8.11035 17.0703 8.56934L12.1094 13.5303L7.14844 8.56934C6.68945 8.11035 5.94727 8.11035 5.49316 8.56934L4.66309 9.39941C4.2041 9.8584 4.2041 10.6006 4.66309 11.0547L11.2793 17.6709C11.7383 18.1299 12.4805 18.1299 12.9395 17.6709Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>10</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Scroll-up</Filename>
+          <IconName>Scroll-up</IconName>
+          <SvgString>&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Scroll-up"&gt;&lt;path id="icon" d="M0 12.1094C0 5.41992 5.41992 0 12.1094 0C18.7988 0 24.2188 5.41992 24.2188 12.1094C24.2188 18.7988 18.7988 24.2188 12.1094 24.2188C5.41992 24.2188 0 18.7988 0 12.1094ZM11.2793 6.54785L4.66309 13.1641C4.2041 13.623 4.2041 14.3652 4.66309 14.8193L5.49316 15.6494C5.95215 16.1084 6.69434 16.1084 7.14844 15.6494L12.1094 10.6885L17.0703 15.6494C17.5293 16.1084 18.2715 16.1084 18.7256 15.6494L19.5557 14.8193C20.0146 14.3604 20.0146 13.6182 19.5557 13.1641L12.9395 6.54785C12.4805 6.08887 11.7383 6.08887 11.2793 6.54785Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>10</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Sliders</Filename>
+          <IconName>Sliders</IconName>
+          <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Sliders"&gt;&lt;path id="icon" d="M19.375 15.7143H6.25V15C6.25 14.6071 5.96875 14.2857 5.625 14.2857H4.375C4.03125 14.2857 3.75 14.6071 3.75 15V15.7143H0.625C0.28125 15.7143 0 16.0357 0 16.4286V17.8571C0 18.25 0.28125 18.5714 0.625 18.5714H3.75V19.2857C3.75 19.6786 4.03125 20 4.375 20H5.625C5.96875 20 6.25 19.6786 6.25 19.2857V18.5714H19.375C19.7188 18.5714 20 18.25 20 17.8571V16.4286C20 16.0357 19.7188 15.7143 19.375 15.7143ZM19.375 8.57143H16.25V7.85714C16.25 7.46429 15.9688 7.14286 15.625 7.14286H14.375C14.0312 7.14286 13.75 7.46429 13.75 7.85714V8.57143H0.625C0.28125 8.57143 0 8.89286 0 9.28571V10.7143C0 11.1071 0.28125 11.4286 0.625 11.4286H13.75V12.1429C13.75 12.5357 14.0312 12.8571 14.375 12.8571H15.625C15.9688 12.8571 16.25 12.5357 16.25 12.1429V11.4286H19.375C19.7188 11.4286 20 11.1071 20 10.7143V9.28571C20 8.89286 19.7188 8.57143 19.375 8.57143ZM19.375 1.42857H11.25V0.714286C11.25 0.321429 10.9688 0 10.625 0H9.375C9.03125 0 8.75 0.321429 8.75 0.714286V1.42857H0.625C0.28125 1.42857 0 1.75 0 2.14286V3.57143C0 3.96429 0.28125 4.28571 0.625 4.28571H8.75V5C8.75 5.39286 9.03125 5.71429 9.375 5.71429H10.625C10.9688 5.71429 11.25 5.39286 11.25 5V4.28571H19.375C19.7188 4.28571 20 3.96429 20 3.57143V2.14286C20 1.75 19.7188 1.42857 19.375 1.42857Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>2</int>
+            <int>3</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>thermometer</Filename>
+          <IconName>thermometer</IconName>
+          <SvgString>&lt;svg width="13" height="25" viewBox="0 0 13 25" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="thermometer"&gt;&lt;path id="icon" d="M9.37498 18.75C9.37498 20.4759 7.97586 21.875 6.24998 21.875C4.52411 21.875 3.12498 20.4759 3.12498 18.75C3.12498 17.5935 3.7537 16.5845 4.68748 16.0441V10.9375C4.68748 10.0746 5.38704 9.375 6.24998 9.375C7.11292 9.375 7.81248 10.0746 7.81248 10.9375V16.0441C8.74627 16.5845 9.37498 17.5935 9.37498 18.75ZM10.9375 14.6166C11.9098 15.7183 12.5 17.1651 12.5 18.75C12.5 22.202 9.70199 25 6.24998 25C6.23538 25 6.22025 25 6.2056 24.9999C2.77288 24.976 -0.0174472 22.1502 8.21417e-05 18.7174C0.00808995 17.1453 0.596908 15.7107 1.56248 14.6166V4.6875C1.56248 2.09868 3.66117 0 6.24998 0C8.8388 0 10.9375 2.09868 10.9375 4.6875V14.6166ZM10.1562 18.75C10.1562 17.0733 9.21043 16.2017 8.59373 15.5028V4.6875C8.59373 3.39517 7.54232 2.34375 6.24998 2.34375C4.95765 2.34375 3.90623 3.39517 3.90623 4.6875V15.5028C3.28455 16.2073 2.35228 17.0702 2.34378 18.7294C2.33285 20.8718 4.08026 22.6413 6.22186 22.6562L6.24998 22.6562C8.40389 22.6562 10.1562 20.9039 10.1562 18.75Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Trash</Filename>
+          <IconName>Trash</IconName>
+          <SvgString>&lt;svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Trash"&gt;&lt;path id="icon" d="M1.25 18.125C1.25 18.6223 1.44754 19.0992 1.79917 19.4508C2.1508 19.8025 2.62772 20 3.125 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V5H1.25V18.125ZM11.875 8.125C11.875 7.95924 11.9408 7.80027 12.0581 7.68306C12.1753 7.56585 12.3342 7.5 12.5 7.5C12.6658 7.5 12.8247 7.56585 12.9419 7.68306C13.0591 7.80027 13.125 7.95924 13.125 8.125V16.875C13.125 17.0408 13.0591 17.1997 12.9419 17.3169C12.8247 17.4342 12.6658 17.5 12.5 17.5C12.3342 17.5 12.1753 17.4342 12.0581 17.3169C11.9408 17.1997 11.875 17.0408 11.875 16.875V8.125ZM8.125 8.125C8.125 7.95924 8.19085 7.80027 8.30806 7.68306C8.42527 7.56585 8.58424 7.5 8.75 7.5C8.91576 7.5 9.07473 7.56585 9.19194 7.68306C9.30915 7.80027 9.375 7.95924 9.375 8.125V16.875C9.375 17.0408 9.30915 17.1997 9.19194 17.3169C9.07473 17.4342 8.91576 17.5 8.75 17.5C8.58424 17.5 8.42527 17.4342 8.30806 17.3169C8.19085 17.1997 8.125 17.0408 8.125 16.875V8.125ZM4.375 8.125C4.375 7.95924 4.44085 7.80027 4.55806 7.68306C4.67527 7.56585 4.83424 7.5 5 7.5C5.16576 7.5 5.32473 7.56585 5.44194 7.68306C5.55915 7.80027 5.625 7.95924 5.625 8.125V16.875C5.625 17.0408 5.55915 17.1997 5.44194 17.3169C5.32473 17.4342 5.16576 17.5 5 17.5C4.83424 17.5 4.67527 17.4342 4.55806 17.3169C4.44085 17.1997 4.375 17.0408 4.375 16.875V8.125ZM16.875 1.25001H12.1875L11.8203 0.519538C11.7425 0.363372 11.6227 0.232008 11.4743 0.140225C11.326 0.0484421 11.1549 -0.00011828 10.9805 6.84872e-06H6.51562C6.34155 -0.000662313 6.17081 0.047717 6.02297 0.139602C5.87512 0.231487 5.75615 0.363161 5.67969 0.519538L5.3125 1.25001H0.625C0.45924 1.25001 0.300268 1.31585 0.183058 1.43306C0.065848 1.55027 0 1.70925 0 1.87501L0 3.12501C0 3.29077 0.065848 3.44974 0.183058 3.56695C0.300268 3.68416 0.45924 3.75001 0.625 3.75001H16.875C17.0408 3.75001 17.1997 3.68416 17.3169 3.56695C17.4341 3.44974 17.5 3.29077 17.5 3.12501V1.87501C17.5 1.70925 17.4341 1.55027 17.3169 1.43306C17.1997 1.31585 17.0408 1.25001 16.875 1.25001Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>0</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Switch_off</Filename>
+          <IconName>Switch</IconName>
+          <SvgString>&lt;svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Switch_off"&gt;&lt;rect id="button" width="50" height="21.6667" rx="10.8333" fill="black" /&gt;&lt;circle id="knob" cx="10.8333" cy="10.8333" r="8.33333" fill="white" /&gt;&lt;circle id="status" cx="39.1666" cy="10.8333" r="4" stroke="white" stroke-width="2" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>14</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Switch_on</Filename>
+          <IconName>Switch</IconName>
+          <SvgString>&lt;svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Switch_on"&gt;&lt;rect id="button" width="50" height="21.6667" rx="10.8333" fill="black" /&gt;&lt;circle id="knob" cx="39.1667" cy="10.8333" r="8.33333" fill="white" /&gt;&lt;rect id="status" x="9.16663" y="5.83325" width="1.66667" height="10" fill="white" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>13</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+        <SvgFileInfo>
+          <Filename>Slider_knob</Filename>
+          <IconName>Slider_knob</IconName>
+          <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Slider_knob"&gt;&lt;circle id="border" cx="10" cy="10" r="9.5" stroke="black" /&gt;&lt;circle id="fill" cx="10" cy="10" r="9" fill="#D9D9D9" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <ImageBitmapStyleIds>
+            <int>15</int>
+          </ImageBitmapStyleIds>
+        </SvgFileInfo>
+      </SvgFileInfos>
+    </ConverterInstruction>
+    <ConverterInstruction xsi:type="TextInstruction">
+      <Name>Text_translate</Name>
+      <FileKeyPrefix />
+      <Table>
+        <Header>
+          <Key />
+          <Text>
+            <string>Key</string>
+            <string>English</string>
+            <string>Dutch</string>
+            <string>German</string>
+            <string>French</string>
+            <string>Spanish</string>
+            <string>Italian</string>
+            <string>Russian</string>
+            <string>Chinese Simplified</string>
+            <string>Japanese</string>
+            <string>Korean</string>
+          </Text>
+          <TextStyleIDs />
+        </Header>
+        <NumberOfColumns>11</NumberOfColumns>
+        <Records>
+          <TextRecord>
+            <Key>show_date</Key>
+            <Text>
+              <string>Date visible</string>
+              <string>Datum zichtbaar</string>
+              <string>Datum sichtbar</string>
+              <string>Date visible</string>
+              <string>Fecha visible</string>
+              <string>Data visibile</string>
+              <string>Видимая дата</string>
+              <string>可见日期</string>
+              <string>表示日付</string>
+              <string>표시되는 날짜</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>hide_date</Key>
+            <Text>
+              <string>Date hidden</string>
+              <string>Datum verborgen</string>
+              <string>Datum ausgeblendet</string>
+              <string>Date masquée</string>
+              <string>Fecha oculta</string>
+              <string>Data nascosta</string>
+              <string>Дата скрыта</string>
+              <string>隐藏日期</string>
+              <string>日付非表示</string>
+              <string>숨긴 날짜</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>show_time</Key>
+            <Text>
+              <string>Time visible</string>
+              <string>Tijd zichtbaar</string>
+              <string>Zeit sichtbar</string>
+              <string>Temps visible</string>
+              <string>Tiempo visible</string>
+              <string>Tempo visibile</string>
+              <string>Видимое время</string>
+              <string>可见时间</string>
+              <string>表示可能な時間</string>
+              <string>표시되는 시간</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>hide_time</Key>
+            <Text>
+              <string>Time hidden</string>
+              <string>Tijd verborgen</string>
+              <string>Verborgene Zeit</string>
+              <string>Temps caché</string>
+              <string>Tiempo oculto</string>
+              <string>Il tempo nascosto</string>
+              <string>Скрытое время</string>
+              <string>隐藏时间</string>
+              <string>隠された時間</string>
+              <string>숨겨진 시간</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>units</Key>
+            <Text>
+              <string>Units</string>
+              <string>Eenheden</string>
+              <string>Einheiten</string>
+              <string>Unités</string>
+              <string>Unidades</string>
+              <string>Unità</string>
+              <string>Единиц</string>
+              <string>单位</string>
+              <string>単位</string>
+              <string>단위</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>save</Key>
+            <Text>
+              <string>Save</string>
+              <string>Opslaan</string>
+              <string>Retten</string>
+              <string>Sauvegarder</string>
+              <string>Salvar</string>
+              <string>Salvare</string>
+              <string>Спасать</string>
+              <string>救</string>
+              <string>セーブ</string>
+              <string>구해내다</string>
+            </Text>
+            <TextStyleIDs>
+              <int>2</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>save_rec</Key>
+            <Text>
+              <string>Save measurement</string>
+              <string>Meeting opslaan</string>
+              <string>Messung speichern</string>
+              <string>Enregistrer la mesure</string>
+              <string>Guardar medición</string>
+              <string>Salva misurazione</string>
+              <string>Сохранить измерения</string>
+              <string>保存测量</string>
+              <string>測定値の保存</string>
+              <string>측정값 저장</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>saved</Key>
+            <Text>
+              <string>Saved</string>
+              <string>Opgeslagen</string>
+              <string>Gespeichert</string>
+              <string>Sauvé</string>
+              <string>Guardado</string>
+              <string>Salvato</string>
+              <string>Сохранено</string>
+              <string>保存</string>
+              <string>保存</string>
+              <string>저장</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>interval</Key>
+            <Text>
+              <string>Interval (s)</string>
+              <string>Interval (s)</string>
+              <string>Intervall (s)</string>
+              <string>Intervalle (s)</string>
+              <string>Intervalo (s)</string>
+              <string>Intervallo (s)</string>
+              <string>Интервал (s)</string>
+              <string>间隔 (s)</string>
+              <string>間 (s)</string>
+              <string>간 (s)</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>max_data_points</Key>
+            <Text>
+              <string>Max. data points</string>
+              <string>Max. data punten</string>
+              <string>Max. Datenpunkte</string>
+              <string>Points de données max.</string>
+              <string>Máx. puntos de datos</string>
+              <string>Numero massimo di punti dati</string>
+              <string>Макс. баллы</string>
+              <string>最大数据点数</string>
+              <string>最大データポイント</string>
+              <string>최대 데이터 포인트</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>date_time</Key>
+            <Text>
+              <string>Date/time</string>
+              <string>Datum/tijd</string>
+              <string>Datum/Uhrzeit</string>
+              <string>Date/heure</string>
+              <string>Fecha/hora</string>
+              <string>Data/ora</string>
+              <string>Дата/время</string>
+              <string>日期/时间</string>
+              <string>日付/時刻</string>
+              <string>날짜/시간</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>language</Key>
+            <Text>
+              <string>Language</string>
+              <string>Taal</string>
+              <string>Sprache</string>
+              <string>Langue</string>
+              <string>Idioma</string>
+              <string>Lingua</string>
+              <string>Язык</string>
+              <string>语言</string>
+              <string>言語</string>
+              <string>언어</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>brightness</Key>
+            <Text>
+              <string>Brightness</string>
+              <string>Helderheid</string>
+              <string>Helligkeit</string>
+              <string>Luminosité</string>
+              <string>Brillo</string>
+              <string>Luminosità</string>
+              <string>Яркость</string>
+              <string>亮度</string>
+              <string>明るさ</string>
+              <string>밝기</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>measurements</Key>
+            <Text>
+              <string>Measurements</string>
+              <string>Meetingen</string>
+              <string>Messungen</string>
+              <string>Mensurations</string>
+              <string>Medidas</string>
+              <string>Misure</string>
+              <string>Измерения</string>
+              <string>测量</string>
+              <string>測定</string>
+              <string>측정</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>calibrate_touch</Key>
+            <Text>
+              <string>Calibrate Touch</string>
+              <string>Touch Kalibratie</string>
+              <string>Touch-Kalibrierung</string>
+              <string>Calibrage tactile</string>
+              <string>Calibrar el tacto</string>
+              <string>Calibra tocco</string>
+              <string>Калибровка сенсорного ввода</string>
+              <string>校准触控</string>
+              <string>タッチのキャリブレーション</string>
+              <string>터치 보정</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>display</Key>
+            <Text>
+              <string>Display</string>
+              <string>Beeldscherm</string>
+              <string>Zeigen</string>
+              <string>Montrer</string>
+              <string>Monitor</string>
+              <string>Esporre</string>
+              <string>Дисплей</string>
+              <string>显示</string>
+              <string>陳列</string>
+              <string>전시</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>settings</Key>
+            <Text>
+              <string>Settings</string>
+              <string>Instellingen</string>
+              <string>Einstellungen</string>
+              <string>Paramètres</string>
+              <string>Configuración</string>
+              <string>Impostazioni</string>
+              <string>Параметры</string>
+              <string>设置</string>
+              <string>設定</string>
+              <string>설정</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>start</Key>
+            <Text>
+              <string>Start</string>
+              <string>Start</string>
+              <string>Anfangen</string>
+              <string>Commencer</string>
+              <string>Empezar</string>
+              <string>Inizio</string>
+              <string>Начало</string>
+              <string>开始</string>
+              <string>始める</string>
+              <string>시작하다</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>stop</Key>
+            <Text>
+              <string>Stop</string>
+              <string>Stop</string>
+              <string>Aufhören</string>
+              <string>Arrêter</string>
+              <string>Parar</string>
+              <string>Fermarsi</string>
+              <string>Остановка</string>
+              <string>停</string>
+              <string>止める</string>
+              <string>멈추다</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>recordings</Key>
+            <Text>
+              <string>Recordings</string>
+              <string>Opnamen</string>
+              <string>Aufnahmen</string>
+              <string>Enregistrements</string>
+              <string>Grabaciones</string>
+              <string>Registrazioni</string>
+              <string>Записи</string>
+              <string>录音</string>
+              <string>録音</string>
+              <string>녹음</string>
+            </Text>
+            <TextStyleIDs>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+        </Records>
+        <TranslationProperty>
+          <Name>A</Name>
+          <Description />
+          <Value>9</Value>
+        </TranslationProperty>
+        <Translate>true</Translate>
+      </Table>
+    </ConverterInstruction>
+    <ConverterInstruction xsi:type="TextInstruction">
+      <Name>Text</Name>
+      <FileKeyPrefix />
+      <Table>
+        <Header>
+          <Key />
+          <Text>
+            <string>english</string>
+            <string>English</string>
+          </Text>
+          <TextStyleIDs />
+        </Header>
+        <NumberOfColumns>2</NumberOfColumns>
+        <Records>
+          <TextRecord>
+            <Key>dutch</Key>
+            <Text>
+              <string>Nederlands</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>german</Key>
+            <Text>
+              <string>Deutsch</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>french</Key>
+            <Text>
+              <string>Français</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>italian</Key>
+            <Text>
+              <string>Italiano</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>spanish</Key>
+            <Text>
+              <string>Español</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>russian</Key>
+            <Text>
+              <string>Русский</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>chinese_sim</Key>
+            <Text>
+              <string>中文</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>japanese</Key>
+            <Text>
+              <string>日本語</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>korean</Key>
+            <Text>
+              <string>한국어</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>deg_cel</Key>
+            <Text>
+              <string>°C</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>deg_far</Key>
+            <Text>
+              <string>°F</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>hashtag</Key>
+            <Text>
+              <string>#</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>id</Key>
+            <Text>
+              <string>ID</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+              <int>1</int>
+            </TextStyleIDs>
+          </TextRecord>
+          <TextRecord>
+            <Key>english</Key>
+            <Text>
+              <string>English</string>
+            </Text>
+            <TextStyleIDs>
+              <int>0</int>
+            </TextStyleIDs>
+          </TextRecord>
+        </Records>
+        <TranslationProperty>
+          <Name />
+          <Description />
+          <Value>0</Value>
+        </TranslationProperty>
+        <Translate>false</Translate>
+      </Table>
+    </ConverterInstruction>
+  </Instructions>
+  <TextStyles>
+    <TextStyle>
+      <ID>0</ID>
+      <Description>Text</Description>
+      <Prefix>text</Prefix>
+      <FontName>Roboto</FontName>
+      <FontSize>16</FontSize>
+      <FontStyle>Regular</FontStyle>
+      <TextColor>-1710619</TextColor>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <TextConverterColorId>9</TextConverterColorId>
+      <FontConverterId>1</FontConverterId>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BitmapProperties />
+    </TextStyle>
+    <TextStyle>
+      <ID>1</ID>
+      <Description>Title</Description>
+      <Prefix>title</Prefix>
+      <FontName>Roboto</FontName>
+      <FontSize>18</FontSize>
+      <FontStyle>Regular</FontStyle>
+      <TextColor>-1710619</TextColor>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <TextConverterColorId>9</TextConverterColorId>
+      <FontConverterId>0</FontConverterId>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BitmapProperties />
+    </TextStyle>
+    <TextStyle>
+      <ID>2</ID>
+      <Description>Text Button Blue</Description>
+      <Prefix>text</Prefix>
+      <FontName>Roboto</FontName>
+      <FontSize>16</FontSize>
+      <FontStyle>Regular</FontStyle>
+      <TextColor>-1710619</TextColor>
+      <BackColor>-16754013</BackColor>
+      <BackConverterColorId>6</BackConverterColorId>
+      <TextConverterColorId>7</TextConverterColorId>
+      <FontConverterId>1</FontConverterId>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BitmapProperties />
+    </TextStyle>
+  </TextStyles>
+  <FontBitmapStyles>
+    <FontBitmapStyle>
+      <ID>0</ID>
+      <Name>Default text</Name>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <MonospaceNumbers>true</MonospaceNumbers>
+      <TextColor>-1710619</TextColor>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <TextConverterColorId>7</TextConverterColorId>
+    </FontBitmapStyle>
+    <FontBitmapStyle>
+      <ID>1</ID>
+      <Name>Pane text</Name>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <MonospaceNumbers>true</MonospaceNumbers>
+      <TextColor>-1710619</TextColor>
+      <BackColor>-13092808</BackColor>
+      <BackConverterColorId>2</BackConverterColorId>
+      <TextConverterColorId>7</TextConverterColorId>
+    </FontBitmapStyle>
+  </FontBitmapStyles>
+  <IconStyles>
+    <IconStyle>
+      <ID>0</ID>
+      <Name>Icon </Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>1</ID>
+      <Name>Icon Pane</Name>
+      <Prefix>icon_pane</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13092808</BackColor>
+      <BackConverterColorId>2</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>2</ID>
+      <Name>Icon Selected</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>3</ID>
+      <Name>Icon Not Selected</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>4</ID>
+      <Name>Icon Sel Rec</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+        <BitmapProperty>
+          <Name>D</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-4844524</Color>
+          <ConverterColorId>4</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>5</ID>
+      <Name>Icon nSel nRec</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+        <BitmapProperty>
+          <Name>D</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>6</ID>
+      <Name>Icon Sel nRec</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+        <BitmapProperty>
+          <Name>D</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>7</ID>
+      <Name>Icon nSel Rec</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+        <BitmapProperty>
+          <Name>D</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-4844524</Color>
+          <ConverterColorId>4</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>8</ID>
+      <Name>Radio nSel</Name>
+      <Prefix />
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-13882324</Color>
+          <ConverterColorId>1</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>9</ID>
+      <Name>Radio Sel</Name>
+      <Prefix />
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>icon_2</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>10</ID>
+      <Name>Icon Accent Red</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-4844524</Color>
+          <ConverterColorId>4</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>11</ID>
+      <Name>Icon Red</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-65536</Color>
+          <ConverterColorId>-1</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>12</ID>
+      <Name>Icon Blue</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>icon</Id>
+          <Color>-16776961</Color>
+          <ConverterColorId>-1</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>13</ID>
+      <Name>Switch on</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>1</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>button</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>knob</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>status</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>14</ID>
+      <Name>Switch off</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties>
+        <BitmapProperty>
+          <Name>C</Name>
+          <Description />
+          <Value>0</Value>
+        </BitmapProperty>
+      </BitmapProperties>
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>button</Id>
+          <Color>-16754013</Color>
+          <ConverterColorId>6</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>knob</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>status</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>15</ID>
+      <Name>Slider Knob</Name>
+      <Prefix>icon</Prefix>
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>border</Id>
+          <Color>-13092808</Color>
+          <ConverterColorId>2</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>fill</Id>
+          <Color>-12237499</Color>
+          <ConverterColorId>10</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+    <IconStyle>
+      <ID>16</ID>
+      <Name>Button Plus Min</Name>
+      <Prefix />
+      <Margin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </Margin>
+      <BackColor>-13882324</BackColor>
+      <BackConverterColorId>1</BackConverterColorId>
+      <BitmapProperties />
+      <SvgColors>
+        <ImageSvgColorId>
+          <Id>border</Id>
+          <Color>-13092808</Color>
+          <ConverterColorId>2</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>fill</Id>
+          <Color>-12237499</Color>
+          <ConverterColorId>10</ConverterColorId>
+        </ImageSvgColorId>
+        <ImageSvgColorId>
+          <Id>content</Id>
+          <Color>-1710619</Color>
+          <ConverterColorId>7</ConverterColorId>
+        </ImageSvgColorId>
+      </SvgColors>
+    </IconStyle>
+  </IconStyles>
+  <Colors>
+    <ConverterColor>
+      <ID>0</ID>
+      <Name>IRL Blue</Name>
+      <Color>-14576142</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>1</ID>
+      <Name>Background</Name>
+      <Color>-13882324</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>2</ID>
+      <Name>Pane</Name>
+      <Color>-13092808</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>3</ID>
+      <Name>Bar Background</Name>
+      <Color>-16448251</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>4</ID>
+      <Name>Accent Red</Name>
+      <Color>-4844524</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>5</ID>
+      <Name>Accent Green</Name>
+      <Color>-15696880</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>6</ID>
+      <Name>Accent Blue</Name>
+      <Color>-16754013</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>7</ID>
+      <Name>Accent White</Name>
+      <Color>-1710619</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>8</ID>
+      <Name>Accent Black</Name>
+      <Color>-16777216</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>9</ID>
+      <Name>Text</Name>
+      <Color>-1710619</Color>
+    </ConverterColor>
+    <ConverterColor>
+      <ID>10</ID>
+      <Name>Separator</Name>
+      <Color>-12237499</Color>
+    </ConverterColor>
+  </Colors>
+  <Fonts>
+    <ConverterFont>
+      <ID>0</ID>
+      <Name>Title</Name>
+      <FontName>Roboto</FontName>
+      <FontSize>18</FontSize>
+      <FontStyle>Regular</FontStyle>
+    </ConverterFont>
+    <ConverterFont>
+      <ID>1</ID>
+      <Name>Text regular</Name>
+      <FontName>Roboto</FontName>
+      <FontSize>16</FontSize>
+      <FontStyle>Regular</FontStyle>
+    </ConverterFont>
+    <ConverterFont>
+      <ID>2</ID>
+      <Name>Text large</Name>
+      <FontName>Roboto</FontName>
+      <FontSize>18</FontSize>
+      <FontStyle>Regular</FontStyle>
+    </ConverterFont>
+    <ConverterFont>
+      <ID>3</ID>
+      <Name>Text small</Name>
+      <FontName>Roboto</FontName>
+      <FontSize>13</FontSize>
+      <FontStyle>Regular</FontStyle>
+    </ConverterFont>
+  </Fonts>
+  <ImageBuilderSettings>
+    <VersionMajor>2</VersionMajor>
+    <VersionMinor>0</VersionMinor>
+    <VersionPatch>0</VersionPatch>
+    <VersionRevision>15</VersionRevision>
+    <GuiPixelDataFile>gui_pixeldata</GuiPixelDataFile>
+    <CreateDebugFiles>false</CreateDebugFiles>
+    <CopySourceFiles>false</CopySourceFiles>
+    <FileSystemFormat>
+      <FileFormat>BasicImage</FileFormat>
+      <SingleFileIncludeWidthHeight>false</SingleFileIncludeWidthHeight>
+      <SeparateSearchTreeFromData>true</SeparateSearchTreeFromData>
+    </FileSystemFormat>
+    <PixelDataFormat>
+      <PixelFormat>RGB565</PixelFormat>
+      <PixelFormatRGB>RGB</PixelFormatRGB>
+      <RGB565SwapBytes>true</RGB565SwapBytes>
+    </PixelDataFormat>
+    <FontDataInImage>false</FontDataInImage>
+    <UseProperties>true</UseProperties>
+    <Properties>
+      <Property>
+        <Use>true</Use>
+        <Name>A</Name>
+        <Alias>Language</Alias>
+        <Max>10</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>English</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Dutch</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>German</Name>
+            <Alias />
+            <Value>2</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>French</Name>
+            <Alias />
+            <Value>3</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Spanish</Name>
+            <Alias />
+            <Value>4</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Italian</Name>
+            <Alias />
+            <Value>5</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Russian</Name>
+            <Alias />
+            <Value>6</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Chinese</Name>
+            <Alias />
+            <Value>7</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Japanese</Name>
+            <Alias />
+            <Value>8</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Korean</Name>
+            <Alias />
+            <Value>9</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>true</Use>
+        <Name>B</Name>
+        <Alias>Theme</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>Light</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>Dark</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>true</Use>
+        <Name>C</Name>
+        <Alias>Selection</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>false</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>true</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>true</Use>
+        <Name>D</Name>
+        <Alias>Recording</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>false</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>true</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>E</Name>
+        <Alias>E</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>F</Name>
+        <Alias>F</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>G</Name>
+        <Alias>G</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>H</Name>
+        <Alias>H</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>I</Name>
+        <Alias>I</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>J</Name>
+        <Alias>J</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>K</Name>
+        <Alias>K</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>L</Name>
+        <Alias>L</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>M</Name>
+        <Alias>M</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>N</Name>
+        <Alias>N</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>O</Name>
+        <Alias>O</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+      <Property>
+        <Use>false</Use>
+        <Name>P</Name>
+        <Alias>P</Alias>
+        <Max>2</Max>
+        <PropertyValues>
+          <PropertyValue>
+            <Name>0</Name>
+            <Alias />
+            <Value>0</Value>
+          </PropertyValue>
+          <PropertyValue>
+            <Name>1</Name>
+            <Alias />
+            <Value>1</Value>
+          </PropertyValue>
+        </PropertyValues>
+      </Property>
+    </Properties>
+  </ImageBuilderSettings>
+</Project>

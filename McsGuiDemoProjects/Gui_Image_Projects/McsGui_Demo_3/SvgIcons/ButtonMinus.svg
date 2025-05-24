@@ -1,0 +1,7 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="MinusButton">
+<circle id="fill" cx="15" cy="15" r="15" fill="#D9D9D9"/>
+<circle id="border" cx="15" cy="15" r="14" stroke="black" stroke-width="2"/>
+<path id="icon" d="M21.5 13H8.5C7.67188 13 7 13.6719 7 14.5V15.5C7 16.3281 7.67188 17 8.5 17H21.5C22.3281 17 23 16.3281 23 15.5V14.5C23 13.6719 22.3281 13 21.5 13Z" fill="#E5E5E5"/>
+</g>
+</svg>

@@ -1,0 +1,50 @@
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_AGENDA__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_AGENDA__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_ARROW_BACK__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_ARROW_BACK__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_BELL__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_BELL__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_BRIGHTNESS__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_BRIGHTNESS__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_BRUSH__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_BRUSH__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_CANCEL__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_CANCEL__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_CHECKMARK_LARGE__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_CHECKMARK_LARGE__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_CLOCK__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_CLOCK__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_FOCUS__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_FOCUS__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_GEAR__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_GEAR__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_GLOBAL__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_GLOBAL__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_INFO__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_INFO__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_KEYBOARD__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_KEYBOARD__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_PALETTE__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_PALETTE__A001_E003
+WARNING Files with properties are missing, adding dummy files
+WARNING Add Dummy file: ICON_BUTTON_SLIDERS__A000_E003
+WARNING Add Dummy file: ICON_BUTTON_SLIDERS__A001_E003
+Pixeldata offset: 16
+CRC: 3017595173
+Build successful
+Build V1.0.0.18
+864 File(s) and 12 Font(s) added

@@ -1,0 +1,7 @@
+<svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Switch_off">
+<rect id="button" width="50" height="21.6667" rx="10.8333" fill="black"/>
+<circle id="knob" cx="10.8333" cy="10.8333" r="8.33333" fill="white"/>
+<circle id="status" cx="39.1666" cy="10.8333" r="4" stroke="white" stroke-width="2"/>
+</g>
+</svg>

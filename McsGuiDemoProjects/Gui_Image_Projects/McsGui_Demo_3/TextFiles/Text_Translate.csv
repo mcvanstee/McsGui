@@ -1,0 +1,22 @@
+Key;English;Dutch;German;French;Spanish;Italian;Russian;Chinese Simplified;Japanese;Korean
+show_date;Date visible;Datum zichtbaar;Datum sichtbar;Date visible;Fecha visible;Data visibile;Видимая дата;可见日期;表示日付;표시되는 날짜
+hide_date;Date hidden;Datum verborgen;Datum ausgeblendet;Date masquée;Fecha oculta;Data nascosta;Дата скрыта;隐藏日期;日付非表示;숨긴 날짜
+show_time;Time visible;Tijd zichtbaar;Zeit sichtbar;Temps visible;Tiempo visible;Tempo visibile;Видимое время;可见时间;表示可能な時間;표시되는 시간
+hide_time;Time hidden;Tijd verborgen;Verborgene Zeit;Temps caché;Tiempo oculto;Il tempo nascosto;Скрытое время;隐藏时间;隠された時間;숨겨진 시간
+units;Units;Eenheden;Einheiten;Unités;Unidades;Unità;Единиц;单位;単位;단위
+save;Save;Opslaan;Retten;Sauvegarder;Salvar;Salvare;Спасать;救;セーブ;구해내다
+save_rec;Save measurement;Meeting opslaan;Messung speichern;Enregistrer la mesure;Guardar medición;Salva misurazione;Сохранить измерения;保存测量;測定値の保存;측정값 저장
+saved;Saved;Opgeslagen;Gespeichert;Sauvé;Guardado;Salvato;Сохранено;保存;保存;저장
+interval;Interval (s);Interval (s);Intervall (s);Intervalle (s);Intervalo (s);Intervallo (s);Интервал (s);间隔 (s);間 (s);간 (s)
+max_data_points;Max. data points;Max. data punten;Max. Datenpunkte;Points de données max.;Máx. puntos de datos;Numero massimo di punti dati;Макс. баллы;最大数据点数;最大データポイント;최대 데이터 포인트
+date_time;Date/time;Datum/tijd;Datum/Uhrzeit;Date/heure;Fecha/hora;Data/ora;Дата/время;日期/时间;日付/時刻;날짜/시간
+language;Language;Taal;Sprache;Langue;Idioma;Lingua;Язык;语言;言語;언어
+brightness;Brightness;Helderheid;Helligkeit;Luminosité;Brillo;Luminosità;Яркость;亮度;明るさ;밝기
+measurements;Measurements;Meetingen;Messungen;Mensurations;Medidas;Misure;Измерения;测量;測定;측정
+calibrate_touch;Calibrate Touch;Touch Kalibratie;Touch-Kalibrierung;Calibrage tactile;Calibrar el tacto;Calibra tocco;Калибровка сенсорного ввода;校准触控;タッチのキャリブレーション;터치 보정
+display;Display;Beeldscherm;Zeigen;Montrer;Monitor;Esporre;Дисплей;显示;陳列;전시
+settings;Settings;Instellingen;Einstellungen;Paramètres;Configuración;Impostazioni;Параметры;设置;設定;설정
+start;Start;Start;Anfangen;Commencer;Empezar;Inizio;Начало;开始;始める;시작하다
+stop;Stop;Stop;Aufhören;Arrêter;Parar;Fermarsi;Остановка;停;止める;멈추다
+id;ID;ID;ID;ID;ID;ID;ID;ID;ID;ID
+recordings;Recordings;Opnamen;Aufnahmen;Enregistrements;Grabaciones;Registrazioni;Записи;录音;録音;녹음
