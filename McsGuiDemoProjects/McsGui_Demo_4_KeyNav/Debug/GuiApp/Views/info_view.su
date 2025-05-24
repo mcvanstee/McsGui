@@ -1,2 +1,2 @@
-../GuiApp/Views/info_view.c:11:6:info_view_navigateTo	16	static
-../GuiApp/Views/info_view.c:20:13:iv_create	48	static
+../GuiApp/Views/info_view.c:10:6:info_view_navigateTo	16	static
+../GuiApp/Views/info_view.c:19:13:iv_create	48	static

@@ -474,7 +474,9 @@ static void MX_SDMMC1_SD_Init(void)
 {
 
   /* USER CODE BEGIN SDMMC1_Init 0 */
-
+#ifndef USE_DISPLAY_AND_SD_CARD
+  return;
+#endif /* USE_DISPLAY_AND_SD_CARD */
   /* USER CODE END SDMMC1_Init 0 */
 
   /* USER CODE BEGIN SDMMC1_Init 1 */

@@ -95,7 +95,7 @@ float getAdcTemp(void);
 #define Debug_1_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
-
+#define USE_DISPLAY_AND_SD_CARD
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
