@@ -1,3 +1,0 @@
-../GuiApp/Views/Setup/interval_view.c:10:6:interval_view_navigateTo	1
-../GuiApp/Views/Setup/interval_view.c:15:13:iv_create	1
-../GuiApp/Views/Setup/interval_view.c:42:13:iv_valueChanged	1

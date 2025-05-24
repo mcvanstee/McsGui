@@ -1,3 +1,0 @@
-../GuiApp/Views/Settings/units_view.c:10:6:units_view_navigateTo	8	static
-../GuiApp/Views/Settings/units_view.c:15:13:untv_create	24	static
-../GuiApp/Views/Settings/units_view.c:34:13:untv_rgSelectionChanged	24	static

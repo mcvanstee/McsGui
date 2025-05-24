@@ -1,4 +1,0 @@
-../GuiApp/Views/Setup/limits_view.c:11:6:limits_view_navigateTo	8	static
-../GuiApp/Views/Setup/limits_view.c:16:13:lv_create	48	static
-../GuiApp/Views/Setup/limits_view.c:77:13:lv_upperLimitChanged	16	static
-../GuiApp/Views/Setup/limits_view.c:82:13:lv_lowerLimitChanged	16	static

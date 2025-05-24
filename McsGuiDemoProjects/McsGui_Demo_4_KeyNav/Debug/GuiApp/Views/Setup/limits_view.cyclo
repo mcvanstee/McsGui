@@ -1,4 +1,0 @@
-../GuiApp/Views/Setup/limits_view.c:11:6:limits_view_navigateTo	1
-../GuiApp/Views/Setup/limits_view.c:16:13:lv_create	1
-../GuiApp/Views/Setup/limits_view.c:77:13:lv_upperLimitChanged	1
-../GuiApp/Views/Setup/limits_view.c:82:13:lv_lowerLimitChanged	1

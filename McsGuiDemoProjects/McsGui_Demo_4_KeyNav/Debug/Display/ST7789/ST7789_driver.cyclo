@@ -1,7 +1,0 @@
-../Display/ST7789/ST7789_driver.c:174:6:ST7789_init	4
-../Display/ST7789/ST7789_driver.c:218:13:display_dr_setAddressWindow	2
-../Display/ST7789/ST7789_driver.c:248:13:display_dr_setOrientation	6
-../Display/ST7789/ST7789_driver.c:280:13:display_dr_invertDisplay	2
-../Display/ST7789/ST7789_driver.c:286:13:display_dr_setSize	3
-../Display/ST7789/ST7789_driver.c:301:13:display_dr_hardwareReset	1
-../Display/ST7789/ST7789_driver.c:312:20:display_dr_checkAddressWindow	5

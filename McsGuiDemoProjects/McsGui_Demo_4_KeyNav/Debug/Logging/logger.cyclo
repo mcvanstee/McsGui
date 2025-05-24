@@ -1,9 +1,0 @@
-../Drivers/CMSIS/Include/core_cm4.h:2059:26:ITM_SendChar	4
-../Logging/logger.c:14:5:_write	2
-../Logging/logger.c:28:20:_get_log_level_string	5
-../Logging/logger.c:45:13:_log	2
-../Logging/logger.c:57:6:log_error	1
-../Logging/logger.c:65:6:log_warning	1
-../Logging/logger.c:73:6:log_info	1
-../Logging/logger.c:81:6:log_debug	1
-../Logging/logger.c:94:6:log_debug_array	4

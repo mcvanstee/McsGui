@@ -1,9 +1,0 @@
-../Display/ILI9486/ILI9486_driver.c:114:6:ILI9486_init	4
-../Display/ILI9486/ILI9486_driver.c:159:13:display_dr_setAddressWindow	2
-../Display/ILI9486/ILI9486_driver.c:187:13:display_dr_setOrientation	5
-../Display/ILI9486/ILI9486_driver.c:225:13:display_dr_invertDisplay	2
-../Display/ILI9486/ILI9486_driver.c:231:13:display_dr_setSize	3
-../Display/ILI9486/ILI9486_driver.c:246:13:display_dr_sendCommandData	2
-../Display/ILI9486/ILI9486_driver.c:256:13:display_dr_sendCommand	1
-../Display/ILI9486/ILI9486_driver.c:261:13:display_dr_hardwareReset	1
-../Display/ILI9486/ILI9486_driver.c:271:20:display_dr_checkAddressWindow	5

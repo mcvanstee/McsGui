@@ -1,4 +1,0 @@
-../GuiApp/CustomComponents/gui_header.c:11:6:header_setTitle	1
-../GuiApp/CustomComponents/gui_header.c:22:6:header_updateTime	1
-../GuiApp/CustomComponents/gui_header.c:27:6:header_updateDateTime	4
-../GuiApp/CustomComponents/gui_header.c:56:6:header_drawHeaderBackground	1

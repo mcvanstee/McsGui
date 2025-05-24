@@ -1,4 +1,0 @@
-../GuiApp/Views/Setup/setup_view.c:16:6:setup_view_navigateTo	1
-../GuiApp/Views/Setup/setup_view.c:22:6:setup_view_navigateBackTo	1
-../GuiApp/Views/Setup/setup_view.c:27:13:setup_view_create	1
-../GuiApp/Views/Setup/setup_view.c:42:13:sv_activeItemChanged	1

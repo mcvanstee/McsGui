@@ -1,7 +1,0 @@
-../GuiApp/CustomComponents/gui_footer.c:9:6:footer_init	16	static
-../GuiApp/CustomComponents/gui_footer.c:23:13:footer_backButtonFocusChanged	16	static
-../GuiApp/CustomComponents/gui_footer.c:28:13:footer_displayButton	160	static
-../GuiApp/CustomComponents/gui_footer.c:57:6:footer_showLogo	368	static
-../GuiApp/CustomComponents/gui_footer.c:89:6:footer_drawBackground	240	static
-../GuiApp/CustomComponents/gui_footer.c:106:6:footer_resetButton	136	static
-../GuiApp/CustomComponents/gui_footer.c:123:6:footer_setOnReleased	16	static
