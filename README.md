@@ -22,11 +22,12 @@ The pixel-datafile can be found in the folders:
 - https://github.com/mcvanstee/McsGui/tree/main/McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_1_2/build
 - https://github.com/mcvanstee/McsGui/tree/main/McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_3/build
 - https://github.com/mcvanstee/McsGui/tree/main/McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_4/build
+  
 Run the project from STM32CubeIDE.
 
  _Run the demo applications on only the Nucleo development board_
  Using the Windows application IRL Gui Debugger it is possible to run a demo application on a development board only.
- The IRL Gui Debugger can be found in the repo: https://github.com/mcvanstee/McsGuiTools_GuiDebugger/releases/tag/V100
+ The IRL Gui Debugger can be found in the repo: https://github.com/mcvanstee/McsGuiTools_GuiDebugger/releases/tag/V100 </br>
  To use the Gui Debugger just run the executable. 
 
 
