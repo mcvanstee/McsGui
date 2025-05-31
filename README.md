@@ -18,6 +18,16 @@ McsGui - Generic GUI module for small embedded systems.
 
 ### How to run the demo applications
 Create a folder on the Sd-card named "GuiImage" and copy the pixel-datafile into this folder.
+The pixel-datafile can be found in the folders: 
+- McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_1_2/build/gui_pixeldata_1_0_0_18
+- McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_3/build/gui_pixeldata_2_0_0_14
+- McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_4/build/gui_pixeldata_1_0_0_29
+Run the project from STM32CubeIDE.
+
+ _Run the demo applications on only the Nucleo development board_
+ Using the Windows application IRL Gui Debugger it is possible to run a demo application on a development board only.
+ The IRL Gui Debugger can be found in the repo: https://github.com/mcvanstee/McsGuiTools_GuiDebugger/releases/tag/V100
+ To use the Gui Debugger just run the executable. 
 
 
 
