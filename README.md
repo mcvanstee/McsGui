@@ -44,12 +44,14 @@ Run the project from STM32CubeIDE.
  _Run the demo applications on only the Nucleo development board_
  Using the Windows application IRL Gui Debugger it is possible to run a demo application on a development board only.
  The IRL Gui Debugger can be found in the repo: https://github.com/mcvanstee/McsGuiTools_GuiDebugger/releases/tag/V100 </br>
- To use the Gui Debugger just run the executable. 
-
-
+ To use the Gui Debugger just run the executable. <br/>
 
 ![Demo_1_Main](https://github.com/user-attachments/assets/c34d3fcd-835d-4e40-a848-138d10469d61)
-<br/>Demo App 1 - Main menu
+<br/>Demo App 1 - Main menu<br/>
 
 ![Demo_4_Main](https://github.com/user-attachments/assets/fd2ff323-f68c-4bc4-8cbb-95a57e34c00c)
-<br/>Demo App 4 - Main menu
+<br/>Demo App 4 - Main menu<br/>
+
+![Demo_1_Demo_device](https://github.com/user-attachments/assets/45b3db39-8940-4690-ad2f-1f2af8b7a8fd)
+
+
