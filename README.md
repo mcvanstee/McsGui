@@ -1,6 +1,22 @@
 # McsGui
-McsGui - Generic GUI module for small embedded systems.
+McsGui is a lightweight, platform-independent GUI library designed specifically for developing user interfaces on small embedded systems. Whether you’re building a touchscreen appliance, an industrial controller, or any device with a constrained microcontroller, this library offers the flexibility and power you need.
 
+With its modular architecture, you can easily create your own reusable GUI components, enabling rapid development and consistent design across projects. The library supports both touch and key navigation, and makes it simple to implement custom themes and translations to match your application’s needs.
+
+A suite of tools is included to streamline development: view and control your interfaces on your PC, generate custom fonts, and convert text or SVG files for use in your embedded project.
+
+**Key Features:**
+- Platform-independent: runs on a wide range of microcontrollers
+- Designed for resource-constrained embedded systems
+- Modular, reusable GUI components—write and share your own!
+- Touch and key navigation support
+- Easy theming and translation capabilities
+- PC-based GUI preview, font creation, and asset conversion tools
+
+**Who is it for?**  
+Anyone who wants to add a modern graphical user interface to a small embedded microcontroller—hobbyists, professionals, and students alike.
+
+Get started building rich, interactive interfaces for your embedded applications—without the bloat!
 
 ## McsGui Demo Projects.
 ### Hardware used in the examples:
