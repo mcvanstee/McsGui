@@ -1,8 +1,10 @@
 #include "text_input_view.h"
 
+#include <stdio.h>
+
 #include "gui_app.h"
+#include "gui_log.h"
 #include "gui_custom_components.h"
-#include "logger.h"
 
 #include "main_view.h"
 
@@ -39,5 +41,7 @@ static void tiv_enterPressed(Keyboard_s *p_keyboard)
 
 static void tiv_textChanged(Keyboard_s *p_keyboard)
 {
-    log_debug("Text changed: %s", p_keyboard->textBlock.text);
+    char text[GUI_APP_LOG_MESSAGE_LENGTH_INC_NULL] = {0};
+    sprintf(text, "Text changed: %s", p_keyboard->textBlock.text);
+    gui_log_debug(text);
 }

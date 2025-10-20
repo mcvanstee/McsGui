@@ -14,6 +14,7 @@ Row_s *gui_addFooterButtonRow(View_s *p_view)
     Row_s *p_row = row_newInit();
     row_setSpacing(p_row, 10);
     base_setBackground(p_row, theme_getBackgroundColor());
+    base_setTransparent(p_row, false);
     base_addNewInitAnchor(&p_row->base);
     anchor_setCenterInParent(p_row, p_rect);
     view_addComponent(p_view, p_row);

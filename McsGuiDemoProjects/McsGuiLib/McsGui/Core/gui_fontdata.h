@@ -21,8 +21,8 @@ typedef struct font_data_s
 {
     uint8_t font;
     uint8_t fontSize;
-    uint8_t fontColor;
-    uint8_t backgroundColor;
+    uint32_t fontColor;
+    uint32_t backgroundColor;
 } FontData_s;
 
 

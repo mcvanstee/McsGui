@@ -692,28 +692,35 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
   HAL_PWREx_EnableVddIO2();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOF, Debug_2_Pin|Display_Reset_Pin|Display_DC_Pin|TP_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Debug_3_GPIO_Port, Debug_3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Debug_2_GPIO_Port, Debug_2_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOF, Display_Reset_Pin|Display_DC_Pin|TP_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(Debug_2B0_GPIO_Port, Debug_2B0_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Display_CS_GPIO_Port, Display_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Debug_1_GPIO_Port, Debug_1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : Debug_2_Pin Display_Reset_Pin Display_DC_Pin TP_CS_Pin */
+  GPIO_InitStruct.Pin = Debug_2_Pin|Display_Reset_Pin|Display_DC_Pin|TP_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Debug_3_Pin */
   GPIO_InitStruct.Pin = Debug_3_Pin;
@@ -722,19 +729,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(Debug_3_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Debug_2_Pin */
-  GPIO_InitStruct.Pin = Debug_2_Pin;
+  /*Configure GPIO pin : Debug_2B0_Pin */
+  GPIO_InitStruct.Pin = Debug_2B0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(Debug_2_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Display_Reset_Pin Display_DC_Pin TP_CS_Pin */
-  GPIO_InitStruct.Pin = Display_Reset_Pin|Display_DC_Pin|TP_CS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+  HAL_GPIO_Init(Debug_2B0_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : TP_IRQ_Pin */
   GPIO_InitStruct.Pin = TP_IRQ_Pin;
@@ -878,8 +878,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

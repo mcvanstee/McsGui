@@ -11,6 +11,7 @@
 
 #include "stm32l4xx_hal.h"
 
+#include "main.h"
 #include "FatFs/ff.h"
 #include "display_api.h"
 #include "display_hal.h"
@@ -26,12 +27,16 @@
 
 #define GUI_IMAGE_FILE GUI_IMAGE_DIRECTORY FS_IMAGE_FILE_NAME
 
+static inline void gui_image_updatePixelsToTransfer(volatile uint32_t *p_pixelsToTransfer, uint32_t *p_pixelsToRead);
+static inline void gui_image_swapBuffers(void);
 
 static FIL m_imageFile;
 static bool m_imageFileOpen = false;
 
-static volatile uint16_t m_dataBuffer_1[MAX_BUFFER_SIZE_PIXELS];
-static volatile uint16_t m_dataBuffer_2[MAX_BUFFER_SIZE_PIXELS];
+static uint16_t m_dataBuffer_1[MAX_BUFFER_SIZE_PIXELS];
+static uint16_t m_dataBuffer_2[MAX_BUFFER_SIZE_PIXELS];
+static uint16_t *m_p_readBuffer;
+static uint16_t *m_p_writeBuffer;
 
 bool gui_image_initialize(void)
 {
@@ -44,70 +49,68 @@ bool gui_image_initialize(void)
     return m_imageFileOpen;
 }
 
-void gui_image_drawImage(
+static void gui_image_drawImage(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataAddress, const uint32_t dataSize)
+        const uint32_t dataAddress)
 {
-    volatile uint32_t bytesToTransfer = dataSize;
-    volatile uint16_t *p_readBuffer = m_dataBuffer_1;
-    volatile uint16_t *p_writeBuffer = m_dataBuffer_2;
+    volatile uint32_t pixelsToTransfer = width * height;
+    m_p_readBuffer = m_dataBuffer_1;
+    m_p_writeBuffer = m_dataBuffer_2;
 
     f_lseek(&m_imageFile, dataAddress);
 
     display_setAddressWindow(xPos, yPos, width, height);
 
-    if (MAX_BUFFER_SIZE_BYTES >= dataSize)
+    while (pixelsToTransfer)
     {
+        uint32_t pixelsToRead = 0;
+        gui_image_updatePixelsToTransfer(&pixelsToTransfer, &pixelsToRead);
+
         UINT bytesRead = 0;
 
-    	f_read(&m_imageFile, (uint16_t *)m_dataBuffer_1, dataSize, &bytesRead);
-    	display_hal_writePixelData((uint16_t *)m_dataBuffer_1, bytesToTransfer / FS_BYTES_PER_PIXEL);
-
-        return;
+        f_read(&m_imageFile, m_p_readBuffer, (pixelsToRead * FS_BYTES_PER_PIXEL), &bytesRead);
+        gui_image_swapBuffers();
+        display_hal_writePixelData(m_p_writeBuffer, bytesRead / FS_BYTES_PER_PIXEL);
     }
+}
 
-    while (bytesToTransfer)
+static inline void gui_image_updatePixelsToTransfer(volatile uint32_t *p_pixelsToTransfer, uint32_t *p_pixelsToRead)
+{
+    if (*p_pixelsToTransfer > MAX_BUFFER_SIZE_PIXELS)
     {
-        UINT bytesRead = 0;
-        UINT bytesToRead = 0;
+        *p_pixelsToRead = MAX_BUFFER_SIZE_PIXELS;
+        *p_pixelsToTransfer -= MAX_BUFFER_SIZE_PIXELS;
+    }
+    else
+    {
+        *p_pixelsToRead = *p_pixelsToTransfer;
+        *p_pixelsToTransfer = 0;
+    }
+}
 
-        if (bytesToTransfer > MAX_BUFFER_SIZE_BYTES)
-        {
-            bytesToRead = MAX_BUFFER_SIZE_BYTES;
-            bytesToTransfer -= MAX_BUFFER_SIZE_BYTES;
-        }
-        else
-        {
-            bytesToRead = bytesToTransfer;
-            bytesToTransfer = 0;
-        }
-
-        f_read(&m_imageFile, (uint16_t *)p_readBuffer, bytesToRead, &bytesRead);
-
-        if (p_readBuffer == m_dataBuffer_1)
-        {
-			p_readBuffer = m_dataBuffer_2;
-			p_writeBuffer = m_dataBuffer_1;
-		}
-        else
-        {
-			p_readBuffer = m_dataBuffer_1;
-			p_writeBuffer = m_dataBuffer_2;
-		}
-
-        display_hal_writePixelData((uint16_t *)p_writeBuffer, bytesRead / FS_BYTES_PER_PIXEL);
+static inline void gui_image_swapBuffers(void)
+{
+    if (m_p_readBuffer == m_dataBuffer_1)
+    {
+        m_p_readBuffer = m_dataBuffer_2;
+        m_p_writeBuffer = m_dataBuffer_1;
+    }
+    else
+    {
+        m_p_readBuffer = m_dataBuffer_1;
+        m_p_writeBuffer = m_dataBuffer_2;
     }
 }
 
 bool fs_readData(const int32_t offset, uint8_t *p_out_data, const int32_t size)
 {
-	UINT bytesRead = 0;
+    UINT bytesRead = 0;
 
-	f_lseek(&m_imageFile, offset);
-	f_read(&m_imageFile, p_out_data, size, &bytesRead);
+    f_lseek(&m_imageFile, offset);
+    f_read(&m_imageFile, p_out_data, size, &bytesRead);
 
-	return (bytesRead == size);
+    return (bytesRead == size);
 }
 
 
@@ -179,7 +182,7 @@ void graphics_drawRectFill(
 bool graphics_getBmpFileInfo(
       const uint32_t bmpKey, const uint8_t *p_properties,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset, uint32_t *p_out_dataSize)
+        uint32_t *p_out_dataOffset)
 {
     /* Get the bmp info from the filesystem. */
     fs_file_info_s fsFileInfo = {0};
@@ -189,7 +192,6 @@ bool graphics_getBmpFileInfo(
     *p_out_width = fsFileInfo.width;
     *p_out_height = fsFileInfo.height;
     *p_out_dataOffset = fsFileInfo.dataOffset;
-    *p_out_dataSize = FS_BYTES_PER_PIXEL * fsFileInfo.width * fsFileInfo.height;
 
     return fileFound;
 }
@@ -197,7 +199,7 @@ bool graphics_getBmpFileInfo(
 bool graphics_getCharacterInfo(
         const char character, const FontData_s *p_fontData,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset, uint32_t *p_out_dataSize)
+        uint32_t *p_out_dataOffset)
 {
     /* Get the character info from the filesystem. */
     fs_char_info_s char_info = {0};
@@ -206,7 +208,6 @@ bool graphics_getCharacterInfo(
     *p_out_width = char_info.width;
     *p_out_height = char_info.height;
     *p_out_dataOffset = char_info.dataOffset;
-    *p_out_dataSize = FS_BYTES_PER_PIXEL * char_info.width * char_info.height;
 
     return charFound;
 }
@@ -214,8 +215,13 @@ bool graphics_getCharacterInfo(
 void graphics_drawImage(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataOffset, const uint32_t dataSize)
+        const uint32_t dataOffset
+#if GUI_CONFIG_USE_BITMAP_COLORS
+        , const uint8_t dataLocation
+        , const uint32_t foreColor, const uint32_t backColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+)
 {
     /* Draw bmp data on display */
-    gui_image_drawImage(xPos, yPos, width, height, dataOffset, dataSize);
+    gui_image_drawImage(xPos, yPos, width, height, dataOffset);
 }

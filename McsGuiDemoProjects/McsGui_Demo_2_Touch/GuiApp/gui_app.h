@@ -26,7 +26,8 @@ typedef enum
     TemperatureUnit_Fahrenheit,
 } TemperatureUnit_e;
 
-
+#define GUI_APP_LOG_MESSAGE_LENGTH 255
+#define GUI_APP_LOG_MESSAGE_LENGTH_INC_NULL (GUI_APP_LOG_MESSAGE_LENGTH + 1)
 #define CUSTOM_GUI_EVENT_MEASREMANT_READY 100
 
 typedef struct

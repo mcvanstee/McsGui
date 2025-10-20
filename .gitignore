@@ -10,6 +10,9 @@ McsGuiDemoProjects/McsGui_Demo_3_Touch/Debug
 McsGuiDemoProjects/McsGui_Demo_4_KeyNav/.settings
 McsGuiDemoProjects/McsGui_Demo_4_KeyNav/Debug
 
+McsGuiDemoProjects/McsGui_Demo_5_KeyNav/.settings
+McsGuiDemoProjects/McsGui_Demo_5_KeyNav/Debug
+
 McsGuiDemoProjects/McsGuiLib/.settings
 McsGuiDemoProjects/McsGuiLib/Debug
 
@@ -22,5 +25,5 @@ McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_3/imports/fonts
 McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_4/imports/bmps/_bmp_tool
 McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_4/imports/fonts
 
-McsGuiDemoProjects/MscGui_Demo_5_HelloWorld
-McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_5
+McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_5/imports/bmps/_bmp_tool
+McsGuiDemoProjects/Gui_Image_Projects/McsGui_Demo_5/imports/fonts

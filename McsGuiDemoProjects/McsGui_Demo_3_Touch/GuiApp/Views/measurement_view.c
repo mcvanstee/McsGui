@@ -9,7 +9,6 @@
 #include "fonts.h"
 #include "fs_file_search.h"
 #include "temp_recorder.h"
-#include "logger.h"
 
 #define MSMV_PANE_WIDTH 203
 
@@ -251,7 +250,7 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
         control_bar_setButtonIcon(p_controlBar, 1, FILE_KEY_ICON_BULLSEYE);
         control_bar_drawButton(p_controlBar, 1);
 
-        log_info("Recording started");
+        gui_log_info("Recording started");
     }
     else
     {
@@ -261,7 +260,7 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
         base_setVisible(p_startButton, true);
         base_display(p_startButton);
 
-        log_error("Recording failed to start");
+        gui_log_error("Recording failed to start");
     }
 }
 
@@ -286,7 +285,7 @@ static void msmv_stopButtonReleased(Button_s *p_stopButton)
     control_bar_setButtonIcon(p_controlBar, 1, FILE_KEY_ICON_BULLSEYE);
     control_bar_drawButton(p_controlBar, 1);
 
-    log_info("Recording stopped");
+    gui_log_info("Recording stopped");
 }
 
 static void msmv_handleEvent(View_s *p_view, GuiEvent_s *p_event)

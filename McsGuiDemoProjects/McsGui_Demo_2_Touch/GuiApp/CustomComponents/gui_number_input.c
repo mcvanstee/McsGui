@@ -195,6 +195,7 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
 	}
 
     base_setBackground(&textBlock, theme_getPaneColor());
+    base_setTransparent(&textBlock, false);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
     base_display(&textBlock);
 }

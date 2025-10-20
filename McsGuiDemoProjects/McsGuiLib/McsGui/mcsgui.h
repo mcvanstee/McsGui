@@ -56,15 +56,16 @@ extern "C" {
 #include "Components/gui_row.h"
 #include "Components/gui_grid.h"
 #include "Core/gui_view.h"
-#include "Utils/gui_touch.h"
-#include "Utils/gui_keynavigation.h"
+#include "Core/gui_touch.h"
+#include "Core/gui_anchor.h"
+#include "Core/gui_action.h"
+#include "Core/gui_keynavigation.h"
 #include "Utils/utils_array.h"
-#include "Utils/gui_anchor.h"
 #include "ExternalDisplay/external_display.h"
 
 #define MCSGUI_VERSION_MAJOR 2
-#define MCSGUI_VERSION_MINOR 0
-#define MCSGUI_VERSION_PATCH 1
+#define MCSGUI_VERSION_MINOR 1
+#define MCSGUI_VERSION_PATCH 0
 
 #ifdef __cplusplus
 } /* extern "C" */

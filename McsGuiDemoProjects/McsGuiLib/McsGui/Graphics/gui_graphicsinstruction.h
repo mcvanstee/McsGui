@@ -42,7 +42,11 @@ typedef struct graphics_fill_data_s
 typedef struct graphics_image_data_s
 {
     uint32_t dataOffset;
-    uint32_t dataSize;
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    Color_t foreColor;
+    Color_t backColor;
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+    uint8_t dataLocation;
 #if GUI_USE_EXTERNAL_DISPLAY
 } __attribute__((__packed__)) GraphicsImageData_s;
 #else
@@ -76,10 +80,14 @@ typedef struct graphics_instruction_s
 #endif /* GUI_USE_EXTERNAL_DISPLAY */
 
 void graphics_instruction_image_init(
-        GraphicsInstruction_s *p_instruction,
-        const uint16_t xPos, const uint16_t yPos,
-        const uint16_t width, const uint16_t height,
-        const uint32_t dataOffset, const uint32_t dataSize);
+    GraphicsInstruction_s *p_instruction,
+    const uint16_t xPos, const uint16_t yPos,
+    const uint16_t width, const uint16_t height,
+    const uint32_t dataOffset, const uint8_t dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    , const Color_t foreColor, const Color_t backColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+);
 
 void graphics_instruction_fill_init(
         GraphicsInstruction_s *p_instruction,

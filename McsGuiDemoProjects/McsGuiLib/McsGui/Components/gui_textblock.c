@@ -3,8 +3,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 
 #if !GUI_USE_DYNAMIC_MEMORY
@@ -181,6 +181,7 @@ void textblock_initTextPosSizeBack(
 {
     textblock_initTextPosSize(p_textBlock, p_text, x, y, width, height);
     base_setBackground(p_textBlock, color);
+    base_setTransparent(p_textBlock, false);
 }
 
 
@@ -214,7 +215,49 @@ void textblock_setFont(TextBlock_s *p_textBlock, const uint8_t font)
 
 
 /**
- * @brief Set the TextBlock font color.
+ * @brief Set the TextBlock font foreground color.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] foreColor.
+ *
+ */
+void textblock_setFontForeColor(TextBlock_s *p_textBlock, const Color_t foreColor)
+{
+    p_textBlock->fontData.fontColor = foreColor;
+}
+
+
+/**
+ * @brief Set the TextBlock font background color.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] backColor.
+ *
+ */
+void textblock_setFontBackColor(TextBlock_s *p_textBlock, const Color_t backColor)
+{
+    p_textBlock->fontData.backgroundColor = backColor;
+    base_setBackground(p_textBlock, backColor);
+}
+
+
+/**
+ * @brief Set the TextBlock font and colors.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] font.
+ * @param[in] foreColor.
+ * @param[in] backColor.
+ *
+ */
+void textblock_setFontAndColor(TextBlock_s *p_textBlock, const uint8_t font, const Color_t foreColor, const Color_t backColor)
+{
+    p_textBlock->fontData.font = font;
+    p_textBlock->fontData.fontColor = foreColor;
+    p_textBlock->fontData.backgroundColor = backColor;
+    base_setBackground(p_textBlock, backColor);
+}
+
+
+/**
+ * @brief Set the TextBlock value changed callback function.
  * @param[in] p_textBlock Pointer to the TextBlock component.
  * @param[in] color.
  *
@@ -222,6 +265,110 @@ void textblock_setFont(TextBlock_s *p_textBlock, const uint8_t font)
 void textblock_setValueChanged(TextBlock_s *p_textBlock, void (*valueChanged)(void))
 {
     p_textBlock->valueChanged = valueChanged;
+}
+
+
+/**
+ * @brief Set the TextBlock text alignment.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] horizontal alignment.
+ * @param[in] vertical alignment.
+ *
+ */
+void textblock_setTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e horizontal, const TextAlignment_e vertical)
+{
+    p_textBlock->base.horizontalAlignment = (uint8_t)horizontal;
+    p_textBlock->base.verticalAlignment = (uint8_t)vertical;
+}
+
+
+/**
+ * @brief Set the TextBlock horizontal text alignment.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] alignment.
+ *
+ */
+void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
+{
+    p_textBlock->base.horizontalAlignment = (uint8_t) alignment;
+}
+
+
+/**
+ * @brief Set the TextBlock vertical text alignment.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] alignment.
+ *
+ */
+void textblock_setVerticalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
+{
+    p_textBlock->base.verticalAlignment = (uint8_t) alignment;
+}
+
+
+/**
+ * @brief Set the TextBlock text padding.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] left padding.
+ * @param[in] right padding.
+ * @param[in] top padding.
+ * @param[in] bottom padding.
+ *
+ */
+void textblock_setTextPadding(TextBlock_s *p_textBlock, const uint8_t left, const uint8_t right, const uint8_t top, const uint8_t bottom)
+{
+    p_textBlock->base.leftPadding = left;
+    p_textBlock->base.rightPadding = right;
+    p_textBlock->base.topPadding = top;
+    p_textBlock->base.bottomPadding = bottom;
+}
+
+
+/**
+ * @brief Set the TextBlock left text padding.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] padding.
+ *
+ */
+void textblock_setLeftTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+{
+    p_textBlock->base.leftPadding = padding;
+}
+
+
+/**
+ * @brief Set the TextBlock right text padding.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] padding.
+ *
+ */
+void textblock_setRightTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+{
+    p_textBlock->base.rightPadding = padding;
+}
+
+
+/**
+ * @brief Set the TextBlock top text padding.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] padding.
+ *
+ */
+void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+{
+    p_textBlock->base.topPadding = padding;
+}
+
+
+/**
+ * @brief Set the TextBlock bottom text padding.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] padding.
+ *
+ */
+void textblock_setBottomTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+{
+    p_textBlock->base.bottomPadding = padding;
 }
 
 

@@ -63,10 +63,12 @@ float getAdcTemp(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Debug_2_Pin GPIO_PIN_2
+#define Debug_2_GPIO_Port GPIOF
 #define Debug_3_Pin GPIO_PIN_0
 #define Debug_3_GPIO_Port GPIOA
-#define Debug_2_Pin GPIO_PIN_0
-#define Debug_2_GPIO_Port GPIOB
+#define Debug_2B0_Pin GPIO_PIN_0
+#define Debug_2B0_GPIO_Port GPIOB
 #define Display_Reset_Pin GPIO_PIN_12
 #define Display_Reset_GPIO_Port GPIOF
 #define Display_DC_Pin GPIO_PIN_13

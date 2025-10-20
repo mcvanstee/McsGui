@@ -44,6 +44,7 @@ static void msmv_create(View_s *p_view)
     textblock_setFont(p_tempTextBlock, theme_getDefaultFont());
     base_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);
     base_setBackground(&p_tempTextBlock->base, theme_getPaneColor());
+    base_setTransparent(p_tempTextBlock, false);
     base_setHorizontalAlignment(&p_tempTextBlock->base, Gui_Align_Right);
     base_addNewInitAnchor(p_tempTextBlock);
     anchor_setLeftAnchor(p_tempTextBlock, p_tempLabel, Gui_Anchor_Right);

@@ -2,7 +2,7 @@
 
 #include <stddef.h>
 
-#include "Utils/gui_memory.h"
+#include "gui_memory.h"
 
 
 #if GUI_USE_DYNAMIC_MEMORY
@@ -25,8 +25,8 @@ void fontdata_init(FontData_s *p_fontData)
 {
     p_fontData->font = 0;
     p_fontData->fontSize = 0;
-    p_fontData->fontColor = 0;
-    p_fontData->backgroundColor = 0;
+    p_fontData->fontColor = 0x000000;
+    p_fontData->backgroundColor = 0xFFFFFF;
 }
 
 /*** end of file ***/

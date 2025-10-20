@@ -93,7 +93,7 @@ void keyboard_init(Keyboard_s *p_keyboard)
     base_setPosition(&p_keyboard->textBlock.base, 25, 32);
     base_setHorizontalAlignment(&p_keyboard->textBlock.base, Gui_Align_Left);
     base_setBackground(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
-    base_setTransparent(&p_keyboard->textBlock, true);
+    base_setTransparent(&p_keyboard->textBlock, false);
 
     p_keyboard->keyboardType = LowerCase;
     base_setOnDisplay(&p_keyboard->textBlock.base, keyboard_onDisplay);

@@ -10,6 +10,8 @@
 #define ED_PAYLOAD_LENGTH_INDEX 4
 #define ED_START_PAYLOAD_INDEX 5
 
+#define ED_DISPLAY_INSTRUCTION_SIZE 20
+
 typedef enum
 {
 	EdPacketType_Request = 0,
@@ -17,6 +19,7 @@ typedef enum
 	EdPacketType_Config,
 	EdPacketType_Event,
 	EdPacketType_ScreenUpdate,
+	EdPacketType_ScreenUpdateCompressed,
 	EdPacketType_LogMessage,
 	EdPacketType_CustomButtonSetup,
 	EdPacketType_SyncRtcTime,
@@ -109,7 +112,8 @@ void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLeng
 	uint32_t payloadLength = 0U;
 
 	ed_setSyncBytes();
-	ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_ScreenUpdate;
+	ed_outBuffer[ED_PACKET_TYPE_INDEX] =
+	        (sizeof(GraphicsInstruction_s) == ED_DISPLAY_INSTRUCTION_SIZE) ? EdPacketType_ScreenUpdate : EdPacketType_ScreenUpdateCompressed;
 
     for (int32_t i = 0; i < bufferLength; i++)
     {

@@ -18,10 +18,10 @@ extern "C" {
 #include "gui_event.h"
 #include "gui_border_data.h"
 #include "gui_fontdata.h"
-#include "Utils/gui_action.h"
-#include "Utils/gui_anchor.h"
-#include "Utils/gui_keynavigation.h"
-#include "Utils/gui_touch.h"
+#include "gui_action.h"
+#include "gui_anchor.h"
+#include "gui_keynavigation.h"
+#include "gui_touch.h"
 
 
 /** @enum GuiAlignment_e
@@ -90,6 +90,9 @@ typedef struct base_component_s
     void *p_data;                   /**< Depending on BaseType, NULL, FillData_s or TextData_s */
     bool transparent;
     Color_t background;
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    Color_t foreColor;              /**< Foreground color for text or image */
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
     void (*onDelete)(struct base_component_s *p_base);
     bool (*onHandleEvent)(struct base_component_s *p_base, const GuiEvent_s *p_event);
     void (*onDisplay)(struct base_component_s *p_base);
@@ -153,9 +156,12 @@ void base_setWidth(void *p_component, const uint16_t width);
 void base_setHeight(void *p_component, const uint16_t height);
 void base_setPosition(void *p_component, const uint16_t x, const uint16_t y);
 void base_setDimensions(void *p_component, const uint16_t width, const uint16_t height);
-void base_setSize(void *p_component, const uint16_t width, const uint16_t height);
+void base_setSize(void *p_component, const GuiSize_s guiSize);
 void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue);
 void base_setBackground(void *p_component, const Color_t color);
+#if GUI_CONFIG_USE_BITMAP_COLORS
+void base_setForeColor(void *p_component, const Color_t color);
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 void base_setTransparent(void *p_component, const bool transparent);
 void base_setVisibility(void *p_component, const GuiVisibility_e visibility);
 void base_setVisible(void *p_component, const bool visible);
@@ -165,6 +171,12 @@ void base_setOnDisplay(void *p_component, void (*onDisplay)(BaseComponent_s *p_b
 void base_setOnHandleEvent(void *p_component, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event));
 
 GuiVisibility_e base_getVisibility(void *p_component);
+
+uint16_t base_getXPos(void *p_component);
+uint16_t base_getYPos(void *p_component);
+uint16_t base_getWidth(void *p_component);
+uint16_t base_getHeight(void *p_component);
+GuiSize_s base_getSize(void *p_component);
 
 bool base_iterateNextChild(BaseComponent_s *p_parentBase, BaseComponent_s **p_iterator);
 void base_executeForEachChild(BaseComponent_s *p_parentBase, void(*functionToExecute)(void *p_childBase));

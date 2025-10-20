@@ -85,7 +85,7 @@ void keyboard_init(Keyboard_s *p_keyboard)
     base_setPosition(&p_keyboard->textBlock.base, 25, 32);
     base_setHorizontalAlignment(&p_keyboard->textBlock.base, Gui_Align_Left);
     base_setBackground(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
-    base_setTransparent(&p_keyboard->textBlock, true);
+    base_setTransparent(&p_keyboard->textBlock, false);
     touch_init(&p_keyboard->touch);
     base_addTouch(&p_keyboard->textBlock, &p_keyboard->touch);
     touch_setTouchArea(&p_keyboard->touch, 0, KB_ROW1_Y, STYLE_DISPLAY_WIDTH, (STYLE_DISPLAY_HEIGHT - KB_ROW1_Y));

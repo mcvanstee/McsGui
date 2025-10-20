@@ -42,6 +42,7 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
     Row_s *p_row = row_newInit();
     row_setSpacing(p_row, 10);
     base_setBackground(p_row, theme_getPaneColor());
+    base_setTransparent(p_row, false);
     base_addNewInitAnchor(p_row);
     anchor_setTopAnchor(p_row, p_pane, Gui_Anchor_Top);
     anchor_setTopMargin(p_row, 10);

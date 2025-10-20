@@ -2,7 +2,6 @@
 
 #include <stddef.h>
 
-#include "Graphics/gui_graphics.h"
 #include "Utils/gui_log.h"
 #include "Utils/gui_memory.h"
 
@@ -15,6 +14,7 @@ static FooterButton_s staticFooterButtonMem[GUI_FOOTER_BUTTON_BUFFER_SIZE];
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 
 static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase);
+static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent);
 
 FooterButton_s* footer_btn_new(void)
 {
@@ -94,7 +94,7 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
     // Do not call base_display() here, it calls this function again.
     //
     theme_setTheme(p_buttonBase);
-    graphics_displayComponent(p_buttonBase);
+    footer_btn_displayBackground(p_buttonBase);
 
     FooterButton_s *p_footerButton = (FooterButton_s*) p_buttonBase;
 
@@ -105,4 +105,15 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
     theme_setTheme(&content);
     theme_setAccentColor(&content);
     base_display(&content);
+}
+
+static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent)
+{
+    Rectangle_s rect;
+    rectangle_initFillPosSize(
+            &rect, theme_getButtonBackgroundColor(),
+            p_baseComponent->x, p_baseComponent->y,
+            p_baseComponent->width, p_baseComponent->height);
+    rectangle_setRadius(&rect, 4);
+    base_display(&rect);
 }

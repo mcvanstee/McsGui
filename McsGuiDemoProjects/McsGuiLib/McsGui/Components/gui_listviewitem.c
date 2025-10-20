@@ -3,8 +3,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 
 #if !GUI_USE_DYNAMIC_MEMORY

@@ -90,6 +90,8 @@ void num_input_init(NumberInput_s *p_numberInput)
     base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_PANE_PLUS);
     base_setBackground(&p_numberInput->decreaseButton, theme_getNumberInputColor());
     base_setBackground(&p_numberInput->increaseButton, theme_getNumberInputColor());
+    base_setTransparent(&p_numberInput->decreaseButton, false);
+    base_setTransparent(&p_numberInput->increaseButton, false);
     base_addKeyNavigation(&p_numberInput->decreaseButton, &p_numberInput->decreaseBtnKeyNav);
     base_addKeyNavigation(&p_numberInput->increaseButton, &p_numberInput->increaseBtnKeyNav);
     base_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
@@ -195,6 +197,7 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     base_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y + 2);
     base_setSize(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT - 4);
     base_setBackground(&textBlock, theme_getNumberInputColor());
+    base_setTransparent(&textBlock, false);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
     base_display(&textBlock);
 }

@@ -32,6 +32,7 @@ Color_t theme_getPaneColor(void);
 Color_t theme_getPaneBorderColor(void);
 Color_t theme_getComponentColor(void);
 Color_t theme_getButtonBorderColor(void);
+Color_t theme_getButtonBackgroundColor(void);
 Color_t theme_getSliderColor(void);
 Color_t theme_getNumberInputColor(void);
 

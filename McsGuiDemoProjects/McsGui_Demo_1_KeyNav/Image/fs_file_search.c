@@ -880,7 +880,8 @@ file_search_result_e fs_getFileInfo(
                             const file_key_e file_key,
                             const uint8_t *p_properties,
                             const uint8_t propertiesLength,
-                            fs_file_info_s *p_out_file_info)
+                            fs_file_info_s *p_out_file_info,
+                            uint8_t *p_dataLocation)
 {
     const int32_t fileIndex = (int32_t)file_key;
 

@@ -11,7 +11,6 @@
 #include "fonts.h"
 #include "fs_file_search.h"
 #include "temp_recorder.h"
-#include "logger.h"
 #include "utils_math.h"
 
 #include "ff.h"
@@ -494,12 +493,12 @@ static void rc_activeItemChanged(ListView_s *p_listView)
         }
         else
         {
-            log_error("Failed to read header");
+            gui_log_error("Failed to read header");
         }
     }
     else
     {
-        log_error("Failed to open file");
+        gui_log_error("Failed to open file");
     }
 
     f_close(&file);
@@ -599,7 +598,7 @@ static void rv_moveReadingsUpButtonPressed(void)
     }
     else
     {
-        log_error("Failed to open file");
+        gui_log_error("Failed to open file");
     }
 
     f_close(&file);
@@ -634,7 +633,7 @@ static void rc_moveReadingsDownButtonPressed(void)
     }
     else
     {
-        log_error("Failed to open file");
+        gui_log_error("Failed to open file");
     }
 
     f_close(&file);
@@ -727,7 +726,7 @@ static void rc_deleteRecording(void)
     }
     else
     {
-        log_error("No active recording");
+        gui_log_error("No active recording");
     }
 }
 

@@ -137,6 +137,18 @@ Color_t theme_getButtonBorderColor(void)
     }
 }
 
+Color_t theme_getButtonBackgroundColor(void)
+{
+    switch (g_guiApp.theme.theme)
+    {
+        case PROPERTY_THEME_VALUE_DARK:
+            return COLOR_BUTTON_BACKGROUND_DARK;
+        case PROPERTY_THEME_VALUE_LIGHT:
+        default:
+            return COLOR_BUTTON_BACKGROUND_LIGHT;
+    }
+}
+
 Color_t theme_getSliderColor(void)
 {
     switch (g_guiApp.theme.theme)

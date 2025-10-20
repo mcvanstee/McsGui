@@ -16,7 +16,7 @@
 
 void display_hal_init(void);
 void display_hal_sendCommand(uint8_t command);
-void display_hal_sendU8Data(const uint8_t data) ;
+void display_hal_sendU8Data(const uint8_t data);
 void display_hal_sendCommandData(uint8_t command, const uint8_t *p_data, const uint8_t dataLength);
 
 void display_hal_writeColor(const uint16_t color, const int32_t pixels);

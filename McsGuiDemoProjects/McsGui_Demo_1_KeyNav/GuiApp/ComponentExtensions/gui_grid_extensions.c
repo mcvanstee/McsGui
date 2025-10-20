@@ -17,6 +17,7 @@ Grid_s *gui_addPageButtonGrid(View_s *p_view)
     grid_setColumnSpacing(p_grid, 10);
     grid_setRowSpacing(p_grid, 10);
     base_setBackground(p_grid, theme_getBackgroundColor());
+    base_setTransparent(p_grid, false);
     base_addNewInitAnchor(p_grid);
     anchor_setCenterInParent(p_grid, p_rect);
     view_addComponent(p_view, p_grid);

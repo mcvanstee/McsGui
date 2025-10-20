@@ -13,14 +13,22 @@ void graphics_instruction_image_init(
         GraphicsInstruction_s *p_instruction,
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataOffset, const uint32_t dataSize)
+        const uint32_t dataOffset, const uint8_t dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+        , const Color_t foreColor, const Color_t backColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+        )
 {
     graphic_instructions_init(
             p_instruction, xPos, yPos,
             width, height, ImageInstruction);
 
     p_instruction->instructionData.imageData.dataOffset = dataOffset;
-    p_instruction->instructionData.imageData.dataSize = dataSize;
+    p_instruction->instructionData.imageData.dataLocation = dataLocation;
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    p_instruction->instructionData.imageData.foreColor = foreColor;
+    p_instruction->instructionData.imageData.backColor = backColor;
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 }
 
 void graphics_instruction_fill_init(

@@ -2,8 +2,8 @@
 
 #include <stddef.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 #include "gui_radiogroup.h"
 
 #if !GUI_USE_DYNAMIC_MEMORY

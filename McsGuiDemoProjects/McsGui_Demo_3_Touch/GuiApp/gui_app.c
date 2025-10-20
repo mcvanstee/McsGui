@@ -8,7 +8,6 @@
 #include "fs_file_search.h"
 #include "fs_font_search.h"
 #include "external_display.h"
-#include "logger.h"
 
 #include "style.h"
 #include "gui_control_bar.h"
@@ -50,7 +49,6 @@ extern UART_HandleTypeDef hlpuart1;
 extern RTC_HandleTypeDef hrtc;
 extern CRC_HandleTypeDef hcrc;
 
-LogLevel system_log_level = LOG_LEVEL_DEBUG;
 GuiApplication_s g_guiApp;
 static FATFS m_fatFs;
 static ControlBar_s m_controlBar;
@@ -133,13 +131,13 @@ static void gui_app_initDisplay(void)
     FRESULT mountRes = f_mount(&m_fatFs, "", 1);
     if (FR_OK != mountRes)
     {
-        log_error("FATFS failed to mount");
+        gui_log_error("FATFS failed to mount");
     }
 
     bool guiImageInitialized = gui_image_initialize();
     if (!guiImageInitialized)
     {
-        log_error("Failed to initialize gui image");
+        gui_log_error("Failed to initialize gui image");
     }
 #endif /* USE_DISPLAY_AND_SD_CARD */
 
@@ -155,7 +153,7 @@ static void gui_app_initExternalDisplay(void)
     setup.useTouch = true;
     strcpy(setup.description, "McsGui Demo 3!");
     ed_setSetup(setup);
-    log_debug("Log is working");
+    gui_log_debug("Log is working");
 }
 
 static void gui_app_createFolders(void)
@@ -163,19 +161,19 @@ static void gui_app_createFolders(void)
     bool folderCreated = utils_data_createFolderIfNotExist("Settings");
     if (!folderCreated)
     {
-        log_error("Failed to create Settings folder");
+        gui_log_error("Failed to create Settings folder");
     }
 
     folderCreated = utils_data_createFolderIfNotExist("Recordings");
     if (!folderCreated)
     {
-        log_error("Failed to create Recordings folder");
+        gui_log_error("Failed to create Recordings folder");
     }
 
     folderCreated = utils_data_createFolderIfNotExist("Recordings/new");
     if (!folderCreated)
     {
-        log_error("Failed to create Recordings/new folder");
+        gui_log_error("Failed to create Recordings/new folder");
     }
 }
 
@@ -296,7 +294,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
     else
     {
         ed_sendRequestResponseError();
-        log_error("Failed to open file for writing");
+        gui_log_error("Failed to open file for writing");
 
         return;
     }
@@ -335,7 +333,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
 
         if (HAL_GetTick() > timeout)
         {
-            log_error("File write timeout");
+            gui_log_error("File write timeout");
 
             break;
         }
@@ -345,7 +343,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
     {
         f_close(&file);
         f_unlink(filePath);
-        log_info("File write canceled");
+        gui_log_info("File write canceled");
     }
     else
     {
@@ -354,7 +352,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
 
         if (totalBytesWritten != fileSize)
         {
-            log_error("Failed to write all bytes to file");
+            gui_log_error("Failed to write all bytes to file");
         }
 
         f_close(&file);
@@ -397,20 +395,28 @@ static uint32_t gui_app_calculateCrc(FIL *p_file)
 
 void gui_log_write(const uint8_t logLevel, const char *p_message)
 {
-	switch (logLevel)
-	{
-		case GUI_LOG_LEVEL_ERROR:
-			log_error(p_message);
-			break;
-		case GUI_LOG_LEVEL_WARNING:
-			log_warning(p_message);
-			break;
-		case GUI_LOG_LEVEL_DEBUG:
-			log_debug(p_message);
-			break;
-		default:
-			break;
-	}
+    char logMessage[GUI_APP_LOG_MESSAGE_LENGTH_INC_NULL] = {0};
+
+    switch (logLevel)
+    {
+        case GUI_LOG_LEVEL_ERROR:
+            strcpy(logMessage, "[ERROR] ");
+            break;
+        case GUI_LOG_LEVEL_WARNING:
+            strcpy(logMessage, "[WARNING] ");
+            break;
+        case GUI_LOG_LEVEL_DEBUG:
+            strcpy(logMessage, "[DEBUG] ");
+            break;
+        case GUI_LOG_LEVEL_INFO:
+            strcpy(logMessage, "[INFO] ");
+            break;
+        default:
+            break;
+    }
+
+    strcat(logMessage, p_message);
+    ed_log(logMessage);
 }
 
 EdButtonSetup_s ed_getCustomButton(const uint8_t index)

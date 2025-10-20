@@ -2,7 +2,7 @@
 
 #include <stddef.h>
 
-#include "Utils/gui_memory.h"
+#include "gui_memory.h"
 
 #if GUI_USE_DYNAMIC_MEMORY
 BorderData_s *borderdata_new(void)

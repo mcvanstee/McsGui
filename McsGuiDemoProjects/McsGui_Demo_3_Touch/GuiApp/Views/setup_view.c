@@ -7,9 +7,6 @@
 #include "fs_file_search.h"
 
 
-#include "logger.h"
-
-
 #define SV_PANE_WIDTH (STYLE_DISPLAY_WIDTH - 53 - 10)
 #define SV_SAVE_BUTTON_ID 1
 
