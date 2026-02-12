@@ -43,8 +43,8 @@ WARNING Add Dummy file: ICON_BUTTON_PALETTE__A001_E003
 WARNING Files with properties are missing, adding dummy files
 WARNING Add Dummy file: ICON_BUTTON_SLIDERS__A000_E003
 WARNING Add Dummy file: ICON_BUTTON_SLIDERS__A001_E003
-Pixeldata offset: 16
-CRC: 3017595173
+Pixeldata offset: 20
+CRC: 1555724490
 Build successful
-Build V1.0.0.18
+Build V1.0.0.19
 864 File(s) and 12 Font(s) added

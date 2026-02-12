@@ -3,8 +3,7 @@
 #include <stdio.h>
 
 #include "gui_app.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 #include "Graphics/gui_graphics.h"
 
 #define GUI_SLIDER_BUFFER_SIZE 4
@@ -88,7 +87,7 @@ void slider_init(Slider_s *p_slider)
 {
     base_initParentComp(&p_slider->base, slider_delete);
     base_setOnDisplay(&p_slider->base, slider_onDisplay);
-    base_setSize(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
+    base_setDimensions(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
 
     button_init(&p_slider->minusButton);
     button_init(&p_slider->plusButton);
@@ -99,13 +98,13 @@ void slider_init(Slider_s *p_slider)
 
     base_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_PANE_MINUS);
     base_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PANE_PLUS);
-    base_setSize(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
-    base_setSize(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    base_setDimensions(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    base_setDimensions(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
 
     button_setOnReleased(&p_slider->minusButton, slider_decreaseValue);
     button_setOnReleased(&p_slider->plusButton, slider_increaseValue);
-    theme_setTheme(&p_slider->minusButton);
-    theme_setTheme(&p_slider->plusButton);
+    theme_applyThemeProperty(&p_slider->minusButton);
+    theme_applyThemeProperty(&p_slider->plusButton);
 
     base_setOnDelete(&p_slider->minusButton.base, slider_buttonDelete);
     base_setOnDelete(&p_slider->plusButton.base, slider_buttonDelete);
@@ -234,10 +233,11 @@ static void slider_displayValue(Slider_s *p_slider)
 	TextBlock_s textBlock;
 	textblock_init(&textBlock);
 	textblock_setFont(&textBlock, theme_getDefaultFont());
+	textblock_setFontBackColor(&textBlock, theme_getPaneColor());
+	base_setTransparent(&textBlock, false);
 	base_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT + 8));
 	base_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
-	base_setBackground(&textBlock, theme_getPaneColor());
-	snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%d", p_slider->value);
+	snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%d %s", p_slider->value, "%");
 	base_display(&textBlock);
 }
 
@@ -249,7 +249,7 @@ static void slider_displayKnob(Slider_s *p_slider)
     Label_s label;
     label_init(&label);
     label_initBmpPos(&label, FILE_KEY_BUTTON_SLIDER, knobX, knobY);
-    theme_setTheme(&label);
+    theme_applyThemeProperty(&label);
     base_display(&label);
 }
 

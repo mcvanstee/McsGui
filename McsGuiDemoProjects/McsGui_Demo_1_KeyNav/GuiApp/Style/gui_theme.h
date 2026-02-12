@@ -9,16 +9,35 @@
 #include "gui_colors.h"
 #include "gui_style.h"
 
+
+typedef enum
+{
+    GuiTheme_Light = 0,
+    GuiTheme_Dark
+} GuiTheme_e;
+
 typedef struct
 {
-    property_value_theme_e theme;
-    property_value_accent_color_e accentColor;
-    property_value_accent_color_e cursorColor;
-} GuiTheme_s;
+    GuiTheme_e theme;
+    property_value_accent_color_e accentColorProperty;
+    property_value_accent_color_e cursorColorProperty;
+} GuiThemeSetting_s;
 
-void theme_setTheme(void *p_component);
-void theme_setAccentColor(void *p_component);
-void theme_setCursorColor(void *p_component);
+void theme_init(GuiThemeSetting_s *p_themeSetting);
+void theme_setGuiTheme(GuiTheme_e theme);
+void theme_setAccentColorPropertyValue(property_value_accent_color_e value);
+void theme_setCursorColorPropertyValue(property_value_accent_color_e value);
+
+GuiTheme_e theme_getGuiTheme(void);
+Color_t theme_getAccentColor(void);
+Color_t theme_getCursorColor(void);
+property_value_theme_e theme_getThemePropertyValue(void);
+property_value_accent_color_e theme_getAccentColorPropertyValue(void);
+property_value_accent_color_e theme_getCursorColorPropertyValue(void);
+
+void theme_applyThemeProperty(void *p_component);
+void theme_applyAccentColorProperty(void *p_component);
+void theme_applyCursorColorProperty(void *p_component);
 
 Color_t theme_getAccentColor(void);
 Color_t theme_getCursorColor(void);

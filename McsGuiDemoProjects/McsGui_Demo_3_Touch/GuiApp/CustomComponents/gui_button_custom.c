@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "gui_app.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 #include "Graphics/gui_graphics.h"
 
 #define GUI_CONFIG_BUTTON_CUSTOM_BUFFER_SIZE 5
@@ -19,7 +18,7 @@ static ButtonCustom_s staticButtonCustomMem[GUI_CONFIG_BUTTON_CUSTOM_BUFFER_SIZE
 static void btnc_onDisplay(BaseComponent_s *p_base);
 static void btnc_displayCustomText(ButtonCustom_s *p_customButton, Rectangle_s *p_background);
 static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectangle_s *p_background);
-static void btnc_displayIcon(ButtonCustom_s *p_customButton);//, Rectangle_s *p_background);
+static void btnc_displayIcon(ButtonCustom_s *p_customButton);
 static void btnc_displayBmpText(ButtonCustom_s *p_customButton, Rectangle_s *p_background);
 static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle_s *p_background);
 static void btnc_displayBackground(ButtonCustom_s *p_customButton);
@@ -213,7 +212,7 @@ static void btnc_displayCustomText(ButtonCustom_s *p_customButton, Rectangle_s *
 {
     TextBlock_s textBlock;
     textblock_initText(&textBlock, p_customButton->text);
-    base_setSize(&textBlock.base, p_customButton->button.base.width, p_customButton->button.base.height);
+    base_setDimensions(&textBlock.base, p_customButton->button.base.width, p_customButton->button.base.height);
     textblock_setFont(&textBlock, p_customButton->fontData.font);
 
     GuiAnchor_s anchor;
@@ -229,7 +228,7 @@ static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectan
 {
     Label_s icon;
     label_initBmp(&icon, p_customButton->button.base.bmpKey);
-    base_setSize(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
+    base_setDimensions(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
 
     GuiAnchor_s anchorIcon;
     anchor_init(&anchorIcon);
@@ -240,7 +239,7 @@ static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectan
 
     TextBlock_s textBlock;
     textblock_initText(&textBlock, p_customButton->text);
-    base_setSize(
+    base_setDimensions(
         &textBlock.base,
         (p_customButton->button.base.width - p_customButton->iconWidth - p_customButton->iconLeftMargin - p_customButton->textLeftMargin),
         p_customButton->button.base.height);
@@ -275,7 +274,7 @@ static void btnc_displayBmpText(ButtonCustom_s *p_customButton, Rectangle_s *p_b
 {
     Label_s textBmp;
     label_initBmp(&textBmp, p_customButton->textBmp);
-    base_setSize(&textBmp.base, p_customButton->button.base.width, p_customButton->button.base.height);
+    base_setDimensions(&textBmp.base, p_customButton->button.base.width, p_customButton->button.base.height);
     gui_app_translate(&textBmp);
 
     base_display(p_background);
@@ -286,7 +285,7 @@ static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle
 {
     Label_s icon;
     label_initBmp(&icon, p_customButton->button.base.bmpKey);
-    base_setSize(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
+    base_setDimensions(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
 
     GuiAnchor_s anchorIcon;
     anchor_init(&anchorIcon);
@@ -297,7 +296,7 @@ static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle
 
     Label_s textBmp;
     label_initBmp(&textBmp, p_customButton->textBmp);
-    base_setSize(
+    base_setDimensions(
         &textBmp.base,
         (p_customButton->button.base.width - p_customButton->iconWidth - p_customButton->iconLeftMargin - p_customButton->textLeftMargin),
         p_customButton->button.base.height);

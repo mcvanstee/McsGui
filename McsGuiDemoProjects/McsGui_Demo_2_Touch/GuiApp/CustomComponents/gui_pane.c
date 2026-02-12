@@ -1,8 +1,8 @@
 #include "gui_pane.h"
 
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 
 #define GUI_PANE_BORDER_THICKNESS 8
@@ -76,7 +76,7 @@ void pane_init(Pane_s *p_pane)
     base_initParentComp(&p_pane->base, pane_delete);
     base_setOnDisplay(&p_pane->base, pane_onDisplay);
     base_setPosition(&p_pane->base, GUI_PANE_X, GUI_PANE_Y);
-    base_setSize(&p_pane->base, GUI_PANE_WIDTH, GUI_PANE_HEIGHT);
+    base_setDimensions(&p_pane->base, GUI_PANE_WIDTH, GUI_PANE_HEIGHT);
 }
 
 static void pane_onDisplay(BaseComponent_s *p_base)
@@ -86,7 +86,7 @@ static void pane_onDisplay(BaseComponent_s *p_base)
     rectangle_showBorderOnly(&background, true);
     rectangle_setBorderThickness(&background, GUI_PANE_BORDER_THICKNESS);
     rectangle_setBorderColor(&background, theme_getBackgroundColor());
-    base_setSize(&background, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    base_setDimensions(&background, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     base_setPosition(&background, STYLE_VIEW_X, STYLE_VIEW_Y);
     base_display(&background);
 
@@ -96,7 +96,7 @@ static void pane_onDisplay(BaseComponent_s *p_base)
     rectangle_setBorderThickness(&paneBorder, 1);
     rectangle_setBorderColor(&paneBorder, theme_getPaneBorderColor());
     rectangle_setRadius(&paneBorder, 5);
-    base_setSize(&paneBorder, p_base->width, p_base->height);
+    base_setDimensions(&paneBorder, p_base->width, p_base->height);
     base_setPosition(&paneBorder, p_base->x + 1, p_base->y + 1);
     base_display(&paneBorder);
 

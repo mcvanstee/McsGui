@@ -11,7 +11,7 @@ static void iv_create(View_s *p_view);
 
 void info_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, iv_create);
+    view_navigateTo(gui_app_getView(), iv_create);
 }
 
 static void iv_create(View_s *p_view)

@@ -4,11 +4,8 @@
 #include <string.h>
 
 #include "gui_app.h"
-#include "colors.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
-#include "fs_file_search.h"
+#include "Core/gui_memory.h"
 
 #define GUI_CHECKBOX_LABEL_BUFFER_SIZE 15
 
@@ -78,7 +75,7 @@ void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
     p_checkboxLabel->labelWidth = 0;
     p_checkboxLabel->labelPadding = 0;
     p_checkboxLabel->onSelectionChanged = NULL;
-    base_setSize(p_checkboxLabel, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+    base_setDimensions(p_checkboxLabel, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
     base_setOnDelete(p_checkboxLabel, checkbox_label_delete);
     base_setOnDisplay(p_checkboxLabel, checkbox_label_onDisplay);
     touch_init(&p_checkboxLabel->touch);

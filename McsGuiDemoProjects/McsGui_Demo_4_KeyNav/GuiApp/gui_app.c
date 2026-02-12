@@ -7,6 +7,7 @@
 
 #include "external_display.h"
 #include "display_api.h"
+#include "gui_app_settings.h"
 #include "gui_image.h"
 #include "Graphics/gui_graphics.h"
 #include "external_display.h"
@@ -20,15 +21,13 @@
 
 #include "stm32l4xx_hal.h"
 
-#define DISPLAY_DEFAULT_BRIGTHNESS 100
-
 
 static void gui_app_initDisplay(void);
 static void gui_app_initExternalDisplay(void);
 static void gui_app_initSettings(void);
 static void gui_app_handleUartData(void);
-static void sys_showLogo(const bool showAnimation);
-static void gui_setRTCDateTime(const uint8_t *p_eventArgs);
+static void gui_app_showLogo(const bool showAnimation);
+static void gui_app_setRTCDateTime(const uint8_t *p_eventArgs);
 static void gui_app_clearUartRx(void);
 static void gui_app_configureUartDmaRx(void);
 static uint32_t gui_app_calculateCrc(FIL *p_file);
@@ -39,7 +38,7 @@ extern UART_HandleTypeDef hlpuart1;
 extern RTC_HandleTypeDef hrtc;
 extern CRC_HandleTypeDef hcrc;
 
-GuiApplication_s g_guiApp;
+static GuiApplication_s g_guiApp;
 static FATFS m_fatFs;
 
 static uint8_t m_uartRxBuffer[ED_IN_BUFFER_LENGTH];
@@ -51,9 +50,8 @@ void gui_app_start(void)
     gui_app_initDisplay();
     gui_app_initExternalDisplay();
     gui_app_initSettings();
-
-	sys_showLogo(true);
-	gui_drawBackground();
+	gui_app_showLogo(true);
+	gui_app_drawBackground();
 
 	nav_btn_init();
 	footer_init(&g_guiApp.footer);
@@ -135,6 +133,86 @@ void gui_app_start(void)
 	}
 }
 
+void gui_app_drawBackground(void)
+{
+    header_drawHeaderBackground();
+    gui_app_clearView();
+    footer_drawBackground();
+}
+
+void gui_app_clearView(void)
+{
+    Rectangle_s background;
+    rectangle_initFillPosSize(
+        &background, theme_getBackgroundColor(),
+        STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
+    base_display(&background);
+}
+
+void gui_app_translate(void *p_component)
+{
+    property_value_language_e languageProperty;
+
+    switch (settings_getLanguage())
+    {
+        case Language_English:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
+            break;
+        case Language_Dutch:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_DUTCH;
+            break;
+        case Lanugage_German:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_GERMAN;
+            break;
+        case Language_French:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_FRENCH;
+            break;
+        case Language_Spanish:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_SPANISH;
+            break;
+        case Language_Italian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ITALIAN;
+            break;
+        case Language_Russian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
+            break;
+        case Language_Chinese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
+            break;
+        case Language_Japanese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;
+            break;
+        case Language_Korean:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_KOREAN;
+            break;
+        default:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
+            break;
+    }
+
+    base_setProperty(p_component, FILE_PROPERTY_LANGUAGE, languageProperty);
+}
+
+bool gui_app_getUpdateDateTime(void)
+{
+    return g_guiApp.updateDateTime;
+}
+
+void gui_app_setUpdateDateTime(const bool update)
+{
+    g_guiApp.updateDateTime = update;
+}
+
+View_s *gui_app_getView(void)
+{
+    return &g_guiApp.view;
+}
+
+Footer_s *gui_app_getFooter(void)
+{
+    return &g_guiApp.footer;
+}
+
 static void gui_app_NavigateAway(View_s *p_view)
 {
     footer_resetButton(&g_guiApp.footer);
@@ -174,14 +252,8 @@ static void gui_app_initExternalDisplay(void)
 
 static void gui_app_initSettings(void)
 {
-    g_guiApp.language = Language_English;
-    g_guiApp.temperatureUnit = TemperatureUnit_Celsius;
     g_guiApp.updateDateTime = true;
-    g_guiApp.intervalTime_s = 1;
-    g_guiApp.upperLimit = 23;
-    g_guiApp.lowerLimit = 17;
-    g_guiApp.displayBrightness = DISPLAY_DEFAULT_BRIGTHNESS;
-    g_guiApp.theme.theme = PROPERTY_THEME_VALUE_LIGHT;
+    settings_load();
 }
 
 static void gui_app_handleUartData(void)
@@ -198,7 +270,7 @@ void ed_eventRecevied(GuiEvent_s guiEvent)
 	switch (guiEvent.event)
 	{
 	    case GUI_EVENT_DATE_TIME_CHANGED:
-            gui_setRTCDateTime(guiEvent.eventArgs);
+            gui_app_setRTCDateTime(guiEvent.eventArgs);
             break;
         case GUI_EVENT_KEY_ENTER_PRESS:
             nav_btn_handleEvent(NavBtnEvent_OK_Pressed);
@@ -231,7 +303,7 @@ void ed_eventRecevied(GuiEvent_s guiEvent)
             nav_btn_handleEvent(NavBtnEvent_Down_Released);
             break;
         case GUI_EVENT_NAVIGATE_TO_HOME:
-            gui_drawBackground();
+            gui_app_drawBackground();
             mainview_navigateTo();
             break;
         default:
@@ -431,7 +503,7 @@ EdButtonSetup_s ed_getCustomButton(const uint8_t index)
 	return setup;
 }
 
-static void sys_showLogo(const bool showAnimation)
+static void gui_app_showLogo(const bool showAnimation)
 {
 	Rectangle_s background;
 	rectangle_initFillSize(&background, COLOR_IRL_BLUE, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
@@ -444,11 +516,11 @@ static void sys_showLogo(const bool showAnimation)
 	    Item_s item;
         item_init(&item);
         base_setPosition(&item, 0, 0);
-        base_setSize(&item, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
+        base_setDimensions(&item, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
 
 		Label_s logo;
 		label_initBmp(&logo, FILE_KEY_ANIMATION_IRL_LOGO);
-		base_setSize(&logo, 128, 128);
+		base_setDimensions(&logo, 128, 128);
 		base_setProperty(&logo, FILE_PROPERTY_ANIMATION, (property_value_animation_e)i);
 		GuiAnchor_s anchor;
 		anchor_init(&anchor);
@@ -473,67 +545,7 @@ static void gui_app_configureUartDmaRx(void)
     m_uartDataReceived = false;
 }
 
-void gui_drawBackground(void)
-{
-    header_drawHeaderBackground();
-    gui_clearView();
-    footer_drawBackground();
-}
-
-void gui_clearView(void)
-{
-    Rectangle_s background;
-    rectangle_initFillPosSize(
-        &background, theme_getBackgroundColor(),
-        STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
-    base_display(&background);
-}
-
-void gui_translate(void *p_component)
-{
-    property_value_language_e languageProperty;
-
-    switch (g_guiApp.language)
-    {
-        case Language_English:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
-            break;
-        case Language_Dutch:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_DUTCH;
-            break;
-        case Lanugage_German:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_GERMAN;
-            break;
-        case Language_French:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_FRENCH;
-            break;
-        case Language_Spanish:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_SPANISH;
-            break;
-        case Language_Italian:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ITALIAN;
-            break;
-        case Language_Russian:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
-            break;
-        case Language_Chinese:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
-            break;
-        case Language_Japanese:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;
-            break;
-        case Language_Korean:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_KOREAN;
-            break;
-        default:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
-            break;
-    }
-
-    base_setProperty(p_component, FILE_PROPERTY_LANGUAGE, languageProperty);
-}
-
-static void gui_setRTCDateTime(const uint8_t *p_eventArgs)
+static void gui_app_setRTCDateTime(const uint8_t *p_eventArgs)
 {
     RTC_TimeTypeDef sTime = {0};
     RTC_DateTypeDef sDate = {0};

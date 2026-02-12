@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>McsGui_Demo_3</Name>
-  <ProjectFolder>C:\Development\IRL_Development\Gui_Image_Projects\McsGui_Demo_3</ProjectFolder>
+  <ProjectFolder>C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_3</ProjectFolder>
   <UserSourceFolder />
   <Instructions>
     <ConverterInstruction xsi:type="FontInstruction">
       <Name />
       <FileKeyPrefix />
-      <FontFileKeyFormat>ProjectFontName</FontFileKeyFormat>
+      <FontFileKeyFormat>FontName</FontFileKeyFormat>
       <FontBitmaps>
-        <FontBitmap>
-          <FontName>Roboto</FontName>
-          <FontSize>18</FontSize>
-          <FontStyle>Regular</FontStyle>
-          <FontConverterId>0</FontConverterId>
-          <FontBitmapStyleIds>
-            <int>0</int>
-            <int>1</int>
-          </FontBitmapStyleIds>
-        </FontBitmap>
         <FontBitmap>
           <FontName>Roboto</FontName>
           <FontSize>16</FontSize>
@@ -893,6 +883,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1710619</TextColor>
       <BackColor>-13882324</BackColor>
       <BackConverterColorId>1</BackConverterColorId>
@@ -908,6 +899,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1710619</TextColor>
       <BackColor>-13092808</BackColor>
       <BackConverterColorId>2</BackConverterColorId>
@@ -1529,14 +1521,17 @@
     <VersionMajor>2</VersionMajor>
     <VersionMinor>0</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>15</VersionRevision>
-    <GuiPixelDataFile>gui_pixeldata</GuiPixelDataFile>
+    <VersionRevision>20</VersionRevision>
+    <GuiPixelDataFile>demo_3_pixeldata</GuiPixelDataFile>
     <CreateDebugFiles>false</CreateDebugFiles>
     <CopySourceFiles>false</CopySourceFiles>
     <FileSystemFormat>
       <FileFormat>BasicImage</FileFormat>
       <SingleFileIncludeWidthHeight>false</SingleFileIncludeWidthHeight>
       <SeparateSearchTreeFromData>true</SeparateSearchTreeFromData>
+      <CompressBasicImagePixelData>false</CompressBasicImagePixelData>
+      <CreatePixelDataFile>false</CreatePixelDataFile>
+      <CompressOptimizedPixelData>false</CompressOptimizedPixelData>
     </FileSystemFormat>
     <PixelDataFormat>
       <PixelFormat>RGB565</PixelFormat>

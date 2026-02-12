@@ -6,8 +6,7 @@
 #include "gui_app.h"
 #include "fs_font_search.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_DIGIT_INPUT_WIDTH 20
 #define GUI_DIGIT_INPUT_HEIGHT 36
@@ -84,7 +83,7 @@ void digit_input_init(DigitInput_s *p_digitInput)
     base_setOnDisplay(&p_digitInput->base, digit_input_onDisplay);
     base_setOnFocusChanged(&p_digitInput->base, digit_input_focusChanged);
     base_setOnHandleEvent(&p_digitInput->base, digit_input_handleEvent);
-    base_setSize(&p_digitInput->base, GUI_DIGIT_INPUT_WIDTH, GUI_DIGIT_INPUT_HEIGHT);
+    base_setDimensions(&p_digitInput->base, GUI_DIGIT_INPUT_WIDTH, GUI_DIGIT_INPUT_HEIGHT);
 
     keynav_init(&p_digitInput->keyNavigation);
     base_addKeyNavigation(p_digitInput, &p_digitInput->keyNavigation);
@@ -187,8 +186,8 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
         Label_s arrowUp;
         label_init(&arrowUp);
         base_setBmpKey(&arrowUp, FILE_KEY_ICON_PANE_ARROW_UP);
-        theme_setTheme(&arrowUp);
-        theme_setAccentColor(&arrowUp);
+        theme_applyThemeProperty(&arrowUp);
+        theme_applyAccentColorProperty(&arrowUp);
 
         GuiAnchor_s upAnchor;
         anchor_init(&upAnchor);
@@ -200,8 +199,8 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
         Label_s arrowDown;
         label_init(&arrowDown);
         base_setBmpKey(&arrowDown, FILE_KEY_ICON_PANE_ARROW_DOWN);
-        theme_setTheme(&arrowDown);
-        theme_setAccentColor(&arrowDown);
+        theme_applyThemeProperty(&arrowDown);
+        theme_applyAccentColorProperty(&arrowDown);
 
         GuiAnchor_s downAnchor;
         anchor_init(&downAnchor);
@@ -254,7 +253,7 @@ static void digit_input_displayValue(DigitInput_s *p_digitInput)
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, theme_getDefaultFont());
     base_setPosition(&textBlock, p_base->x, p_base->y);
-    base_setSize(&textBlock, p_base->width, p_base->height);
+    base_setDimensions(&textBlock, p_base->width, p_base->height);
     base_setTopPadding(&textBlock, 1);
     base_setLeftPadding(&textBlock, 1);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%u", p_digitInput->value);
@@ -265,7 +264,7 @@ static void digit_input_displayValue(DigitInput_s *p_digitInput)
 
 static void digit_input_displayTopAndBottomValues(DigitInput_s *p_digitInput)
 {
-    const font_key_e inputFont = (g_guiApp.theme.theme == PROPERTY_THEME_VALUE_DARK) ?
+    const font_key_e inputFont = (theme_getGuiTheme() == GuiTheme_Dark) ?
             FONT_KEY_ROBOTO_18_R_PANE_DARK : FONT_KEY_ROBOTO_18_R_PANE_LIGHT;
 
     TextBlock_s valueUpTb;

@@ -1,9 +1,7 @@
 #include "gui_slider.h"
 
 #include "gui_app.h"
-#include "gui_theme.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 #include "Graphics/gui_graphics.h"
 
 #define GUI_SLIDER_BUFFER_SIZE 4
@@ -77,7 +75,7 @@ void slider_init(Slider_s *p_slider)
     base_setOnDisplay(&p_slider->base, slider_onDisplay);
     base_setOnFocusChanged(&p_slider->base, slider_focusChanged);
     base_setOnHandleEvent(&p_slider->base, slider_handleEvent);
-    base_setSize(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
+    base_setDimensions(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
 
     keynav_init(&p_slider->keyNavigation);
     base_addKeyNavigation(&p_slider->base, &p_slider->keyNavigation);
@@ -188,7 +186,7 @@ static void slider_displayKnob(Slider_s *p_slider)
     Label_s label;
     label_init(&label);
     label_initBmpPos(&label, FILE_KEY_BUTTON_SLIDER, knobX, knobY);
-    theme_setTheme(&label);
+    theme_applyThemeProperty(&label);
     base_display(&label);
 }
 

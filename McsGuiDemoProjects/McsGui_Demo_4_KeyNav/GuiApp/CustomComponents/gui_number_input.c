@@ -4,10 +4,8 @@
 #include <stdio.h>
 
 #include "gui_app.h"
-#include "gui_theme.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_NUMBER_INPUT_BUTTON_WIDTH 32
 #define GUI_NUMBER_INPUT_TEXT_WIDTH 64
@@ -80,7 +78,7 @@ void num_input_init(NumberInput_s *p_numberInput)
 {
     base_initParentComp(&p_numberInput->base, num_input_delete);
     const uint16_t num_input_width = (GUI_NUMBER_INPUT_BUTTON_WIDTH * 2) + GUI_NUMBER_INPUT_TEXT_WIDTH;
-    base_setSize(&p_numberInput->base, num_input_width, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->base, num_input_width, GUI_NUMBER_INPUT_HEIGHT);
 
     button_init(&p_numberInput->decreaseButton);
     button_init(&p_numberInput->increaseButton);
@@ -92,14 +90,14 @@ void num_input_init(NumberInput_s *p_numberInput)
     base_setBackground(&p_numberInput->increaseButton, theme_getNumberInputColor());
     base_addKeyNavigation(&p_numberInput->decreaseButton, &p_numberInput->decreaseBtnKeyNav);
     base_addKeyNavigation(&p_numberInput->increaseButton, &p_numberInput->increaseBtnKeyNav);
-    base_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
-    base_setSize(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     base_setOnFocusChanged(&p_numberInput->decreaseButton, num_input_btn_focusChanged);
     base_setOnFocusChanged(&p_numberInput->increaseButton, num_input_btn_focusChanged);
     button_setOnPressed(&p_numberInput->decreaseButton, num_input_decreaseValue);
     button_setOnPressed(&p_numberInput->increaseButton, num_input_increaseValue);
-    theme_setTheme(&p_numberInput->decreaseButton);
-    theme_setTheme(&p_numberInput->increaseButton);
+    theme_applyThemeProperty(&p_numberInput->decreaseButton);
+    theme_applyThemeProperty(&p_numberInput->increaseButton);
 
     base_setOnDisplay(&p_numberInput->base, num_input_onDisplay);
 
@@ -204,7 +202,7 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, theme_getDefaultFont());
     base_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y + 2);
-    base_setSize(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT - 4);
+    base_setDimensions(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT - 4);
     base_setBackground(&textBlock, theme_getNumberInputColor());
     base_setTopPadding(&textBlock, 1);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
@@ -233,8 +231,8 @@ static void num_input_onDisplay(BaseComponent_s *p_base)
     Rectangle_s rectangle;
     rectangle_initBorderPosSize(
             &rectangle,
-            p_base->x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_base->y,
-            GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT,
+            p_base->x + GUI_NUMBER_INPUT_BUTTON_WIDTH - 2, p_base->y,
+            GUI_NUMBER_INPUT_TEXT_WIDTH + 4, GUI_NUMBER_INPUT_HEIGHT,
             2, theme_getSeparatorColor());
     base_display(&rectangle);
 

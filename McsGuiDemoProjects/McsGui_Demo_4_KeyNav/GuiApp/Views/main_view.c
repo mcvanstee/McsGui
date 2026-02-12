@@ -14,7 +14,7 @@ void mv_navigateToInfoView(void);
 
 void mainview_navigateTo(void)
 {
-	view_navigateTo(&g_guiApp.view, mv_create);
+	view_navigateTo(gui_app_getView(), mv_create);
 }
 
 static void mv_create(View_s *p_view)

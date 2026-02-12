@@ -2,8 +2,8 @@
 
 #include <stddef.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 #define GUI_FOOTER_BUTTON_BUFFER_SIZE 4
 
@@ -88,7 +88,7 @@ void footer_btn_initIcon(
     p_footerButton->content = icon;
 
     button_setOnPressedEvent(&p_footerButton->button, onPressed);
-    base_setSize(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
+    base_setDimensions(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
 }
 
 static void footer_btn_focusChanged(BaseComponent_s *p_baseComponent)
@@ -110,7 +110,7 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
 {
     // Do not call base_display() here, it calls this function again.
     //
-    theme_setTheme(p_buttonBase);
+    theme_applyThemeProperty(p_buttonBase);
     footer_btn_displayBackground(p_buttonBase);
     footer_btn_focusChanged(p_buttonBase);
 
@@ -120,8 +120,8 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
     label_initBmpPosSize(&content, p_footerButton->content,
             p_buttonBase->x, p_buttonBase->y,
             p_buttonBase->width, p_buttonBase->height);
-    theme_setTheme(&content);
-    theme_setAccentColor(&content);
+    theme_applyThemeProperty(&content);
+    theme_applyAccentColorProperty(&content);
     base_display(&content);
 }
 

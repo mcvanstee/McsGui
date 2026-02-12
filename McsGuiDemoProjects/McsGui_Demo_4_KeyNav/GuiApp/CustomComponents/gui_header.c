@@ -13,21 +13,23 @@ void header_setTitle(file_key_e title)
     Label_s titleLabel;
     label_initBmpPosSizeBack(&titleLabel, title, 85, 1, 150, 38, theme_getHeaderColor());
     base_setTopPadding(&titleLabel, 1);
-    theme_setTheme(&titleLabel);
-    gui_translate(&titleLabel);
+    theme_applyThemeProperty(&titleLabel);
+    gui_app_translate(&titleLabel);
 
     base_display(&titleLabel);
 }
 
 void header_updateTime(const bool update)
 {
-    g_guiApp.updateDateTime = update;
+    gui_app_setUpdateDateTime(update);
 }
 
 void header_updateDateTime(const bool forceUpdate)
 {
     static int32_t lastMinute = -1;
-    if (!g_guiApp.updateDateTime)
+    const bool updateDateTime = gui_app_getUpdateDateTime();
+
+    if (!updateDateTime)
     {
         lastMinute = -1;
 
@@ -71,14 +73,14 @@ void header_drawHeaderBackground(void)
     label_initBmpPosSize(
         &clock, FILE_KEY_ICON_CLOCK,
         STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_HEADER_ICON_WIDTH, STYLE_HEADER_ICON_HEIGHT);
-    theme_setTheme(&clock.base);
+    theme_applyThemeProperty(&clock.base);
     base_display(&clock.base);
 
     Label_s wifi;
     label_initBmpPosSize(
         &wifi, FILE_KEY_ICON_WIFI,
         (STYLE_DISPLAY_WIDTH - STYLE_HEADER_ICON_WIDTH), STYLE_HEADER_Y, STYLE_HEADER_ICON_HEIGHT, STYLE_HEADER_HEIGHT);
-    theme_setTheme(&wifi.base);
+    theme_applyThemeProperty(&wifi.base);
     base_display(&wifi.base);
 
     header_updateDateTime(true);

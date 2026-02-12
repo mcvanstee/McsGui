@@ -19,8 +19,8 @@ WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C006_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C007_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C008_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C009_D001
-Pixeldata offset: 16
-CRC: 858239376
+Pixeldata offset: 20
+CRC: 856524958
 Build successful
-Build V1.0.0.29
+Build V1.0.0.31
 996 File(s) and 10 Font(s) added

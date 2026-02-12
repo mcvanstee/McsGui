@@ -16,12 +16,12 @@ static int8_t m_itemIndex = 0;
 void setup_view_navigateTo(void)
 {
     m_itemIndex = 0;
-    view_navigateTo(&g_guiApp.view, setup_view_create);
+    view_navigateTo(gui_app_getView(), setup_view_create);
 }
 
 void setup_view_navigateBackTo(void)
 {
-    view_navigateTo(&g_guiApp.view, setup_view_create);
+    view_navigateTo(gui_app_getView(), setup_view_create);
 }
 
 static void setup_view_create(View_s *p_view)

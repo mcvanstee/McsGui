@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "gui_app.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_PAGE_BUTTON_BUFFER_SIZE 8
 
@@ -95,7 +94,7 @@ void page_btn_initIconText(
 	p_pageButton->icon = icon;
 	p_pageButton->text = text;
 	button_setOnPressedEvent(&p_pageButton->button, onPressed);
-	base_setSize(p_pageButton, PAGE_BTN_WIDTH, PAGE_BTN_HEIGHT);
+	base_setDimensions(p_pageButton, PAGE_BTN_WIDTH, PAGE_BTN_HEIGHT);
 	base_setOnFocusChanged(&p_pageButton->button, page_btn_focusChanged);
 }
 
@@ -118,7 +117,7 @@ static void page_btn_onDisplay(BaseComponent_s *p_buttonBase)
 {
     // Do not call base_display() here, it calls this function again.
     //
-    theme_setTheme(p_buttonBase);
+    theme_applyThemeProperty(p_buttonBase);
 	page_btn_displayBackground(p_buttonBase);
 	page_btn_focusChanged(p_buttonBase);
 
@@ -129,8 +128,8 @@ static void page_btn_onDisplay(BaseComponent_s *p_buttonBase)
 			&icon, p_pageButton->icon,
 			p_buttonBase->x, p_buttonBase->y,
 			p_buttonBase->width, p_buttonBase->height);
-	theme_setTheme(&icon);
-	theme_setAccentColor(&icon);
+	theme_applyThemeProperty(&icon);
+	theme_applyAccentColorProperty(&icon);
 	base_setVerticalAlignment(&icon, Gui_Align_Top);
 	base_setTopPadding(&icon, 20);
 	base_display(&icon);
@@ -142,8 +141,8 @@ static void page_btn_onDisplay(BaseComponent_s *p_buttonBase)
 			p_buttonBase->width, p_buttonBase->height);
 	base_setVerticalAlignment(&text, Gui_Align_Bottom);
 	base_setBottomPadding(&text, 18);
-	gui_translate(&text);
-	theme_setTheme(&text);
+	gui_app_translate(&text);
+	theme_applyThemeProperty(&text);
 	base_display(&text);
 }
 

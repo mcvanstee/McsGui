@@ -9,7 +9,7 @@ static void tv_rgSelectionChanged(RadioGroup_s *p_radioGroup);
 
 void theme_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, tv_create);
+    view_navigateTo(gui_app_getView(), tv_create);
 }
 
 static void tv_create(View_s *p_view)
@@ -28,22 +28,15 @@ static void tv_create(View_s *p_view)
     base_setFocus(p_listView, true);
     view_addComponent(p_view, p_listView);
 
-    radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.theme.theme);
+    const int8_t index = (int8_t)theme_getGuiTheme();
+    radiogroup_setSelectedAtIndex(p_radioGroup, index);
 }
 
 static void tv_rgSelectionChanged(RadioGroup_s *p_radioGroup)
 {
-    const int8_t selectedIndex = radiogroup_getSelectedIndex(p_radioGroup);
+    const GuiTheme_e theme = (GuiTheme_e)radiogroup_getSelectedIndex(p_radioGroup);
+    theme_setGuiTheme(theme);
 
-    if (selectedIndex == 0)
-    {
-        g_guiApp.theme.theme = PROPERTY_THEME_VALUE_LIGHT;
-    }
-    else
-    {
-        g_guiApp.theme.theme = PROPERTY_THEME_VALUE_DARK;
-    }
-
-    gui_drawBackground();
+    gui_app_drawBackground();
     theme_view_navigateTo();
 }

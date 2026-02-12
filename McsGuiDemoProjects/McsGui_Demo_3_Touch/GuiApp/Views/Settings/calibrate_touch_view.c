@@ -8,7 +8,6 @@
 #include "gui_settings.h"
 #include "display_api.h"
 #include "touch_driver.h"
-#include "fonts.h"
 #include "utils_def.h"
 
 #include "main_view.h"
@@ -52,7 +51,7 @@ static uint8_t m_calibrationPointIndex = 0;
 
 void calibrate_touch_view_navigateTo(void)
 {
-	view_navigateTo(&g_guiApp.view, ctv_create);
+	view_navigateTo(gui_app_getView(), ctv_create);
 }
 
 static void ctv_create(View_s *p_view)
@@ -66,13 +65,14 @@ static void ctv_create(View_s *p_view)
 	textblock_initTextPosSize(
 			p_instructionTB, "Touch the crosshair with a stylus",
 			0, 0, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
-	textblock_setFont(p_instructionTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFont(p_instructionTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 
 	TextBlock_s *p_pointTB = textblock_new();
 	textblock_initText(p_pointTB, "(x, y) = (0, 0)");
-	textblock_setFont(p_pointTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
-	base_setBackground(p_pointTB, CTV_BACKGROUND_COLOR);
+	textblock_setFont(p_pointTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFontBackColor(p_pointTB, CTV_BACKGROUND_COLOR);
 	base_setWidth(p_pointTB, 200);
+	base_setTransparent(p_pointTB,  false);
 	base_setId(p_pointTB, CTB_POINT_TEXTBLOCK_ID);
 	base_addNewInitAnchor(p_pointTB);
 	anchor_setCenterInParent(p_pointTB, p_instructionTB);
@@ -80,8 +80,8 @@ static void ctv_create(View_s *p_view)
 
 	TextBlock_s *p_adcValuesTB = textblock_new();
 	textblock_initText(p_adcValuesTB, "ADC (x,y,z): (0, 0, 0)");
-	textblock_setFont(p_adcValuesTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
-	base_setBackground(p_adcValuesTB, CTV_BACKGROUND_COLOR);
+	textblock_setFont(p_adcValuesTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFontBackColor(p_adcValuesTB, CTV_BACKGROUND_COLOR);
 	base_setWidth(p_adcValuesTB, 200);
 	base_setId(p_adcValuesTB, CTB_ADC_VALUES_TEXTBLOCK_ID);
 	base_addNewInitAnchor(p_adcValuesTB);
@@ -90,13 +90,14 @@ static void ctv_create(View_s *p_view)
 
 	TextBlock_s *p_button = textblock_new();
 	textblock_initText(p_button, "Exit");
-	textblock_setFont(p_button, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFont(p_button, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFontBackColor(p_button, COLOR_BACKGROUND);
+
 	base_setId(p_button, CTB_EXIT_BUTTON_TEXT_ID);
-	base_setWidth(p_button, 100);
-	base_setHeight(p_button, 20);
+	base_setDimensions(p_button, 100, 20);
 	base_addNewInitAnchor(p_button);
 	base_setVisible(p_button, false);
-	base_setBackground(p_button, COLOR_BACKGROUND);
+	base_setTransparent(p_pointTB,  false);
 	base_addNewInitTouch(p_button);
 	touch_setOnPressed(p_button->base.p_touch, cvt_exitCalibration);
 	anchor_setTopAnchor(p_button, p_adcValuesTB, Gui_Anchor_Bottom);
@@ -178,7 +179,7 @@ static void cvt_handlePressed(GuiPoint_s pointPressed)
 		{
 			cvt_saveCalibrationValues();
 
-			TextBlock_s *p_buttonText = (TextBlock_s *)view_getComponentById(&g_guiApp.view, CTB_EXIT_BUTTON_TEXT_ID);
+			TextBlock_s *p_buttonText = (TextBlock_s *)view_getComponentById(gui_app_getView(), CTB_EXIT_BUTTON_TEXT_ID);
 			base_setVisible(p_buttonText, true);
 			base_display(p_buttonText);
 		}
@@ -237,7 +238,7 @@ static void cvt_showCalibrationResult(const bool passed)
 			0, 150);
 	base_setWidth(&resultTB, STYLE_DISPLAY_WIDTH);
 	base_setBackground(&resultTB, CTV_BACKGROUND_COLOR);
-	textblock_setFont(&resultTB, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT);
+	textblock_setFont(&resultTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 	base_display(&resultTB);
 }
 

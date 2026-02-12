@@ -4,7 +4,7 @@
 #include "colors.h"
 
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
+#include "Core/gui_log.h"
 
 static void control_bar_onDisplay(BaseComponent_s *p_baseComponent);
 static bool control_bar_handleEvent(BaseComponent_s *p_baseComponent, const GuiEvent_s *p_event);
@@ -17,7 +17,7 @@ void control_bar_init(ControlBar_s *p_controlBar)
 {
 	base_initParentComp(&p_controlBar->base, control_bar_delete);
 	base_setPosition(&p_controlBar->base, 0, 0);
-	base_setSize(&p_controlBar->base, STYLE_CONTROL_BAR_WIDTH, STYLE_CONTROL_BAR_HEIGHT);
+	base_setDimensions(&p_controlBar->base, STYLE_CONTROL_BAR_WIDTH, STYLE_CONTROL_BAR_HEIGHT);
 	base_setOnDisplay(&p_controlBar->base, control_bar_onDisplay);
 	base_setOnHandleEvent(&p_controlBar->base, control_bar_handleEvent);
 

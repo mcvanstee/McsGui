@@ -14,7 +14,7 @@ void confirm_dialog_show(
 {
     m_p_okBtnPressed = okBtnPressed;
     m_p_cancelBtnPressed = cancelBtnPressed;
-    View_s *p_view = &g_guiApp.view;
+    View_s *p_view = gui_app_getView();
 
     view_beforeNavigateTo(p_view);
     cd_create(p_view, title, message);
@@ -31,7 +31,7 @@ static void cd_create(View_s *p_view, const file_key_e title, const file_key_e m
 
     Label_s *p_message = label_newInit();
     label_setBmpKey(p_message, message);
-    theme_setTheme(p_message);
+    theme_applyThemeProperty(p_message);
     base_addNewInitAnchor(p_message);
     anchor_setCenterInParent(p_message, p_pane);
     view_addComponent(p_view, p_message);

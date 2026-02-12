@@ -1,0 +1,5 @@
+Pixeldata offset: 20
+CRC: 1296140220
+Build successful
+Build V2.0.0.19
+277 File(s) and 6 Font(s) added

@@ -3,8 +3,12 @@
 
 #include "gui_header.h"
 #include "gui_theme.h"
-#include "Utils/gui_log.h"
+#include "Core/gui_log.h"
 
+
+#define GUI_APP_LOG_MESSAGE_LENGTH 255
+#define GUI_APP_LOG_MESSAGE_LENGTH_INC_NULL (GUI_APP_LOG_MESSAGE_LENGTH + 1)
+#define CUSTOM_GUI_EVENT_MEASREMANT_READY 100
 
 typedef enum
 {
@@ -26,14 +30,10 @@ typedef enum
     TemperatureUnit_Fahrenheit,
 } TemperatureUnit_e;
 
-#define GUI_APP_LOG_MESSAGE_LENGTH 255
-#define GUI_APP_LOG_MESSAGE_LENGTH_INC_NULL (GUI_APP_LOG_MESSAGE_LENGTH + 1)
-#define CUSTOM_GUI_EVENT_MEASREMANT_READY 100
-
 typedef struct
 {
     Language_e language;
-    GuiTheme_s theme;
+    GuiThemeSetting_s themeSetting;
     TemperatureUnit_e temperatureUnit;
     bool updateDateTime;
     bool alarmActive;
@@ -43,16 +43,26 @@ typedef struct
     View_s view;
 } GuiApplication_s;
 
-extern GuiApplication_s g_guiApp;
 
 void gui_app_start(void);
-void gui_showFooterLogo(void);
-void gui_drawBackground(void);
-void gui_drawHeaderBackground(void);
-void gui_drawFooterBackground(void);
-void gui_clearView(void);
-void gui_translate(void *p_component);
-void gui_app_setAlarmTime(const uint8_t alarmTime_mm);
+void gui_app_clearView(void);
+void gui_app_drawBackground(void);
+void gui_app_drawHeaderBackground(void);
+void gui_app_drawFooterBackground(void);
+void gui_app_showFooterLogo(void);
+void gui_app_translate(void *p_component);
 void gui_app_activateAlarm(void);
+
+View_s* gui_app_getView(void);
+Language_e gui_app_getLanguage(void);
+TemperatureUnit_e gui_app_getTemperatureUnit(void);
+uint8_t gui_app_getDisplayBrightness(void);
+bool gui_app_getUpdateDateTime(void);
+
+void gui_app_setLanguage(const Language_e language);
+void gui_app_setTemperatureUnit(const TemperatureUnit_e temperatureUnit);
+void gui_app_setDisplayBrightness(const uint8_t brightness);
+void gui_app_setAlarmTime(const uint8_t alarmTime_mm);
+void gui_app_setUpdateDateTime(const bool update);
 
 #endif /* GUI_APP_H_ */

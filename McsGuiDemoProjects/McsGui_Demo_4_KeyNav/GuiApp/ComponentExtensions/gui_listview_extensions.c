@@ -21,8 +21,9 @@ ListView_s *listview_ext_newNavigationListView(void)
     listview_setOnActiveItemChanged(p_listView, listview_ext_activeNavigationItemChanged);
     base_setOnHandleEvent(p_listView, listview_ext_handleEvent);
     base_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    base_setDimensions(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     base_setBackground(p_listView, theme_getBackgroundColor());
+    base_setTransparent(p_listView, false);
     base_addNewInitKeyNavigation(p_listView);
 
     return p_listView;
@@ -37,13 +38,13 @@ void listview_ext_addNavigationItem(ListView_s *p_listView, file_key_e icon, fil
 
     Label_s *p_icon = label_new();
     label_initBmp(p_icon, icon);
-    theme_setTheme(p_icon);
+    theme_applyThemeProperty(p_icon);
     listviewitem_addComponent(p_item, p_icon);
 
     Label_s *p_text = label_new();
     label_initBmp(p_text, text);
-    theme_setTheme(p_text);
-    gui_translate(p_text);
+    theme_applyThemeProperty(p_text);
+    gui_app_translate(p_text);
     listviewitem_addComponent(p_item, p_text);
 }
 
@@ -55,8 +56,9 @@ ListView_s *listview_ext_newRadioListView(void)
     listview_setOnActiveItemChanged(p_listView, listview_ext_activeNavigationItemChanged);
     base_setOnHandleEvent(p_listView, listview_ext_handleEvent);
     base_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    base_setDimensions(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     base_setBackground(p_listView, theme_getBackgroundColor());
+    base_setTransparent(p_listView, false);
     base_addNewInitKeyNavigation(p_listView);
 
     return p_listView;
@@ -72,13 +74,13 @@ void listview_ext_addRadioItem(
     Checkbox_s *p_checkbox = checkbox_new();
     checkbox_initBmp(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED);
     checkbox_setOnSelectionChanged(p_checkbox, listview_ext_selectionChanged);
-    theme_setTheme(p_checkbox);
+    theme_applyThemeProperty(p_checkbox);
     listviewitem_addComponent(p_item, p_checkbox);
 
     Label_s *p_text = label_new();
     label_initBmp(p_text, text);
-    theme_setTheme(p_text);
-    gui_translate(p_text);
+    theme_applyThemeProperty(p_text);
+    gui_app_translate(p_text);
     listviewitem_addComponent(p_item, p_text);
 
     radiogroup_addButton(p_radioGroup, p_checkbox);

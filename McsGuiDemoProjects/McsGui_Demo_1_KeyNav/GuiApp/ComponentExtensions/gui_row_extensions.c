@@ -7,7 +7,7 @@ Row_s *gui_addFooterButtonRow(View_s *p_view)
     rectangle_showBorderOnly(p_rect, true);
     rectangle_setBorderThickness(p_rect, 6);
     rectangle_setBorderColor(p_rect, theme_getFooterColor());
-    base_setSize(&p_rect->base, STYLE_DISPLAY_WIDTH - 10, 48);
+    base_setDimensions(&p_rect->base, STYLE_DISPLAY_WIDTH - 10, 48);
     base_setPosition(&p_rect->base, 5, 266);
     view_addComponent(p_view, p_rect);
 

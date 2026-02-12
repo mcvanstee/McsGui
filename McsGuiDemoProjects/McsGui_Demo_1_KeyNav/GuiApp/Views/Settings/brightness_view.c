@@ -12,7 +12,7 @@ static void bv_sliderValueChanged(Slider_s *p_slider);
 
 void brightness_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, bv_create);
+    view_navigateTo(gui_app_getView(), bv_create);
 }
 
 static void bv_create(View_s *p_view)
@@ -23,7 +23,7 @@ static void bv_create(View_s *p_view)
     view_addComponent(p_view, p_pane);
 
     Slider_s *p_slider = slider_newInit();
-    slider_setValue(p_slider, g_guiApp.displayBrightness);
+    slider_setValue(p_slider, gui_app_getDisplayBrightness());
     slider_setStep(p_slider, 10);
     slider_setOnValueChanged(p_slider, bv_sliderValueChanged);
     base_addNewInitAnchor(p_slider);
@@ -43,5 +43,5 @@ static void bv_create(View_s *p_view)
 static void bv_sliderValueChanged(Slider_s *p_slider)
 {
     display_setBacklight(p_slider->value);
-    g_guiApp.displayBrightness = p_slider->value;
+    gui_app_setDisplayBrightness(p_slider->value);
 }

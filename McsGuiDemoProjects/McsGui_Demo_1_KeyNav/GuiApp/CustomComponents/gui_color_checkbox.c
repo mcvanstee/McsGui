@@ -5,8 +5,7 @@
 
 #include "gui_app.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_COLOR_CHECKBOX_BUFFER_SIZE 6
 
@@ -24,6 +23,7 @@ static ColorCheckbox_s staticColorCheckboxMem[GUI_COLOR_CHECKBOX_BUFFER_SIZE];
 static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent);
 static void color_checkbox_focusChanged(BaseComponent_s *p_baseComponent);
 static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox);
+static Color_t color_checkbox_getBorderColor(void);
 
 
 ColorCheckbox_s *color_checkbox_new(void)
@@ -80,7 +80,7 @@ void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox)
     checkbox_init(&p_colorCheckbox->checkbox);
     p_colorCheckbox->color = 0;
     base_setBmpKey(p_colorCheckbox, FILE_KEY_ICON_PANE_CHECKMARK);
-    base_setSize(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
+    base_setDimensions(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
     base_setOnDisplay(p_colorCheckbox, color_checkbox_onDisplay);
     base_setOnDelete(p_colorCheckbox, color_checkbox_delete);
     base_setOnFocusChanged(p_colorCheckbox, color_checkbox_focusChanged);
@@ -91,6 +91,12 @@ void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox)
     base_addKeyNavigation(p_colorCheckbox, &p_colorCheckbox->keyNavigation);
 }
 
+void color_checkbox_setColor(ColorCheckbox_s *p_colorCheckbox, const Color_t color)
+{
+    p_colorCheckbox->color = color;
+}
+
+
 static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent)
 {
     Color_t borderColor;
@@ -98,7 +104,7 @@ static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent)
 
     if (p_baseComponent->focused)
     {
-        borderColor = (g_guiApp.theme.theme ==  PROPERTY_THEME_VALUE_DARK) ? COLOR_ACCENT_WHITE : COLOR_ACCENT_BLACK;
+        borderColor = color_checkbox_getBorderColor();
     }
     else
     {
@@ -127,7 +133,7 @@ static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent)
 
 static void color_checkbox_focusChanged(BaseComponent_s *p_baseComponent)
 {
-    Color_t borderColor = (g_guiApp.theme.theme ==  PROPERTY_THEME_VALUE_DARK) ? COLOR_ACCENT_WHITE : COLOR_ACCENT_BLACK;
+    Color_t borderColor = color_checkbox_getBorderColor();
     ColorCheckbox_s *p_colorCheckbox = (ColorCheckbox_s *)p_baseComponent;
     Checkbox_s *p_checkbox = &p_colorCheckbox->checkbox;
 
@@ -190,7 +196,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
                 &label, FILE_KEY_ICON_PANE_CHECKMARK,
                 p_base->x, p_base->y,
                 CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
-        theme_setTheme(&label);
+        theme_applyThemeProperty(&label);
 
         GuiAnchor_s anchorLabel;
         anchor_init(&anchorLabel);
@@ -202,7 +208,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
 
         if (p_checkbox->base.focused)
         {
-            const Color_t color = (g_guiApp.theme.theme ==  PROPERTY_THEME_VALUE_DARK) ? COLOR_ACCENT_WHITE : COLOR_ACCENT_BLACK;
+            const Color_t color = color_checkbox_getBorderColor();
 
             Rectangle_s border;
             rectangle_initBorderPosSize(&border, p_base->x, p_base->y, p_base->width, p_base->height, 2, color);
@@ -228,7 +234,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
     }
 }
 
-void color_checkbox_setColor(ColorCheckbox_s *p_colorCheckbox, const Color_t color)
+static Color_t color_checkbox_getBorderColor(void)
 {
-    p_colorCheckbox->color = color;
+    return theme_getGuiTheme() == GuiTheme_Dark ? COLOR_ACCENT_WHITE : COLOR_ACCENT_BLACK;
 }

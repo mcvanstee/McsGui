@@ -10,7 +10,7 @@ void footer_init(Footer_s *p_footer)
 {
     button_init(&p_footer->button);
     button_setOnFocusChanged(&p_footer->button, footer_backButtonFocusChanged);
-    base_setSize(&p_footer->button, STYLE_FOOTER_BUTTON_WIDTH, STYLE_FOOTER_BUTTON_HEIGHT);
+    base_setDimensions(&p_footer->button, STYLE_FOOTER_BUTTON_WIDTH, STYLE_FOOTER_BUTTON_HEIGHT);
     base_setPosition(&p_footer->button, STYLE_FOOTER_BUTTON_X, STYLE_FOOTER_BUTTON_Y);
     base_setBmpKey(&p_footer->button, FILE_KEY_ICON_ARROW_BACK);
     base_setVisible(&p_footer->button, false);
@@ -49,7 +49,7 @@ static void footer_displayButton(BaseComponent_s *p_buttonBase)
     const property_value_focus_e propertyValueFocus =
             (p_buttonBase->focused) ? PROPERTY_FOCUS_VALUE_TRUE : PROPERTY_FOCUS_VALUE_FALSE;
     base_setProperty(p_buttonBase, FILE_PROPERTY_FOCUS, propertyValueFocus);
-    theme_setTheme(p_buttonBase);
+    theme_applyThemeProperty(p_buttonBase);
 
     graphics_displayComponent(p_buttonBase);
 }
@@ -59,7 +59,7 @@ void footer_showLogo(void)
     Item_s item;
     item_init(&item);
     base_setPosition(&item, STYLE_FOOTER_X, STYLE_FOOTER_Y);
-    base_setSize(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
+    base_setDimensions(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
 
     Label_s logo;
     label_init(&logo);
@@ -70,13 +70,14 @@ void footer_showLogo(void)
     anchor_setVerticalCenter(&logo, &item);
     anchor_setRightMargin(&logo, 1);
     label_setBmpKey(&logo, FILE_KEY_ANIMATION_IRL_LOGO);
-    base_setSize(&logo, 38, 37);
+    base_setDimensions(&logo, 38, 37);
     base_setBackground(&logo, COLOR_IRL_BLUE);
+    base_setTransparent(&logo, false);
     base_display(&logo);
 
     Label_s mcsGui;
     label_initBmp(&mcsGui, FILE_KEY_TEXT_MCSGUI);
-    theme_setTheme(&mcsGui);
+    theme_applyThemeProperty(&mcsGui);
     GuiAnchor_s mcsGuiAnchor;
     anchor_init(&mcsGuiAnchor);
     base_addAnchor(&mcsGui.base, &mcsGuiAnchor);

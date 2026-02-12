@@ -18,7 +18,7 @@ extern RTC_HandleTypeDef hrtc;
 
 void set_time_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, stv_create);
+    view_navigateTo(gui_app_getView(), stv_create);
 }
 
 static void stv_create(View_s *p_view)
@@ -73,8 +73,10 @@ static void stv_saveTime(void)
     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
-    NumberInput_s *p_hh = (NumberInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_HH_ID);
-    NumberInput_s *p_mm = (NumberInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_MM_ID);
+    View_s *p_view = gui_app_getView();
+
+    NumberInput_s *p_hh = (NumberInput_s *)view_getComponentById(p_view, STV_INPUT_HH_ID);
+    NumberInput_s *p_mm = (NumberInput_s *)view_getComponentById(p_view, STV_INPUT_MM_ID);
 
     sTime.Hours = p_hh->value;
     sTime.Minutes = p_mm->value;

@@ -16,11 +16,5 @@
 #include "style.h"
 #include "colors.h"
 
-//#include "fs_file_search.h"
-//
-//
-//ButtonCustom_s* custom_cmp_createIconNavButton(
-//    const file_key_e icon, const file_key_e text, void (*onReleased)(void));
-
 
 #endif /* CUSTOMCOMPONENTS_GUI_CUSTOM_COMPONENTS_H_ */

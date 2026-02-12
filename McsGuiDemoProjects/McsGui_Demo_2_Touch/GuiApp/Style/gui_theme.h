@@ -9,14 +9,30 @@
 #include "gui_colors.h"
 #include "gui_style.h"
 
+
+typedef enum
+{
+    GuiTheme_Light = 0,
+    GuiTheme_Dark
+} GuiTheme_e;
+
 typedef struct
 {
-    property_value_theme_e theme;
-    property_value_accent_color_e accentColor;
-} GuiTheme_s;
+    GuiTheme_e theme;
+    property_value_accent_color_e accentColorProperty;
+} GuiThemeSetting_s;
 
-void theme_setTheme(void *p_component);
-void theme_setAccentColor(void *p_component);
+void theme_init(GuiThemeSetting_s *p_themeSetting);
+void theme_setGuiTheme(GuiTheme_e theme);
+void theme_setAccentColorPropertyValue(property_value_accent_color_e value);
+
+GuiTheme_e theme_getGuiTheme(void);
+Color_t theme_getAccentColor(void);
+property_value_theme_e theme_getThemePropertyValue(void);
+property_value_accent_color_e theme_getAccentColorPropertyValue(void);
+
+void theme_applyThemeProperty(void *p_component);
+void theme_applyAccentColorProperty(void *p_component);
 
 Color_t theme_getAccentColor(void);
 Color_t theme_getBackgroundColor(void);
@@ -38,5 +54,6 @@ font_key_e theme_getHeaderFontLarge(void);
 font_key_e theme_getHeaderFontSmall(void);
 font_key_e theme_getDefaultFont(void);
 font_key_e theme_getComponentFont(void);
+
 
 #endif /* STYLE_GUI_THEME_H_ */

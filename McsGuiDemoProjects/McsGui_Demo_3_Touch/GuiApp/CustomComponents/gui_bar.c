@@ -1,11 +1,8 @@
 #include "gui_bar.h"
 
 #include "gui_app.h"
-#include "colors.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
-#include "fs_file_search.h"
+#include "Core/gui_memory.h"
 
 #define GUI_BAR_BUFFER_SIZE 8
 
@@ -70,7 +67,7 @@ void bar_init(Bar_s *p_bar)
 {
 	base_initParentComp(&p_bar->base, bar_delete);
 	base_setOnDisplay(p_bar, bar_onDisplay);
-	base_setSize(p_bar, BAR_WIDTH, BAR_HEIGHT);
+	base_setDimensions(p_bar, BAR_WIDTH, BAR_HEIGHT);
 
 	p_bar->fillColor = COLOR_ACCENT_BLUE;
 	p_bar->emptyColor = COLOR_BAR_BACKGROUND;

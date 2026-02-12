@@ -1,6 +1,7 @@
 #include "language_view.h"
 
 #include "gui_app.h"
+#include "gui_app_settings.h"
 
 #include "settings_view.h"
 
@@ -10,7 +11,7 @@ static void lv_rgSelectionChanged(RadioGroup_s *p_radioGroup);
 
 void language_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, lv_create);
+    view_navigateTo(gui_app_getView(), lv_create);
 }
 
 static void lv_create(View_s *p_view)
@@ -37,11 +38,12 @@ static void lv_create(View_s *p_view)
     base_setFocus(p_listView, true);
     view_addComponent(p_view, p_listView);
 
-    radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.language);
+    radiogroup_setSelectedAtIndex(p_radioGroup, settings_getLanguage());
 }
 
 static void lv_rgSelectionChanged(RadioGroup_s *p_radioGroup)
 {
-    g_guiApp.language = radiogroup_getSelectedIndex(p_radioGroup);
+    const Language_e language = (Language_e)radiogroup_getSelectedIndex(p_radioGroup);
+    settings_setLanguage(language);
     header_setTitle(FILE_KEY_TITLE_LANGUAGE);
 }

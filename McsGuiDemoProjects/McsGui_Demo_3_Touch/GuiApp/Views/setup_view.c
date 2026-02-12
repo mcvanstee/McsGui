@@ -28,7 +28,7 @@ static GuiSettings_s m_settings;
 
 void setup_view_navigateTo(void)
 {
-	view_navigateTo(&g_guiApp.view, sv_create);
+	view_navigateTo(gui_app_getView(), sv_create);
 }
 
 static void sv_create(View_s *p_view)
@@ -39,12 +39,12 @@ static void sv_create(View_s *p_view)
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Pane_s *p_pane = pane_newInit();
     p_pane->borderPane = true;
-    base_setSize(p_pane, SV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT - 20));
+    base_setDimensions(p_pane, SV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT - 20));
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_pane, p_item, Gui_Anchor_Left);
@@ -73,8 +73,9 @@ static void sv_create(View_s *p_view)
 	button_initBmp(p_saveButton, FILE_KEY_TEXT_SAVE);
 	button_setOnReleased(p_saveButton, sv_saveButtonPressed);
 	gui_app_translate(p_saveButton);
-	base_setSize(p_saveButton, 80, 30);
+	base_setDimensions(p_saveButton, 80, 30);
 	base_setBackground(p_saveButton, COLOR_ACCENT_BLUE);
+	base_setTransparent(p_saveButton, false);
 	base_setVisible(p_saveButton, false);
 	base_addNewInitTouch(&p_saveButton->base);
 	base_addNewInitAnchor(p_saveButton);
@@ -96,7 +97,7 @@ static void sv_addSaveSwitch(Grid_s *p_grid)
 
     Checkbox_s *p_checkbox = custom_cmp_createCheckbox(
             FILE_KEY_ICON_SWITCH, m_settings.saveData, sv_checkboxSelectionChanged);
-    base_setSize(p_checkbox, 50, 30);
+    base_setDimensions(p_checkbox, 50, 30);
     grid_addComponent(p_grid, p_checkbox);
 }
 
@@ -128,7 +129,7 @@ static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
     row_addComponent(p_row, p_fahrenheitCBL);
     radiogroup_addButton(p_radioGroup, &p_fahrenheitCBL->checkBox);
 
-    radiogroup_setSelectedAtIndex(p_radioGroup, m_settings.temperatureUnit);
+    radiogroup_setSelectedAtIndex(p_radioGroup, (int8_t)m_settings.temperatureUnit);
 }
 
 static void sv_addIntervalInput(Grid_s *p_grid)
@@ -165,7 +166,6 @@ static void sv_checkboxSelectionChanged(Checkbox_s *p_checkbox)
 {
     base_display(p_checkbox);
     m_settings.saveData = p_checkbox->checked;
-
     sv_showSaveButton();
 }
 
@@ -189,7 +189,6 @@ static void sv_tempUnitChanged(RadioGroup_s *p_radioGroup)
 
 static void sv_saveButtonPressed(Button_s *p_button)
 {
-    g_guiApp.temperatureUnit = m_settings.temperatureUnit;
     settings_setSettings(m_settings);
     settings_save();
 
@@ -201,12 +200,13 @@ static void sv_saveButtonPressed(Button_s *p_button)
 	        p_button->base.x, p_button->base.y,
 	        p_button->base.width, p_button->base.height);
 	base_setBackground(&label, COLOR_BACKGROUND);
+	base_setTransparent(&label, false);
 	base_display(&label);
 }
 
 static void sv_showSaveButton(void)
 {
-    Button_s *p_saveButton = (Button_s *)view_getComponentById(&g_guiApp.view, SV_SAVE_BUTTON_ID);
+    Button_s *p_saveButton = (Button_s *)view_getComponentById(gui_app_getView(), SV_SAVE_BUTTON_ID);
 
     if (!p_saveButton->base.visible)
     {

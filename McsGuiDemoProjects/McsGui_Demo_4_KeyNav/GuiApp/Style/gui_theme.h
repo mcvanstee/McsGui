@@ -9,12 +9,23 @@
 #include "gui_colors.h"
 #include "gui_style.h"
 
+typedef enum
+{
+    GuiTheme_Light = 0,
+    GuiTheme_Dark
+} GuiTheme_e;
+
 typedef struct
 {
-    property_value_theme_e theme;
-} GuiTheme_s;
+    GuiTheme_e theme;
+} GuiThemeSettings_s;
 
-void theme_setTheme(void *p_component);
+void theme_init(GuiThemeSettings_s *p_themeSetting);
+void theme_setToDefault(GuiThemeSettings_s *p_themeSetting);
+void theme_setGuiTheme(GuiTheme_e theme);
+GuiTheme_e theme_getGuiTheme(void);
+
+void theme_applyThemeProperty(void *p_component);
 
 Color_t theme_getBackgroundColor(void);
 Color_t theme_getSeparatorColor(void);

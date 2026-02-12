@@ -7,7 +7,7 @@ Grid_s *gui_addPageButtonGrid(View_s *p_view)
     rectangle_showBorderOnly(p_rect, true);
     rectangle_setBorderThickness(p_rect, 13);
     rectangle_setBorderColor(p_rect, theme_getBackgroundColor());
-    base_setSize(&p_rect->base, STYLE_DISPLAY_WIDTH, 216);
+    base_setDimensions(&p_rect->base, STYLE_DISPLAY_WIDTH, 216);
     base_setPosition(&p_rect->base, 0, 42);
     view_addComponent(p_view, p_rect);
 

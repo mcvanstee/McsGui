@@ -14,7 +14,7 @@ static void sav_activateAlarm(void);
 
 void set_alarm_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, set_alarm_view_create);
+    view_navigateTo(gui_app_getView(), set_alarm_view_create);
 }
 
 static void set_alarm_view_create(View_s *p_view)
@@ -34,7 +34,7 @@ static void set_alarm_view_create(View_s *p_view)
 
     Label_s *p_alarmText = label_new();
     label_initBmp(p_alarmText, FILE_KEY_TEXT_PANE_SET_ALARM_IN);
-    theme_setTheme(p_alarmText);
+    theme_applyThemeProperty(p_alarmText);
     base_addNewInitAnchor(p_alarmText);
     anchor_setRightAnchor(p_alarmText, p_numberInput, Gui_Anchor_Left);
     anchor_setRightMargin(p_alarmText, 10);
@@ -42,7 +42,7 @@ static void set_alarm_view_create(View_s *p_view)
 
     Label_s *p_minutesText = label_new();
     label_initBmp(p_minutesText, FILE_KEY_TEXT_PANE_TIME_MM);
-    theme_setTheme(p_minutesText);
+    theme_applyThemeProperty(p_minutesText);
     base_addNewInitAnchor(p_minutesText);
     anchor_setLeftAnchor(p_minutesText, p_numberInput, Gui_Anchor_Right);
     anchor_setLeftMargin(p_minutesText, 10);
@@ -60,7 +60,7 @@ static void set_alarm_view_create(View_s *p_view)
 
 static void sav_saveAlarm(void)
 {
-    NumberInput_s *p_numberInput = (NumberInput_s*)view_getComponentById(&g_guiApp.view, SAV_INPUT_ID);
+    NumberInput_s *p_numberInput = (NumberInput_s*)view_getComponentById(gui_app_getView(), SAV_INPUT_ID);
     gui_app_setAlarmTime(p_numberInput->value);
     confirm_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_PANE_ACTIVATE_ALARM, sav_activateAlarm, mainview_navigateTo);
 }

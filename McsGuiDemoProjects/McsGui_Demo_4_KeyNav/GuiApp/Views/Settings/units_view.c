@@ -1,6 +1,7 @@
 #include "units_view.h"
 
 #include "gui_app.h"
+#include "gui_app_settings.h"
 
 #include "settings_view.h"
 
@@ -9,7 +10,7 @@ static void untv_rgSelectionChanged(RadioGroup_s *p_radioGroup);
 
 void units_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, untv_create);
+    view_navigateTo(gui_app_getView(), untv_create);
 }
 
 static void untv_create(View_s *p_view)
@@ -28,19 +29,11 @@ static void untv_create(View_s *p_view)
     base_setFocus(p_listView, true);
     view_addComponent(p_view, p_listView);
 
-    radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.temperatureUnit);
+    radiogroup_setSelectedAtIndex(p_radioGroup, (int8_t)settings_getTemperatureUnit());
 }
 
 static void untv_rgSelectionChanged(RadioGroup_s *p_radioGroup)
 {
-    const int8_t selectedIndex = radiogroup_getSelectedIndex(p_radioGroup);
-
-    if (selectedIndex == 0)
-    {
-        g_guiApp.temperatureUnit = TemperatureUnit_Celsius;
-    }
-    else
-    {
-        g_guiApp.temperatureUnit = TemperatureUnit_Fahrenheit;
-    }
+    const TemperatureUnit_e unit = radiogroup_getSelectedIndex(p_radioGroup);
+    settings_setTemperatureUnit(unit);
 }

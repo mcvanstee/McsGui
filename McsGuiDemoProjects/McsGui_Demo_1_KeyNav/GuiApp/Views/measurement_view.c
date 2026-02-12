@@ -19,7 +19,7 @@ static float celsiusToFahrenheit(float celsius);
 
 void measurement_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, msmv_create);
+    view_navigateTo(gui_app_getView(), msmv_create);
 }
 
 static void msmv_create(View_s *p_view)
@@ -35,29 +35,29 @@ static void msmv_create(View_s *p_view)
     base_addNewInitAnchor(p_tempLabel);
     anchor_setCenterInParent(p_tempLabel, p_pane);
     anchor_setRightMargin(p_tempLabel, 50);
-    gui_translate(p_tempLabel);
-    theme_setTheme(p_tempLabel);
+    gui_app_translate(p_tempLabel);
+    theme_applyThemeProperty(p_tempLabel);
     view_addComponent(p_view, p_tempLabel);
 
     TextBlock_s *p_tempTextBlock = textblock_newInit();
     textblock_initTextSize(p_tempTextBlock, "0", 55, 30);
     textblock_setFont(p_tempTextBlock, theme_getDefaultFont());
-    base_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);
-    base_setBackground(p_tempTextBlock, theme_getPaneColor());
+    textblock_setFontBackColor(p_tempTextBlock, theme_getPaneColor());
+    textblock_setHorizontalTextAlignment(p_tempTextBlock, Text_Align_Right);
     base_setTransparent(p_tempTextBlock, false);
-    base_setHorizontalAlignment(p_tempTextBlock, Gui_Align_Right);
+    base_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);
     base_addNewInitAnchor(p_tempTextBlock);
     anchor_setLeftAnchor(p_tempTextBlock, p_tempLabel, Gui_Anchor_Right);
     anchor_setVerticalCenter(p_tempTextBlock, p_tempLabel);
     msnv_setTemp(p_tempTextBlock);
     view_addComponent(p_view, p_tempTextBlock);
 
-    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
+    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == gui_app_getTemperatureUnit()) ?
             FILE_KEY_TEXT_PANE_DEG_CEL : FILE_KEY_TEXT_PANE_DEG_FAR;
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
-    theme_setTheme(p_tempUnitLabel);
+    theme_applyThemeProperty(p_tempUnitLabel);
     base_addNewInitAnchor(p_tempUnitLabel);
     anchor_setLeftAnchor(p_tempUnitLabel, p_tempTextBlock, Gui_Anchor_Right);
     anchor_setVerticalCenter(p_tempUnitLabel, p_tempTextBlock);
@@ -85,7 +85,7 @@ static void msnv_setTemp(TextBlock_s *p_textBlock)
 {
     float temp = getAdcTemp();
 
-    if (g_guiApp.temperatureUnit == TemperatureUnit_Fahrenheit)
+    if (gui_app_getTemperatureUnit() == TemperatureUnit_Fahrenheit)
     {
         temp = celsiusToFahrenheit(temp);
     }

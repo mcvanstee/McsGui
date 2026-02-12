@@ -19,8 +19,8 @@ void settings_setSettings(GuiSettings_s settings)
 
 static void settings_setToDefault(void)
 {
-    m_settings.language = 0;
-    m_settings.temperatureUnit = 0;
+    m_settings.language = Language_English;
+    m_settings.temperatureUnit = TemperatureUnit_Celsius;
     m_settings.showTime = true;
     m_settings.showDate = true;
     m_settings.displayBrightness = DISPLAY_DEFAULT_BRIGTHNESS;
@@ -51,6 +51,31 @@ bool settings_getSaveData(void)
     return m_settings.saveData;
 }
 
+Language_e settings_getLanguage(void)
+{
+    return m_settings.language;
+}
+
+TemperatureUnit_e settings_getTemperatureUnit(void)
+{
+    return m_settings.temperatureUnit;
+}
+
+uint8_t settings_getDisplayBrightness(void)
+{
+    return m_settings.displayBrightness;
+}
+
+bool settings_getShowDate(void)
+{
+    return m_settings.showDate;
+}
+
+bool settings_getShowTime(void)
+{
+    return m_settings.showTime;
+}
+
 uint32_t settings_getInterval(void)
 {
     return m_settings.interval;
@@ -59,6 +84,31 @@ uint32_t settings_getInterval(void)
 uint32_t settings_getMaxDataPoints(void)
 {
     return m_settings.maxDataPoints;
+}
+
+void settings_setLanguage(const Language_e language)
+{
+    m_settings.language = language;
+}
+
+void settings_setTemperatureUnit(const TemperatureUnit_e temperatureUnit)
+{
+    m_settings.temperatureUnit = temperatureUnit;
+}
+
+void settings_setDisplayBrightness(const uint8_t brightness)
+{
+    m_settings.displayBrightness = brightness;
+}
+
+void settings_setShowDate(const bool showDate)
+{
+    m_settings.showDate = showDate;
+}
+
+void settings_setShowTime(const bool showTime)
+{
+    m_settings.showTime = showTime;
 }
 
 void settings_setSaveData(bool saveData)

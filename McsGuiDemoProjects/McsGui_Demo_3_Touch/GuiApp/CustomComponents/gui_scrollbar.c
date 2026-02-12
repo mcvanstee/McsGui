@@ -1,7 +1,7 @@
 #include "gui_scrollbar.h"
 
-#include "gui_memory.h"
-#include "gui_log.h"
+#include "Core/gui_memory.h"
+#include "Core/gui_log.h"
 #include "Graphics/gui_graphics.h"
 
 #define GUI_SCROLLBAR_BUFFER_SIZE 2
@@ -71,7 +71,7 @@ void scrollbar_init(ScrollBar_s *p_scrollBar)
 {
     base_initParentComp(&p_scrollBar->base, scrollbar_delete);
     base_setOnDisplay(p_scrollBar, scrollbar_onDisplay);
-    base_setSize(p_scrollBar, 10, 10);
+    base_setDimensions(p_scrollBar, 10, 10);
     anchor_init(&p_scrollBar->anchor);
     base_addAnchor(&p_scrollBar->base, &p_scrollBar->anchor);
 
@@ -165,8 +165,8 @@ void scrollbar_setDownIcon(ScrollBar_s *p_scrollBar, const file_key_e icon)
 
 void scrollbar_setButtonSize(ScrollBar_s *p_scrollBar, uint16_t width, uint16_t height)
 {
-    base_setSize(&p_scrollBar->upButton, width, height);
-    base_setSize(&p_scrollBar->downButton, width, height);
+    base_setDimensions(&p_scrollBar->upButton, width, height);
+    base_setDimensions(&p_scrollBar->downButton, width, height);
 }
 
 void scrollbar_setThumbSize(ScrollBar_s *p_scrollBar, uint16_t thumbSize)

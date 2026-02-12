@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 #include "gui_app.h"
-#include "gui_log.h"
 #include "gui_custom_components.h"
 
 #include "main_view.h"
@@ -16,7 +15,7 @@ static Keyboard_s m_keyboard;
 
 void text_input_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, tiv_create);
+    view_navigateTo(gui_app_getView(), tiv_create);
 }
 
 static void tiv_create(View_s *p_view)
@@ -34,8 +33,8 @@ static void tiv_create(View_s *p_view)
 static void tiv_enterPressed(Keyboard_s *p_keyboard)
 {
     header_updateTime(true);
-    gui_drawHeaderBackground();
-    gui_drawFooterBackground();
+    gui_app_drawHeaderBackground();
+    gui_app_drawFooterBackground();
     mainview_navigateTo();
 }
 

@@ -182,11 +182,11 @@ void graphics_drawRectFill(
 bool graphics_getBmpFileInfo(
       const uint32_t bmpKey, const uint8_t *p_properties,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset)
+        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation)
 {
     /* Get the bmp info from the filesystem. */
     fs_file_info_s fsFileInfo = {0};
-    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, FS_MAX_FILE_PROPERTIES, &fsFileInfo);
+    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, FS_MAX_FILE_PROPERTIES, &fsFileInfo, p_out_dataLocation);
     const bool fileFound = (result == FILE_SEARCH_OK);
 
     *p_out_width = fsFileInfo.width;

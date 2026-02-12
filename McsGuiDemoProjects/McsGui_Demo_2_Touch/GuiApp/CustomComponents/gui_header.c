@@ -13,21 +13,21 @@ void header_setTitle(file_key_e title)
     Label_s titleLabel;
     label_initBmpPosSizeBack(&titleLabel, title, 120, 0, 240, 40, theme_getHeaderColor());
     base_setTopPadding(&titleLabel, 1);
-    theme_setTheme(&titleLabel);
-    gui_translate(&titleLabel);
+    theme_applyThemeProperty(&titleLabel);
+    gui_app_translate(&titleLabel);
 
     base_display(&titleLabel);
 }
 
 void header_updateTime(const bool update)
 {
-    g_guiApp.updateDateTime = update;
+    gui_app_setUpdateDateTime(update);
 }
 
 void header_updateDateTime(const bool forceUpdate)
 {
     static int32_t lastMinute = -1;
-    if (!g_guiApp.updateDateTime)
+    if (!gui_app_getUpdateDateTime())
     {
         lastMinute = -1;
 
@@ -59,7 +59,7 @@ void header_showAlarm(const bool showAlarm)
     {
         Label_s alarmLabel;
         label_initBmpPosSize(&alarmLabel, FILE_KEY_ICON_HEADER_BELL, STYLE_DISPLAY_WIDTH - 70, 0, 40, 40);
-        theme_setTheme(&alarmLabel);
+        theme_applyThemeProperty(&alarmLabel);
         base_display(&alarmLabel);
     }
     else

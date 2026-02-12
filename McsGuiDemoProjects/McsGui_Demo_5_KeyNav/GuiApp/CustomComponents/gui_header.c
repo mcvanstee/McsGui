@@ -27,7 +27,7 @@ void header_updateTime(const bool update)
 void header_updateDateTime(const bool forceUpdate)
 {
     static int32_t lastMinute = -1;
-    const bool updateDateTime = gui_app_updateDateTime();
+    const bool updateDateTime = gui_app_getUpdateDateTime();
 
     if (!updateDateTime)
     {

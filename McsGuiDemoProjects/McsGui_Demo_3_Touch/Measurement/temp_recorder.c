@@ -5,6 +5,7 @@
 #include "main.h"
 #include "gui_app.h"
 #include "gui_settings.h"
+#include "gui_utils_time_converter.h"
 #include "utils_data.h"
 #include "utils_math.h"
 
@@ -69,7 +70,7 @@ bool temp_recorder_start(void)
     char startTimeStr[16] = {0};
     sprintf(startTimeStr, "%02d-%02d-%02d", time.Hours, time.Minutes, time.Seconds);
 
-    const uint32_t timestamp = gui_app_convertTimeStampToSeconds(&time, &date);
+    const uint32_t timestamp = time_converter_rtcTimeToTimeStamp(&time, &date);
 
     char filename[64] = {0};
     sprintf(filename, "Recordings/new/rec_%lu_%s", id, startTimeStr);

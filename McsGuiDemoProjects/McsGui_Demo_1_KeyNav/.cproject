@@ -40,7 +40,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/GuiApp/Views/General}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/GuiApp/Views/Settings}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Image}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Logging}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/System}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/System/FatFs}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/System/Hal}&quot;"/>
@@ -73,7 +72,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/GuiApp/Views/General}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/GuiApp/Views/Settings}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Image}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Logging}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/System}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/System/FatFs}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/McsGuiLib/McsGui}&quot;"/>

@@ -14,7 +14,7 @@ static void mv_create(View_s *p_view);
 
 void mainview_navigateTo(void)
 {
-	view_navigateTo(&g_guiApp.view, mv_create);
+	view_navigateTo(gui_app_getView(), mv_create);
 }
 
 static void mv_create(View_s *p_view)
@@ -30,7 +30,7 @@ static void mv_create(View_s *p_view)
     gui_addPageButton(p_grid, FILE_KEY_ICON_BUTTON_INFO, FILE_KEY_TEXT_INFO, info_view_navigateTo);
     base_setFocus(p_measureButton, true);
 
-    gui_drawFooterBackground();
-	gui_showFooterLogo();
+    gui_app_drawFooterBackground();
+	gui_app_showFooterLogo();
 }
 

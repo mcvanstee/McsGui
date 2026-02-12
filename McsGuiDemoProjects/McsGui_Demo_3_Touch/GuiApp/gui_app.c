@@ -3,27 +3,20 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
-#include <time.h>
 
-#include "fs_file_search.h"
-#include "fs_font_search.h"
 #include "external_display.h"
-
 #include "style.h"
-#include "gui_control_bar.h"
-#include "display_api.h"
 #include "gui_image.h"
 #include "gui_settings.h"
+#include "gui_utils_time_converter.h"
 #include "Graphics/gui_graphics.h"
-#include "external_display.h"
-#include "colors.h"
+#include "display_api.h"
 #include "touch_api.h"
 #include "touch_driver.h"
 #include "temp_recorder.h"
 #include "utils_array.h"
 #include "utils_data.h"
 #include "main.h"
-#include "ff.h"
 
 #include "main_view.h"
 #include "settings_view.h"
@@ -49,7 +42,7 @@ extern UART_HandleTypeDef hlpuart1;
 extern RTC_HandleTypeDef hrtc;
 extern CRC_HandleTypeDef hcrc;
 
-GuiApplication_s g_guiApp;
+static GuiApplication_s m_guiApp;
 static FATFS m_fatFs;
 static ControlBar_s m_controlBar;
 
@@ -63,9 +56,8 @@ void gui_app_start(void)
     gui_app_initExternalDisplay();
     gui_app_createFolders();
     gui_app_initSettings();
-
 	gui_app_drawBackground();
-	view_init(&g_guiApp.view);
+	view_init(&m_guiApp.view);
 	gui_app_initControlBar();
     mainview_navigateTo();
     graphics_flushDisplayUpdates();
@@ -105,7 +97,7 @@ void gui_app_start(void)
         {
             guiEvent.event = CUSTOM_GUI_EVENT_MEASREMANT_READY;
         }
-        else if (updateDateTime() && (g_guiApp.showTime || g_guiApp.showDate))
+        else if (updateDateTime() && (settings_getShowTime() || settings_getShowDate()))
         {
         	guiEvent.event = CUSTOM_GUI_EVENT_UPDATE_DATE_TIME;
         }
@@ -115,12 +107,98 @@ void gui_app_start(void)
 
         if (GUI_EVENT_NONE != guiEvent.event)
         {
-            view_handleEvent(&g_guiApp.view, &guiEvent);
+            view_handleEvent(&m_guiApp.view, &guiEvent);
         }
 
         graphics_flushDisplayUpdates();
 	}
 }
+
+void gui_app_clearView(void)
+{
+    Rectangle_s background;
+    rectangle_initFillPosSize(&background, COLOR_BACKGROUND, 42, 0, (STYLE_DISPLAY_WIDTH - 42), STYLE_DISPLAY_HEIGHT);
+    base_display(&background);
+}
+
+void gui_app_drawBackground(void)
+{
+    Rectangle_s controlBarBackground;
+    rectangle_initFillPosSize(&controlBarBackground, COLOR_BACKGROUND, 0, 0, STYLE_CONTROL_BAR_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_display(&controlBarBackground);
+
+    Rectangle_s separatorLeft;
+    rectangle_initFillPosSize(
+            &separatorLeft, COLOR_SEPARATOR, STYLE_CONTROL_BAR_WIDTH, 0, STYLE_CONTROL_BAR_SEPARATOR_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_display(&separatorLeft);
+    gui_app_clearView();
+}
+
+void gui_app_translate(void *p_component)
+{
+    property_value_language_e languageProperty;
+
+    switch (settings_getLanguage())
+    {
+        case Language_English:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
+            break;
+        case Language_Dutch:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_DUTCH;
+            break;
+        case Lanugage_German:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_GERMAN;
+            break;
+        case Language_French:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_FRENCH;
+            break;
+        case Language_Spanish:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_SPANISH;
+            break;
+        case Language_Italian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ITALIAN;
+            break;
+        case Language_Russian:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
+            break;
+        case Language_Chinese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
+            break;
+        case Language_Japanese:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;
+            break;
+        case Language_Korean:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_KOREAN;
+            break;
+        default:
+            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
+            break;
+    }
+
+    base_setProperty(p_component, FILE_PROPERTY_LANGUAGE, languageProperty);
+}
+
+void gui_app_setVisibiltyControlBar(const bool visible)
+{
+    base_setVisible(&m_controlBar.base, visible);
+}
+
+View_s* gui_app_getView(void)
+{
+    return &m_guiApp.view;
+}
+
+uint32_t gui_app_getTimeStamp(void)
+{
+    RTC_TimeTypeDef time = {0};
+    RTC_DateTypeDef date = {0};
+
+    HAL_RTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
+    HAL_RTC_GetDate(&hrtc, &date, RTC_FORMAT_BIN);
+
+    return time_converter_rtcTimeToTimeStamp(&time, &date);
+}
+
 
 static void gui_app_initDisplay(void)
 {
@@ -180,13 +258,7 @@ static void gui_app_createFolders(void)
 static void gui_app_initSettings(void)
 {
     settings_load();
-    GuiSettings_s settings = settings_getSettings();
-
-    g_guiApp.language = (Language_e)settings.language;
-    g_guiApp.temperatureUnit = (TemperatureUnit_e)settings.temperatureUnit;
-    g_guiApp.showTime = settings.showTime;
-    g_guiApp.showDate = settings.showDate;
-    g_guiApp.displayBrightness = settings.displayBrightness;
+    const GuiSettings_s settings = settings_getSettings();
 
     TouchCalibrationValues_s calibrationValues = {0};
     calibrationValues.gainX = settings.gainX;
@@ -206,7 +278,7 @@ static void gui_app_initControlBar(void)
     control_bar_addButton(&m_controlBar, 7, FILE_KEY_ICON_GEAR, settings_view_navigateTo);
     control_bar_setSelected(&m_controlBar, 0);
     base_setId(&m_controlBar.base, CONTROL_BAR_ID);
-    view_addTopComponent(&g_guiApp.view, &m_controlBar.base);
+    view_addTopComponent(&m_guiApp.view, &m_controlBar.base);
 }
 
 static void gui_app_addPointToEvent(GuiEvent_s *p_guiEvent, const uint8_t event, const TouchPoint_s *p_point)
@@ -449,99 +521,6 @@ EdButtonSetup_s ed_getCustomButton(const uint8_t index)
 	}
 
 	return setup;
-}
-
-void gui_app_drawBackground(void)
-{
-    Rectangle_s controlBarBackground;
-    rectangle_initFillPosSize(&controlBarBackground, COLOR_BACKGROUND, 0, 0, STYLE_CONTROL_BAR_WIDTH, STYLE_DISPLAY_HEIGHT);
-    base_display(&controlBarBackground);
-
-	Rectangle_s separatorLeft;
-	rectangle_initFillPosSize(
-	        &separatorLeft, COLOR_SEPARATOR, STYLE_CONTROL_BAR_WIDTH, 0, STYLE_CONTROL_BAR_SEPARATOR_WIDTH, STYLE_DISPLAY_HEIGHT);
-	base_display(&separatorLeft);
-    gui_app_clearView();
-}
-
-void gui_app_clearView(void)
-{
-    Rectangle_s background;
-    rectangle_initFillPosSize(&background, COLOR_BACKGROUND, 42, 0, (STYLE_DISPLAY_WIDTH - 42), STYLE_DISPLAY_HEIGHT);
-    base_display(&background);
-}
-
-void gui_app_translate(void *p_component)
-{
-    property_value_language_e languageProperty;
-
-    switch (g_guiApp.language)
-    {
-        case Language_English:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
-            break;
-        case Language_Dutch:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_DUTCH;
-            break;
-        case Lanugage_German:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_GERMAN;
-            break;
-        case Language_French:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_FRENCH;
-            break;
-        case Language_Spanish:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_SPANISH;
-            break;
-        case Language_Italian:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ITALIAN;
-            break;
-        case Language_Russian:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_RUSSIAN;
-            break;
-        case Language_Chinese:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_CHINESE;
-            break;
-        case Language_Japanese:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_JAPANESE;
-            break;
-        case Language_Korean:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_KOREAN;
-            break;
-        default:
-            languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
-            break;
-    }
-
-    base_setProperty(p_component, FILE_PROPERTY_LANGUAGE, languageProperty);
-}
-
-void gui_app_setVisibiltyControlBar(const bool visible)
-{
-    base_setVisible(&m_controlBar.base, visible);
-}
-
-uint32_t gui_app_getTimeStamp(void)
-{
-    RTC_TimeTypeDef time = {0};
-    RTC_DateTypeDef date = {0};
-
-    HAL_RTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc, &date, RTC_FORMAT_BIN);
-
-    return gui_app_convertTimeStampToSeconds(&time, &date);
-}
-
-uint32_t gui_app_convertTimeStampToSeconds(RTC_TimeTypeDef *p_time, RTC_DateTypeDef *p_date)
-{
-    struct tm dateTime = {0};
-    dateTime.tm_year = p_date->Year + 100;
-    dateTime.tm_mday = p_date->Date;
-    dateTime.tm_mon = p_date->Month - 1;
-    dateTime.tm_hour = p_time->Hours;
-    dateTime.tm_min = p_time->Minutes;
-    dateTime.tm_sec = p_time->Seconds;
-
-    return (uint32_t) mktime(&dateTime);
 }
 
 static void gui_app_setRTCDateTime(const uint8_t *p_eventArgs)

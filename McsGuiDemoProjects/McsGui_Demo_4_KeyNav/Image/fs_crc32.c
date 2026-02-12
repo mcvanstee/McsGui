@@ -300,35 +300,32 @@ const uint32_t crc_tab32[256] = {
 
 uint32_t crc_32(const unsigned char *input_str, size_t num_bytes)
 {
-    uint32_t crc;
-    const unsigned char *ptr;
-    size_t a;
-
-    crc = CRC_START_32;
-    ptr = input_str;
-
-    if (ptr != NULL)
-    {
-        for (a=0; a < num_bytes; a++)
-         {
-            crc = (crc >> 8) ^ crc_tab32[(crc ^ (uint32_t) *ptr++) & 0x000000FFul];
-        }
-    }
-
-    return (crc ^ 0xFFFFFFFFul);
-}  /* crc_32 */
+    return update_crc_32(CRC_START_32, input_str, num_bytes);
+} /* update_crc_32 */
 
 /*
- * uint32_t update_crc_32(uint32_t crc, unsigned char c);
+ * uint32_t update_crc_32(uint32_t crc, const unsigned char *input_str, size_t num_bytes)
  *
  * The function update_crc_32() calculates a new CRC-32 value based on the
  * previous value of the CRC and the next byte of the data to be checked.
  */
 
-uint32_t update_crc_32(uint32_t crc, unsigned char c)
+uint32_t update_crc_32(uint32_t crc, const unsigned char *input_str, size_t num_bytes)
 {
-    return (crc >> 8) ^ crc_tab32[(crc ^ (uint32_t)c) & 0x000000FFul];
-} /* update_crc_32 */
+    const unsigned char *ptr;
+    size_t a;
 
+    ptr = input_str;
+
+    if (ptr != NULL)
+    {
+        for (a = 0; a < num_bytes; a++)
+        {
+            crc = (crc >> 8) ^ crc_tab32[(crc ^ (uint32_t) *ptr++) & 0x000000FFul];
+        }
+    }
+
+    return crc;
+} /* update_crc_32 */
 
 /*** end of file ***/

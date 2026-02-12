@@ -81,7 +81,7 @@ void keyboard_init(Keyboard_s *p_keyboard)
 {
     textblock_init(&p_keyboard->textBlock);
     textblock_setFont(&p_keyboard->textBlock, theme_getKeyboardFont());
-    base_setSize(&p_keyboard->textBlock.base, 430, 23);
+    base_setDimensions(&p_keyboard->textBlock.base, 430, 23);
     base_setPosition(&p_keyboard->textBlock.base, 25, 32);
     base_setHorizontalAlignment(&p_keyboard->textBlock.base, Gui_Align_Left);
     base_setBackground(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
@@ -136,7 +136,7 @@ static void keyboard_onDisplay(BaseComponent_s *p_baseComponent)
 
     Label_s textbox;
     label_initBmpPos(&textbox, FILE_KEY_KEYBOARD_TEXTBOX, 0, 0);
-    theme_setTheme(&textbox);
+    theme_applyThemeProperty(&textbox);
     base_display(&textbox);
     graphics_displayComponent(p_baseComponent); // display text
 
@@ -351,6 +351,6 @@ static void keyboard_showKeyboard(Keyboard_s *p_keyboard)
 
     Label_s keyboard;
     label_initBmpPos(&keyboard, kbBmp, 0, 84);
-    theme_setTheme(&keyboard);
+    theme_applyThemeProperty(&keyboard);
     base_display(&keyboard);
 }

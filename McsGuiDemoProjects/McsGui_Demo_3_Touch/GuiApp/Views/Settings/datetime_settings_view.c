@@ -3,8 +3,6 @@
 #include "gui_app.h"
 #include "gui_settings.h"
 #include "gui_custom_components.h"
-#include "fs_file_search.h"
-#include "fonts.h"
 
 #include "settings_view.h"
 
@@ -18,21 +16,21 @@ static void dsv_addDateTimeContent(GroupBox_s *p_dateTimeGB);
 static CheckboxLabel_s *dsv_addSwitchLabel(Column_s *p_column, const file_key_e text);
 static void dsv_timeSwitchChanged(CheckboxLabel_s *p_checkboxLabel);
 static void dsv_dateSwitchChanged(CheckboxLabel_s *p_checkboxLabel);
+static void dsv_navigateBack(void);
 
 
 void datetime_settings_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, dsv_create);
+    view_navigateTo(gui_app_getView(), dsv_create);
 }
 
 static void dsv_create(View_s *p_view)
 {
     gui_app_clearView();
-    view_setOnNavigateAway(p_view, settings_view_saveSettings);
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_dateTimeGB = group_box_newInitTitleSize(FILE_KEY_TITLE_DATE_TIME, GROUP_BOX_WIDTH, GROUP_BOX_HEIGHT);
@@ -47,9 +45,9 @@ static void dsv_create(View_s *p_view)
 
     Button_s *p_backButton = button_new();
     button_initBmp(p_backButton, FILE_KEY_ICON_BACK);
-    button_setOnReleasedEvent(p_backButton, settings_view_navigateTo);
+    button_setOnReleasedEvent(p_backButton, dsv_navigateBack);
     base_addNewInitTouch(p_backButton);
-    base_setSize(p_backButton, 50, 50);
+    base_setDimensions(p_backButton, 50, 50);
     base_addNewInitAnchor(p_backButton);
     anchor_setBottomAnchor(p_backButton, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_backButton, p_item, Gui_Anchor_Right);
@@ -69,15 +67,15 @@ static void dsv_addDateTimeContent(GroupBox_s *p_dateTimeGB)
     anchor_setTopMargin(p_column, 16);
     group_box_addComponent(p_dateTimeGB, p_column);
 
-    const file_key_e labelTime = g_guiApp.showTime ? FILE_KEY_TEXT_SHOW_TIME : FILE_KEY_TEXT_HIDE_TIME;
-    const file_key_e labelDate = g_guiApp.showDate ? FILE_KEY_TEXT_SHOW_DATE : FILE_KEY_TEXT_HIDE_DATE;
+    const file_key_e labelTime = settings_getShowTime() ? FILE_KEY_TEXT_SHOW_TIME : FILE_KEY_TEXT_HIDE_TIME;
+    const file_key_e labelDate = settings_getShowDate() ? FILE_KEY_TEXT_SHOW_DATE : FILE_KEY_TEXT_HIDE_DATE;
 
     CheckboxLabel_s *p_timeSwitch = dsv_addSwitchLabel(p_column, labelTime);
     CheckboxLabel_s *p_dateSwitch = dsv_addSwitchLabel(p_column, labelDate);
     p_timeSwitch->labelWidth = 120;
     p_dateSwitch->labelWidth = 120;
-    checkbox_setSelection(&p_timeSwitch->checkBox, g_guiApp.showTime);
-    checkbox_setSelection(&p_dateSwitch->checkBox, g_guiApp.showDate);
+    checkbox_setSelection(&p_timeSwitch->checkBox, settings_getShowTime());
+    checkbox_setSelection(&p_dateSwitch->checkBox, settings_getShowDate());
     checkbox_label_setOnSelectionChanged(p_timeSwitch, dsv_timeSwitchChanged);
     checkbox_label_setOnSelectionChanged(p_dateSwitch, dsv_dateSwitchChanged);
 }
@@ -102,7 +100,7 @@ static void dsv_timeSwitchChanged(CheckboxLabel_s *p_checkboxLabel)
         p_checkboxLabel->label = FILE_KEY_TEXT_HIDE_TIME;
     }
 
-    g_guiApp.showTime = p_checkboxLabel->checkBox.checked;
+    settings_setShowTime(p_checkboxLabel->checkBox.checked);
     checkbox_label_displayLabel(p_checkboxLabel);
 }
 
@@ -117,6 +115,12 @@ static void dsv_dateSwitchChanged(CheckboxLabel_s *p_checkboxLabel)
         p_checkboxLabel->label = FILE_KEY_TEXT_HIDE_DATE;
     }
 
-    g_guiApp.showDate = p_checkboxLabel->checkBox.checked;
+    settings_setShowDate(p_checkboxLabel->checkBox.checked);
     checkbox_label_displayLabel(p_checkboxLabel);
+}
+
+static void dsv_navigateBack(void)
+{
+    settings_save();
+    settings_view_navigateTo();
 }

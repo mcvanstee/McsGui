@@ -15,6 +15,9 @@ extern "C" {
 #include "gui_config.h"
 #include "Core/gui_basecomponent.h"
 
+#define TEXTBLOCK_MAX_STRING_LENGTH GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH
+#define TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL
+
 typedef enum
 {
   Text_Align_Left = 1,   /**/
@@ -29,7 +32,7 @@ typedef struct text_block_s
     BaseComponent_s base;
     FontData_s fontData;
     void (*valueChanged)(void);
-    char text[GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL];
+    char text[TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL];
 } TextBlock_s;
 
 

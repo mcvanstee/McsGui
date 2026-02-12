@@ -3,8 +3,6 @@
 #include "gui_app.h"
 #include "gui_settings.h"
 #include "gui_custom_components.h"
-#include "fs_file_search.h"
-#include "fonts.h"
 
 #include "settings_view.h"
 
@@ -20,21 +18,21 @@ static void lsv_addLanguageContent(GroupBox_s *p_languageGB);
 static void lsv_languageChanged(RadioGroup_s *p_radioGroup);
 static CheckboxLabel_s *sv_addCheckboxLabel(
         Column_s *p_column, RadioGroup_s *p_radioGroup, const file_key_e text);
+static void lsv_navigateBack(void);
 
 
 void language_settings_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, lsv_create);
+    view_navigateTo(gui_app_getView(), lsv_create);
 }
 
 static void lsv_create(View_s *p_view)
 {
     gui_app_clearView();
-    view_setOnNavigateAway(p_view, settings_view_saveSettings);
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_languageGB = group_box_newInitTitleSize(
@@ -50,9 +48,9 @@ static void lsv_create(View_s *p_view)
 
     Button_s *p_backButton = button_new();
     button_initBmp(p_backButton, FILE_KEY_ICON_BACK);
-    button_setOnReleasedEvent(p_backButton, settings_view_navigateTo);
+    button_setOnReleasedEvent(p_backButton, lsv_navigateBack);
     base_addNewInitTouch(p_backButton);
-    base_setSize(p_backButton, 50, 50);
+    base_setDimensions(p_backButton, 50, 50);
     base_addNewInitAnchor(p_backButton);
     anchor_setBottomAnchor(p_backButton, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_backButton, p_item, Gui_Anchor_Right);
@@ -93,7 +91,7 @@ static void lsv_addLanguageContent(GroupBox_s *p_languageGB)
     sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_CHINESE_SIM);
     sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_JAPANESE);
     sv_addCheckboxLabel(p_columnRight, p_radioGroup, FILE_KEY_TEXT_KOREAN);
-    radiogroup_setSelectedAtIndex(p_radioGroup, g_guiApp.language);
+    radiogroup_setSelectedAtIndex(p_radioGroup, (int8_t)settings_getLanguage());
 }
 
 static CheckboxLabel_s *sv_addCheckboxLabel(
@@ -109,8 +107,8 @@ static CheckboxLabel_s *sv_addCheckboxLabel(
 
 static void lsv_languageChanged(RadioGroup_s *p_radioGroup)
 {
-    g_guiApp.language = radiogroup_getSelectedIndex(p_radioGroup);
-    GroupBox_s *p_languageGB = (GroupBox_s *)view_getComponentById(&g_guiApp.view, LSV_LANGUAGE_GROUP_BOX_ID);
+    settings_setLanguage((Language_e)radiogroup_getSelectedIndex(p_radioGroup));
+    GroupBox_s *p_languageGB = (GroupBox_s *)view_getComponentById(gui_app_getView(), LSV_LANGUAGE_GROUP_BOX_ID);
 
     Rectangle_s background;
     rectangle_initFillPosSize(
@@ -122,3 +120,8 @@ static void lsv_languageChanged(RadioGroup_s *p_radioGroup)
     base_display(p_languageGB);
 }
 
+static void lsv_navigateBack(void)
+{
+    settings_save();
+    settings_view_navigateTo();
+}

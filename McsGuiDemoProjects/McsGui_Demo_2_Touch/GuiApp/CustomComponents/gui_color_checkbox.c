@@ -5,8 +5,7 @@
 
 #include "gui_app.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_COLOR_CHECKBOX_BUFFER_SIZE 6
 
@@ -76,7 +75,7 @@ void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox)
     checkbox_init(&p_colorCheckbox->checkbox);
     p_colorCheckbox->color = 0;
     base_setBmpKey(p_colorCheckbox, FILE_KEY_ICON_PANE_CHECKMARK);
-    base_setSize(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
+    base_setDimensions(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
     base_setOnDisplay(p_colorCheckbox, color_checkbox_onDisplay);
     base_setOnDelete(p_colorCheckbox, color_checkbox_delete);
     base_setHorizontalAlignment(p_colorCheckbox, Gui_Align_Right);
@@ -127,7 +126,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
                 &label, FILE_KEY_ICON_PANE_CHECKMARK,
                 p_base->x, p_base->y,
                 CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
-        theme_setTheme(&label);
+        theme_applyThemeProperty(&label);
 
         GuiAnchor_s anchorLabel;
         anchor_init(&anchorLabel);

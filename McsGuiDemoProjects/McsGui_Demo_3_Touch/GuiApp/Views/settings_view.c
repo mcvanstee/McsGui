@@ -6,7 +6,6 @@
 #include "gui_settings.h"
 #include "gui_custom_components.h"
 #include "gui_component_extensions.h"
-#include "fonts.h"
 
 #include "display_settings_view.h"
 #include "datetime_settings_view.h"
@@ -21,7 +20,7 @@ static void sv_create(View_s *p_view);
 
 void settings_view_navigateTo(void)
 {
-	view_navigateTo(&g_guiApp.view, sv_create);
+	view_navigateTo(gui_app_getView(), sv_create);
 }
 
 static void sv_create(View_s *p_view)
@@ -30,7 +29,7 @@ static void sv_create(View_s *p_view)
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_displayGB = group_box_newInitTitleSize(
@@ -65,14 +64,3 @@ static void sv_create(View_s *p_view)
     group_box_addComponent(p_displayGB, p_dateTimeButton);
 }
 
-void settings_view_saveSettings(View_s *p_view)
-{
-    GuiSettings_s settings = settings_getSettings();
-    settings.language = g_guiApp.language;
-    settings.showTime = g_guiApp.showTime;
-    settings.showDate = g_guiApp.showDate;
-    settings.displayBrightness = g_guiApp.displayBrightness;
-    settings_setSettings(settings);
-
-    settings_save();
-}

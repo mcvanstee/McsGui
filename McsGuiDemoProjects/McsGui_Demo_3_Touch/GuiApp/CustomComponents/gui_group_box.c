@@ -1,10 +1,8 @@
 #include "gui_group_box.h"
 
 #include "gui_app.h"
-#include "colors.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_GROUP_BOX_BUFFER_SIZE 5
 
@@ -88,7 +86,7 @@ GroupBox_s *group_box_newInitTitleSize(
 		file_key_e title, uint16_t width, uint16_t height)
 {
 	GroupBox_s *p_groupBox = group_box_newInit();
-	base_setSize(&p_groupBox->rect.base, width, height);
+	base_setDimensions(&p_groupBox->rect.base, width, height);
 	p_groupBox->title = title;
 
 	return p_groupBox;
@@ -99,7 +97,7 @@ GroupBox_s *group_box_newInitTitlePosSize(
 {
 	GroupBox_s *p_groupBox = group_box_newInit();
 	base_setPosition(&p_groupBox->rect.base, x, y);
-	base_setSize(&p_groupBox->rect.base, width, height);
+	base_setDimensions(&p_groupBox->rect.base, width, height);
 	p_groupBox->title = title;
 
 	return p_groupBox;

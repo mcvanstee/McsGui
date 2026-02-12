@@ -12,7 +12,7 @@ static void sv_rgSelectionChanged(RadioGroup_s *p_radioGroup);
 
 void setup_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, setup_view_create);
+    view_navigateTo(gui_app_getView(), setup_view_create);
 }
 
 static void setup_view_create(View_s *p_view)
@@ -30,14 +30,8 @@ static void setup_view_create(View_s *p_view)
     gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_DEG_CEL);
     gui_addCheckboxLabel(p_column, p_radioGroup, FILE_KEY_TEXT_PANE_DEG_FAR);
 
-    if (g_guiApp.temperatureUnit == TemperatureUnit_Celsius)
-    {
-        radiogroup_setSelectedAtIndex(p_radioGroup, 0);
-    }
-    else
-    {
-        radiogroup_setSelectedAtIndex(p_radioGroup, 1);
-    }
+    const int8_t seletedIndex = (int8_t)gui_app_getTemperatureUnit();
+    radiogroup_setSelectedAtIndex(p_radioGroup, seletedIndex);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);
     gui_addFooterButton(p_footer, FILE_KEY_ICON_BUTTON_ARROW_BACK, mainview_navigateTo);
@@ -48,13 +42,7 @@ static void setup_view_create(View_s *p_view)
 static void sv_rgSelectionChanged(RadioGroup_s *p_radioGroup)
 {
     const int8_t selectedIndex = radiogroup_getSelectedIndex(p_radioGroup);
-
-    if (selectedIndex == 0)
-    {
-        g_guiApp.temperatureUnit = TemperatureUnit_Celsius;
-    }
-    else
-    {
-        g_guiApp.temperatureUnit = TemperatureUnit_Fahrenheit;
-    }
+    const TemperatureUnit_e selectedUnit =
+            (selectedIndex == 0) ? TemperatureUnit_Celsius : TemperatureUnit_Fahrenheit;
+    gui_app_setTemperatureUnit(selectedUnit);
 }

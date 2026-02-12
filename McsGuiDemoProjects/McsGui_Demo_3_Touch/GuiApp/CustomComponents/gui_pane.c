@@ -3,8 +3,8 @@
 #include "colors.h"
 #include "style.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 #define GUI_PANE_BUFFER_SIZE 5
 

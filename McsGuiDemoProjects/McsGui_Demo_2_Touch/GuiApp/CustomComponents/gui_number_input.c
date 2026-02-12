@@ -5,8 +5,7 @@
 
 #include "gui_app.h"
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_memory.h"
 
 #define GUI_NUMBER_INPUT_BUTTON_WIDTH 30
 #define GUI_NUMBER_INPUT_TEXT_WIDTH 50
@@ -79,7 +78,7 @@ void num_input_delete(BaseComponent_s *p_numberInputBase)
 void num_input_init(NumberInput_s *p_numberInput)
 {
     base_initParentComp(&p_numberInput->base, num_input_delete);
-    base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 
     button_init(&p_numberInput->decreaseButton);
     button_init(&p_numberInput->increaseButton);
@@ -90,12 +89,12 @@ void num_input_init(NumberInput_s *p_numberInput)
 
     base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_BUTTON_NUMINPUT_MINUS);
     base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_BUTTON_NUMINPUT_PLUS);
-    base_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
-    base_setSize(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setDimensions(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     button_setOnReleased(&p_numberInput->decreaseButton, num_input_decreaseValue);
     button_setOnReleased(&p_numberInput->increaseButton, num_input_increaseValue);
-    theme_setTheme(&p_numberInput->decreaseButton);
-    theme_setTheme(&p_numberInput->increaseButton);
+    theme_applyThemeProperty(&p_numberInput->decreaseButton);
+    theme_applyThemeProperty(&p_numberInput->increaseButton);
     base_setOnDelete(&p_numberInput->decreaseButton, num_input_buttonDelete);
     base_setOnDelete(&p_numberInput->increaseButton, num_input_buttonDelete);
 
@@ -131,11 +130,11 @@ void num_input_setOrientation(NumberInput_s *p_numberInput, NumberInputOrientati
 
 	if (NumberInput_Orientation_Horizontal == orientation)
 	{
-		base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+	    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 	}
 	else
 	{
-		base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_WIDTH);
+	    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_WIDTH);
 	}
 }
 
@@ -186,17 +185,17 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     if (p_numberInput->orientation == NumberInput_Orientation_Horizontal)
     {
     	base_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y);
-		base_setSize(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    	base_setDimensions(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 	}
     else
 	{
     	base_setPosition(&textBlock, p_numberInput->base.x, p_numberInput->base.y + GUI_NUMBER_INPUT_BUTTON_WIDTH);
-		base_setSize(&textBlock, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_TEXT_WIDTH);
+    	base_setDimensions(&textBlock, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_TEXT_WIDTH);
 	}
 
     base_setBackground(&textBlock, theme_getPaneColor());
     base_setTransparent(&textBlock, false);
-    snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
+    snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%0*ld", 2, p_numberInput->value);
     base_display(&textBlock);
 }
 

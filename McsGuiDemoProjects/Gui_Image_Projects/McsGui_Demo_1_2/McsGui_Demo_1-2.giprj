@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>McsGui_Demo_1-2</Name>
-  <ProjectFolder>C:\Development\IRL_Development\Gui_Image_Projects\McsGui_Demo_1_2</ProjectFolder>
+  <ProjectFolder>C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_1_2</ProjectFolder>
   <UserSourceFolder />
   <Instructions>
     <ConverterInstruction xsi:type="FontInstruction">
@@ -1162,6 +1162,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1118482</TextColor>
       <BackColor>-13882324</BackColor>
       <BackConverterColorId>4</BackConverterColorId>
@@ -1177,6 +1178,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1118482</TextColor>
       <BackColor>-14576142</BackColor>
       <BackConverterColorId>5</BackConverterColorId>
@@ -1192,6 +1194,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1118482</TextColor>
       <BackColor>-12237499</BackColor>
       <BackConverterColorId>12</BackConverterColorId>
@@ -1207,6 +1210,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-16777216</TextColor>
       <BackColor>-1</BackColor>
       <BackConverterColorId>13</BackConverterColorId>
@@ -1222,6 +1226,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1118482</TextColor>
       <BackColor>-13882324</BackColor>
       <BackConverterColorId>8</BackConverterColorId>
@@ -1237,6 +1242,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-16777216</TextColor>
       <BackColor>-1</BackColor>
       <BackConverterColorId>9</BackConverterColorId>
@@ -1252,6 +1258,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-1118482</TextColor>
       <BackColor>-11645362</BackColor>
       <BackConverterColorId>14</BackConverterColorId>
@@ -1267,6 +1274,7 @@
         <Bottom>0</Bottom>
       </Margin>
       <MonospaceNumbers>true</MonospaceNumbers>
+      <DigitsOnly>false</DigitsOnly>
       <TextColor>-16777216</TextColor>
       <BackColor>-2302756</BackColor>
       <BackConverterColorId>15</BackConverterColorId>
@@ -2087,14 +2095,17 @@
     <VersionMajor>1</VersionMajor>
     <VersionMinor>0</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>19</VersionRevision>
-    <GuiPixelDataFile>gui_pixeldata</GuiPixelDataFile>
+    <VersionRevision>20</VersionRevision>
+    <GuiPixelDataFile>demo_1_2_pixeldata</GuiPixelDataFile>
     <CreateDebugFiles>false</CreateDebugFiles>
     <CopySourceFiles>false</CopySourceFiles>
     <FileSystemFormat>
       <FileFormat>BasicImage</FileFormat>
       <SingleFileIncludeWidthHeight>false</SingleFileIncludeWidthHeight>
       <SeparateSearchTreeFromData>true</SeparateSearchTreeFromData>
+      <CompressBasicImagePixelData>false</CompressBasicImagePixelData>
+      <CreatePixelDataFile>false</CreatePixelDataFile>
+      <CompressOptimizedPixelData>false</CompressOptimizedPixelData>
     </FileSystemFormat>
     <PixelDataFormat>
       <PixelFormat>RGB565</PixelFormat>

@@ -20,7 +20,7 @@ extern RTC_HandleTypeDef hrtc;
 
 void set_time_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, stv_create);
+    view_navigateTo(gui_app_getView(), stv_create);
 }
 
 static void stv_create(View_s *p_view)
@@ -106,10 +106,12 @@ static void stv_saveTime(void)
     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
-    DigitInput_s *p_hh1 = (DigitInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_HH_1_ID);
-    DigitInput_s *p_hh2 = (DigitInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_HH_2_ID);
-    DigitInput_s *p_mm1 = (DigitInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_MM_1_ID);
-    DigitInput_s *p_mm2 = (DigitInput_s *)view_getComponentById(&g_guiApp.view, STV_INPUT_MM_2_ID);
+    View_s *p_view = gui_app_getView();
+
+    DigitInput_s *p_hh1 = (DigitInput_s *)view_getComponentById(p_view, STV_INPUT_HH_1_ID);
+    DigitInput_s *p_hh2 = (DigitInput_s *)view_getComponentById(p_view, STV_INPUT_HH_2_ID);
+    DigitInput_s *p_mm1 = (DigitInput_s *)view_getComponentById(p_view, STV_INPUT_MM_1_ID);
+    DigitInput_s *p_mm2 = (DigitInput_s *)view_getComponentById(p_view, STV_INPUT_MM_2_ID);
 
     sTime.Hours = p_hh1->value * 10 + p_hh2->value;
     sTime.Minutes = p_mm1->value * 10 + p_mm2->value;

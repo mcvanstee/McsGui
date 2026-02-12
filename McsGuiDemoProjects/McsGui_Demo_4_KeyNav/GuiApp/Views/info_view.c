@@ -9,21 +9,23 @@ static void iv_create(View_s *p_view, void (*p_navBackView)(void));
 
 void info_view_navigateTo(void (*p_navBackView)(void))
 {
-    view_navigateAway(&g_guiApp.view);
-    view_beforeNavigateTo(&g_guiApp.view);
-    iv_create(&g_guiApp.view, p_navBackView);
-    view_display(&g_guiApp.view);
-    view_afterNavigatedTo(&g_guiApp.view);
+    View_s *p_view = gui_app_getView();
+
+    view_navigateAway(p_view);
+    view_beforeNavigateTo(p_view);
+    iv_create(p_view, p_navBackView);
+    view_display(p_view);
+    view_afterNavigatedTo(p_view);
 }
 
 static void iv_create(View_s *p_view, void (*p_navBackView)(void))
 {
     header_setTitle(FILE_KEY_TITLE_INFO);
-    gui_clearView();
+    gui_app_clearView();
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     base_addNewInitAnchor(p_item);
 
     TextBlock_s *p_irlTB = textblock_newInit();
@@ -47,7 +49,7 @@ static void iv_create(View_s *p_view, void (*p_navBackView)(void))
 
     TextBlock_s *p_mcsguiTB = textblock_newInit();
     textblock_setFont(p_mcsguiTB, theme_getDefaultFont());
-    snprintf(p_mcsguiTB->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "McsGui V%d.%d.%d",
+    snprintf(p_mcsguiTB->text, TEXTBLOCK_MAX_STRING_LENGTH, "McsGui V%d.%d.%d",
             MCSGUI_VERSION_MAJOR, MCSGUI_VERSION_MINOR, MCSGUI_VERSION_PATCH);
     base_addNewInitAnchor(p_mcsguiTB);
     anchor_setLeftAnchor(p_mcsguiTB, p_mailTB, Gui_Anchor_Left);
@@ -64,6 +66,7 @@ static void iv_create(View_s *p_view, void (*p_navBackView)(void))
     anchor_setTopMargin(p_label, 10);
     view_addComponent(p_view, p_label);
 
-    footer_setOnReleased(&g_guiApp.footer, p_navBackView);
-    base_setFocus(&g_guiApp.footer.button, true);
+    Footer_s *p_footer = gui_app_getFooter();
+    footer_setOnReleased(p_footer, p_navBackView);
+    base_setFocus(&p_footer->button, true);
 }

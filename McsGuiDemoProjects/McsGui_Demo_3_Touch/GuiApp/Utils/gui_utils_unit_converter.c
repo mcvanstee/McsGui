@@ -4,7 +4,7 @@
 
 float_t unit_converter_celsiusToFahrenheit(float_t celsius)
 {
-    return (celsius * 9 / 5) + 32;
+    return (celsius * 9.0f / 5.0f) + 32.0f;
 }
 
 void unit_converter_temperatureToStr(char *p_str, int32_t strLength, float_t temperature)

@@ -7,7 +7,7 @@ ButtonCustom_s* custom_cmp_createIconNavButton(
     const file_key_e icon, const file_key_e text, void (*onReleased)(void))
 {
     ButtonCustom_s *p_displayButton = button_custom_newInit();
-    base_setSize(p_displayButton, 150, 36);
+    base_setDimensions(p_displayButton, 150, 36);
     button_custom_setTextBmp(p_displayButton, text);
     button_setOnReleasedEvent(&p_displayButton->button, onReleased);
     button_custom_setBorderColor(p_displayButton, COLOR_ACCENT_RED);

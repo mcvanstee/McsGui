@@ -40,7 +40,7 @@ extern UART_HandleTypeDef hlpuart1;
 extern RTC_HandleTypeDef hrtc;
 extern CRC_HandleTypeDef hcrc;
 
-static GuiApplication_s g_guiApp;
+static GuiApplication_s m_guiApp;
 static FATFS m_fatFs;
 
 static uint8_t m_uartRxBuffer[ED_IN_BUFFER_LENGTH];
@@ -56,7 +56,7 @@ void gui_app_start(void)
 	gui_app_drawBackground();
 
 	nav_btn_init();
-	view_init(&g_guiApp.view);
+	view_init(&m_guiApp.view);
     mainview_navigateTo();
     graphics_flushDisplayUpdates();
 
@@ -118,11 +118,11 @@ void gui_app_start(void)
         {
             header_updateDateTime(false);
         }
-        else if (g_guiApp.alarmActive)
+        else if (m_guiApp.alarmActive)
         {
-            if (HAL_GetTick() >= g_guiApp.alarmTime_ms)
+            if (HAL_GetTick() >= m_guiApp.alarmTime_ms)
             {
-                g_guiApp.alarmActive = false;
+                m_guiApp.alarmActive = false;
                 message_dialog_show(FILE_KEY_TITLE_ALARM, FILE_KEY_TEXT_ALARM, mainview_navigateTo);
                 header_showAlarm(false);
             }
@@ -133,12 +133,75 @@ void gui_app_start(void)
 
         if (GUI_EVENT_NONE != guiEvent.event)
         {
-            view_handleEvent(&g_guiApp.view, &guiEvent);
+            view_handleEvent(&m_guiApp.view, &guiEvent);
         }
 
         graphics_flushDisplayUpdates();
 	}
 }
+
+void gui_app_clearView(void)
+{
+    Rectangle_s background;
+    rectangle_initFillPosSize(
+        &background, theme_getBackgroundColor(),
+        STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
+    base_display(&background);
+}
+
+void gui_app_drawBackground(void)
+{
+    gui_app_drawHeaderBackground();
+    gui_app_clearView();
+    gui_app_drawFooterBackground();
+}
+
+void gui_app_drawHeaderBackground(void)
+{
+    Rectangle_s background;
+    rectangle_initFillPosSize(
+        &background, theme_getHeaderColor(),
+        STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_HEIGHT);
+    base_display(&background);
+
+    Rectangle_s separatorTop;
+    rectangle_initFillPosSize(
+        &separatorTop, theme_getSeparatorColor(),
+        STYLE_HEADER_X, SYTLE_HEADER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_SEPARATOR_HEIGHT);
+    base_display(&separatorTop);
+
+    Label_s clock;
+    label_initBmpPosSize(
+        &clock, FILE_KEY_ICON_CLOCK,
+        STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_HEADER_ICON_WIDTH, STYLE_HEADER_ICON_HEIGHT);
+    theme_setHeaderIcon(&clock);
+    base_display(&clock.base);
+
+    Label_s wifi;
+    label_initBmpPosSize(
+        &wifi, FILE_KEY_ICON_WIFI,
+        (STYLE_DISPLAY_WIDTH - STYLE_HEADER_ICON_WIDTH), STYLE_HEADER_Y, STYLE_HEADER_ICON_HEIGHT, STYLE_HEADER_HEIGHT);
+    theme_setHeaderIcon(&wifi);
+    base_display(&wifi.base);
+
+    header_updateDateTime(true);
+}
+
+void gui_app_drawFooterBackground(void)
+{
+    Rectangle_s separatorBottom;
+    rectangle_initFillPosSize(
+        &separatorBottom, theme_getSeparatorColor(),
+        STYLE_FOOTER_X, STYLE_FOOTER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_SEPARATOR_HEIGHT);
+    base_display(&separatorBottom);
+
+    Rectangle_s background;
+    rectangle_initFillPosSize(
+        &background, theme_getFooterColor(),
+        STYLE_FOOTER_X, STYLE_FOOTER_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_HEIGHT);
+    base_display(&background);
+}
+
 
 static void gui_app_initDisplay(void)
 {
@@ -178,18 +241,18 @@ static void gui_app_initExternalDisplay(void)
 
 static void gui_app_initSettings(void)
 {
-    g_guiApp.language = Language_English;
-    g_guiApp.temperatureUnit = TemperatureUnit_Celsius;
-    g_guiApp.updateDateTime = true;
-    g_guiApp.alarmActive = false;
-    g_guiApp.alarmTime_mm = 0;
-    g_guiApp.alarmTime_ms = 0;
-    g_guiApp.displayBrightness = DISPLAY_DEFAULT_BRIGTHNESS;
-    g_guiApp.themeSetting.theme = GuiTheme_Light;
-    g_guiApp.themeSetting.accentColor = COLOR_ACCENT_RED;
-    g_guiApp.themeSetting.cursorColor = COLOR_ACCENT_RED;
+    m_guiApp.language = Language_English;
+    m_guiApp.temperatureUnit = TemperatureUnit_Celsius;
+    m_guiApp.updateDateTime = true;
+    m_guiApp.alarmActive = false;
+    m_guiApp.alarmTime_mm = 0;
+    m_guiApp.alarmTime_ms = 0;
+    m_guiApp.displayBrightness = DISPLAY_DEFAULT_BRIGTHNESS;
+    m_guiApp.themeSetting.theme = GuiTheme_Light;
+    m_guiApp.themeSetting.accentColor = COLOR_ACCENT_RED;
+    m_guiApp.themeSetting.cursorColor = COLOR_ACCENT_RED;
 
-    theme_init(&g_guiApp.themeSetting);
+    theme_init(&m_guiApp.themeSetting);
 }
 
 static void gui_app_handleUartData(void)
@@ -439,73 +502,40 @@ EdButtonSetup_s ed_getCustomButton(const uint8_t index)
 	return setup;
 }
 
-void gui_app_drawBackground(void)
+void gui_app_showFooterLogo(void)
 {
-    gui_app_drawHeaderBackground();
-    gui_app_clearView();
-    gui_app_drawFooterBackground();
-}
+    Item_s item;
+    item_init(&item);
+    base_setPosition(&item, STYLE_FOOTER_X, STYLE_FOOTER_Y);
+    base_setDimensions(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
 
-void gui_app_drawHeaderBackground(void)
-{
-    Rectangle_s background;
-    rectangle_initFillPosSize(
-        &background, theme_getHeaderColor(),
-        STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_HEIGHT);
-    base_display(&background);
+    Label_s logo;
+    label_initBmp(&logo, FILE_KEY_IRL_LOGO_48);
+    GuiAnchor_s logoAnchor;
+    anchor_init(&logoAnchor);
+    base_addAnchor(&logo, &logoAnchor);
+    anchor_setRightAnchor(&logo, &item, Gui_Anchor_Right);
+    anchor_setVerticalCenter(&logo, &item);
+    anchor_setRightMargin(&logo, 10);
+    base_display(&logo);
 
-    Rectangle_s separatorTop;
-    rectangle_initFillPosSize(
-        &separatorTop, theme_getSeparatorColor(),
-        STYLE_HEADER_X, SYTLE_HEADER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_SEPARATOR_HEIGHT);
-    base_display(&separatorTop);
-
-    Label_s clock;
-    label_initBmpPosSize(
-        &clock, FILE_KEY_ICON_CLOCK,
-        STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_HEADER_ICON_WIDTH, STYLE_HEADER_ICON_HEIGHT);
-    theme_setHeaderIcon(&clock);
-    base_display(&clock.base);
-
-    Label_s wifi;
-    label_initBmpPosSize(
-        &wifi, FILE_KEY_ICON_WIFI,
-        (STYLE_DISPLAY_WIDTH - STYLE_HEADER_ICON_WIDTH), STYLE_HEADER_Y, STYLE_HEADER_ICON_HEIGHT, STYLE_HEADER_HEIGHT);
-    theme_setHeaderIcon(&wifi);
-    base_display(&wifi.base);
-
-    header_updateDateTime(true);
-}
-
-void gui_app_drawFooterBackground(void)
-{
-    Rectangle_s separatorBottom;
-    rectangle_initFillPosSize(
-        &separatorBottom, theme_getSeparatorColor(),
-        STYLE_FOOTER_X, STYLE_FOOTER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_SEPARATOR_HEIGHT);
-    base_display(&separatorBottom);
-
-    Rectangle_s background;
-    rectangle_initFillPosSize(
-        &background, theme_getFooterColor(),
-        STYLE_FOOTER_X, STYLE_FOOTER_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_HEIGHT);
-    base_display(&background);
-}
-
-void gui_app_clearView(void)
-{
-    Rectangle_s background;
-    rectangle_initFillPosSize(
-        &background, theme_getBackgroundColor(),
-        STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
-    base_display(&background);
+    Label_s mcsGui;
+    label_initBmp(&mcsGui, FILE_KEY_TEXT_FOOTER_MCSGUI);
+    theme_setFooterText(&mcsGui);
+    GuiAnchor_s mcsGuiAnchor;
+    anchor_init(&mcsGuiAnchor);
+    base_addAnchor(&mcsGui.base, &mcsGuiAnchor);
+    anchor_setRightAnchor(&mcsGui, &logo, Gui_Anchor_Left);
+    anchor_setVerticalCenter(&mcsGui, &logo);
+    anchor_setRightMargin(&mcsGui, 10);
+    base_display(&mcsGui.base);
 }
 
 void gui_app_translate(void *p_component)
 {
     property_value_language_e languageProperty;
 
-    switch (g_guiApp.language)
+    switch (m_guiApp.language)
     {
         case Language_English:
             languageProperty = PROPERTY_LANGUAGE_VALUE_ENGLISH;
@@ -545,61 +575,61 @@ void gui_app_translate(void *p_component)
     base_setProperty(p_component, FILE_PROPERTY_LANGUAGE, languageProperty);
 }
 
-void gui_app_setAlarmTime(const uint8_t alarmTime_mm)
-{
-    g_guiApp.alarmTime_mm = alarmTime_mm;
-}
-
 void gui_app_activateAlarm(void)
 {
-    g_guiApp.alarmTime_ms = HAL_GetTick() + (g_guiApp.alarmTime_mm * 60000);
-    g_guiApp.alarmActive = true;
+    m_guiApp.alarmTime_ms = HAL_GetTick() + (m_guiApp.alarmTime_mm * 60000);
+    m_guiApp.alarmActive = true;
     header_showAlarm(true);
 }
 
 View_s* gui_app_getView(void)
 {
-    return &g_guiApp.view;
+    return &m_guiApp.view;
 }
 
 Language_e gui_app_getLanguage(void)
 {
-    return g_guiApp.language;
-}
-
-void gui_app_setLanguage(const Language_e language)
-{
-    g_guiApp.language = language;
+    return m_guiApp.language;
 }
 
 TemperatureUnit_e gui_app_getTemperatureUnit(void)
 {
-    return g_guiApp.temperatureUnit;
-}
-
-void gui_app_setTemperatureUnit(const TemperatureUnit_e temperatureUnit)
-{
-    g_guiApp.temperatureUnit = temperatureUnit;
-}
-
-bool gui_app_updateDateTime(void)
-{
-    return g_guiApp.updateDateTime;
-}
-
-void gui_app_setUpdateDateTime(const bool update)
-{
-    g_guiApp.updateDateTime = update;
+    return m_guiApp.temperatureUnit;
 }
 
 uint8_t gui_app_getDisplayBrightness(void)
 {
-    return g_guiApp.displayBrightness;
+    return m_guiApp.displayBrightness;
+}
+
+bool gui_app_getUpdateDateTime(void)
+{
+    return m_guiApp.updateDateTime;
+}
+
+void gui_app_setLanguage(const Language_e language)
+{
+    m_guiApp.language = language;
+}
+
+void gui_app_setTemperatureUnit(const TemperatureUnit_e temperatureUnit)
+{
+    m_guiApp.temperatureUnit = temperatureUnit;
+}
+
+void gui_app_setUpdateDateTime(const bool update)
+{
+    m_guiApp.updateDateTime = update;
 }
 
 void gui_app_setDisplayBrightness(const uint8_t brightness)
 {
-    g_guiApp.displayBrightness = brightness;
+    m_guiApp.displayBrightness = brightness;
+}
+
+void gui_app_setAlarmTime(const uint8_t alarmTime_mm)
+{
+    m_guiApp.alarmTime_mm = alarmTime_mm;
 }
 
 static void gui_app_showBootLogo(const bool showAnimation)
@@ -652,34 +682,6 @@ static void gui_app_setRTCDateTime(const uint8_t *p_eventArgs)
     HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 }
 
-void gui_app_showFooterLogo(void)
-{
-    Item_s item;
-    item_init(&item);
-    base_setPosition(&item, STYLE_FOOTER_X, STYLE_FOOTER_Y);
-    base_setDimensions(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
-
-    Label_s logo;
-    label_initBmp(&logo, FILE_KEY_IRL_LOGO_48);
-    GuiAnchor_s logoAnchor;
-    anchor_init(&logoAnchor);
-    base_addAnchor(&logo, &logoAnchor);
-    anchor_setRightAnchor(&logo, &item, Gui_Anchor_Right);
-    anchor_setVerticalCenter(&logo, &item);
-    anchor_setRightMargin(&logo, 10);
-    base_display(&logo);
-
-    Label_s mcsGui;
-    label_initBmp(&mcsGui, FILE_KEY_TEXT_FOOTER_MCSGUI);
-    theme_setFooterText(&mcsGui);
-    GuiAnchor_s mcsGuiAnchor;
-    anchor_init(&mcsGuiAnchor);
-    base_addAnchor(&mcsGui.base, &mcsGuiAnchor);
-    anchor_setRightAnchor(&mcsGui, &logo, Gui_Anchor_Left);
-    anchor_setVerticalCenter(&mcsGui, &logo);
-    anchor_setRightMargin(&mcsGui, 10);
-    base_display(&mcsGui.base);
-}
 
 // Interrupt callback function
 //

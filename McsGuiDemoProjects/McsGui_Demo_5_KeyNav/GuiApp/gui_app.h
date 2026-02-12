@@ -45,25 +45,25 @@ typedef struct
 
 
 void gui_app_start(void);
-void gui_app_showFooterLogo(void);
+void gui_app_clearView(void);
 void gui_app_drawBackground(void);
 void gui_app_drawHeaderBackground(void);
 void gui_app_drawFooterBackground(void);
-void gui_app_clearView(void);
+void gui_app_showFooterLogo(void);
 void gui_app_translate(void *p_component);
-void gui_app_setAlarmTime(const uint8_t alarmTime_mm);
 void gui_app_activateAlarm(void);
-bool gui_app_updateDateTime(void);
 
 View_s* gui_app_getView(void);
 Language_e gui_app_getLanguage(void);
 TemperatureUnit_e gui_app_getTemperatureUnit(void);
 uint8_t gui_app_getDisplayBrightness(void);
+bool gui_app_getUpdateDateTime(void);
 
 void gui_app_setLanguage(const Language_e language);
 void gui_app_setTemperatureUnit(const TemperatureUnit_e temperatureUnit);
 void gui_app_setUpdateDateTime(const bool update);
 void gui_app_setDisplayBrightness(const uint8_t brightness);
+void gui_app_setAlarmTime(const uint8_t alarmTime_mm);
 
 
 #endif /* GUI_APP_H_ */

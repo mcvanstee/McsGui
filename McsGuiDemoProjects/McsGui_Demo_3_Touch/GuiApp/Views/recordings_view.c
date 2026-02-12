@@ -8,8 +8,6 @@
 #include "gui_app.h"
 #include "gui_component_extensions.h"
 #include "gui_custom_components.h"
-#include "fonts.h"
-#include "fs_file_search.h"
 #include "temp_recorder.h"
 #include "utils_math.h"
 
@@ -76,7 +74,7 @@ static int32_t m_currentReadingIndex = 0;
 
 void recordings_view_navigateTo(void)
 {
-    view_navigateTo(&g_guiApp.view, rv_create);
+    view_navigateTo(gui_app_getView(), rv_create);
 }
 
 static void rv_create(View_s *p_view)
@@ -85,7 +83,7 @@ static void rv_create(View_s *p_view)
 
     Item_s *p_item = item_newInit();
     base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Label_s *p_title = label_new();
@@ -105,7 +103,7 @@ static void rc_createRecordingsGroupBox(View_s *p_view, Item_s *p_item)
 {
     Pane_s *p_pane = pane_newInit();
     pane_setBorderPane(p_pane, true);
-    base_setSize(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT);
+    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT);
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_pane, p_item, Gui_Anchor_Left);
@@ -147,7 +145,7 @@ static void rc_createRecordingsGroupBox(View_s *p_view, Item_s *p_item)
     listview_setRowHight(p_listView, rowHight);
     p_listView->itemsVisible = itemsVisible;
     p_listView->onActiveItemChanged = rc_activeItemChanged;
-    base_setSize(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
+    base_setDimensions(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
     base_setId(&p_listView->base, RV_RECORDINGS_LISTVIEW_ID);
     base_addNewInitTouch(p_listView);
     base_addNewInitAnchor(p_listView);
@@ -178,7 +176,7 @@ static void rc_createInfoPane(Item_s *p_item)
 {
     Pane_s *p_pane = pane_newInit();
     pane_setBorderPane(p_pane, true);
-    base_setSize(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
+    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setRightAnchor(p_pane, p_item, Gui_Anchor_Right);
@@ -191,7 +189,7 @@ static void rc_createInfoPane(Item_s *p_item)
     button_setOnPressedEvent(p_deleteButton, rc_deleteRecording);
     base_setId(&p_deleteButton->base, RV_DELETE_BUTTON_ID);
     base_setVisible(p_deleteButton, false);
-    base_setSize(&p_deleteButton->base, 30, 30);
+    base_setDimensions(&p_deleteButton->base, 30, 30);
     base_addNewInitTouch(p_deleteButton);
     base_addNewInitAnchor(p_deleteButton);
     anchor_setTopAnchor(p_deleteButton, p_pane, Gui_Anchor_Top);
@@ -226,10 +224,11 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
     grid_addComponent(p_grid, p_label);
 
     TextBlock_s *p_textBlock = textblock_newInit();
-    textblock_setFont(p_textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
+    textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
-    base_setBackground(p_textBlock, COLOR_BACKGROUND);
-    base_setHorizontalAlignment(p_textBlock, Gui_Align_Left);
+    textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
+    textblock_setHorizontalTextAlignment(p_textBlock, Text_Align_Left);
+    base_setTransparent(p_textBlock, false);
     base_setId(p_textBlock, textBlockId);
     grid_addComponent(p_grid, p_textBlock);
 
@@ -242,7 +241,7 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
 static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t textBlockId)
 {
     TextBlock_s *p_tempTextRec = textblock_newInit();
-    textblock_setFont(p_tempTextRec, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
+    textblock_setFont(p_tempTextRec, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setText(p_tempTextRec, "T");
     grid_addComponent(p_grid, p_tempTextRec);
 
@@ -254,14 +253,15 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
     base_addChild(&p_tempTextRec->base, &p_arrowLabel->base);
 
     TextBlock_s *p_textBlock = textblock_newInit();
-    textblock_setFont(p_textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
+    textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
-    base_setBackground(p_textBlock, COLOR_BACKGROUND);
-    base_setHorizontalAlignment(p_textBlock, Gui_Align_Left);
+    textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
+    textblock_setHorizontalTextAlignment(p_textBlock, Text_Align_Left);
+    base_setTransparent(p_textBlock, false);
     base_setId(p_textBlock, textBlockId);
     grid_addComponent(p_grid, p_textBlock);
 
-    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
+    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == settings_getTemperatureUnit()) ?
             FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_unitLabel = label_new();
@@ -274,7 +274,7 @@ static void rc_createReadingsPane(Item_s *p_item)
 {
     Pane_s *p_pane = pane_newInit();
     pane_setBorderPane(p_pane, true);
-    base_setSize(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
+    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     base_addNewInitAnchor(p_pane);
     anchor_setBottomAnchor(p_pane, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_pane, p_item, Gui_Anchor_Right);
@@ -292,7 +292,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_readingsLabel);
 
     TextBlock_s *p_tempTextRec = textblock_newInit();
-    textblock_setFont(p_tempTextRec, FONT_KEY_TEXT_LARGE_ROBOTO_18_R_DEFAULT_TEXT);
+    textblock_setFont(p_tempTextRec, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setText(p_tempTextRec, "T");
     base_addNewInitAnchor(p_tempTextRec);
     anchor_setTopAnchor(p_tempTextRec, p_pane, Gui_Anchor_Top);
@@ -302,7 +302,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_tempTextRec);
 
     TextBlock_s *p_parenthesesOpen = textblock_newInit();
-    textblock_setFont(p_parenthesesOpen, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
+    textblock_setFont(p_parenthesesOpen, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_parenthesesOpen, "(");
     base_addNewInitAnchor(p_parenthesesOpen);
     anchor_setTopAnchor(p_parenthesesOpen, p_pane, Gui_Anchor_Top);
@@ -311,7 +311,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     anchor_setLeftMargin(p_parenthesesOpen, 6);
     pane_addComponent(p_pane, p_parenthesesOpen);
 
-    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == g_guiApp.temperatureUnit) ?
+    const file_key_e tempUnitKey = (TemperatureUnit_Celsius == settings_getTemperatureUnit()) ?
             FILE_KEY_TEXT_DEG_CEL : FILE_KEY_TEXT_DEG_FAR;
 
     Label_s *p_unitLabel = label_new();
@@ -325,7 +325,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     pane_addComponent(p_pane, p_unitLabel);
 
     TextBlock_s *p_parenthesesClose = textblock_newInit();
-    textblock_setFont(p_parenthesesClose, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
+    textblock_setFont(p_parenthesesClose, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_parenthesesClose, ")");
     base_addNewInitAnchor(p_parenthesesClose);
     anchor_setTopAnchor(p_parenthesesClose, p_pane, Gui_Anchor_Top);
@@ -349,7 +349,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     ListView_s *p_listView = listview_newInit();
     listview_setRowHight(p_listView, rowHight);
     p_listView->itemsVisible = itemsVisible;
-    base_setSize(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
+    base_setDimensions(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
     base_setId(&p_listView->base, RV_READINGS_LISTVIEW_ID);
     base_addNewInitTouch(p_listView);
     base_addNewInitAnchor(p_listView);
@@ -363,7 +363,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     Button_s *p_upButton = button_new();
     button_initBmp(p_upButton, FILE_KEY_ICON_SCROLL_UP);
     button_setOnPressedEvent(p_upButton, rv_moveReadingsUpButtonPressed);
-    base_setSize(&p_upButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
+    base_setDimensions(&p_upButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
     base_addNewInitTouch(p_upButton);
     base_addNewInitAnchor(p_upButton);
     anchor_setTopAnchor(p_upButton, p_rect, Gui_Anchor_Top);
@@ -373,7 +373,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     Button_s *p_downButton = button_new();
     button_initBmp(p_downButton, FILE_KEY_ICON_SCROLL_DOWN);
     button_setOnPressedEvent(p_downButton, rc_moveReadingsDownButtonPressed);
-    base_setSize(&p_downButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
+    base_setDimensions(&p_downButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
     base_addNewInitTouch(p_downButton);
     base_addNewInitAnchor(p_downButton);
     anchor_setBottomAnchor(p_downButton, p_pane, Gui_Anchor_Bottom);
@@ -414,13 +414,13 @@ static void rc_displayRecordingItem(BaseComponent_s *p_itemBase)
     ListView_s *p_listView = (ListView_s*)p_itemBase->p_parent;
 
     const bool activeItem = (p_listView->activeIndex == p_listViewItem->index);
-    const uint8_t fontId = (activeItem) ? FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_PANE_TEXT : FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT;
+    const uint8_t fontId = (activeItem) ? FONT_KEY_ROBOTO_16_R_PANE_TEXT : FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT;
     const Color_t backgroundColor = (activeItem) ? COLOR_PANE : COLOR_BACKGROUND;
 
     Item_s item;
     item_init(&item);
     base_setPosition(&item, p_itemBase->x, p_itemBase->y);
-    base_setSize(&item, p_itemBase->width, p_itemBase->height);
+    base_setDimensions(&item, p_itemBase->width, p_itemBase->height);
     base_setBackground(&item, backgroundColor);
 
     char p_text[36] = {0};
@@ -447,16 +447,16 @@ static void rc_displayReadingItem(BaseComponent_s *p_itemBase)
     Item_s item;
     item_init(&item);
     base_setPosition(&item, p_itemBase->x, p_itemBase->y);
-    base_setSize(&item, p_itemBase->width, p_itemBase->height);
+    base_setDimensions(&item, p_itemBase->width, p_itemBase->height);
     base_setBackground(&item, COLOR_BACKGROUND);
 
     const float_t tempDivider = (float_t)utils_math_ipow(10, TEMP_RECORDER_DECIMALS);
     char p_text[16] = {0};
-    unit_converter_getTemperatureStr(p_text, sizeof(p_text), p_reading->temp / tempDivider, g_guiApp.temperatureUnit);
+    unit_converter_getTemperatureStr(p_text, sizeof(p_text), p_reading->temp / tempDivider, settings_getTemperatureUnit());
 
     TextBlock_s textBlock;
     textblock_init(&textBlock);
-    textblock_setFont(&textBlock, FONT_KEY_TEXT_REGULAR_ROBOTO_16_R_DEFAULT_TEXT);
+    textblock_setFont(&textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "% d       %s", p_reading->id, p_text);
     GuiAnchor_s anchor;
     anchor_init(&anchor);
@@ -513,7 +513,7 @@ static void rc_updateVisibilityDeleteButton(ListView_s *p_listView)
 {
     if (p_listView->previousActiveIndex < 0)
     {
-        Button_s *p_deleteButton = (Button_s*) view_getComponentById(&g_guiApp.view, RV_DELETE_BUTTON_ID);
+        Button_s *p_deleteButton = (Button_s*) view_getComponentById(gui_app_getView(), RV_DELETE_BUTTON_ID);
         base_setVisible(p_deleteButton, true);
         base_display(&p_deleteButton->base);
     }
@@ -521,24 +521,26 @@ static void rc_updateVisibilityDeleteButton(ListView_s *p_listView)
 
 static void rc_displayHeaderInfo(RecFileHeader_s *p_header)
 {
-    TextBlock_s *p_idTextBlock = (TextBlock_s *)view_getComponentById(&g_guiApp.view, RV_INTERVAL_TEXTBLOCK_ID);
+    View_s *p_view = gui_app_getView();
+
+    TextBlock_s *p_idTextBlock = (TextBlock_s *)view_getComponentById(p_view, RV_INTERVAL_TEXTBLOCK_ID);
     snprintf(p_idTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%lu", p_header->interval);
     base_display(&p_idTextBlock->base);
 
-    TextBlock_s *p_readingsTextBlock = (TextBlock_s *)view_getComponentById(&g_guiApp.view, RV_READINGS_TEXTBLOCK_ID);
+    TextBlock_s *p_readingsTextBlock = (TextBlock_s *)view_getComponentById(p_view, RV_READINGS_TEXTBLOCK_ID);
     snprintf(p_readingsTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_header->num_samples);
     base_display(&p_readingsTextBlock->base);
 
     const float_t tempDivider = (float_t)utils_math_ipow(10, TEMP_RECORDER_DECIMALS);
 
-    TextBlock_s *p_tempMaxTextBlock = (TextBlock_s *)view_getComponentById(&g_guiApp.view, RV_TEMP_MAX_TEXTBLOCK_ID);
+    TextBlock_s *p_tempMaxTextBlock = (TextBlock_s *)view_getComponentById(p_view, RV_TEMP_MAX_TEXTBLOCK_ID);
     unit_converter_getTemperatureStr(
-        p_tempMaxTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, p_header->max_temp / tempDivider, g_guiApp.temperatureUnit);
+        p_tempMaxTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, p_header->max_temp / tempDivider, settings_getTemperatureUnit());
     base_display(&p_tempMaxTextBlock->base);
 
-    TextBlock_s *p_tempMinTextBlock = (TextBlock_s *)view_getComponentById(&g_guiApp.view, RV_TEMP_MIN_TEXTBLOCK_ID);
+    TextBlock_s *p_tempMinTextBlock = (TextBlock_s *)view_getComponentById(p_view, RV_TEMP_MIN_TEXTBLOCK_ID);
     unit_converter_getTemperatureStr(
-        p_tempMinTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, p_header->min_temp / tempDivider, g_guiApp.temperatureUnit);
+        p_tempMinTextBlock->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, p_header->min_temp / tempDivider, settings_getTemperatureUnit());
     base_display(&p_tempMinTextBlock->base);
 }
 
@@ -548,7 +550,7 @@ static void rc_displayReadings(FIL *p_file, int32_t startIndex)
     UINT bytesToRead = sizeof(uint32_t);
     UINT bytesRead = 0;
 
-    ListView_s *p_readingsListView = (ListView_s *)view_getComponentById(&g_guiApp.view, RV_READINGS_LISTVIEW_ID);
+    ListView_s *p_readingsListView = (ListView_s *)view_getComponentById(gui_app_getView(), RV_READINGS_LISTVIEW_ID);
 
     for (uint32_t i = 0; i < RV_NUM_READINGS_ITEMS; i++)
     {
@@ -583,7 +585,7 @@ static void rv_moveReadingsUpButtonPressed(void)
         m_currentReadingIndex = 0;
     }
 
-    ListView_s *p_listView = (ListView_s*) view_getComponentById(&g_guiApp.view, RV_RECORDINGS_LISTVIEW_ID);
+    ListView_s *p_listView = (ListView_s*) view_getComponentById(gui_app_getView(), RV_RECORDINGS_LISTVIEW_ID);
 
     char filename[256] = {0};
     rc_getFileNameActiveItem(filename, sizeof(filename), p_listView);
@@ -618,7 +620,7 @@ static void rc_moveReadingsDownButtonPressed(void)
         m_currentReadingIndex = m_selectedRecordingHeader.num_samples - RV_NUM_READINGS_ITEMS;
     }
 
-    ListView_s *p_listView = (ListView_s *)view_getComponentById(&g_guiApp.view, RV_RECORDINGS_LISTVIEW_ID);
+    ListView_s *p_listView = (ListView_s *)view_getComponentById(gui_app_getView(), RV_RECORDINGS_LISTVIEW_ID);
 
     char filename[256] = {0};
     rc_getFileNameActiveItem(filename, sizeof(filename), p_listView);
@@ -714,7 +716,7 @@ static void rc_getIdAndStartTimeFromFileName(FILINFO *p_fileInfo)
 
 static void rc_deleteRecording(void)
 {
-    ListView_s *p_listView = (ListView_s*) view_getComponentById(&g_guiApp.view, RV_RECORDINGS_LISTVIEW_ID);
+    ListView_s *p_listView = (ListView_s*) view_getComponentById(gui_app_getView(), RV_RECORDINGS_LISTVIEW_ID);
 
     if ((p_listView != NULL) && (p_listView->activeIndex >= 0))
     {
