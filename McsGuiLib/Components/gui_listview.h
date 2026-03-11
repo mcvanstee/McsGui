@@ -49,6 +49,7 @@ void listview_initPosSize(
         const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height);
 
+void listview_setItemsVisible(ListView_s *p_listView, const int8_t itemsVisible);
 void listview_setRowHight(ListView_s *p_listView, const uint8_t rowHight);
 void listview_addComponent(ListView_s *p_listView, BaseComponent_s *p_itemBase);
 void listview_addItem(ListView_s *p_listView, ListViewItem_s *p_listViewItem);
@@ -56,7 +57,19 @@ bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_e
 bool listview_moveUp(ListView_s *p_listView);
 bool listview_moveDown(ListView_s *p_listView);
 bool listview_getViewWindowChanged(ListView_s *p_listView);
-void listview_setActive(ListView_s *p_listView, const int8_t index);
+
+void listview_setActiveIndex(ListView_s *p_listView, const int8_t index);
+void listview_setActiveIndexNotifyChanged(ListView_s *p_listView, const int8_t index);
+void listview_setOnActiveItemChanged(ListView_s *p_listView, void (*p_onActiveItemChanged)(ListView_s *p_listView));
+void listview_setOnBeforeMoveUp(ListView_s *p_listView, bool (*p_onBeforeMoveUp)(ListView_s *p_listView));
+void listview_setOnBeforeMoveDown(ListView_s *p_listView, bool (*p_onBeforeMoveDown)(ListView_s *p_listView));
+void listview_setOnDisplayed(ListView_s *p_listView, void (*p_onDisplayed)(ListView_s *p_listView));
+#if GUI_CONFIG_USE_KEY_NAVIGATION
+void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_s *p_listView));
+void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListView_s *p_listView));
+#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+int8_t listview_getActiveIndex(ListView_s *p_listView);
 BaseComponent_s *listview_getActive(ListView_s *p_listView);
 BaseComponent_s *listview_getPreviousActive(ListView_s *p_listView);
 BaseComponent_s *listview_getAtIndex(ListView_s *p_listView, const int8_t index);

@@ -4,13 +4,13 @@
 #include <string.h>
 
 #include "Graphics/gui_graphics_api.h"
-#include "Utils/gui_log.h"
+#include "Core/gui_log.h"
 
 #if GUI_USE_EXTERNAL_DISPLAY
     #include "ExternalDisplay/external_display.h"
 #endif /* GUI_USE_EXTERNAL_DISPLAY */
 
-#define FILE_KEY_NONE 0xFFFFFFFFU
+#define FILE_KEY_NONE 0U
 
 /* Private function declarations */
 static inline void graphics_flushFillInstructions(const GraphicsInstruction_s *p_instruction);
@@ -118,7 +118,13 @@ void graphics_flushDisplayUpdates(void)
                         p_instruction->xPos, p_instruction->yPos,
                         p_instruction->width, p_instruction->height,
                         p_instruction->instructionData.imageData.dataOffset,
-                        p_instruction->instructionData.imageData.dataSize);
+                        p_instruction->instructionData.imageData.dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+                        ,
+                        p_instruction->instructionData.imageData.foreColor,
+                        p_instruction->instructionData.imageData.backColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+                        );
                 break;
             case FillInstruction:
                 graphics_flushFillInstructions(p_instruction);
@@ -139,15 +145,15 @@ void graphics_flushDisplayUpdates(void)
 
 void graphics_setSizeFromBmp(BaseComponent_s *p_base)
 {
-    if (p_base->baseType == BaseType_Image)
+    if ((p_base->baseType == BaseType_Image) && (p_base->bmpKey != FILE_KEY_NONE))
     {
         uint16_t width = 0;
         uint16_t height = 0;
         uint32_t dataOffset = 0;
-        uint32_t dataSize = 0;
+        uint8_t dataLocation = 0;
 
         const bool bmpFound = graphics_getBmpFileInfo(
-                p_base->bmpKey, p_base->properties, &width, &height, &dataOffset, &dataSize);
+                p_base->bmpKey, p_base->properties, &width, &height, &dataOffset, &dataLocation);
 
         if (bmpFound)
         {
@@ -163,7 +169,7 @@ void graphics_setSizeFromBmp(BaseComponent_s *p_base)
         }
         else if (p_base->bmpKey != FILE_KEY_NONE)
         {
-            gui_log_write(GUI_LOG_LEVEL_ERROR, "graphics_bmpFileInfoNotFound");
+            gui_log_write(GUI_LOG_LEVEL_DEBUG, "graphics_FileNotFound_setSizeFromBmp");
         }
         else
         {
@@ -376,7 +382,7 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
     {
         // Clear the background if it is not transparent
         //
-        if (!p_baseComponent->transparent)
+        if (!p_baseComponent->transparent && (p_baseComponent->width > 0) && (p_baseComponent->height > 0))
         {
             graphics_addBackgroundFill(p_baseComponent);
         }
@@ -403,7 +409,7 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
         uint16_t fontWidth = 0;
         uint16_t fontHeight = 0;
         uint32_t fontDataOffset = 0;
-        uint32_t fontDataSize = 0;
+        uint8_t dataLocation = 0;
 
         bool charInfoFound = graphics_getCharacterInfo(
                 p_baseComponent->p_text[charIndex],
@@ -411,7 +417,7 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
                 &fontWidth,
                 &fontHeight,
                 &fontDataOffset,
-                &fontDataSize);
+                &dataLocation);
 
         if (charInfoFound)
         {
@@ -422,7 +428,21 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
             		&instruction,
                     characterXPos, (p_baseComponent->y + textOffset.height),
                     fontWidth, fontHeight,
-                    fontDataOffset, fontDataSize);
+                    fontDataOffset, dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+                    ,
+                    p_fontData->fontColor,
+                    p_fontData->backgroundColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+                    , GRAPHICS_DATA_TYPE_FONT_CHAR
+                    , ((uint8_t)p_baseComponent->p_text[charIndex] << 8) | ((uint8_t)p_fontData->font) // The first byte of the bmpKey is the character ASCII value, the second byte is the font key, the last 2 bytes are reserved
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+                    , p_baseComponent->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
+                    );
 
             graphics_queueGraphicsInstruction(&instruction);
 
@@ -441,7 +461,7 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
     uint16_t width = 0;
     uint16_t height = 0;
     uint32_t dataOffset = 0;
-    uint32_t dataSize = 0;
+    uint8_t dataLocation = 0;
 
 #if GUI_CONFIG_USE_ON_BEFORE_DISPLAY
     if (p_baseComponent->onBeforeDisplay != NULL)
@@ -454,7 +474,9 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
             p_baseComponent->bmpKey,
 			p_baseComponent->properties,
 			&width, &height,
-            &dataOffset, &dataSize);
+            &dataOffset,
+            &dataLocation
+            );
 
     if (p_baseComponent->width == 0)
     {
@@ -503,7 +525,21 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
         graphics_instruction_image_init(
                 p_newInstruction,
                 p_baseComponent->x, p_baseComponent->y,
-                width, height, dataOffset, dataSize);
+                width, height, dataOffset, dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+                ,
+                p_baseComponent->foreColor,
+                p_baseComponent->background
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+                , GRAPHICS_DATA_TYPE_BMP
+                , p_baseComponent->bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+                , p_baseComponent->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
+                );
 
         graphics_alignBmp(p_baseComponent, p_newInstruction);
 
@@ -525,7 +561,7 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
         }
         else if (p_baseComponent->bmpKey != FILE_KEY_NONE)
         {
-            gui_log_write(GUI_LOG_LEVEL_ERROR, "graphics_bmpFileInfoNotFound");
+            gui_log_write(GUI_LOG_LEVEL_DEBUG, "graphics_FileNotFound");
         }
         else
         {
@@ -940,11 +976,10 @@ static inline GuiSize_s graphics_getTextSize(const char *p_text, const size_t st
         uint16_t fontWidth = 0;
         uint16_t fontHeight = 0;
         uint32_t fontDataOffset = 0;
-        uint32_t fontDataSize = 0;
+        uint8_t dataLocation = 0;
 
         bool charInfoFound = graphics_getCharacterInfo(p_text[charIndex],
-                p_fontData, &fontWidth, &fontHeight, &fontDataOffset,
-                &fontDataSize);
+                p_fontData, &fontWidth, &fontHeight, &fontDataOffset, &dataLocation);
 
         if (charInfoFound)
         {
@@ -1006,7 +1041,7 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
         }
 
         base_setPosition(p_base, baseX, baseY);
-        base_setSize(p_base, baseWidth, baseHeight);
+        base_setDimensions(p_base, baseWidth, baseHeight);
 
         return;
     }

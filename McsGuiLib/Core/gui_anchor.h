@@ -6,8 +6,8 @@
  */
 
 
-#ifndef UTILS_GUI_ANCHOR_H_
-#define UTILS_GUI_ANCHOR_H_
+#ifndef MCSGUI_CORE_ANCHOR_H_
+#define MCSGUI_CORE_ANCHOR_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -74,7 +74,7 @@ void anchor_setBottomMargin(void *p_anchoredComponent, uint16_t margin);
 #endif
 
 
-#endif /* UTILS_GUI_ANCHOR_H_ */
+#endif /* MCSGUI_CORE_ANCHOR_H_ */
 
 
 /*** end of file ***/

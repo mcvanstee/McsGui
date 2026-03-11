@@ -4,9 +4,9 @@
 
 #include <stddef.h>
 
-#include "Core/gui_basecomponent.h"
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "gui_basecomponent.h"
+#include "gui_log.h"
+#include "gui_memory.h"
 
 
 #if !GUI_USE_DYNAMIC_MEMORY

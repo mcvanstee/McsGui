@@ -2,8 +2,8 @@
 
 #include <stddef.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 

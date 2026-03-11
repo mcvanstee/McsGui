@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "Graphics/gui_graphics.h"
-#include "Utils/gui_memory.h"
+#include "gui_memory.h"
 
 #define BASE_FREE_KEYNAV_FLAG 0x01U
 #define BASE_FREE_TOUCH_FLAG 0x02U
@@ -46,7 +46,10 @@ static void base_init(
     p_base->p_data = NULL;
     p_base->p_text = NULL;
     p_base->transparent = true;
-    p_base->background = 0;
+    p_base->background = 0xFFFFF; // Default background color is white;
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    p_base->foreColor = 0x000000; // Default foreground color is black;
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
     p_base->onDelete = onDeleteComponent;
     p_base->onHandleEvent = NULL;
     p_base->onDisplay = graphics_displayComponent;
@@ -337,20 +340,19 @@ void base_setDimensions(
 /**
  * @brief Set the Dimensions of the base.
  * @param[in] p_component Pointer to the (base) component.
- * @param[in] width Width.
- * @param[in] height Height.
+ * @param[in] guiSize Size structure.
  *
  */
-void base_setSize(void *p_component, const uint16_t width, const uint16_t height)
+void base_setSize(void *p_component, const GuiSize_s guiSize)
 {
     BaseComponent_s *p_base = (BaseComponent_s *)p_component;
-    p_base->width = width;
-    p_base->height = height;
+    p_base->width = guiSize.width;
+    p_base->height = guiSize.height;
 
     if (NULL != p_base->p_touch)
     {
-        p_base->p_touch->width = width;
-        p_base->p_touch->height = height;
+        p_base->p_touch->width = guiSize.width;
+        p_base->p_touch->height = guiSize.height;
     }
 }
 
@@ -377,9 +379,16 @@ void base_setBackground(
         void *p_component, const Color_t color)
 {
     BaseComponent_s *p_base = (BaseComponent_s *)p_component;
-    p_base->transparent = false;
     p_base->background = color;
 }
+
+#if GUI_CONFIG_USE_BITMAP_COLORS
+void base_setForeColor(void *p_component, const Color_t color)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+    p_base->foreColor = color;
+}
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 void base_setTransparent(void *p_component, const bool transparent)
 {
@@ -403,33 +412,70 @@ void base_setId(void *p_component, const uint8_t id)
 {
     if (id > 0)
     {
-        BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+        BaseComponent_s *p_base = (BaseComponent_s*)p_component;
         p_base->id = id;
     }
 }
 
 void base_setOnDelete(void *p_component, void (*onDelete)(BaseComponent_s *p_base))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onDelete = onDelete;
 }
 
 void base_setOnDisplay(void *p_component, void (*onDisplay)(BaseComponent_s *p_base))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onDisplay = onDisplay;
 }
 
 void base_setOnHandleEvent(void *p_component, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onHandleEvent = onHandleEvent;
 }
 
 GuiVisibility_e base_getVisibility(void *p_component)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     return (p_base->visible) ? Gui_Visibility_Visible : Gui_Visibility_Hidden;
+}
+
+uint16_t base_getXPos(void *p_component)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
+    return p_base->x;
+}
+
+uint16_t base_getYPos(void *p_component)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
+    return p_base->y;
+}
+
+uint16_t base_getWidth(void *p_component)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
+    return p_base->width;
+}
+
+uint16_t base_getHeight(void *p_component)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
+    return p_base->height;
+}
+
+GuiSize_s base_getSize(void *p_component)
+{
+    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
+
+    GuiSize_s size =
+    {
+        .width = p_base->width,
+        .height = p_base->height
+    };
+
+    return size;
 }
 
 bool base_iterateNextChild(BaseComponent_s *p_parentBase, BaseComponent_s **p_iterator)

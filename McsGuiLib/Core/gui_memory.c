@@ -1,6 +1,6 @@
 #include "gui_memory.h"
 
-#include "Utils/gui_log.h"
+#include "gui_log.h"
 
 #if GUI_USE_DYNAMIC_MEMORY
 

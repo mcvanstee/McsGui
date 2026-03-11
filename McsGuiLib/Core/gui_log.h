@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef MCSGUI_UTILS_GUI_LOG_H_
-#define MCSGUI_UTILS_GUI_LOG_H_
+#ifndef MCSGUI_CORE_GUI_LOG_H_
+#define MCSGUI_CORE_GUI_LOG_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,7 +30,7 @@ void gui_log_info(const char *p_message);
 } /* extern "C" */
 #endif
 
-#endif /* MCSGUI_UTILS_GUI_LOG_H_ */
+#endif /* MCSGUI_CORE_GUI_LOG_H_ */
 
 
 /*** end of file ***/

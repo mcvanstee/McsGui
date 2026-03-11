@@ -17,6 +17,8 @@ extern "C" {
 
 #include "gui_config.h"
 
+#define GRAPHICS_DATA_TYPE_BMP 0
+#define GRAPHICS_DATA_TYPE_FONT_CHAR 1
 
 typedef enum
 {
@@ -42,8 +44,17 @@ typedef struct graphics_fill_data_s
 typedef struct graphics_image_data_s
 {
     uint32_t dataOffset;
-    uint32_t dataSize;
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    Color_t foreColor;
+    Color_t backColor;
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+    uint8_t dataLocation;
 #if GUI_USE_EXTERNAL_DISPLAY
+    uint8_t dataType;   // 0 = bmp, 1 = font character
+    uint32_t bmpKey;
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    uint8_t properties[GUI_CONFIG_NUMBER_OF_PROPERTIES];
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 } __attribute__((__packed__)) GraphicsImageData_s;
 #else
 } GraphicsImageData_s;
@@ -63,7 +74,7 @@ typedef union instruction_data_u
 
 typedef struct graphics_instruction_s
 {
-	InstructionType_e type;
+    uint8_t type;
     InstructionData_u instructionData;
     uint16_t xPos;
     uint16_t yPos;
@@ -76,10 +87,21 @@ typedef struct graphics_instruction_s
 #endif /* GUI_USE_EXTERNAL_DISPLAY */
 
 void graphics_instruction_image_init(
-        GraphicsInstruction_s *p_instruction,
-        const uint16_t xPos, const uint16_t yPos,
-        const uint16_t width, const uint16_t height,
-        const uint32_t dataOffset, const uint32_t dataSize);
+    GraphicsInstruction_s *p_instruction,
+    const uint16_t xPos, const uint16_t yPos,
+    const uint16_t width, const uint16_t height,
+    const uint32_t dataOffset, const uint8_t dataLocation
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    , const Color_t foreColor, const Color_t backColor
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+    , uint8_t dataType, uint32_t bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    , uint8_t *p_properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
+);
 
 void graphics_instruction_fill_init(
         GraphicsInstruction_s *p_instruction,

@@ -3,8 +3,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "Utils/gui_log.h"
-#include "Utils/gui_memory.h"
+#include "Core/gui_log.h"
+#include "Core/gui_memory.h"
 
 
 #if !GUI_USE_DYNAMIC_MEMORY
@@ -161,6 +161,7 @@ void label_initBmpPosSizeBack(
 {
     label_initBmpPosSize(p_label, bmpKey, x, y, width, height);
     base_setBackground(&p_label->base, background);
+    base_setTransparent(&p_label->base, false);
 }
 
 

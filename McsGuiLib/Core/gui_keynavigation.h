@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef MCSGUI_UTILS_GUI_KEYNAVIGATION_H_
-#define MCSGUI_UTILS_GUI_KEYNAVIGATION_H_
+#ifndef MCSGUI_CORE_GUI_KEYNAVIGATION_H_
+#define MCSGUI_CORE_GUI_KEYNAVIGATION_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,7 +54,7 @@ void keynav_connectUpDown(void *p_upComponent, void *p_downComponent);
 } /* extern "C" */
 #endif
 
-#endif /* MCSGUI_UTILS_GUI_KEYNAVIGATION_H_ */
+#endif /* MCSGUI_CORE_GUI_KEYNAVIGATION_H_ */
 
 
 /*** end of file ***/

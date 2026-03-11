@@ -4,8 +4,8 @@
  * Copyright (c) 2020, Marijn van Stee, all rights reserved.
  *
  */
-#ifndef UTILS_GUI_ACTION_H_
-#define UTILS_GUI_ACTION_H_
+#ifndef MCSGUI_CORE_ACTION_H_
+#define MCSGUI_CORE_ACTION_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,7 +29,7 @@ void gui_disconnectAction(BaseComponent_s *p_base);
 } /* extern "C" */
 #endif
 
-#endif /* UTILS_GUI_ACTION_H_ */
+#endif /* MCSGUI_CORE_ACTION_H_ */
 
 
 /*** end of file ***/

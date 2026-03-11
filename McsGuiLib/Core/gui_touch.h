@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef MCSGUI_UTILS_GUI_TOUCH_H_
-#define MCSGUI_UTILS_GUI_TOUCH_H_
+#ifndef MCSGUI_CORE_GUI_TOUCH_H_
+#define MCSGUI_CORE_GUI_TOUCH_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -69,7 +69,7 @@ bool touch_handleEvent(const Touch_s *p_touch, void *p_baseComponent, const GuiE
 } /* extern "C" */
 #endif
 
-#endif /* MCSGUI_UTILS_GUI_TOUCH_H_ */
+#endif /* MCSGUI_CORE_GUI_TOUCH_H_ */
 
 
 /*** end of file ***/
