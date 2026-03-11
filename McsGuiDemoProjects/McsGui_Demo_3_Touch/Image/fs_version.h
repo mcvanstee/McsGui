@@ -14,11 +14,11 @@ extern "C" {
 #endif
 
 #define FS_IMAGE_FILE_VERSION_MAJOR  2u
-#define FS_IMAGE_FILE_VERSION_MINOR  0u
+#define FS_IMAGE_FILE_VERSION_MINOR  1u
 #define FS_IMAGE_FILE_VERSION_PATCH  0u
-#define FS_IMAGE_FILE_VERSION_REVISION  19u
+#define FS_IMAGE_FILE_VERSION_REVISION  0u
 
-#define FS_IMAGE_FILE_NAME "demo_3_pixeldata_2_0_0_19"
+#define FS_IMAGE_FILE_NAME "demo_3_pixeldata_2_1_0_0"
 
 #ifdef __cplusplus
 }

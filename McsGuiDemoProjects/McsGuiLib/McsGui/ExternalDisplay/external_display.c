@@ -19,7 +19,6 @@ typedef enum
 	EdPacketType_Config,
 	EdPacketType_Event,
 	EdPacketType_ScreenUpdate,
-	EdPacketType_ScreenUpdateCompressed,
 	EdPacketType_LogMessage,
 	EdPacketType_CustomButtonSetup,
 	EdPacketType_SyncRtcTime,
@@ -61,6 +60,7 @@ static bool ed_checkCRC(const uint8_t *p_packet);
 static uint32_t ed_addInstructionToBuffer(GraphicsInstruction_s *p_instruction, const uint32_t payloadLength);
 static void ed_sendConfig(void);
 static void ed_sendCustomButtonSetup(const uint8_t *p_payload, const uint8_t payloadLength);
+static void ed_createScreenUpdatePacket(void);
 static void ed_handleRequestReceived(const uint8_t *p_payload, const uint8_t payloadLength);
 static void ed_handleEventReceived(const uint8_t *p_payload, const uint8_t payloadLength);
 
@@ -109,21 +109,24 @@ void ed_handleRequest(uint8_t *p_packet)
 
 void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLength)
 {
-	uint32_t payloadLength = 0U;
+    const uint32_t payloadSizeScreenUpdate = 3U; /* 1 byte for useBitmapColors, 1 byte for propertiesLength, 1 byte for instructionSize */
+	uint32_t payloadLength = payloadSizeScreenUpdate;
 
-	ed_setSyncBytes();
-	ed_outBuffer[ED_PACKET_TYPE_INDEX] =
-	        (sizeof(GraphicsInstruction_s) == ED_DISPLAY_INSTRUCTION_SIZE) ? EdPacketType_ScreenUpdate : EdPacketType_ScreenUpdateCompressed;
+    ed_createScreenUpdatePacket();
 
     for (int32_t i = 0; i < bufferLength; i++)
     {
         GraphicsInstruction_s *p_instruction = &p_buffer[i];
 
+        // Check if instruction fits in remaining buffer space, if fits add it.
+        //
         if (sizeof(GraphicsInstruction_s) <= (ED_OUT_PACKET_MAX_PAYLOAD - payloadLength))
         {
         	payloadLength += ed_addInstructionToBuffer(p_instruction, payloadLength);
         }
 
+        // Write buffer if full
+        //
         if ((payloadLength + sizeof(GraphicsInstruction_s)) > ED_OUT_PACKET_MAX_PAYLOAD)
         {
         	const uint32_t bytesToWrite = ED_HEADER_LENGTH + payloadLength + ED_CRC_LENGTH_BYTES;
@@ -132,11 +135,14 @@ void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLeng
         	ed_addCRC();
         	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 
-        	payloadLength = 0U;
+        	payloadLength = payloadSizeScreenUpdate;
+        	ed_createScreenUpdatePacket();
         }
     }
 
-    if (payloadLength > 0)
+    // Write remaining instructions in buffer
+    //
+    if (payloadLength > payloadSizeScreenUpdate)
     {
     	const uint32_t bytesToWrite = ED_HEADER_LENGTH + payloadLength + ED_CRC_LENGTH_BYTES;
 
@@ -251,6 +257,26 @@ static void ed_sendCustomButtonSetup(const uint8_t *p_payload, const uint8_t pay
 
 	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 #endif /* ED_USE_CUSTOM_BUTTONS */
+}
+
+static void ed_createScreenUpdatePacket(void)
+{
+    uint8_t useBitmapColors = 0;
+    uint8_t propertiesLength = 0;
+
+#if GUI_CONFIG_USE_BITMAP_COLORS
+    useBitmapColors = 1;
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    propertiesLength = GUI_CONFIG_NUMBER_OF_PROPERTIES;
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+
+    ed_setSyncBytes();
+    ed_outBuffer[ED_PACKET_TYPE_INDEX] = (uint8_t)EdPacketType_ScreenUpdate;
+    ed_outBuffer[ED_START_PAYLOAD_INDEX] = useBitmapColors;
+    ed_outBuffer[ED_START_PAYLOAD_INDEX + 1] = propertiesLength;
+    ed_outBuffer[ED_START_PAYLOAD_INDEX + 2] = sizeof(GraphicsInstruction_s);
 }
 
 static void ed_handleRequestReceived(const uint8_t *p_payload, const uint8_t payloadLength)

@@ -365,7 +365,20 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
             }
 
             UINT bytesWritten = 0;
-            f_write(&file, &buffer[4], bytesReceived, &bytesWritten);
+            FRESULT writeRes = f_write(&file, &buffer[4], bytesReceived, &bytesWritten);
+            if (FR_OK != writeRes || (bytesWritten != bytesReceived))
+            {
+                fileWriteCanceled = true;
+
+                char logMessage[255] = {0};
+                snprintf(logMessage, sizeof(logMessage),
+                    "Failed to write to file. WriteRes: %d, BytesWritten: %lu, BytesReceived: %lu",
+                    writeRes, (uint32_t)bytesWritten, bytesReceived);
+                gui_log_error(logMessage);
+
+                break;
+            }
+
             totalBytesWritten += bytesWritten;
 
             if (totalBytesWritten < fileSize)
@@ -385,6 +398,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName)
 
         if (HAL_GetTick() > timeout)
         {
+            fileWriteCanceled = true;
             gui_log_error("File write timeout");
 
             break;

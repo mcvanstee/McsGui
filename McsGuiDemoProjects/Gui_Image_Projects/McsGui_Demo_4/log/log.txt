@@ -1,3 +1,38 @@
+Starting bitmap conversion...
+Clearing build folders...
+Output Folder: C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_4
+Number of Instructions: 4
+Number of Translations: 10
+Font Instructions Converted: 1
+Text Instructions Converted: 2
+Icon Instructions Converted: 1
+Bitmap conversion finished...
+WARNING Data location not found in settings for file: IRL_Logo 128, using default data location
+WARNING Data location not found in settings for file: IRL_Logo_48, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B000, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B001, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B002, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B003, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B004, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B005, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B006, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B007, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B008, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B009, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B010, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B011, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B012, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B013, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B014, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B015, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B016, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B017, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B018, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B019, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B020, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B021, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B022, using default data location
+WARNING Data location not found in settings for file: IRL-Logo_@B023, using default data location
 WARNING Files with properties are missing, adding dummy files
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A000_C000_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A000_C001_D001
@@ -19,8 +54,15 @@ WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C006_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C007_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C008_D001
 WARNING Add Dummy file: TEXT_INTERN_TEMP__A001_C009_D001
-Pixeldata offset: 20
-CRC: 856524958
+Pixel data offset: 60
+CRC: 186606574
+Pixel data offset: 60
+CRC: 186606574
+INFO External display image file header written. Offset: 60
+INFO Data locations written. Offset: 80
+INFO File infos written. Offset: 9044
+INFO Character infos written. Offset: 14744
+INFO Pixel data Offset: 2823970
 Build successful
-Build V1.0.0.31
+Build V1.1.0.0
 996 File(s) and 10 Font(s) added

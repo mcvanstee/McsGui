@@ -17,16 +17,13 @@ extern "C" {
 #include <stdint.h>
 
 #ifndef FS_PIXEL_DATA_CRC
-#define FS_PIXEL_DATA_CRC 2308424803u
+#define FS_PIXEL_DATA_CRC 1386952816u
 #endif
 
 #define FS_FILES 397
-#define FS_FILES_OPTIMIZED 357
-#define FS_FILES_PIXEL_DATA 40
-#define FS_FILES_START_PIXEL_DATA_INDEX 357
-#define FS_FILE_LOCATION_CODE 0
-#define FS_FILE_LOCATION_PIXEL_DATA 1
-#define FS_MAX_FILE_PROPERTIES 5U
+#define FS_DATA_LOCATION_0_COMPRESSION 1 /* Compression RLE */
+#define FS_DATA_LOCATION_1_COMPRESSION 2 /* Compression RLE_Alpha */
+#define FS_MAX_FILE_PROPERTIES 3U
 #define FS_BYTES_PER_PIXEL 2
 
 typedef struct
@@ -49,11 +46,22 @@ typedef enum
 
 typedef enum
 {
+    FS_DATA_LOCATION_0 = 0,
+    FS_DATA_LOCATION_1 = 1,
+} fs_data_location_e;
+
+typedef enum
+{
+    NONE = 0,
+    RLE = 1,
+    RLE_ALPHA = 2,
+} fs_compression_e;
+
+typedef enum
+{
     FILE_PROPERTY_THEME = 0,
     FILE_PROPERTY_ANIMATION = 1,
     FILE_PROPERTY_LANGUAGE = 2,
-    FILE_PROPERTY_FOCUS = 3,
-    FILE_PROPERTY_ACCENT_COLOR = 4,
 } file_property_e;
 
 typedef enum
@@ -104,103 +112,89 @@ typedef enum
     PROPERTY_LANGUAGE_VALUE_KOREAN = 9,
 } property_value_language_e;
 
-typedef enum
-{
-    PROPERTY_FOCUS_VALUE_FALSE = 0,
-    PROPERTY_FOCUS_VALUE_TRUE = 1,
-} property_value_focus_e;
-
-typedef enum
-{
-    PROPERTY_ACCENT_COLOR_VALUE_RED = 0,
-    PROPERTY_ACCENT_COLOR_VALUE_GREEN = 1,
-    PROPERTY_ACCENT_COLOR_VALUE_BLUE = 2,
-    PROPERTY_ACCENT_COLOR_VALUE_WHITE = 3,
-} property_value_accent_color_e;
-
 
 typedef enum
 {
     FILE_KEY_NONE = 0,
-    FILE_KEY_ICON_AGENDA = 1,
-    FILE_KEY_ICON_ARROW_BACK = 2,
-    FILE_KEY_ICON_ARROW_DOWN = 3,
-    FILE_KEY_ICON_ARROW_UP = 4,
-    FILE_KEY_ICON_BELL = 5,
-    FILE_KEY_ICON_BRIGHTNESS = 6,
-    FILE_KEY_ICON_BRUSH = 7,
-    FILE_KEY_ICON_CANCEL = 8,
-    FILE_KEY_ICON_CHECKMARK = 9,
-    FILE_KEY_ICON_CHECKMARK_LARGE = 10,
-    FILE_KEY_ICON_CLOCK = 11,
-    FILE_KEY_ICON_FOCUS = 12,
-    FILE_KEY_ICON_GEAR = 13,
-    FILE_KEY_ICON_GLOBAL = 14,
-    FILE_KEY_ICON_INFO = 15,
-    FILE_KEY_ICON_KEYBOARD = 16,
-    FILE_KEY_ICON_MINUS = 17,
-    FILE_KEY_ICON_PALETTE = 18,
-    FILE_KEY_ICON_PLUS = 19,
-    FILE_KEY_ICON_RADIO_BUTTON_CHECKED = 20,
-    FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED = 21,
-    FILE_KEY_ICON_SLIDERS = 22,
-    FILE_KEY_ICON_WIFI = 23,
-    FILE_KEY_TEXT_ACCENT_COLOR = 24,          /* C: Language */
-    FILE_KEY_TEXT_ALARM = 34,                 /* C: Language */
-    FILE_KEY_TEXT_BRIGHTNESS = 44,            /* C: Language */
-    FILE_KEY_TEXT_COLORS = 54,                /* C: Language */
-    FILE_KEY_TEXT_DATE = 64,                  /* C: Language */
-    FILE_KEY_TEXT_FOOTER_MCSGUI = 74,
-    FILE_KEY_TEXT_INFO = 75,                  /* C: Language */
-    FILE_KEY_TEXT_KEYBOARD = 85,              /* C: Language */
-    FILE_KEY_TEXT_LANGUAGE = 95,              /* C: Language */
-    FILE_KEY_TEXT_MEASUREMENT = 105,          /* C: Language */
-    FILE_KEY_TEXT_PANE_ACCENT_COLOR = 115,    /* C: Language */
-    FILE_KEY_TEXT_PANE_ACTIVATE_ALARM = 125,  /* C: Language */
-    FILE_KEY_TEXT_PANE_CHINESE_SIM = 135,
-    FILE_KEY_TEXT_PANE_CURSOR_COLOR = 136,    /* C: Language */
-    FILE_KEY_TEXT_PANE_DEG_CEL = 146,
-    FILE_KEY_TEXT_PANE_DEG_FAR = 147,
-    FILE_KEY_TEXT_PANE_DUTCH = 148,
-    FILE_KEY_TEXT_PANE_ENGLISH = 149,
-    FILE_KEY_TEXT_PANE_FRENCH = 150,
-    FILE_KEY_TEXT_PANE_GERMAN = 151,
-    FILE_KEY_TEXT_PANE_INTERN_TEMP = 152,     /* C: Language */
-    FILE_KEY_TEXT_PANE_ITALIAN = 162,
-    FILE_KEY_TEXT_PANE_JAPANESE = 163,
-    FILE_KEY_TEXT_PANE_KOREAN = 164,
-    FILE_KEY_TEXT_PANE_RUSSIAN = 165,
-    FILE_KEY_TEXT_PANE_SET_ALARM_IN = 166,    /* C: Language */
-    FILE_KEY_TEXT_PANE_SPANISH = 176,
-    FILE_KEY_TEXT_PANE_THEME_DARK = 177,      /* C: Language */
-    FILE_KEY_TEXT_PANE_THEME_LIGHT = 187,     /* C: Language */
-    FILE_KEY_TEXT_PANE_TIME_MM = 197,
-    FILE_KEY_TEXT_SETTINGS = 198,             /* C: Language */
-    FILE_KEY_TEXT_SETUP = 208,                /* C: Language */
-    FILE_KEY_TEXT_THEME = 218,                /* C: Language */
-    FILE_KEY_TEXT_TIME = 228,                 /* C: Language */
-    FILE_KEY_TITLE_ALARM = 238,               /* C: Language */
-    FILE_KEY_TITLE_BRIGHTNESS = 248,          /* C: Language */
-    FILE_KEY_TITLE_COLORS = 258,              /* C: Language */
-    FILE_KEY_TITLE_DATE = 268,                /* C: Language */
-    FILE_KEY_TITLE_INFO = 278,                /* C: Language */
-    FILE_KEY_TITLE_LANGUAGE = 288,            /* C: Language */
-    FILE_KEY_TITLE_MAIN_MENU = 298,           /* C: Language */
-    FILE_KEY_TITLE_MEASUREMENT = 308,         /* C: Language */
-    FILE_KEY_TITLE_SETTINGS = 318,            /* C: Language */
-    FILE_KEY_TITLE_SETUP = 328,               /* C: Language */
-    FILE_KEY_TITLE_THEME = 338,               /* C: Language */
-    FILE_KEY_TITLE_TIME = 348,                /* C: Language */
-    FILE_KEY_ANIMATION_IRL_LOGO = 358,        /* B: Animation */
-    FILE_KEY_BUTTON_NUMINPUT_MINUS = 382,     /* A: Theme */
-    FILE_KEY_BUTTON_NUMINPUT_PLUS = 384,      /* A: Theme */
-    FILE_KEY_BUTTON_SLIDER = 386,             /* A: Theme */
-    FILE_KEY_IRL_LOGO_128 = 388,
-    FILE_KEY_IRL_LOGO_48 = 389,
-    FILE_KEY_KEYBOARD_LC = 390,               /* A: Theme */
-    FILE_KEY_KEYBOARD_NUM = 392,              /* A: Theme */
-    FILE_KEY_KEYBOARD_TEXTBOX = 394,          /* A: Theme */
-    FILE_KEY_KEYBOARD_UC = 396,               /* A: Theme */
+    FILE_KEY_ANIMATION_IRL_LOGO = 1,          /* B: Animation */
+    FILE_KEY_BUTTON_NUMINPUT_MINUS = 25,      /* A: Theme */
+    FILE_KEY_BUTTON_NUMINPUT_PLUS = 27,       /* A: Theme */
+    FILE_KEY_BUTTON_SLIDER = 29,              /* A: Theme */
+    FILE_KEY_IRL_LOGO_128 = 31,
+    FILE_KEY_IRL_LOGO_48 = 32,
+    FILE_KEY_KEYBOARD_LC = 33,                /* A: Theme */
+    FILE_KEY_KEYBOARD_NUM = 35,               /* A: Theme */
+    FILE_KEY_KEYBOARD_TEXTBOX = 37,           /* A: Theme */
+    FILE_KEY_KEYBOARD_UC = 39,                /* A: Theme */
+    FILE_KEY_ICON_AGENDA = 41,
+    FILE_KEY_ICON_ARROW_BACK = 42,
+    FILE_KEY_ICON_ARROW_DOWN = 43,
+    FILE_KEY_ICON_ARROW_UP = 44,
+    FILE_KEY_ICON_BELL = 45,
+    FILE_KEY_ICON_BRIGHTNESS = 46,
+    FILE_KEY_ICON_BRUSH = 47,
+    FILE_KEY_ICON_CANCEL = 48,
+    FILE_KEY_ICON_CHECKMARK = 49,
+    FILE_KEY_ICON_CHECKMARK_LARGE = 50,
+    FILE_KEY_ICON_CLOCK = 51,
+    FILE_KEY_ICON_FOCUS = 52,
+    FILE_KEY_ICON_GEAR = 53,
+    FILE_KEY_ICON_GLOBAL = 54,
+    FILE_KEY_ICON_INFO = 55,
+    FILE_KEY_ICON_KEYBOARD = 56,
+    FILE_KEY_ICON_MINUS = 57,
+    FILE_KEY_ICON_PALETTE = 58,
+    FILE_KEY_ICON_PLUS = 59,
+    FILE_KEY_ICON_RADIO_BUTTON_CHECKED = 60,
+    FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED = 61,
+    FILE_KEY_ICON_SLIDERS = 62,
+    FILE_KEY_ICON_WIFI = 63,
+    FILE_KEY_TEXT_ACCENT_COLOR = 64,          /* C: Language */
+    FILE_KEY_TEXT_ALARM = 74,                 /* C: Language */
+    FILE_KEY_TEXT_BRIGHTNESS = 84,            /* C: Language */
+    FILE_KEY_TEXT_COLORS = 94,                /* C: Language */
+    FILE_KEY_TEXT_DATE = 104,                 /* C: Language */
+    FILE_KEY_TEXT_FOOTER_MCSGUI = 114,
+    FILE_KEY_TEXT_INFO = 115,                 /* C: Language */
+    FILE_KEY_TEXT_KEYBOARD = 125,             /* C: Language */
+    FILE_KEY_TEXT_LANGUAGE = 135,             /* C: Language */
+    FILE_KEY_TEXT_MEASUREMENT = 145,          /* C: Language */
+    FILE_KEY_TEXT_PANE_ACCENT_COLOR = 155,    /* C: Language */
+    FILE_KEY_TEXT_PANE_ACTIVATE_ALARM = 165,  /* C: Language */
+    FILE_KEY_TEXT_PANE_CHINESE_SIM = 175,
+    FILE_KEY_TEXT_PANE_CURSOR_COLOR = 176,    /* C: Language */
+    FILE_KEY_TEXT_PANE_DEG_CEL = 186,
+    FILE_KEY_TEXT_PANE_DEG_FAR = 187,
+    FILE_KEY_TEXT_PANE_DUTCH = 188,
+    FILE_KEY_TEXT_PANE_ENGLISH = 189,
+    FILE_KEY_TEXT_PANE_FRENCH = 190,
+    FILE_KEY_TEXT_PANE_GERMAN = 191,
+    FILE_KEY_TEXT_PANE_INTERN_TEMP = 192,     /* C: Language */
+    FILE_KEY_TEXT_PANE_ITALIAN = 202,
+    FILE_KEY_TEXT_PANE_JAPANESE = 203,
+    FILE_KEY_TEXT_PANE_KOREAN = 204,
+    FILE_KEY_TEXT_PANE_RUSSIAN = 205,
+    FILE_KEY_TEXT_PANE_SET_ALARM_IN = 206,    /* C: Language */
+    FILE_KEY_TEXT_PANE_SPANISH = 216,
+    FILE_KEY_TEXT_PANE_THEME_DARK = 217,      /* C: Language */
+    FILE_KEY_TEXT_PANE_THEME_LIGHT = 227,     /* C: Language */
+    FILE_KEY_TEXT_PANE_TIME_MM = 237,
+    FILE_KEY_TEXT_SETTINGS = 238,             /* C: Language */
+    FILE_KEY_TEXT_SETUP = 248,                /* C: Language */
+    FILE_KEY_TEXT_THEME = 258,                /* C: Language */
+    FILE_KEY_TEXT_TIME = 268,                 /* C: Language */
+    FILE_KEY_TITLE_ALARM = 278,               /* C: Language */
+    FILE_KEY_TITLE_BRIGHTNESS = 288,          /* C: Language */
+    FILE_KEY_TITLE_COLORS = 298,              /* C: Language */
+    FILE_KEY_TITLE_DATE = 308,                /* C: Language */
+    FILE_KEY_TITLE_INFO = 318,                /* C: Language */
+    FILE_KEY_TITLE_LANGUAGE = 328,            /* C: Language */
+    FILE_KEY_TITLE_MAIN_MENU = 338,           /* C: Language */
+    FILE_KEY_TITLE_MEASUREMENT = 348,         /* C: Language */
+    FILE_KEY_TITLE_SETTINGS = 358,            /* C: Language */
+    FILE_KEY_TITLE_SETUP = 368,               /* C: Language */
+    FILE_KEY_TITLE_THEME = 378,               /* C: Language */
+    FILE_KEY_TITLE_TIME = 388,                /* C: Language */
 } file_key_e;
 
 /**
@@ -217,6 +211,8 @@ file_search_result_e fs_getFileInfo(
                             const uint8_t propertiesLength,
                             fs_file_info_s *p_out_file_info,
                             uint8_t *p_dataLocation);
+
+fs_compression_e fs_getCompression(const fs_data_location_e dataLocation);
 
 
 #ifdef __cplusplus

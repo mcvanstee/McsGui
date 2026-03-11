@@ -64,6 +64,7 @@
           </FontBitmapStyleIds>
         </FontBitmap>
       </FontBitmaps>
+      <DataLocationId>1</DataLocationId>
     </ConverterInstruction>
     <ConverterInstruction xsi:type="IconInstruction">
       <Name />
@@ -73,6 +74,7 @@
           <Filename>Agenda</Filename>
           <IconName>Agenda</IconName>
           <SvgString>&lt;svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Agenda"&gt;&lt;path id="icon" d="M0 18.125C0 19.1602 0.839844 20 1.875 20H15.625C16.6602 20 17.5 19.1602 17.5 18.125V7.5H0V18.125ZM12.5 10.4688C12.5 10.2109 12.7109 10 12.9688 10H14.5312C14.7891 10 15 10.2109 15 10.4688V12.0312C15 12.2891 14.7891 12.5 14.5312 12.5H12.9688C12.7109 12.5 12.5 12.2891 12.5 12.0312V10.4688ZM12.5 15.4688C12.5 15.2109 12.7109 15 12.9688 15H14.5312C14.7891 15 15 15.2109 15 15.4688V17.0312C15 17.2891 14.7891 17.5 14.5312 17.5H12.9688C12.7109 17.5 12.5 17.2891 12.5 17.0312V15.4688ZM7.5 10.4688C7.5 10.2109 7.71094 10 7.96875 10H9.53125C9.78906 10 10 10.2109 10 10.4688V12.0312C10 12.2891 9.78906 12.5 9.53125 12.5H7.96875C7.71094 12.5 7.5 12.2891 7.5 12.0312V10.4688ZM7.5 15.4688C7.5 15.2109 7.71094 15 7.96875 15H9.53125C9.78906 15 10 15.2109 10 15.4688V17.0312C10 17.2891 9.78906 17.5 9.53125 17.5H7.96875C7.71094 17.5 7.5 17.2891 7.5 17.0312V15.4688ZM2.5 10.4688C2.5 10.2109 2.71094 10 2.96875 10H4.53125C4.78906 10 5 10.2109 5 10.4688V12.0312C5 12.2891 4.78906 12.5 4.53125 12.5H2.96875C2.71094 12.5 2.5 12.2891 2.5 12.0312V10.4688ZM2.5 15.4688C2.5 15.2109 2.71094 15 2.96875 15H4.53125C4.78906 15 5 15.2109 5 15.4688V17.0312C5 17.2891 4.78906 17.5 4.53125 17.5H2.96875C2.71094 17.5 2.5 17.2891 2.5 17.0312V15.4688ZM15.625 2.5H13.75V0.625C13.75 0.28125 13.4688 0 13.125 0H11.875C11.5312 0 11.25 0.28125 11.25 0.625V2.5H6.25V0.625C6.25 0.28125 5.96875 0 5.625 0H4.375C4.03125 0 3.75 0.28125 3.75 0.625V2.5H1.875C0.839844 2.5 0 3.33984 0 4.375V6.25H17.5V4.375C17.5 3.33984 16.6602 2.5 15.625 2.5Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -81,6 +83,7 @@
           <Filename>Arrow-Back</Filename>
           <IconName>Arrow-Back</IconName>
           <SvgString>&lt;svg width="35" height="18" viewBox="0 0 35 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Arrow-Back"&gt;&lt;path id="icon" d="M10.4734 11.7271H34.0625C34.5802 11.7271 35 11.3074 35 10.7896V6.41463C35 5.8969 34.5802 5.47713 34.0625 5.47713H10.4734V1.87878C10.4734 0.208314 8.45379 -0.628246 7.27255 0.552924L0.549198 7.27627C-0.183066 8.00854 -0.183066 9.19572 0.549198 9.92791L7.27255 16.6513C8.45372 17.8324 10.4734 16.9959 10.4734 15.3254V11.7271Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -89,6 +92,7 @@
           <Filename>Bell</Filename>
           <IconName>Bell</IconName>
           <SvgString>&lt;svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Bell"&gt;&lt;path id="icon" d="M8 18C9.26142 18 10.2846 16.9928 10.2846 15.75H5.71536C5.71536 16.9928 6.73857 18 8 18ZM15.6925 12.7368C15.0025 12.0069 13.7114 10.909 13.7114 7.3125C13.7114 4.58086 11.7657 2.39414 9.14214 1.85766V1.125C9.14214 0.503789 8.63071 0 8 0C7.36929 0 6.85786 0.503789 6.85786 1.125V1.85766C4.2343 2.39414 2.28859 4.58086 2.28859 7.3125C2.28859 10.909 0.997522 12.0069 0.307524 12.7368C0.0932387 12.9635 -0.00176102 13.2346 2.46924e-05 13.5C0.00395325 14.0766 0.463595 14.625 1.14645 14.625H14.8536C15.5364 14.625 15.9964 14.0766 16 13.5C16.0018 13.2346 15.9068 12.9632 15.6925 12.7368Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -97,6 +101,7 @@
           <Filename>Brightness</Filename>
           <IconName>Brightness</IconName>
           <SvgString>&lt;svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Brightness"&gt;&lt;path id="icon" d="M27.2727 0H2.72727C1.22727 0 0 1.22727 0 2.72727V21.8182C0 23.3182 1.22727 24.5455 2.72727 24.5455H27.2727C28.7727 24.5455 30 23.3182 30 21.8182V2.72727C30 1.22727 28.7727 0 27.2727 0ZM27.2727 21.8318H2.72727V2.71364H27.2727V21.8318ZM9.54545 17.7273H12.9545L15 19.7727L17.0455 17.7273H20.4545V14.3182L22.5 12.2727L20.4545 10.2273V6.81818H17.0455L15 4.77273L12.9545 6.81818H9.54545V10.2273L7.5 12.2727L9.54545 14.3182V17.7273ZM15 8.18182C17.2636 8.18182 19.0909 10.0091 19.0909 12.2727C19.0909 14.5364 17.2636 16.3636 15 16.3636V8.18182Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -105,6 +110,7 @@
           <Filename>Brush</Filename>
           <IconName>Brush</IconName>
           <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Brush"&gt;&lt;path id="icon" d="M7.17707 13.292C5.45316 13.4028 3.88867 14.0594 3.00094 16.3986C2.89996 16.6654 2.65719 16.8274 2.37402 16.8274C1.89664 16.8274 0.420664 15.6385 0 15.3514C0.000429687 18.8899 1.63023 22 5.50043 22C8.76004 22 11.0004 20.1193 11.0004 16.8356C11.0004 16.702 10.9725 16.5743 10.9587 16.4433L7.17707 13.292ZM19.6754 0C19.024 0 18.4134 0.28832 17.9476 0.706836C9.16438 8.55293 8.25043 8.73727 8.25043 11.0468C8.25043 11.6355 8.39008 12.1967 8.62555 12.7097L11.3678 14.9948C11.6776 15.0721 11.9969 15.125 12.3299 15.125C14.9987 15.125 16.5455 13.1712 21.4032 4.10523C21.7203 3.48863 22.0004 2.82262 22.0004 2.1291C22.0004 0.886875 20.8832 0 19.6754 0Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -113,6 +119,7 @@
           <Filename>Cancel</Filename>
           <IconName>Cancel</IconName>
           <SvgString>&lt;svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Cancel"&gt;&lt;path id="icon" d="M12.4118 9L17.529 3.88278C18.157 3.25483 18.157 2.2367 17.529 1.60824L16.3918 0.470966C15.7638 -0.156989 14.7457 -0.156989 14.1172 0.470966L9 5.58818L3.88278 0.470966C3.25483 -0.156989 2.2367 -0.156989 1.60824 0.470966L0.470966 1.60824C-0.156989 2.23619 -0.156989 3.25432 0.470966 3.88278L5.58818 9L0.470966 14.1172C-0.156989 14.7452 -0.156989 15.7633 0.470966 16.3918L1.60824 17.529C2.23619 18.157 3.25483 18.157 3.88278 17.529L9 12.4118L14.1172 17.529C14.7452 18.157 15.7638 18.157 16.3918 17.529L17.529 16.3918C18.157 15.7638 18.157 14.7457 17.529 14.1172L12.4118 9Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -121,6 +128,7 @@
           <Filename>Checkmark</Filename>
           <IconName>Checkmark</IconName>
           <SvgString>&lt;svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Checkmark"&gt;&lt;path id="icon" d="M3.3207 5.97874L2.96997 5.63115L2.61803 5.9775L1.64929 6.93082L1.28843 7.28594L1.64804 7.64233L5.46157 11.4218L5.81353 11.7706L6.16549 11.4218L14.352 3.30845L14.7103 2.95332L14.352 2.59818L13.3901 1.64486L13.0383 1.29621L12.6863 1.6447L5.8137 8.44948L3.3207 5.97874Z" fill="black" stroke="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -129,6 +137,7 @@
           <Filename>Checkmark_large</Filename>
           <IconName>Checkmark_large</IconName>
           <SvgString>&lt;svg width="26" height="21" viewBox="0 0 26 21" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Checkmark_large"&gt;&lt;path id="icon" d="M4.12797 9.59031L3.77725 9.24272L3.4253 9.58907L1.64929 11.3368L1.28843 11.6919L1.64804 12.0483L8.63951 18.9774L8.99147 19.3262L9.34344 18.9774L24.352 4.10289L24.7103 3.74775L24.352 3.39261L22.5885 1.64486L22.2367 1.29621L21.8847 1.6447L8.99164 14.4105L4.12797 9.59031Z" fill="black" stroke="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -137,6 +146,7 @@
           <Filename>Focus</Filename>
           <IconName>Focus</IconName>
           <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Focus"&gt;&lt;path id="icon" d="M0 7.26786V1.17857C0 0.525446 0.525446 0 1.17857 0H7.26786C7.59196 0 7.85714 0.265179 7.85714 0.589286V2.55357C7.85714 2.87768 7.59196 3.14286 7.26786 3.14286H3.14286V7.26786C3.14286 7.59196 2.87768 7.85714 2.55357 7.85714H0.589286C0.265179 7.85714 0 7.59196 0 7.26786ZM14.1429 0.589286V2.55357C14.1429 2.87768 14.408 3.14286 14.7321 3.14286H18.8571V7.26786C18.8571 7.59196 19.1223 7.85714 19.4464 7.85714H21.4107C21.7348 7.85714 22 7.59196 22 7.26786V1.17857C22 0.525446 21.4746 0 20.8214 0H14.7321C14.408 0 14.1429 0.265179 14.1429 0.589286ZM21.4107 14.1429H19.4464C19.1223 14.1429 18.8571 14.408 18.8571 14.7321V18.8571H14.7321C14.408 18.8571 14.1429 19.1223 14.1429 19.4464V21.4107C14.1429 21.7348 14.408 22 14.7321 22H20.8214C21.4746 22 22 21.4746 22 20.8214V14.7321C22 14.408 21.7348 14.1429 21.4107 14.1429ZM7.85714 21.4107V19.4464C7.85714 19.1223 7.59196 18.8571 7.26786 18.8571H3.14286V14.7321C3.14286 14.408 2.87768 14.1429 2.55357 14.1429H0.589286C0.265179 14.1429 0 14.408 0 14.7321V20.8214C0 21.4746 0.525446 22 1.17857 22H7.26786C7.59196 22 7.85714 21.7348 7.85714 21.4107Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -145,6 +155,7 @@
           <Filename>Gear</Filename>
           <IconName>Gear</IconName>
           <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Gear"&gt;&lt;path id="icon" d="M19.4152 12.0725C19.4576 11.7287 19.4859 11.3713 19.4859 11C19.4859 10.6287 19.4576 10.2713 19.4011 9.9275L21.7913 8.1125C22.0034 7.9475 22.06 7.645 21.9327 7.41125L19.6698 3.6025C19.5283 3.355 19.2313 3.2725 18.9768 3.355L16.1623 4.455C15.5682 4.015 14.946 3.6575 14.2529 3.3825L13.8286 0.4675C13.7862 0.1925 13.5458 0 13.2629 0H8.73709C8.45423 0 8.22794 0.1925 8.18551 0.4675L7.76121 3.3825C7.06819 3.6575 6.43175 4.02875 5.85188 4.455L3.03738 3.355C2.78281 3.25875 2.4858 3.355 2.34437 3.6025L0.0814582 7.41125C-0.0599737 7.65875 -0.00340075 7.9475 0.22289 8.1125L2.61309 9.9275C2.55652 10.2713 2.51409 10.6425 2.51409 11C2.51409 11.3575 2.54237 11.7287 2.59895 12.0725L0.208747 13.8875C-0.00340108 14.0525 -0.0599737 14.355 0.067315 14.5887L2.33023 18.3975C2.47166 18.645 2.76866 18.7275 3.02324 18.645L5.83774 17.545C6.43175 17.985 7.05405 18.3425 7.74707 18.6175L8.17136 21.5325C8.22794 21.8075 8.45423 22 8.73709 22H13.2629C13.5458 22 13.7862 21.8075 13.8145 21.5325L14.2388 18.6175C14.9318 18.3425 15.5683 17.9713 16.1481 17.545L18.9626 18.645C19.2172 18.7413 19.5142 18.645 19.6556 18.3975L21.9185 14.5887C22.06 14.3412 22.0034 14.0525 21.7771 13.8875L19.4152 12.0725ZM11 15.125C8.66637 15.125 6.75704 13.2688 6.75704 11C6.75704 8.73125 8.66637 6.875 11 6.875C13.3336 6.875 15.243 8.73125 15.243 11C15.243 13.2688 13.3336 15.125 11 15.125Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -153,6 +164,7 @@
           <Filename>Global</Filename>
           <IconName>Global</IconName>
           <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Global"&gt;&lt;path id="icon" d="M9.99 0C4.47 0 0 4.48 0 10C0 15.52 4.47 20 9.99 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 9.99 0ZM16.92 6H13.97C13.65 4.75 13.19 3.55 12.59 2.44C14.43 3.07 15.96 4.35 16.92 6ZM10 2.04C10.83 3.24 11.48 4.57 11.91 6H8.09C8.52 4.57 9.17 3.24 10 2.04ZM2.26 12C2.1 11.36 2 10.69 2 10C2 9.31 2.1 8.64 2.26 8H5.64C5.56 8.66 5.5 9.32 5.5 10C5.5 10.68 5.56 11.34 5.64 12H2.26ZM3.08 14H6.03C6.35 15.25 6.81 16.45 7.41 17.56C5.57 16.93 4.04 15.66 3.08 14ZM6.03 6H3.08C4.04 4.34 5.57 3.07 7.41 2.44C6.81 3.55 6.35 4.75 6.03 6ZM10 17.96C9.17 16.76 8.52 15.43 8.09 14H11.91C11.48 15.43 10.83 16.76 10 17.96ZM12.34 12H7.66C7.57 11.34 7.5 10.68 7.5 10C7.5 9.32 7.57 8.65 7.66 8H12.34C12.43 8.65 12.5 9.32 12.5 10C12.5 10.68 12.43 11.34 12.34 12ZM12.59 17.56C13.19 16.45 13.65 15.25 13.97 14H16.92C15.96 15.65 14.43 16.93 12.59 17.56ZM14.36 12C14.44 11.34 14.5 10.68 14.5 10C14.5 9.32 14.44 8.66 14.36 8H17.74C17.9 8.64 18 9.31 18 10C18 10.69 17.9 11.36 17.74 12H14.36Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -161,6 +173,7 @@
           <Filename>Keyboard</Filename>
           <IconName>Keyboard</IconName>
           <SvgString>&lt;svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Keyboard"&gt;&lt;path id="icon" d="M21.0833 15.3333H1.91667C0.858108 15.3333 0 14.4752 0 13.4167V1.91667C0 0.858108 0.858108 0 1.91667 0H21.0833C22.1419 0 23 0.858108 23 1.91667V13.4167C23 14.4752 22.1419 15.3333 21.0833 15.3333ZM5.11111 4.63194V3.03472C5.11111 2.7701 4.89656 2.55556 4.63194 2.55556H3.03472C2.7701 2.55556 2.55556 2.7701 2.55556 3.03472V4.63194C2.55556 4.89656 2.7701 5.11111 3.03472 5.11111H4.63194C4.89656 5.11111 5.11111 4.89656 5.11111 4.63194ZM8.94444 4.63194V3.03472C8.94444 2.7701 8.7299 2.55556 8.46528 2.55556H6.86806C6.60344 2.55556 6.38889 2.7701 6.38889 3.03472V4.63194C6.38889 4.89656 6.60344 5.11111 6.86806 5.11111H8.46528C8.7299 5.11111 8.94444 4.89656 8.94444 4.63194ZM12.7778 4.63194V3.03472C12.7778 2.7701 12.5632 2.55556 12.2986 2.55556H10.7014C10.4368 2.55556 10.2222 2.7701 10.2222 3.03472V4.63194C10.2222 4.89656 10.4368 5.11111 10.7014 5.11111H12.2986C12.5632 5.11111 12.7778 4.89656 12.7778 4.63194ZM16.6111 4.63194V3.03472C16.6111 2.7701 16.3966 2.55556 16.1319 2.55556H14.5347C14.2701 2.55556 14.0556 2.7701 14.0556 3.03472V4.63194C14.0556 4.89656 14.2701 5.11111 14.5347 5.11111H16.1319C16.3966 5.11111 16.6111 4.89656 16.6111 4.63194ZM20.4444 4.63194V3.03472C20.4444 2.7701 20.2299 2.55556 19.9653 2.55556H18.3681C18.1034 2.55556 17.8889 2.7701 17.8889 3.03472V4.63194C17.8889 4.89656 18.1034 5.11111 18.3681 5.11111H19.9653C20.2299 5.11111 20.4444 4.89656 20.4444 4.63194ZM7.02778 8.46528V6.86806C7.02778 6.60344 6.81323 6.38889 6.54861 6.38889H4.95139C4.68677 6.38889 4.47222 6.60344 4.47222 6.86806V8.46528C4.47222 8.7299 4.68677 8.94444 4.95139 8.94444H6.54861C6.81323 8.94444 7.02778 8.7299 7.02778 8.46528ZM10.8611 8.46528V6.86806C10.8611 6.60344 10.6466 6.38889 10.3819 6.38889H8.78472C8.5201 6.38889 8.30556 6.60344 8.30556 6.86806V8.46528C8.30556 8.7299 8.5201 8.94444 8.78472 8.94444H10.3819C10.6466 8.94444 10.8611 8.7299 10.8611 8.46528ZM14.6944 8.46528V6.86806C14.6944 6.60344 14.4799 6.38889 14.2153 6.38889H12.6181C12.3534 6.38889 12.1389 6.60344 12.1389 6.86806V8.46528C12.1389 8.7299 12.3534 8.94444 12.6181 8.94444H14.2153C14.4799 8.94444 14.6944 8.7299 14.6944 8.46528ZM18.5278 8.46528V6.86806C18.5278 6.60344 18.3132 6.38889 18.0486 6.38889H16.4514C16.1868 6.38889 15.9722 6.60344 15.9722 6.86806V8.46528C15.9722 8.7299 16.1868 8.94444 16.4514 8.94444H18.0486C18.3132 8.94444 18.5278 8.7299 18.5278 8.46528ZM5.11111 12.2986V10.7014C5.11111 10.4368 4.89656 10.2222 4.63194 10.2222H3.03472C2.7701 10.2222 2.55556 10.4368 2.55556 10.7014V12.2986C2.55556 12.5632 2.7701 12.7778 3.03472 12.7778H4.63194C4.89656 12.7778 5.11111 12.5632 5.11111 12.2986ZM16.6111 12.2986V10.7014C16.6111 10.4368 16.3966 10.2222 16.1319 10.2222H6.86806C6.60344 10.2222 6.38889 10.4368 6.38889 10.7014V12.2986C6.38889 12.5632 6.60344 12.7778 6.86806 12.7778H16.1319C16.3966 12.7778 16.6111 12.5632 16.6111 12.2986ZM20.4444 12.2986V10.7014C20.4444 10.4368 20.2299 10.2222 19.9653 10.2222H18.3681C18.1034 10.2222 17.8889 10.4368 17.8889 10.7014V12.2986C17.8889 12.5632 18.1034 12.7778 18.3681 12.7778H19.9653C20.2299 12.7778 20.4444 12.5632 20.4444 12.2986Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -169,6 +182,7 @@
           <Filename>minus</Filename>
           <IconName>minus</IconName>
           <SvgString>&lt;svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="minus"&gt;&lt;path id="icon" d="M14.5 0H1.5C0.671875 0 0 0.671875 0 1.5V2.5C0 3.32812 0.671875 4 1.5 4H14.5C15.3281 4 16 3.32812 16 2.5V1.5C16 0.671875 15.3281 0 14.5 0Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -177,6 +191,7 @@
           <Filename>Palette</Filename>
           <IconName>Palette</IconName>
           <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Pallete"&gt;&lt;path id="icon" d="M8.77813 0.216353C4.50697 1.04996 1.06512 4.48322 0.222917 8.74149C-1.36695 16.7768 5.88199 22.7667 11.3434 21.9202C13.1137 21.6452 13.9817 19.5741 13.1696 17.9799C12.177 16.0291 13.595 13.7517 15.7864 13.7517H19.2111C20.7494 13.7517 21.9955 12.4798 21.9998 10.9458C21.9783 4.17384 15.8165 -1.15437 8.77813 0.216353ZM4.12454 13.7517C3.36398 13.7517 2.74952 13.1373 2.74952 12.3767C2.74952 11.6161 3.36398 11.0017 4.12454 11.0017C4.8851 11.0017 5.49956 11.6161 5.49956 12.3767C5.49956 13.1373 4.8851 13.7517 4.12454 13.7517ZM5.49956 8.25164C4.739 8.25164 4.12454 7.63717 4.12454 6.87662C4.12454 6.11606 4.739 5.50159 5.49956 5.50159C6.26012 5.50159 6.87458 6.11606 6.87458 6.87662C6.87458 7.63717 6.26012 8.25164 5.49956 8.25164ZM10.9997 5.50159C10.2391 5.50159 9.62463 4.88713 9.62463 4.12657C9.62463 3.36601 10.2391 2.75155 10.9997 2.75155C11.7602 2.75155 12.3747 3.36601 12.3747 4.12657C12.3747 4.88713 11.7602 5.50159 10.9997 5.50159ZM16.4997 8.25164C15.7392 8.25164 15.1247 7.63717 15.1247 6.87662C15.1247 6.11606 15.7392 5.50159 16.4997 5.50159C17.2603 5.50159 17.8748 6.11606 17.8748 6.87662C17.8748 7.63717 17.2603 8.25164 16.4997 8.25164Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -185,6 +200,7 @@
           <Filename>plus</Filename>
           <IconName>plus</IconName>
           <SvgString>&lt;svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="plus"&gt;&lt;path id="icon" d="M14.8571 6.28571H9.71429V1.14286C9.71429 0.511786 9.2025 0 8.57143 0H7.42857C6.7975 0 6.28571 0.511786 6.28571 1.14286V6.28571H1.14286C0.511786 6.28571 0 6.7975 0 7.42857V8.57143C0 9.2025 0.511786 9.71429 1.14286 9.71429H6.28571V14.8571C6.28571 15.4882 6.7975 16 7.42857 16H8.57143C9.2025 16 9.71429 15.4882 9.71429 14.8571V9.71429H14.8571C15.4882 9.71429 16 9.2025 16 8.57143V7.42857C16 6.7975 15.4882 6.28571 14.8571 6.28571Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -193,6 +209,7 @@
           <Filename>Radio-Button-Checked</Filename>
           <IconName>Radio-Button-Checked</IconName>
           <SvgString>&lt;svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Radio-Button-UnChecked"&gt;&lt;path id="icon" d="M9 4.5C6.516 4.5 4.5 6.516 4.5 9C4.5 11.484 6.516 13.5 9 13.5C11.484 13.5 13.5 11.484 13.5 9C13.5 6.516 11.484 4.5 9 4.5ZM9 0C4.032 0 0 4.032 0 9C0 13.968 4.032 18 9 18C13.968 18 18 13.968 18 9C18 4.032 13.968 0 9 0ZM9 16.2C5.022 16.2 1.8 12.978 1.8 9C1.8 5.022 5.022 1.8 9 1.8C12.978 1.8 16.2 5.022 16.2 9C16.2 12.978 12.978 16.2 9 16.2Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -201,6 +218,7 @@
           <Filename>Radio-Button-UnChecked</Filename>
           <IconName>Radio-Button-UnChecked</IconName>
           <SvgString>&lt;svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Radio-Button-UnChecked"&gt;&lt;path id="icon" d="M9 0C4.032 0 0 4.032 0 9C0 13.968 4.032 18 9 18C13.968 18 18 13.968 18 9C18 4.032 13.968 0 9 0ZM9 16.2C5.022 16.2 1.8 12.978 1.8 9C1.8 5.022 5.022 1.8 9 1.8C12.978 1.8 16.2 5.022 16.2 9C16.2 12.978 12.978 16.2 9 16.2Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -209,6 +227,7 @@
           <Filename>Sliders</Filename>
           <IconName>Sliders</IconName>
           <SvgString>&lt;svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Sliders"&gt;&lt;path id="icon" d="M21.3125 17.2857H6.875V16.5C6.875 16.0679 6.56563 15.7143 6.1875 15.7143H4.8125C4.43437 15.7143 4.125 16.0679 4.125 16.5V17.2857H0.6875C0.309375 17.2857 0 17.6393 0 18.0714V19.6429C0 20.075 0.309375 20.4286 0.6875 20.4286H4.125V21.2143C4.125 21.6464 4.43437 22 4.8125 22H6.1875C6.56563 22 6.875 21.6464 6.875 21.2143V20.4286H21.3125C21.6906 20.4286 22 20.075 22 19.6429V18.0714C22 17.6393 21.6906 17.2857 21.3125 17.2857ZM21.3125 9.42857H17.875V8.64286C17.875 8.21071 17.5656 7.85714 17.1875 7.85714H15.8125C15.4344 7.85714 15.125 8.21071 15.125 8.64286V9.42857H0.6875C0.309375 9.42857 0 9.78214 0 10.2143V11.7857C0 12.2179 0.309375 12.5714 0.6875 12.5714H15.125V13.3571C15.125 13.7893 15.4344 14.1429 15.8125 14.1429H17.1875C17.5656 14.1429 17.875 13.7893 17.875 13.3571V12.5714H21.3125C21.6906 12.5714 22 12.2179 22 11.7857V10.2143C22 9.78214 21.6906 9.42857 21.3125 9.42857ZM21.3125 1.57143H12.375V0.785714C12.375 0.353571 12.0656 0 11.6875 0H10.3125C9.93437 0 9.625 0.353571 9.625 0.785714V1.57143H0.6875C0.309375 1.57143 0 1.925 0 2.35714V3.92857C0 4.36071 0.309375 4.71429 0.6875 4.71429H9.625V5.5C9.625 5.93214 9.93437 6.28571 10.3125 6.28571H11.6875C12.0656 6.28571 12.375 5.93214 12.375 5.5V4.71429H21.3125C21.6906 4.71429 22 4.36071 22 3.92857V2.35714C22 1.925 21.6906 1.57143 21.3125 1.57143Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -217,6 +236,7 @@
           <Filename>Wifi</Filename>
           <IconName>Wifi</IconName>
           <SvgString>&lt;svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Wifi"&gt;&lt;path id="icon" d="M24.8011 4.8C17.8804 -1.60117 7.11676 -1.59883 0.198795 4.8C-0.0613614 5.04063 -0.0664395 5.44805 0.185123 5.69766L1.52262 7.02461C1.76247 7.26289 2.1484 7.26797 2.39762 7.03945C8.09762 1.81758 16.9015 1.81641 22.6027 7.03945C22.8519 7.26797 23.2379 7.2625 23.4777 7.02461L24.8152 5.69766C25.0664 5.44805 25.0613 5.04063 24.8011 4.8ZM12.5 12.5C11.1191 12.5 9.99997 13.6191 9.99997 15C9.99997 16.3809 11.1191 17.5 12.5 17.5C13.8808 17.5 15 16.3809 15 15C15 13.6191 13.8808 12.5 12.5 12.5ZM20.4168 9.23477C15.9144 5.25313 9.08044 5.25742 4.58317 9.23477C4.31364 9.47305 4.30504 9.88672 4.5609 10.1391L5.90622 11.4668C6.14059 11.698 6.51794 11.7137 6.76754 11.498C10.0468 8.66328 14.9605 8.66953 18.232 11.498C18.4816 11.7137 18.859 11.6984 19.0933 11.4668L20.4386 10.1391C20.6949 9.88672 20.6859 9.47266 20.4168 9.23477Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -225,6 +245,7 @@
           <Filename>Arrow_down</Filename>
           <IconName>Arrow_down</IconName>
           <SvgString>&lt;svg width="13" height="4" viewBox="0 0 13 4" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Arrow_down"&gt;&lt;path id="icon" d="M5.8627 3.8638L0.764293 1.23181C0.411903 1.04989 0.411903 0.75573 0.764293 0.575748L1.61153 0.138372C1.96392 -0.0435447 2.53374 -0.0435447 2.88238 0.138372L6.5 2.00206L10.1139 0.136438C10.4663 -0.0454795 11.0361 -0.0454795 11.3847 0.136438L12.2357 0.573812C12.5881 0.755729 12.5881 1.04989 12.2357 1.22988L7.1373 3.86187C6.78491 4.04572 6.21509 4.04572 5.8627 3.8638Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -233,6 +254,7 @@
           <Filename>Arrow_up</Filename>
           <IconName>Arrow_up</IconName>
           <SvgString>&lt;svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Arrow_up"&gt;&lt;path id="icon" d="M6.6373 0.136197L11.7357 2.76819C12.0881 2.95011 12.0881 3.24427 11.7357 3.42425L10.8885 3.86163C10.5361 4.04354 9.96626 4.04354 9.61762 3.86163L6 1.99794L2.38613 3.86356C2.03374 4.04548 1.46392 4.04548 1.11528 3.86356L0.264292 3.42619C-0.0880975 3.24427 -0.0880975 2.95011 0.264292 2.77012L5.3627 0.138132C5.71509 -0.0457202 6.28491 -0.0457203 6.6373 0.136197Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -241,6 +263,7 @@
           <Filename>Clock</Filename>
           <IconName>Clock</IconName>
           <SvgString>&lt;svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Clock"&gt;&lt;path id="icon" d="M10.5 4H9V10L14.25 13.15L15 11.92L10.5 9.25V4Z" fill="black" /&gt;&lt;path id="icon_1" d="M9.99 0C4.47 0 0 4.48 0 10C0 15.52 4.47 20 9.99 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 9.99 0ZM10 18C5.58 18 2 14.42 2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18Z" fill="black" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -249,6 +272,7 @@
           <Filename>Info</Filename>
           <IconName>Info</IconName>
           <SvgString>&lt;svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;&lt;g id="Info"&gt;&lt;path id="icon" d="M8.52083 14.6H9.04167V10.65H8.52083C8.23318 10.65 8 10.4052 8 10.1031V8.79688C8 8.49484 8.23318 8.25 8.52083 8.25H11.4375C11.7252 8.25 11.9583 8.49484 11.9583 8.79688V14.6H12.4792C12.7668 14.6 13 14.8448 13 15.1469V16.4531C13 16.7552 12.7668 17 12.4792 17H8.52083C8.23318 17 8 16.7552 8 16.4531V15.1469C8 14.8448 8.23318 14.6 8.52083 14.6ZM10.5 3C9.46445 3 8.625 3.88143 8.625 4.96875C8.625 6.05607 9.46445 6.9375 10.5 6.9375C11.5355 6.9375 12.375 6.05607 12.375 4.96875C12.375 3.88143 11.5355 3 10.5 3Z" fill="black" /&gt;&lt;circle id="icon_1" cx="10.5" cy="10.5" r="9.5" stroke="black" stroke-width="2" /&gt;&lt;/g&gt;&lt;/svg&gt;</SvgString>
+          <DataLocationId>1</DataLocationId>
           <ImageBitmapStyleIds>
             <int>18</int>
           </ImageBitmapStyleIds>
@@ -400,6 +424,7 @@
         </TranslationProperty>
         <Translate>false</Translate>
       </Table>
+      <DataLocationId>1</DataLocationId>
     </ConverterInstruction>
     <ConverterInstruction xsi:type="TextInstruction">
       <Name>Text translate</Name>
@@ -804,46 +829,21 @@
         </TranslationProperty>
         <Translate>true</Translate>
       </Table>
+      <DataLocationId>1</DataLocationId>
     </ConverterInstruction>
   </Instructions>
   <TextStyles>
     <TextStyle>
-      <ID>0</ID>
-      <Description>Title Dark</Description>
-      <Prefix>title</Prefix>
-      <FontName>Roboto</FontName>
-      <FontSize>22</FontSize>
-      <FontStyle>Regular</FontStyle>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>4</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-      <FontConverterId>2</FontConverterId>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-    </TextStyle>
-    <TextStyle>
       <ID>1</ID>
-      <Description>Title Light</Description>
+      <Description>Title</Description>
       <Prefix>title</Prefix>
       <FontName>Roboto</FontName>
       <FontSize>22</FontSize>
       <FontStyle>Regular</FontStyle>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-14576142</BackColor>
-      <BackConverterColorId>5</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
+      <TextColor>-16777216</TextColor>
+      <BackColor>-1</BackColor>
+      <BackConverterColorId>-1</BackConverterColorId>
+      <TextConverterColorId>-1</TextConverterColorId>
       <FontConverterId>2</FontConverterId>
       <Margin>
         <Left>0</Left>
@@ -854,34 +854,8 @@
       <BitmapProperties />
     </TextStyle>
     <TextStyle>
-      <ID>2</ID>
-      <Description>Text Pane Dark</Description>
-      <Prefix>text_pane</Prefix>
-      <FontName>Roboto</FontName>
-      <FontSize>18</FontSize>
-      <FontStyle>Regular</FontStyle>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-      <FontConverterId>0</FontConverterId>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-    </TextStyle>
-    <TextStyle>
       <ID>3</ID>
-      <Description>Text Pane Light</Description>
+      <Description>Text Pane</Description>
       <Prefix>text_pane</Prefix>
       <FontName>Roboto</FontName>
       <FontSize>18</FontSize>
@@ -900,34 +874,8 @@
       <BitmapProperties />
     </TextStyle>
     <TextStyle>
-      <ID>4</ID>
-      <Description>Text Button Dark</Description>
-      <Prefix>text</Prefix>
-      <FontName>Roboto</FontName>
-      <FontSize>16</FontSize>
-      <FontStyle>Regular</FontStyle>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-12237499</BackColor>
-      <BackConverterColorId>12</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-      <FontConverterId>1</FontConverterId>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-    </TextStyle>
-    <TextStyle>
       <ID>5</ID>
-      <Description>Text Button Light</Description>
+      <Description>Text Button</Description>
       <Prefix>text</Prefix>
       <FontName>Roboto</FontName>
       <FontSize>16</FontSize>
@@ -946,34 +894,8 @@
       <BitmapProperties />
     </TextStyle>
     <TextStyle>
-      <ID>6</ID>
-      <Description>Text Footer Dark</Description>
-      <Prefix>text_footer</Prefix>
-      <FontName>Roboto</FontName>
-      <FontSize>22</FontSize>
-      <FontStyle>Regular</FontStyle>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>6</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-      <FontConverterId>2</FontConverterId>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-    </TextStyle>
-    <TextStyle>
       <ID>7</ID>
-      <Description>Text Footer Light</Description>
+      <Description>Text Footer</Description>
       <Prefix>text_footer</Prefix>
       <FontName>Roboto</FontName>
       <FontSize>22</FontSize>
@@ -994,136 +916,8 @@
   </TextStyles>
   <FontBitmapStyles>
     <FontBitmapStyle>
-      <ID>0</ID>
-      <Name>Header Dark</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>4</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>1</ID>
-      <Name>Header Light</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-14576142</BackColor>
-      <BackConverterColorId>5</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>2</ID>
-      <Name>Button Dark</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-12237499</BackColor>
-      <BackConverterColorId>12</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>3</ID>
-      <Name>Button Light</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-16777216</TextColor>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>13</BackConverterColorId>
-      <TextConverterColorId>25</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>4</ID>
-      <Name>Pane Dark</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>5</ID>
-      <Name>Pane Light</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-16777216</TextColor>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <TextConverterColorId>25</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>6</ID>
-      <Name>Keyboard Dark</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-1118482</TextColor>
-      <BackColor>-11645362</BackColor>
-      <BackConverterColorId>14</BackConverterColorId>
-      <TextConverterColorId>24</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
-      <ID>7</ID>
-      <Name>Keyboard Light</Name>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <MonospaceNumbers>true</MonospaceNumbers>
-      <DigitsOnly>false</DigitsOnly>
-      <TextColor>-16777216</TextColor>
-      <BackColor>-2302756</BackColor>
-      <BackConverterColorId>15</BackConverterColorId>
-      <TextConverterColorId>25</TextConverterColorId>
-    </FontBitmapStyle>
-    <FontBitmapStyle>
       <ID>8</ID>
-      <Name>Compressed</Name>
+      <Name>Default</Name>
       <Margin>
         <Left>0</Left>
         <Top>0</Top>
@@ -1156,654 +950,8 @@
   </FontBitmapStyles>
   <IconStyles>
     <IconStyle>
-      <ID>0</ID>
-      <Name>Button Dark Accent Red</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-12237499</BackColor>
-      <BackConverterColorId>12</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>1</ID>
-      <Name>Button Dark Accent Green</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-12237499</BackColor>
-      <BackConverterColorId>12</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>2</ID>
-      <Name>Button Dark Accent Blue</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-12237499</BackColor>
-      <BackConverterColorId>12</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>2</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>3</ID>
-      <Name>Button Light Accent Red</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>13</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>4</ID>
-      <Name>Button Light Accent Green</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>13</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>5</ID>
-      <Name>Button Light Accent Blue</Name>
-      <Prefix>icon_button</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>13</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>2</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>6</ID>
-      <Name>Header Dark</Name>
-      <Prefix>icon_header</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>4</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>7</ID>
-      <Name>Header Light</Name>
-      <Prefix>icon_header</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-14576142</BackColor>
-      <BackConverterColorId>5</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>8</ID>
-      <Name>Pane Dark</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>9</ID>
-      <Name>Pane Light</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16777216</Color>
-          <ConverterColorId>25</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16777216</Color>
-          <ConverterColorId>25</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>10</ID>
-      <Name>Pane Dark Accent Red</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>11</ID>
-      <Name>Pane Dark Accent Green</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>12</ID>
-      <Name>Pane Dark Accent Blue</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>2</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>13</ID>
-      <Name>Pane Dark Accent White</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-13882324</BackColor>
-      <BackConverterColorId>8</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>3</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1118482</Color>
-          <ConverterColorId>24</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>14</ID>
-      <Name>Pane Light Accent Red</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-1568477</Color>
-          <ConverterColorId>20</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>15</ID>
-      <Name>Pane Light Accent Green</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>1</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-15696880</Color>
-          <ConverterColorId>21</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>16</ID>
-      <Name>Pane Light Accent Blue</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>2</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16746284</Color>
-          <ConverterColorId>22</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
-      <ID>17</ID>
-      <Name>Pane Light Accent White</Name>
-      <Prefix>icon_pane</Prefix>
-      <Margin>
-        <Left>0</Left>
-        <Top>0</Top>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </Margin>
-      <BackColor>-1</BackColor>
-      <BackConverterColorId>9</BackConverterColorId>
-      <BitmapProperties>
-        <BitmapProperty>
-          <Name>A</Name>
-          <Description />
-          <Value>0</Value>
-        </BitmapProperty>
-        <BitmapProperty>
-          <Name>E</Name>
-          <Description />
-          <Value>3</Value>
-        </BitmapProperty>
-      </BitmapProperties>
-      <SvgColors>
-        <ImageSvgColorId>
-          <Id>icon</Id>
-          <Color>-16777216</Color>
-          <ConverterColorId>25</ConverterColorId>
-        </ImageSvgColorId>
-        <ImageSvgColorId>
-          <Id>icon_1</Id>
-          <Color>-16777216</Color>
-          <ConverterColorId>25</ConverterColorId>
-        </ImageSvgColorId>
-      </SvgColors>
-    </IconStyle>
-    <IconStyle>
       <ID>18</ID>
-      <Name>Compress</Name>
+      <Name>Default</Name>
       <Prefix>icon</Prefix>
       <Margin>
         <Left>0</Left>
@@ -2008,24 +1156,29 @@
     <VersionMajor>1</VersionMajor>
     <VersionMinor>0</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>61</VersionRevision>
+    <VersionRevision>74</VersionRevision>
     <GuiPixelDataFile>demo5_pixeldata</GuiPixelDataFile>
     <CreateDebugFiles>false</CreateDebugFiles>
     <CopySourceFiles>false</CopySourceFiles>
-    <FileSystemFormat>
-      <FileFormat>OptimizedImage</FileFormat>
-      <SingleFileIncludeWidthHeight>false</SingleFileIncludeWidthHeight>
-      <SeparateSearchTreeFromData>true</SeparateSearchTreeFromData>
-      <CompressBasicImagePixelData>false</CompressBasicImagePixelData>
-      <CreatePixelDataFile>true</CreatePixelDataFile>
-      <CompressOptimizedPixelData>true</CompressOptimizedPixelData>
-    </FileSystemFormat>
     <PixelDataFormat>
       <PixelFormat>RGB565</PixelFormat>
       <PixelFormatRGB>RGB</PixelFormatRGB>
       <RGB565SwapBytes>false</RGB565SwapBytes>
     </PixelDataFormat>
-    <FontDataInImage>false</FontDataInImage>
+    <DataLocations>
+      <DataLocation>
+        <LocationID>0</LocationID>
+        <Name>SD</Name>
+        <DataLocationType>File</DataLocationType>
+        <CompressionType>RLE</CompressionType>
+      </DataLocation>
+      <DataLocation>
+        <LocationID>1</LocationID>
+        <Name>code</Name>
+        <DataLocationType>Code</DataLocationType>
+        <CompressionType>RLE_Alpha</CompressionType>
+      </DataLocation>
+    </DataLocations>
     <UseProperties>true</UseProperties>
     <Properties>
       <Property>
@@ -2233,7 +1386,7 @@
         </PropertyValues>
       </Property>
       <Property>
-        <Use>true</Use>
+        <Use>false</Use>
         <Name>D</Name>
         <Alias>Focus</Alias>
         <Max>2</Max>
@@ -2251,7 +1404,7 @@
         </PropertyValues>
       </Property>
       <Property>
-        <Use>true</Use>
+        <Use>false</Use>
         <Name>E</Name>
         <Alias>Accent Color</Alias>
         <Max>4</Max>

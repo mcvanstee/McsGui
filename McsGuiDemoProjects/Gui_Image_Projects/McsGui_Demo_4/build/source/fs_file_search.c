@@ -4,1003 +4,1003 @@
 #define FS_FILE_DUMMY 0xFFFFFFFFU
 
 const fs_file_info_s fs_file_infos[] =
-{
-    { .dataOffset = 20, .properties = 2, .width = 32, .height = 27 },    /* IRL-Logo_@B000, 10 */
-    { .dataOffset = 1748, .properties = 2, .width = 36, .height = 29 },    /* IRL-Logo_@B001, 10 */
-    { .dataOffset = 3836, .properties = 2, .width = 39, .height = 32 },    /* IRL-Logo_@B002, 10 */
-    { .dataOffset = 6332, .properties = 2, .width = 42, .height = 35 },    /* IRL-Logo_@B003, 10 */
-    { .dataOffset = 9272, .properties = 2, .width = 46, .height = 37 },    /* IRL-Logo_@B004, 10 */
-    { .dataOffset = 12676, .properties = 2, .width = 49, .height = 40 },    /* IRL-Logo_@B005, 10 */
-    { .dataOffset = 16596, .properties = 2, .width = 52, .height = 43 },    /* IRL-Logo_@B006, 10 */
-    { .dataOffset = 21068, .properties = 2, .width = 56, .height = 46 },    /* IRL-Logo_@B007, 10 */
-    { .dataOffset = 26220, .properties = 2, .width = 59, .height = 48 },    /* IRL-Logo_@B008, 10 */
-    { .dataOffset = 31884, .properties = 2, .width = 62, .height = 50 },    /* IRL-Logo_@B009, 10 */
-    { .dataOffset = 38084, .properties = 2, .width = 65, .height = 54 },    /* IRL-Logo_@B010, 10 */
-    { .dataOffset = 45104, .properties = 2, .width = 69, .height = 56 },    /* IRL-Logo_@B011, 10 */
-    { .dataOffset = 52832, .properties = 2, .width = 72, .height = 59 },    /* IRL-Logo_@B012, 10 */
-    { .dataOffset = 61328, .properties = 2, .width = 76, .height = 62 },    /* IRL-Logo_@B013, 10 */
-    { .dataOffset = 70752, .properties = 2, .width = 79, .height = 64 },    /* IRL-Logo_@B014, 10 */
-    { .dataOffset = 80864, .properties = 2, .width = 82, .height = 67 },    /* IRL-Logo_@B015, 10 */
-    { .dataOffset = 91852, .properties = 2, .width = 86, .height = 69 },    /* IRL-Logo_@B016, 10 */
-    { .dataOffset = 103720, .properties = 2, .width = 89, .height = 72 },    /* IRL-Logo_@B017, 10 */
-    { .dataOffset = 116536, .properties = 2, .width = 92, .height = 75 },    /* IRL-Logo_@B018, 10 */
-    { .dataOffset = 130336, .properties = 2, .width = 95, .height = 77 },    /* IRL-Logo_@B019, 10 */
-    { .dataOffset = 144966, .properties = 2, .width = 100, .height = 80 },    /* IRL-Logo_@B020, 10 */
-    { .dataOffset = 160966, .properties = 2, .width = 102, .height = 83 },    /* IRL-Logo_@B021, 10 */
-    { .dataOffset = 177898, .properties = 2, .width = 105, .height = 85 },    /* IRL-Logo_@B022, 10 */
-    { .dataOffset = 195748, .properties = 2, .width = 109, .height = 88 },    /* IRL-Logo_@B023, 10 */
-    { .dataOffset = 214932, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A0_D0, 1001 */
-    { .dataOffset = 215884, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A0_D1, 1001 */
-    { .dataOffset = 216836, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A1_D0, 1001 */
-    { .dataOffset = 217788, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A1_D1, 1001 */
-    { .dataOffset = 218740, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A0_D0, 1001 */
-    { .dataOffset = 220240, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A0_D1, 1001 */
-    { .dataOffset = 221740, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A1_D0, 1001 */
-    { .dataOffset = 223240, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A1_D1, 1001 */
-    { .dataOffset = 224740, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A0_D0, 1001 */
-    { .dataOffset = 225708, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A0_D1, 1001 */
-    { .dataOffset = 226676, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A1_D0, 1001 */
-    { .dataOffset = 227644, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A1_D1, 1001 */
-    { .dataOffset = 228612, .properties = 1, .width = 20, .height = 20 },    /* icon_Clock@A0, 1 */
-    { .dataOffset = 229412, .properties = 1, .width = 20, .height = 20 },    /* icon_Clock@A1, 1 */
-    { .dataOffset = 230212, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A0_D0, 1001 */
-    { .dataOffset = 231180, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A0_D1, 1001 */
-    { .dataOffset = 232148, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A1_D0, 1001 */
-    { .dataOffset = 233116, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A1_D1, 1001 */
-    { .dataOffset = 234084, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A0_D0, 1001 */
-    { .dataOffset = 235052, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A0_D1, 1001 */
-    { .dataOffset = 236020, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A1_D0, 1001 */
-    { .dataOffset = 236988, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A1_D1, 1001 */
-    { .dataOffset = 237956, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A0_D0, 1001 */
-    { .dataOffset = 238756, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A0_D1, 1001 */
-    { .dataOffset = 239556, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A1_D0, 1001 */
-    { .dataOffset = 240356, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A1_D1, 1001 */
-    { .dataOffset = 241156, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A0_D0, 1001 */
-    { .dataOffset = 242038, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A0_D1, 1001 */
-    { .dataOffset = 242920, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A1_D0, 1001 */
-    { .dataOffset = 243802, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A1_D1, 1001 */
-    { .dataOffset = 244684, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A0_D0, 1001 */
-    { .dataOffset = 245740, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A0_D1, 1001 */
-    { .dataOffset = 246796, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A1_D0, 1001 */
-    { .dataOffset = 247852, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A1_D1, 1001 */
-    { .dataOffset = 248908, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A0_D0, 1001 */
-    { .dataOffset = 249036, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A0_D1, 1001 */
-    { .dataOffset = 249164, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A1_D0, 1001 */
-    { .dataOffset = 249292, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A1_D1, 1001 */
-    { .dataOffset = 249420, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A0_D0, 1001 */
-    { .dataOffset = 249932, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A0_D1, 1001 */
-    { .dataOffset = 250444, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A1_D0, 1001 */
-    { .dataOffset = 250956, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A1_D1, 1001 */
-    { .dataOffset = 251468, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A0_D0, 1001 */
-    { .dataOffset = 252260, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A0_D1, 1001 */
-    { .dataOffset = 253052, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A1_D0, 1001 */
-    { .dataOffset = 253844, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A1_D1, 1001 */
-    { .dataOffset = 254636, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A0_D0, 1001 */
-    { .dataOffset = 255284, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A0_D1, 1001 */
-    { .dataOffset = 255932, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A1_D0, 1001 */
-    { .dataOffset = 256580, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A1_D1, 1001 */
-    { .dataOffset = 257228, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A0_D0, 1001 */
-    { .dataOffset = 257876, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A0_D1, 1001 */
-    { .dataOffset = 258524, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A1_D0, 1001 */
-    { .dataOffset = 259172, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A1_D1, 1001 */
-    { .dataOffset = 259820, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A0_D0, 1001 */
-    { .dataOffset = 260788, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A0_D1, 1001 */
-    { .dataOffset = 261756, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A1_D0, 1001 */
-    { .dataOffset = 262724, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A1_D1, 1001 */
-    { .dataOffset = 263692, .properties = 1, .width = 25, .height = 18 },    /* icon_Wifi@A0, 1 */
-    { .dataOffset = 264592, .properties = 1, .width = 25, .height = 18 },    /* icon_Wifi@A1, 1 */
-    { .dataOffset = 265492, .properties = 0, .width = 128, .height = 128 },    /* IRL_Logo 128, 0 */
-    { .dataOffset = 298260, .properties = 0, .width = 48, .height = 48 },    /* IRL_Logo_48, 0 */
-    { .dataOffset = 302868, .properties = 13, .width = 35, .height = 21 },    /* text_back@C0_A0_D0, 1101 */
-    { .dataOffset = 304338, .properties = 13, .width = 37, .height = 21 },    /* text_back@C0_A0_D1, 1101 */
-    { .dataOffset = 305892, .properties = 13, .width = 41, .height = 21 },    /* text_back@C1_A0_D0, 1101 */
-    { .dataOffset = 307614, .properties = 13, .width = 44, .height = 21 },    /* text_back@C1_A0_D1, 1101 */
-    { .dataOffset = 309462, .properties = 13, .width = 50, .height = 21 },    /* text_back@C2_A0_D0, 1101 */
-    { .dataOffset = 311562, .properties = 13, .width = 53, .height = 21 },    /* text_back@C2_A0_D1, 1101 */
-    { .dataOffset = 313788, .properties = 13, .width = 27, .height = 21 },    /* text_back@C3_A0_D0, 1101 */
-    { .dataOffset = 314922, .properties = 13, .width = 28, .height = 21 },    /* text_back@C3_A0_D1, 1101 */
-    { .dataOffset = 316098, .properties = 13, .width = 38, .height = 21 },    /* text_back@C4_A0_D0, 1101 */
-    { .dataOffset = 317694, .properties = 13, .width = 41, .height = 21 },    /* text_back@C4_A0_D1, 1101 */
-    { .dataOffset = 319416, .properties = 13, .width = 54, .height = 21 },    /* text_back@C5_A0_D0, 1101 */
-    { .dataOffset = 321684, .properties = 13, .width = 57, .height = 21 },    /* text_back@C5_A0_D1, 1101 */
-    { .dataOffset = 324078, .properties = 13, .width = 46, .height = 21 },    /* text_back@C6_A0_D0, 1101 */
-    { .dataOffset = 326010, .properties = 13, .width = 49, .height = 21 },    /* text_back@C6_A0_D1, 1101 */
-    { .dataOffset = 328068, .properties = 13, .width = 35, .height = 21 },    /* text_back@C7_A0_D0, 1101 */
-    { .dataOffset = 329538, .properties = 13, .width = 36, .height = 21 },    /* text_back@C7_A0_D1, 1101 */
-    { .dataOffset = 331050, .properties = 13, .width = 29, .height = 21 },    /* text_back@C8_A0_D0, 1101 */
-    { .dataOffset = 332268, .properties = 13, .width = 30, .height = 21 },    /* text_back@C8_A0_D1, 1101 */
-    { .dataOffset = 333528, .properties = 13, .width = 46, .height = 21 },    /* text_back@C9_A0_D0, 1101 */
-    { .dataOffset = 335460, .properties = 13, .width = 47, .height = 21 },    /* text_back@C9_A0_D1, 1101 */
-    { .dataOffset = 337434, .properties = 13, .width = 35, .height = 21 },    /* text_back@C0_A1_D0, 1101 */
-    { .dataOffset = 338904, .properties = 13, .width = 37, .height = 21 },    /* text_back@C0_A1_D1, 1101 */
-    { .dataOffset = 340458, .properties = 13, .width = 41, .height = 21 },    /* text_back@C1_A1_D0, 1101 */
-    { .dataOffset = 342180, .properties = 13, .width = 44, .height = 21 },    /* text_back@C1_A1_D1, 1101 */
-    { .dataOffset = 344028, .properties = 13, .width = 50, .height = 21 },    /* text_back@C2_A1_D0, 1101 */
-    { .dataOffset = 346128, .properties = 13, .width = 53, .height = 21 },    /* text_back@C2_A1_D1, 1101 */
-    { .dataOffset = 348354, .properties = 13, .width = 27, .height = 21 },    /* text_back@C3_A1_D0, 1101 */
-    { .dataOffset = 349488, .properties = 13, .width = 28, .height = 21 },    /* text_back@C3_A1_D1, 1101 */
-    { .dataOffset = 350664, .properties = 13, .width = 38, .height = 21 },    /* text_back@C4_A1_D0, 1101 */
-    { .dataOffset = 352260, .properties = 13, .width = 41, .height = 21 },    /* text_back@C4_A1_D1, 1101 */
-    { .dataOffset = 353982, .properties = 13, .width = 54, .height = 21 },    /* text_back@C5_A1_D0, 1101 */
-    { .dataOffset = 356250, .properties = 13, .width = 57, .height = 21 },    /* text_back@C5_A1_D1, 1101 */
-    { .dataOffset = 358644, .properties = 13, .width = 46, .height = 21 },    /* text_back@C6_A1_D0, 1101 */
-    { .dataOffset = 360576, .properties = 13, .width = 49, .height = 21 },    /* text_back@C6_A1_D1, 1101 */
-    { .dataOffset = 362634, .properties = 13, .width = 35, .height = 21 },    /* text_back@C7_A1_D0, 1101 */
-    { .dataOffset = 364104, .properties = 13, .width = 36, .height = 21 },    /* text_back@C7_A1_D1, 1101 */
-    { .dataOffset = 365616, .properties = 13, .width = 29, .height = 21 },    /* text_back@C8_A1_D0, 1101 */
-    { .dataOffset = 366834, .properties = 13, .width = 30, .height = 21 },    /* text_back@C8_A1_D1, 1101 */
-    { .dataOffset = 368094, .properties = 13, .width = 46, .height = 21 },    /* text_back@C9_A1_D0, 1101 */
-    { .dataOffset = 370026, .properties = 13, .width = 47, .height = 21 },    /* text_back@C9_A1_D1, 1101 */
-    { .dataOffset = 372000, .properties = 13, .width = 76, .height = 21 },    /* text_brightness@C0_A0_D0, 1101 */
-    { .dataOffset = 375192, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C0_A0_D1, 1101 */
-    { .dataOffset = 378552, .properties = 13, .width = 77, .height = 21 },    /* text_brightness@C1_A0_D0, 1101 */
-    { .dataOffset = 381786, .properties = 13, .width = 81, .height = 21 },    /* text_brightness@C1_A0_D1, 1101 */
-    { .dataOffset = 385188, .properties = 13, .width = 67, .height = 21 },    /* text_brightness@C2_A0_D0, 1101 */
-    { .dataOffset = 388002, .properties = 13, .width = 71, .height = 21 },    /* text_brightness@C2_A0_D1, 1101 */
-    { .dataOffset = 390984, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C3_A0_D0, 1101 */
-    { .dataOffset = 394344, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C3_A0_D1, 1101 */
-    { .dataOffset = 397872, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C4_A0_D0, 1101 */
-    { .dataOffset = 399342, .properties = 13, .width = 38, .height = 21 },    /* text_brightness@C4_A0_D1, 1101 */
-    { .dataOffset = 400938, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C5_A0_D0, 1101 */
-    { .dataOffset = 404298, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C5_A0_D1, 1101 */
-    { .dataOffset = 407826, .properties = 13, .width = 63, .height = 21 },    /* text_brightness@C6_A0_D0, 1101 */
-    { .dataOffset = 410472, .properties = 13, .width = 66, .height = 21 },    /* text_brightness@C6_A0_D1, 1101 */
-    { .dataOffset = 413244, .properties = 13, .width = 34, .height = 21 },    /* text_brightness@C7_A0_D0, 1101 */
-    { .dataOffset = 414672, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C7_A0_D1, 1101 */
-    { .dataOffset = 416142, .properties = 13, .width = 41, .height = 21 },    /* text_brightness@C8_A0_D0, 1101 */
-    { .dataOffset = 417864, .properties = 13, .width = 43, .height = 21 },    /* text_brightness@C8_A0_D1, 1101 */
-    { .dataOffset = 419670, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A0_D0, 1101 */
-    { .dataOffset = 420888, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A0_D1, 1101 */
-    { .dataOffset = 422106, .properties = 13, .width = 76, .height = 21 },    /* text_brightness@C0_A1_D0, 1101 */
-    { .dataOffset = 425298, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C0_A1_D1, 1101 */
-    { .dataOffset = 428658, .properties = 13, .width = 77, .height = 21 },    /* text_brightness@C1_A1_D0, 1101 */
-    { .dataOffset = 431892, .properties = 13, .width = 81, .height = 21 },    /* text_brightness@C1_A1_D1, 1101 */
-    { .dataOffset = 435294, .properties = 13, .width = 67, .height = 21 },    /* text_brightness@C2_A1_D0, 1101 */
-    { .dataOffset = 438108, .properties = 13, .width = 71, .height = 21 },    /* text_brightness@C2_A1_D1, 1101 */
-    { .dataOffset = 441090, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C3_A1_D0, 1101 */
-    { .dataOffset = 444450, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C3_A1_D1, 1101 */
-    { .dataOffset = 447978, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C4_A1_D0, 1101 */
-    { .dataOffset = 449448, .properties = 13, .width = 38, .height = 21 },    /* text_brightness@C4_A1_D1, 1101 */
-    { .dataOffset = 451044, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C5_A1_D0, 1101 */
-    { .dataOffset = 454404, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C5_A1_D1, 1101 */
-    { .dataOffset = 457932, .properties = 13, .width = 63, .height = 21 },    /* text_brightness@C6_A1_D0, 1101 */
-    { .dataOffset = 460578, .properties = 13, .width = 66, .height = 21 },    /* text_brightness@C6_A1_D1, 1101 */
-    { .dataOffset = 463350, .properties = 13, .width = 34, .height = 21 },    /* text_brightness@C7_A1_D0, 1101 */
-    { .dataOffset = 464778, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C7_A1_D1, 1101 */
-    { .dataOffset = 466248, .properties = 13, .width = 41, .height = 21 },    /* text_brightness@C8_A1_D0, 1101 */
-    { .dataOffset = 467970, .properties = 13, .width = 43, .height = 21 },    /* text_brightness@C8_A1_D1, 1101 */
-    { .dataOffset = 469776, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A1_D0, 1101 */
-    { .dataOffset = 470994, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A1_D1, 1101 */
-    { .dataOffset = 472212, .properties = 9, .width = 33, .height = 21 },    /* text_chinese_sim@A0_D0, 1001 */
-    { .dataOffset = 473598, .properties = 9, .width = 34, .height = 21 },    /* text_chinese_sim@A0_D1, 1001 */
-    { .dataOffset = 475026, .properties = 9, .width = 33, .height = 21 },    /* text_chinese_sim@A1_D0, 1001 */
-    { .dataOffset = 476412, .properties = 9, .width = 34, .height = 21 },    /* text_chinese_sim@A1_D1, 1001 */
-    { .dataOffset = 477840, .properties = 9, .width = 16, .height = 21 },    /* text_deg_cel@A0_D0, 1001 */
-    { .dataOffset = 478512, .properties = 9, .width = 17, .height = 21 },    /* text_deg_cel@A0_D1, 1001 */
-    { .dataOffset = 479226, .properties = 9, .width = 16, .height = 21 },    /* text_deg_cel@A1_D0, 1001 */
-    { .dataOffset = 479898, .properties = 9, .width = 17, .height = 21 },    /* text_deg_cel@A1_D1, 1001 */
-    { .dataOffset = 480612, .properties = 9, .width = 15, .height = 21 },    /* text_deg_far@A0_D0, 1001 */
-    { .dataOffset = 481242, .properties = 9, .width = 16, .height = 21 },    /* text_deg_far@A0_D1, 1001 */
-    { .dataOffset = 481914, .properties = 9, .width = 15, .height = 21 },    /* text_deg_far@A1_D0, 1001 */
-    { .dataOffset = 482544, .properties = 9, .width = 16, .height = 21 },    /* text_deg_far@A1_D1, 1001 */
-    { .dataOffset = 483216, .properties = 9, .width = 82, .height = 21 },    /* text_dutch@A0_D0, 1001 */
-    { .dataOffset = 486660, .properties = 9, .width = 86, .height = 21 },    /* text_dutch@A0_D1, 1001 */
-    { .dataOffset = 490272, .properties = 9, .width = 82, .height = 21 },    /* text_dutch@A1_D0, 1001 */
-    { .dataOffset = 493716, .properties = 9, .width = 86, .height = 21 },    /* text_dutch@A1_D1, 1001 */
-    { .dataOffset = 497328, .properties = 9, .width = 51, .height = 21 },    /* text_english@A0_D0, 1001 */
-    { .dataOffset = 499470, .properties = 9, .width = 54, .height = 21 },    /* text_english@A0_D1, 1001 */
-    { .dataOffset = 501738, .properties = 9, .width = 51, .height = 21 },    /* text_english@A1_D0, 1001 */
-    { .dataOffset = 503880, .properties = 9, .width = 54, .height = 21 },    /* text_english@A1_D1, 1001 */
-    { .dataOffset = 506148, .properties = 9, .width = 61, .height = 21 },    /* text_french@A0_D0, 1001 */
-    { .dataOffset = 508710, .properties = 9, .width = 64, .height = 21 },    /* text_french@A0_D1, 1001 */
-    { .dataOffset = 511398, .properties = 9, .width = 61, .height = 21 },    /* text_french@A1_D0, 1001 */
-    { .dataOffset = 513960, .properties = 9, .width = 64, .height = 21 },    /* text_french@A1_D1, 1001 */
-    { .dataOffset = 516648, .properties = 9, .width = 58, .height = 21 },    /* text_german@A0_D0, 1001 */
-    { .dataOffset = 519084, .properties = 9, .width = 61, .height = 21 },    /* text_german@A0_D1, 1001 */
-    { .dataOffset = 521646, .properties = 9, .width = 58, .height = 21 },    /* text_german@A1_D0, 1001 */
-    { .dataOffset = 524082, .properties = 9, .width = 61, .height = 21 },    /* text_german@A1_D1, 1001 */
-    { .dataOffset = 526644, .properties = 13, .width = 32, .height = 21 },    /* text_high@C0_A0_D0, 1101 */
-    { .dataOffset = 527988, .properties = 13, .width = 34, .height = 21 },    /* text_high@C0_A0_D1, 1101 */
-    { .dataOffset = 529416, .properties = 13, .width = 38, .height = 21 },    /* text_high@C1_A0_D0, 1101 */
-    { .dataOffset = 531012, .properties = 13, .width = 40, .height = 21 },    /* text_high@C1_A0_D1, 1101 */
-    { .dataOffset = 532692, .properties = 13, .width = 37, .height = 21 },    /* text_high@C2_A0_D0, 1101 */
-    { .dataOffset = 534246, .properties = 13, .width = 39, .height = 21 },    /* text_high@C2_A0_D1, 1101 */
-    { .dataOffset = 535884, .properties = 13, .width = 34, .height = 21 },    /* text_high@C3_A0_D0, 1101 */
-    { .dataOffset = 537312, .properties = 13, .width = 36, .height = 21 },    /* text_high@C3_A0_D1, 1101 */
-    { .dataOffset = 538824, .properties = 13, .width = 29, .height = 21 },    /* text_high@C4_A0_D0, 1101 */
-    { .dataOffset = 540042, .properties = 13, .width = 31, .height = 21 },    /* text_high@C4_A0_D1, 1101 */
-    { .dataOffset = 541344, .properties = 13, .width = 29, .height = 21 },    /* text_high@C5_A0_D0, 1101 */
-    { .dataOffset = 542562, .properties = 13, .width = 31, .height = 21 },    /* text_high@C5_A0_D1, 1101 */
-    { .dataOffset = 543864, .properties = 13, .width = 67, .height = 21 },    /* text_high@C6_A0_D0, 1101 */
-    { .dataOffset = 546678, .properties = 13, .width = 70, .height = 21 },    /* text_high@C6_A0_D1, 1101 */
-    { .dataOffset = 549618, .properties = 13, .width = 17, .height = 21 },    /* text_high@C7_A0_D0, 1101 */
-    { .dataOffset = 550332, .properties = 13, .width = 18, .height = 21 },    /* text_high@C7_A0_D1, 1101 */
-    { .dataOffset = 551088, .properties = 13, .width = 32, .height = 21 },    /* text_high@C8_A0_D0, 1101 */
-    { .dataOffset = 552432, .properties = 13, .width = 33, .height = 21 },    /* text_high@C8_A0_D1, 1101 */
-    { .dataOffset = 553818, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A0_D0, 1101 */
-    { .dataOffset = 555162, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A0_D1, 1101 */
-    { .dataOffset = 556506, .properties = 13, .width = 32, .height = 21 },    /* text_high@C0_A1_D0, 1101 */
-    { .dataOffset = 557850, .properties = 13, .width = 34, .height = 21 },    /* text_high@C0_A1_D1, 1101 */
-    { .dataOffset = 559278, .properties = 13, .width = 38, .height = 21 },    /* text_high@C1_A1_D0, 1101 */
-    { .dataOffset = 560874, .properties = 13, .width = 40, .height = 21 },    /* text_high@C1_A1_D1, 1101 */
-    { .dataOffset = 562554, .properties = 13, .width = 37, .height = 21 },    /* text_high@C2_A1_D0, 1101 */
-    { .dataOffset = 564108, .properties = 13, .width = 39, .height = 21 },    /* text_high@C2_A1_D1, 1101 */
-    { .dataOffset = 565746, .properties = 13, .width = 34, .height = 21 },    /* text_high@C3_A1_D0, 1101 */
-    { .dataOffset = 567174, .properties = 13, .width = 36, .height = 21 },    /* text_high@C3_A1_D1, 1101 */
-    { .dataOffset = 568686, .properties = 13, .width = 29, .height = 21 },    /* text_high@C4_A1_D0, 1101 */
-    { .dataOffset = 569904, .properties = 13, .width = 31, .height = 21 },    /* text_high@C4_A1_D1, 1101 */
-    { .dataOffset = 571206, .properties = 13, .width = 29, .height = 21 },    /* text_high@C5_A1_D0, 1101 */
-    { .dataOffset = 572424, .properties = 13, .width = 31, .height = 21 },    /* text_high@C5_A1_D1, 1101 */
-    { .dataOffset = 573726, .properties = 13, .width = 67, .height = 21 },    /* text_high@C6_A1_D0, 1101 */
-    { .dataOffset = 576540, .properties = 13, .width = 70, .height = 21 },    /* text_high@C6_A1_D1, 1101 */
-    { .dataOffset = 579480, .properties = 13, .width = 17, .height = 21 },    /* text_high@C7_A1_D0, 1101 */
-    { .dataOffset = 580194, .properties = 13, .width = 18, .height = 21 },    /* text_high@C7_A1_D1, 1101 */
-    { .dataOffset = 580950, .properties = 13, .width = 32, .height = 21 },    /* text_high@C8_A1_D0, 1101 */
-    { .dataOffset = 582294, .properties = 13, .width = 33, .height = 21 },    /* text_high@C8_A1_D1, 1101 */
-    { .dataOffset = 583680, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A1_D0, 1101 */
-    { .dataOffset = 585024, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A1_D1, 1101 */
-    { .dataOffset = 586368, .properties = 13, .width = 27, .height = 21 },    /* text_info@C0_A0_D0, 1101 */
-    { .dataOffset = 587502, .properties = 13, .width = 29, .height = 21 },    /* text_info@C0_A0_D1, 1101 */
-    { .dataOffset = 588720, .properties = 13, .width = 27, .height = 21 },    /* text_info@C1_A0_D0, 1101 */
-    { .dataOffset = 589854, .properties = 13, .width = 29, .height = 21 },    /* text_info@C1_A0_D1, 1101 */
-    { .dataOffset = 591072, .properties = 13, .width = 27, .height = 21 },    /* text_info@C2_A0_D0, 1101 */
-    { .dataOffset = 592206, .properties = 13, .width = 29, .height = 21 },    /* text_info@C2_A0_D1, 1101 */
-    { .dataOffset = 593424, .properties = 13, .width = 27, .height = 21 },    /* text_info@C3_A0_D0, 1101 */
-    { .dataOffset = 594558, .properties = 13, .width = 29, .height = 21 },    /* text_info@C3_A0_D1, 1101 */
-    { .dataOffset = 595776, .properties = 13, .width = 86, .height = 21 },    /* text_info@C4_A0_D0, 1101 */
-    { .dataOffset = 599388, .properties = 13, .width = 91, .height = 21 },    /* text_info@C4_A0_D1, 1101 */
-    { .dataOffset = 603210, .properties = 13, .width = 90, .height = 21 },    /* text_info@C5_A0_D0, 1101 */
-    { .dataOffset = 606990, .properties = 13, .width = 95, .height = 21 },    /* text_info@C5_A0_D1, 1101 */
-    { .dataOffset = 610980, .properties = 13, .width = 99, .height = 21 },    /* text_info@C6_A0_D0, 1101 */
-    { .dataOffset = 615138, .properties = 13, .width = 103, .height = 21 },    /* text_info@C6_A0_D1, 1101 */
-    { .dataOffset = 619464, .properties = 13, .width = 35, .height = 21 },    /* text_info@C7_A0_D0, 1101 */
-    { .dataOffset = 620934, .properties = 13, .width = 36, .height = 21 },    /* text_info@C7_A0_D1, 1101 */
-    { .dataOffset = 622446, .properties = 13, .width = 35, .height = 21 },    /* text_info@C8_A0_D0, 1101 */
-    { .dataOffset = 623916, .properties = 13, .width = 36, .height = 21 },    /* text_info@C8_A0_D1, 1101 */
-    { .dataOffset = 625428, .properties = 13, .width = 31, .height = 21 },    /* text_info@C9_A0_D0, 1101 */
-    { .dataOffset = 626730, .properties = 13, .width = 32, .height = 21 },    /* text_info@C9_A0_D1, 1101 */
-    { .dataOffset = 628074, .properties = 13, .width = 27, .height = 21 },    /* text_info@C0_A1_D0, 1101 */
-    { .dataOffset = 629208, .properties = 13, .width = 29, .height = 21 },    /* text_info@C0_A1_D1, 1101 */
-    { .dataOffset = 630426, .properties = 13, .width = 27, .height = 21 },    /* text_info@C1_A1_D0, 1101 */
-    { .dataOffset = 631560, .properties = 13, .width = 29, .height = 21 },    /* text_info@C1_A1_D1, 1101 */
-    { .dataOffset = 632778, .properties = 13, .width = 27, .height = 21 },    /* text_info@C2_A1_D0, 1101 */
-    { .dataOffset = 633912, .properties = 13, .width = 29, .height = 21 },    /* text_info@C2_A1_D1, 1101 */
-    { .dataOffset = 635130, .properties = 13, .width = 27, .height = 21 },    /* text_info@C3_A1_D0, 1101 */
-    { .dataOffset = 636264, .properties = 13, .width = 29, .height = 21 },    /* text_info@C3_A1_D1, 1101 */
-    { .dataOffset = 637482, .properties = 13, .width = 86, .height = 21 },    /* text_info@C4_A1_D0, 1101 */
-    { .dataOffset = 641094, .properties = 13, .width = 91, .height = 21 },    /* text_info@C4_A1_D1, 1101 */
-    { .dataOffset = 644916, .properties = 13, .width = 90, .height = 21 },    /* text_info@C5_A1_D0, 1101 */
-    { .dataOffset = 648696, .properties = 13, .width = 95, .height = 21 },    /* text_info@C5_A1_D1, 1101 */
-    { .dataOffset = 652686, .properties = 13, .width = 99, .height = 21 },    /* text_info@C6_A1_D0, 1101 */
-    { .dataOffset = 656844, .properties = 13, .width = 103, .height = 21 },    /* text_info@C6_A1_D1, 1101 */
-    { .dataOffset = 661170, .properties = 13, .width = 35, .height = 21 },    /* text_info@C7_A1_D0, 1101 */
-    { .dataOffset = 662640, .properties = 13, .width = 36, .height = 21 },    /* text_info@C7_A1_D1, 1101 */
-    { .dataOffset = 664152, .properties = 13, .width = 35, .height = 21 },    /* text_info@C8_A1_D0, 1101 */
-    { .dataOffset = 665622, .properties = 13, .width = 36, .height = 21 },    /* text_info@C8_A1_D1, 1101 */
-    { .dataOffset = 667134, .properties = 13, .width = 31, .height = 21 },    /* text_info@C9_A1_D0, 1101 */
-    { .dataOffset = 668436, .properties = 13, .width = 32, .height = 21 },    /* text_info@C9_A1_D1, 1101 */
-    { .dataOffset = 669780, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C0_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C000_D001, 111 */
-    { .dataOffset = 673938, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C1_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C001_D001, 111 */
-    { .dataOffset = 678096, .properties = 13, .width = 143, .height = 21 },    /* text_intern_temp@C2_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C002_D001, 111 */
-    { .dataOffset = 684102, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C3_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C003_D001, 111 */
-    { .dataOffset = 690486, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C4_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C004_D001, 111 */
-    { .dataOffset = 696870, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C5_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C005_D001, 111 */
-    { .dataOffset = 703254, .properties = 13, .width = 196, .height = 21 },    /* text_intern_temp@C6_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C006_D001, 111 */
-    { .dataOffset = 711486, .properties = 13, .width = 77, .height = 21 },    /* text_intern_temp@C7_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C007_D001, 111 */
-    { .dataOffset = 714720, .properties = 13, .width = 74, .height = 21 },    /* text_intern_temp@C8_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C008_D001, 111 */
-    { .dataOffset = 717828, .properties = 13, .width = 71, .height = 21 },    /* text_intern_temp@C9_A0_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C009_D001, 111 */
-    { .dataOffset = 720810, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C0_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C000_D001, 111 */
-    { .dataOffset = 724968, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C1_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C001_D001, 111 */
-    { .dataOffset = 729126, .properties = 13, .width = 143, .height = 21 },    /* text_intern_temp@C2_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C002_D001, 111 */
-    { .dataOffset = 735132, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C3_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C003_D001, 111 */
-    { .dataOffset = 741516, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C4_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C004_D001, 111 */
-    { .dataOffset = 747900, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C5_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C005_D001, 111 */
-    { .dataOffset = 754284, .properties = 13, .width = 196, .height = 21 },    /* text_intern_temp@C6_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C006_D001, 111 */
-    { .dataOffset = 762516, .properties = 13, .width = 77, .height = 21 },    /* text_intern_temp@C7_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C007_D001, 111 */
-    { .dataOffset = 765750, .properties = 13, .width = 74, .height = 21 },    /* text_intern_temp@C8_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C008_D001, 111 */
-    { .dataOffset = 768858, .properties = 13, .width = 71, .height = 21 },    /* text_intern_temp@C9_A1_D0, 1101 */
-    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C009_D001, 111 */
-    { .dataOffset = 771840, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C0_A0_D0, 1101 */
-    { .dataOffset = 774024, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C0_A0_D1, 1101 */
-    { .dataOffset = 776334, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C1_A0_D0, 1101 */
-    { .dataOffset = 778518, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C1_A0_D1, 1101 */
-    { .dataOffset = 780828, .properties = 13, .width = 56, .height = 21 },    /* text_interval@C2_A0_D0, 1101 */
-    { .dataOffset = 783180, .properties = 13, .width = 60, .height = 21 },    /* text_interval@C2_A0_D1, 1101 */
-    { .dataOffset = 785700, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C3_A0_D0, 1101 */
-    { .dataOffset = 788430, .properties = 13, .width = 69, .height = 21 },    /* text_interval@C3_A0_D1, 1101 */
-    { .dataOffset = 791328, .properties = 13, .width = 62, .height = 21 },    /* text_interval@C4_A0_D0, 1101 */
-    { .dataOffset = 793932, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C4_A0_D1, 1101 */
-    { .dataOffset = 796662, .properties = 13, .width = 66, .height = 21 },    /* text_interval@C5_A0_D0, 1101 */
-    { .dataOffset = 799434, .properties = 13, .width = 70, .height = 21 },    /* text_interval@C5_A0_D1, 1101 */
-    { .dataOffset = 802374, .properties = 13, .width = 73, .height = 21 },    /* text_interval@C6_A0_D0, 1101 */
-    { .dataOffset = 805440, .properties = 13, .width = 76, .height = 21 },    /* text_interval@C6_A0_D1, 1101 */
-    { .dataOffset = 808632, .properties = 13, .width = 34, .height = 21 },    /* text_interval@C7_A0_D0, 1101 */
-    { .dataOffset = 810060, .properties = 13, .width = 35, .height = 21 },    /* text_interval@C7_A0_D1, 1101 */
-    { .dataOffset = 811530, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C8_A0_D0, 1101 */
-    { .dataOffset = 812160, .properties = 13, .width = 16, .height = 21 },    /* text_interval@C8_A0_D1, 1101 */
-    { .dataOffset = 812832, .properties = 13, .width = 14, .height = 21 },    /* text_interval@C9_A0_D0, 1101 */
-    { .dataOffset = 813420, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C9_A0_D1, 1101 */
-    { .dataOffset = 814050, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C0_A1_D0, 1101 */
-    { .dataOffset = 816234, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C0_A1_D1, 1101 */
-    { .dataOffset = 818544, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C1_A1_D0, 1101 */
-    { .dataOffset = 820728, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C1_A1_D1, 1101 */
-    { .dataOffset = 823038, .properties = 13, .width = 56, .height = 21 },    /* text_interval@C2_A1_D0, 1101 */
-    { .dataOffset = 825390, .properties = 13, .width = 60, .height = 21 },    /* text_interval@C2_A1_D1, 1101 */
-    { .dataOffset = 827910, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C3_A1_D0, 1101 */
-    { .dataOffset = 830640, .properties = 13, .width = 69, .height = 21 },    /* text_interval@C3_A1_D1, 1101 */
-    { .dataOffset = 833538, .properties = 13, .width = 62, .height = 21 },    /* text_interval@C4_A1_D0, 1101 */
-    { .dataOffset = 836142, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C4_A1_D1, 1101 */
-    { .dataOffset = 838872, .properties = 13, .width = 66, .height = 21 },    /* text_interval@C5_A1_D0, 1101 */
-    { .dataOffset = 841644, .properties = 13, .width = 70, .height = 21 },    /* text_interval@C5_A1_D1, 1101 */
-    { .dataOffset = 844584, .properties = 13, .width = 73, .height = 21 },    /* text_interval@C6_A1_D0, 1101 */
-    { .dataOffset = 847650, .properties = 13, .width = 76, .height = 21 },    /* text_interval@C6_A1_D1, 1101 */
-    { .dataOffset = 850842, .properties = 13, .width = 34, .height = 21 },    /* text_interval@C7_A1_D0, 1101 */
-    { .dataOffset = 852270, .properties = 13, .width = 35, .height = 21 },    /* text_interval@C7_A1_D1, 1101 */
-    { .dataOffset = 853740, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C8_A1_D0, 1101 */
-    { .dataOffset = 854370, .properties = 13, .width = 16, .height = 21 },    /* text_interval@C8_A1_D1, 1101 */
-    { .dataOffset = 855042, .properties = 13, .width = 14, .height = 21 },    /* text_interval@C9_A1_D0, 1101 */
-    { .dataOffset = 855630, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C9_A1_D1, 1101 */
-    { .dataOffset = 856260, .properties = 9, .width = 52, .height = 21 },    /* text_italian@A0_D0, 1001 */
-    { .dataOffset = 858444, .properties = 9, .width = 56, .height = 21 },    /* text_italian@A0_D1, 1001 */
-    { .dataOffset = 860796, .properties = 9, .width = 52, .height = 21 },    /* text_italian@A1_D0, 1001 */
-    { .dataOffset = 862980, .properties = 9, .width = 56, .height = 21 },    /* text_italian@A1_D1, 1001 */
-    { .dataOffset = 865332, .properties = 9, .width = 50, .height = 21 },    /* text_japanese@A0_D0, 1001 */
-    { .dataOffset = 867432, .properties = 9, .width = 51, .height = 21 },    /* text_japanese@A0_D1, 1001 */
-    { .dataOffset = 869574, .properties = 9, .width = 50, .height = 21 },    /* text_japanese@A1_D0, 1001 */
-    { .dataOffset = 871674, .properties = 9, .width = 51, .height = 21 },    /* text_japanese@A1_D1, 1001 */
-    { .dataOffset = 873816, .properties = 9, .width = 46, .height = 21 },    /* text_korean@A0_D0, 1001 */
-    { .dataOffset = 875748, .properties = 9, .width = 47, .height = 21 },    /* text_korean@A0_D1, 1001 */
-    { .dataOffset = 877722, .properties = 9, .width = 46, .height = 21 },    /* text_korean@A1_D0, 1001 */
-    { .dataOffset = 879654, .properties = 9, .width = 47, .height = 21 },    /* text_korean@A1_D1, 1001 */
-    { .dataOffset = 881628, .properties = 13, .width = 70, .height = 21 },    /* text_language@C0_A0_D0, 1101 */
-    { .dataOffset = 884568, .properties = 13, .width = 74, .height = 21 },    /* text_language@C0_A0_D1, 1101 */
-    { .dataOffset = 887676, .properties = 13, .width = 31, .height = 21 },    /* text_language@C1_A0_D0, 1101 */
-    { .dataOffset = 888978, .properties = 13, .width = 33, .height = 21 },    /* text_language@C1_A0_D1, 1101 */
-    { .dataOffset = 890364, .properties = 13, .width = 59, .height = 21 },    /* text_language@C2_A0_D0, 1101 */
-    { .dataOffset = 892842, .properties = 13, .width = 62, .height = 21 },    /* text_language@C2_A0_D1, 1101 */
-    { .dataOffset = 895446, .properties = 13, .width = 52, .height = 21 },    /* text_language@C3_A0_D0, 1101 */
-    { .dataOffset = 897630, .properties = 13, .width = 55, .height = 21 },    /* text_language@C3_A0_D1, 1101 */
-    { .dataOffset = 899940, .properties = 13, .width = 48, .height = 21 },    /* text_language@C4_A0_D0, 1101 */
-    { .dataOffset = 901956, .properties = 13, .width = 51, .height = 21 },    /* text_language@C4_A0_D1, 1101 */
-    { .dataOffset = 904098, .properties = 13, .width = 47, .height = 21 },    /* text_language@C5_A0_D0, 1101 */
-    { .dataOffset = 906072, .properties = 13, .width = 50, .height = 21 },    /* text_language@C5_A0_D1, 1101 */
-    { .dataOffset = 908172, .properties = 13, .width = 40, .height = 21 },    /* text_language@C6_A0_D0, 1101 */
-    { .dataOffset = 909852, .properties = 13, .width = 42, .height = 21 },    /* text_language@C6_A0_D1, 1101 */
-    { .dataOffset = 911616, .properties = 13, .width = 35, .height = 21 },    /* text_language@C7_A0_D0, 1101 */
-    { .dataOffset = 913086, .properties = 13, .width = 36, .height = 21 },    /* text_language@C7_A0_D1, 1101 */
-    { .dataOffset = 914598, .properties = 13, .width = 35, .height = 21 },    /* text_language@C8_A0_D0, 1101 */
-    { .dataOffset = 916068, .properties = 13, .width = 36, .height = 21 },    /* text_language@C8_A0_D1, 1101 */
-    { .dataOffset = 917580, .properties = 13, .width = 29, .height = 21 },    /* text_language@C9_A0_D0, 1101 */
-    { .dataOffset = 918798, .properties = 13, .width = 30, .height = 21 },    /* text_language@C9_A0_D1, 1101 */
-    { .dataOffset = 920058, .properties = 13, .width = 70, .height = 21 },    /* text_language@C0_A1_D0, 1101 */
-    { .dataOffset = 922998, .properties = 13, .width = 74, .height = 21 },    /* text_language@C0_A1_D1, 1101 */
-    { .dataOffset = 926106, .properties = 13, .width = 31, .height = 21 },    /* text_language@C1_A1_D0, 1101 */
-    { .dataOffset = 927408, .properties = 13, .width = 33, .height = 21 },    /* text_language@C1_A1_D1, 1101 */
-    { .dataOffset = 928794, .properties = 13, .width = 59, .height = 21 },    /* text_language@C2_A1_D0, 1101 */
-    { .dataOffset = 931272, .properties = 13, .width = 62, .height = 21 },    /* text_language@C2_A1_D1, 1101 */
-    { .dataOffset = 933876, .properties = 13, .width = 52, .height = 21 },    /* text_language@C3_A1_D0, 1101 */
-    { .dataOffset = 936060, .properties = 13, .width = 55, .height = 21 },    /* text_language@C3_A1_D1, 1101 */
-    { .dataOffset = 938370, .properties = 13, .width = 48, .height = 21 },    /* text_language@C4_A1_D0, 1101 */
-    { .dataOffset = 940386, .properties = 13, .width = 51, .height = 21 },    /* text_language@C4_A1_D1, 1101 */
-    { .dataOffset = 942528, .properties = 13, .width = 47, .height = 21 },    /* text_language@C5_A1_D0, 1101 */
-    { .dataOffset = 944502, .properties = 13, .width = 50, .height = 21 },    /* text_language@C5_A1_D1, 1101 */
-    { .dataOffset = 946602, .properties = 13, .width = 40, .height = 21 },    /* text_language@C6_A1_D0, 1101 */
-    { .dataOffset = 948282, .properties = 13, .width = 42, .height = 21 },    /* text_language@C6_A1_D1, 1101 */
-    { .dataOffset = 950046, .properties = 13, .width = 35, .height = 21 },    /* text_language@C7_A1_D0, 1101 */
-    { .dataOffset = 951516, .properties = 13, .width = 36, .height = 21 },    /* text_language@C7_A1_D1, 1101 */
-    { .dataOffset = 953028, .properties = 13, .width = 35, .height = 21 },    /* text_language@C8_A1_D0, 1101 */
-    { .dataOffset = 954498, .properties = 13, .width = 36, .height = 21 },    /* text_language@C8_A1_D1, 1101 */
-    { .dataOffset = 956010, .properties = 13, .width = 29, .height = 21 },    /* text_language@C9_A1_D0, 1101 */
-    { .dataOffset = 957228, .properties = 13, .width = 30, .height = 21 },    /* text_language@C9_A1_D1, 1101 */
-    { .dataOffset = 958488, .properties = 13, .width = 43, .height = 21 },    /* text_limits@C0_A0_D0, 1101 */
-    { .dataOffset = 960294, .properties = 13, .width = 46, .height = 21 },    /* text_limits@C0_A0_D1, 1101 */
-    { .dataOffset = 962226, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C1_A0_D0, 1101 */
-    { .dataOffset = 964704, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C1_A0_D1, 1101 */
-    { .dataOffset = 967308, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C2_A0_D0, 1101 */
-    { .dataOffset = 969786, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C2_A0_D1, 1101 */
-    { .dataOffset = 972390, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C3_A0_D0, 1101 */
-    { .dataOffset = 974574, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C3_A0_D1, 1101 */
-    { .dataOffset = 976884, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C4_A0_D0, 1101 */
-    { .dataOffset = 979068, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C4_A0_D1, 1101 */
-    { .dataOffset = 981378, .properties = 13, .width = 38, .height = 21 },    /* text_limits@C5_A0_D0, 1101 */
-    { .dataOffset = 982974, .properties = 13, .width = 41, .height = 21 },    /* text_limits@C5_A0_D1, 1101 */
-    { .dataOffset = 984696, .properties = 13, .width = 100, .height = 21 },    /* text_limits@C6_A0_D0, 1101 */
-    { .dataOffset = 988896, .properties = 13, .width = 104, .height = 21 },    /* text_limits@C6_A0_D1, 1101 */
-    { .dataOffset = 993264, .properties = 13, .width = 34, .height = 21 },    /* text_limits@C7_A0_D0, 1101 */
-    { .dataOffset = 994692, .properties = 13, .width = 35, .height = 21 },    /* text_limits@C7_A0_D1, 1101 */
-    { .dataOffset = 996162, .properties = 13, .width = 28, .height = 21 },    /* text_limits@C8_A0_D0, 1101 */
-    { .dataOffset = 997338, .properties = 13, .width = 29, .height = 21 },    /* text_limits@C8_A0_D1, 1101 */
-    { .dataOffset = 998556, .properties = 13, .width = 31, .height = 21 },    /* text_limits@C9_A0_D0, 1101 */
-    { .dataOffset = 999858, .properties = 13, .width = 32, .height = 21 },    /* text_limits@C9_A0_D1, 1101 */
-    { .dataOffset = 1001202, .properties = 13, .width = 43, .height = 21 },    /* text_limits@C0_A1_D0, 1101 */
-    { .dataOffset = 1003008, .properties = 13, .width = 46, .height = 21 },    /* text_limits@C0_A1_D1, 1101 */
-    { .dataOffset = 1004940, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C1_A1_D0, 1101 */
-    { .dataOffset = 1007418, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C1_A1_D1, 1101 */
-    { .dataOffset = 1010022, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C2_A1_D0, 1101 */
-    { .dataOffset = 1012500, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C2_A1_D1, 1101 */
-    { .dataOffset = 1015104, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C3_A1_D0, 1101 */
-    { .dataOffset = 1017288, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C3_A1_D1, 1101 */
-    { .dataOffset = 1019598, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C4_A1_D0, 1101 */
-    { .dataOffset = 1021782, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C4_A1_D1, 1101 */
-    { .dataOffset = 1024092, .properties = 13, .width = 38, .height = 21 },    /* text_limits@C5_A1_D0, 1101 */
-    { .dataOffset = 1025688, .properties = 13, .width = 41, .height = 21 },    /* text_limits@C5_A1_D1, 1101 */
-    { .dataOffset = 1027410, .properties = 13, .width = 100, .height = 21 },    /* text_limits@C6_A1_D0, 1101 */
-    { .dataOffset = 1031610, .properties = 13, .width = 104, .height = 21 },    /* text_limits@C6_A1_D1, 1101 */
-    { .dataOffset = 1035978, .properties = 13, .width = 34, .height = 21 },    /* text_limits@C7_A1_D0, 1101 */
-    { .dataOffset = 1037406, .properties = 13, .width = 35, .height = 21 },    /* text_limits@C7_A1_D1, 1101 */
-    { .dataOffset = 1038876, .properties = 13, .width = 28, .height = 21 },    /* text_limits@C8_A1_D0, 1101 */
-    { .dataOffset = 1040052, .properties = 13, .width = 29, .height = 21 },    /* text_limits@C8_A1_D1, 1101 */
-    { .dataOffset = 1041270, .properties = 13, .width = 31, .height = 21 },    /* text_limits@C9_A1_D0, 1101 */
-    { .dataOffset = 1042572, .properties = 13, .width = 32, .height = 21 },    /* text_limits@C9_A1_D1, 1101 */
-    { .dataOffset = 1043916, .properties = 13, .width = 29, .height = 21 },    /* text_low@C0_A0_D0, 1101 */
-    { .dataOffset = 1045134, .properties = 13, .width = 31, .height = 21 },    /* text_low@C0_A0_D1, 1101 */
-    { .dataOffset = 1046436, .properties = 13, .width = 34, .height = 21 },    /* text_low@C1_A0_D0, 1101 */
-    { .dataOffset = 1047864, .properties = 13, .width = 36, .height = 21 },    /* text_low@C1_A0_D1, 1101 */
-    { .dataOffset = 1049376, .properties = 13, .width = 50, .height = 21 },    /* text_low@C2_A0_D0, 1101 */
-    { .dataOffset = 1051476, .properties = 13, .width = 53, .height = 21 },    /* text_low@C2_A0_D1, 1101 */
-    { .dataOffset = 1053702, .properties = 13, .width = 26, .height = 21 },    /* text_low@C3_A0_D0, 1101 */
-    { .dataOffset = 1054794, .properties = 13, .width = 27, .height = 21 },    /* text_low@C3_A0_D1, 1101 */
-    { .dataOffset = 1055928, .properties = 13, .width = 31, .height = 21 },    /* text_low@C4_A0_D0, 1101 */
-    { .dataOffset = 1057230, .properties = 13, .width = 33, .height = 21 },    /* text_low@C4_A0_D1, 1101 */
-    { .dataOffset = 1058616, .properties = 13, .width = 44, .height = 21 },    /* text_low@C5_A0_D0, 1101 */
-    { .dataOffset = 1060464, .properties = 13, .width = 46, .height = 21 },    /* text_low@C5_A0_D1, 1101 */
-    { .dataOffset = 1062396, .properties = 13, .width = 55, .height = 21 },    /* text_low@C6_A0_D0, 1101 */
-    { .dataOffset = 1064706, .properties = 13, .width = 58, .height = 21 },    /* text_low@C6_A0_D1, 1101 */
-    { .dataOffset = 1067142, .properties = 13, .width = 17, .height = 21 },    /* text_low@C7_A0_D0, 1101 */
-    { .dataOffset = 1067856, .properties = 13, .width = 18, .height = 21 },    /* text_low@C7_A0_D1, 1101 */
-    { .dataOffset = 1068612, .properties = 13, .width = 32, .height = 21 },    /* text_low@C8_A0_D0, 1101 */
-    { .dataOffset = 1069956, .properties = 13, .width = 33, .height = 21 },    /* text_low@C8_A0_D1, 1101 */
-    { .dataOffset = 1071342, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A0_D0, 1101 */
-    { .dataOffset = 1072644, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A0_D1, 1101 */
-    { .dataOffset = 1073946, .properties = 13, .width = 29, .height = 21 },    /* text_low@C0_A1_D0, 1101 */
-    { .dataOffset = 1075164, .properties = 13, .width = 31, .height = 21 },    /* text_low@C0_A1_D1, 1101 */
-    { .dataOffset = 1076466, .properties = 13, .width = 34, .height = 21 },    /* text_low@C1_A1_D0, 1101 */
-    { .dataOffset = 1077894, .properties = 13, .width = 36, .height = 21 },    /* text_low@C1_A1_D1, 1101 */
-    { .dataOffset = 1079406, .properties = 13, .width = 50, .height = 21 },    /* text_low@C2_A1_D0, 1101 */
-    { .dataOffset = 1081506, .properties = 13, .width = 53, .height = 21 },    /* text_low@C2_A1_D1, 1101 */
-    { .dataOffset = 1083732, .properties = 13, .width = 26, .height = 21 },    /* text_low@C3_A1_D0, 1101 */
-    { .dataOffset = 1084824, .properties = 13, .width = 27, .height = 21 },    /* text_low@C3_A1_D1, 1101 */
-    { .dataOffset = 1085958, .properties = 13, .width = 31, .height = 21 },    /* text_low@C4_A1_D0, 1101 */
-    { .dataOffset = 1087260, .properties = 13, .width = 33, .height = 21 },    /* text_low@C4_A1_D1, 1101 */
-    { .dataOffset = 1088646, .properties = 13, .width = 44, .height = 21 },    /* text_low@C5_A1_D0, 1101 */
-    { .dataOffset = 1090494, .properties = 13, .width = 46, .height = 21 },    /* text_low@C5_A1_D1, 1101 */
-    { .dataOffset = 1092426, .properties = 13, .width = 55, .height = 21 },    /* text_low@C6_A1_D0, 1101 */
-    { .dataOffset = 1094736, .properties = 13, .width = 58, .height = 21 },    /* text_low@C6_A1_D1, 1101 */
-    { .dataOffset = 1097172, .properties = 13, .width = 17, .height = 21 },    /* text_low@C7_A1_D0, 1101 */
-    { .dataOffset = 1097886, .properties = 13, .width = 18, .height = 21 },    /* text_low@C7_A1_D1, 1101 */
-    { .dataOffset = 1098642, .properties = 13, .width = 32, .height = 21 },    /* text_low@C8_A1_D0, 1101 */
-    { .dataOffset = 1099986, .properties = 13, .width = 33, .height = 21 },    /* text_low@C8_A1_D1, 1101 */
-    { .dataOffset = 1101372, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A1_D0, 1101 */
-    { .dataOffset = 1102674, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A1_D1, 1101 */
-    { .dataOffset = 1103976, .properties = 1, .width = 54, .height = 21 },    /* text_mcsgui@A0, 1 */
-    { .dataOffset = 1106244, .properties = 1, .width = 54, .height = 21 },    /* text_mcsgui@A1, 1 */
-    { .dataOffset = 1108512, .properties = 13, .width = 100, .height = 21 },    /* text_measurement@C0_A0_D0, 1101 */
-    { .dataOffset = 1112712, .properties = 13, .width = 104, .height = 21 },    /* text_measurement@C0_A0_D1, 1101 */
-    { .dataOffset = 1117080, .properties = 13, .width = 57, .height = 21 },    /* text_measurement@C1_A0_D0, 1101 */
-    { .dataOffset = 1119474, .properties = 13, .width = 60, .height = 21 },    /* text_measurement@C1_A0_D1, 1101 */
-    { .dataOffset = 1121994, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C2_A0_D0, 1101 */
-    { .dataOffset = 1124724, .properties = 13, .width = 68, .height = 21 },    /* text_measurement@C2_A0_D1, 1101 */
-    { .dataOffset = 1127580, .properties = 13, .width = 53, .height = 21 },    /* text_measurement@C3_A0_D0, 1101 */
-    { .dataOffset = 1129806, .properties = 13, .width = 56, .height = 21 },    /* text_measurement@C3_A0_D1, 1101 */
-    { .dataOffset = 1132158, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C4_A0_D0, 1101 */
-    { .dataOffset = 1134888, .properties = 13, .width = 69, .height = 21 },    /* text_measurement@C4_A0_D1, 1101 */
-    { .dataOffset = 1137786, .properties = 13, .width = 88, .height = 21 },    /* text_measurement@C5_A0_D0, 1101 */
-    { .dataOffset = 1141482, .properties = 13, .width = 93, .height = 21 },    /* text_measurement@C5_A0_D1, 1101 */
-    { .dataOffset = 1145388, .properties = 13, .width = 85, .height = 21 },    /* text_measurement@C6_A0_D0, 1101 */
-    { .dataOffset = 1148958, .properties = 13, .width = 89, .height = 21 },    /* text_measurement@C6_A0_D1, 1101 */
-    { .dataOffset = 1152696, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C7_A0_D0, 1101 */
-    { .dataOffset = 1154166, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C7_A0_D1, 1101 */
-    { .dataOffset = 1155678, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C8_A0_D0, 1101 */
-    { .dataOffset = 1157148, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C8_A0_D1, 1101 */
-    { .dataOffset = 1158660, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A0_D0, 1101 */
-    { .dataOffset = 1160004, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A0_D1, 1101 */
-    { .dataOffset = 1161348, .properties = 13, .width = 100, .height = 21 },    /* text_measurement@C0_A1_D0, 1101 */
-    { .dataOffset = 1165548, .properties = 13, .width = 104, .height = 21 },    /* text_measurement@C0_A1_D1, 1101 */
-    { .dataOffset = 1169916, .properties = 13, .width = 57, .height = 21 },    /* text_measurement@C1_A1_D0, 1101 */
-    { .dataOffset = 1172310, .properties = 13, .width = 60, .height = 21 },    /* text_measurement@C1_A1_D1, 1101 */
-    { .dataOffset = 1174830, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C2_A1_D0, 1101 */
-    { .dataOffset = 1177560, .properties = 13, .width = 68, .height = 21 },    /* text_measurement@C2_A1_D1, 1101 */
-    { .dataOffset = 1180416, .properties = 13, .width = 53, .height = 21 },    /* text_measurement@C3_A1_D0, 1101 */
-    { .dataOffset = 1182642, .properties = 13, .width = 56, .height = 21 },    /* text_measurement@C3_A1_D1, 1101 */
-    { .dataOffset = 1184994, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C4_A1_D0, 1101 */
-    { .dataOffset = 1187724, .properties = 13, .width = 69, .height = 21 },    /* text_measurement@C4_A1_D1, 1101 */
-    { .dataOffset = 1190622, .properties = 13, .width = 88, .height = 21 },    /* text_measurement@C5_A1_D0, 1101 */
-    { .dataOffset = 1194318, .properties = 13, .width = 93, .height = 21 },    /* text_measurement@C5_A1_D1, 1101 */
-    { .dataOffset = 1198224, .properties = 13, .width = 85, .height = 21 },    /* text_measurement@C6_A1_D0, 1101 */
-    { .dataOffset = 1201794, .properties = 13, .width = 89, .height = 21 },    /* text_measurement@C6_A1_D1, 1101 */
-    { .dataOffset = 1205532, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C7_A1_D0, 1101 */
-    { .dataOffset = 1207002, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C7_A1_D1, 1101 */
-    { .dataOffset = 1208514, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C8_A1_D0, 1101 */
-    { .dataOffset = 1209984, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C8_A1_D1, 1101 */
-    { .dataOffset = 1211496, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A1_D0, 1101 */
-    { .dataOffset = 1212840, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A1_D1, 1101 */
-    { .dataOffset = 1214184, .properties = 9, .width = 61, .height = 21 },    /* text_russian@A0_D0, 1001 */
-    { .dataOffset = 1216746, .properties = 9, .width = 64, .height = 21 },    /* text_russian@A0_D1, 1001 */
-    { .dataOffset = 1219434, .properties = 9, .width = 61, .height = 21 },    /* text_russian@A1_D0, 1001 */
-    { .dataOffset = 1221996, .properties = 9, .width = 64, .height = 21 },    /* text_russian@A1_D1, 1001 */
-    { .dataOffset = 1224684, .properties = 13, .width = 59, .height = 21 },    /* text_settings@C0_A0_D0, 1101 */
-    { .dataOffset = 1227162, .properties = 13, .width = 62, .height = 21 },    /* text_settings@C0_A0_D1, 1101 */
-    { .dataOffset = 1229766, .properties = 13, .width = 82, .height = 21 },    /* text_settings@C1_A0_D0, 1101 */
-    { .dataOffset = 1233210, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C1_A0_D1, 1101 */
-    { .dataOffset = 1236864, .properties = 13, .width = 96, .height = 21 },    /* text_settings@C2_A0_D0, 1101 */
-    { .dataOffset = 1240896, .properties = 13, .width = 101, .height = 21 },    /* text_settings@C2_A0_D1, 1101 */
-    { .dataOffset = 1245138, .properties = 13, .width = 83, .height = 21 },    /* text_settings@C3_A0_D0, 1101 */
-    { .dataOffset = 1248624, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C3_A0_D1, 1101 */
-    { .dataOffset = 1252278, .properties = 13, .width = 102, .height = 21 },    /* text_settings@C4_A0_D0, 1101 */
-    { .dataOffset = 1256562, .properties = 13, .width = 107, .height = 21 },    /* text_settings@C4_A0_D1, 1101 */
-    { .dataOffset = 1261056, .properties = 13, .width = 93, .height = 21 },    /* text_settings@C5_A0_D0, 1101 */
-    { .dataOffset = 1264962, .properties = 13, .width = 97, .height = 21 },    /* text_settings@C5_A0_D1, 1101 */
-    { .dataOffset = 1269036, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C6_A0_D0, 1101 */
-    { .dataOffset = 1272690, .properties = 13, .width = 91, .height = 21 },    /* text_settings@C6_A0_D1, 1101 */
-    { .dataOffset = 1276512, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C7_A0_D0, 1101 */
-    { .dataOffset = 1277982, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C7_A0_D1, 1101 */
-    { .dataOffset = 1279494, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C8_A0_D0, 1101 */
-    { .dataOffset = 1280964, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C8_A0_D1, 1101 */
-    { .dataOffset = 1282476, .properties = 13, .width = 29, .height = 21 },    /* text_settings@C9_A0_D0, 1101 */
-    { .dataOffset = 1283694, .properties = 13, .width = 31, .height = 21 },    /* text_settings@C9_A0_D1, 1101 */
-    { .dataOffset = 1284996, .properties = 13, .width = 59, .height = 21 },    /* text_settings@C0_A1_D0, 1101 */
-    { .dataOffset = 1287474, .properties = 13, .width = 62, .height = 21 },    /* text_settings@C0_A1_D1, 1101 */
-    { .dataOffset = 1290078, .properties = 13, .width = 82, .height = 21 },    /* text_settings@C1_A1_D0, 1101 */
-    { .dataOffset = 1293522, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C1_A1_D1, 1101 */
-    { .dataOffset = 1297176, .properties = 13, .width = 96, .height = 21 },    /* text_settings@C2_A1_D0, 1101 */
-    { .dataOffset = 1301208, .properties = 13, .width = 101, .height = 21 },    /* text_settings@C2_A1_D1, 1101 */
-    { .dataOffset = 1305450, .properties = 13, .width = 83, .height = 21 },    /* text_settings@C3_A1_D0, 1101 */
-    { .dataOffset = 1308936, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C3_A1_D1, 1101 */
-    { .dataOffset = 1312590, .properties = 13, .width = 102, .height = 21 },    /* text_settings@C4_A1_D0, 1101 */
-    { .dataOffset = 1316874, .properties = 13, .width = 107, .height = 21 },    /* text_settings@C4_A1_D1, 1101 */
-    { .dataOffset = 1321368, .properties = 13, .width = 93, .height = 21 },    /* text_settings@C5_A1_D0, 1101 */
-    { .dataOffset = 1325274, .properties = 13, .width = 97, .height = 21 },    /* text_settings@C5_A1_D1, 1101 */
-    { .dataOffset = 1329348, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C6_A1_D0, 1101 */
-    { .dataOffset = 1333002, .properties = 13, .width = 91, .height = 21 },    /* text_settings@C6_A1_D1, 1101 */
-    { .dataOffset = 1336824, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C7_A1_D0, 1101 */
-    { .dataOffset = 1338294, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C7_A1_D1, 1101 */
-    { .dataOffset = 1339806, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C8_A1_D0, 1101 */
-    { .dataOffset = 1341276, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C8_A1_D1, 1101 */
-    { .dataOffset = 1342788, .properties = 13, .width = 29, .height = 21 },    /* text_settings@C9_A1_D0, 1101 */
-    { .dataOffset = 1344006, .properties = 13, .width = 31, .height = 21 },    /* text_settings@C9_A1_D1, 1101 */
-    { .dataOffset = 1345308, .properties = 13, .width = 41, .height = 21 },    /* text_setup@C0_A0_D0, 1101 */
-    { .dataOffset = 1347030, .properties = 13, .width = 44, .height = 21 },    /* text_setup@C0_A0_D1, 1101 */
-    { .dataOffset = 1348878, .properties = 13, .width = 46, .height = 21 },    /* text_setup@C1_A0_D0, 1101 */
-    { .dataOffset = 1350810, .properties = 13, .width = 49, .height = 21 },    /* text_setup@C1_A0_D1, 1101 */
-    { .dataOffset = 1352868, .properties = 13, .width = 80, .height = 21 },    /* text_setup@C2_A0_D0, 1101 */
-    { .dataOffset = 1356228, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C2_A0_D1, 1101 */
-    { .dataOffset = 1359798, .properties = 13, .width = 89, .height = 21 },    /* text_setup@C3_A0_D0, 1101 */
-    { .dataOffset = 1363536, .properties = 13, .width = 93, .height = 21 },    /* text_setup@C3_A0_D1, 1101 */
-    { .dataOffset = 1367442, .properties = 13, .width = 52, .height = 21 },    /* text_setup@C4_A0_D0, 1101 */
-    { .dataOffset = 1369626, .properties = 13, .width = 55, .height = 21 },    /* text_setup@C4_A0_D1, 1101 */
-    { .dataOffset = 1371936, .properties = 13, .width = 91, .height = 21 },    /* text_setup@C5_A0_D0, 1101 */
-    { .dataOffset = 1375758, .properties = 13, .width = 96, .height = 21 },    /* text_setup@C5_A0_D1, 1101 */
-    { .dataOffset = 1379790, .properties = 13, .width = 81, .height = 21 },    /* text_setup@C6_A0_D0, 1101 */
-    { .dataOffset = 1383192, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C6_A0_D1, 1101 */
-    { .dataOffset = 1386762, .properties = 13, .width = 35, .height = 21 },    /* text_setup@C7_A0_D0, 1101 */
-    { .dataOffset = 1388232, .properties = 13, .width = 36, .height = 21 },    /* text_setup@C7_A0_D1, 1101 */
-    { .dataOffset = 1389744, .properties = 13, .width = 76, .height = 21 },    /* text_setup@C8_A0_D0, 1101 */
-    { .dataOffset = 1392936, .properties = 13, .width = 77, .height = 21 },    /* text_setup@C8_A0_D1, 1101 */
-    { .dataOffset = 1396170, .properties = 13, .width = 29, .height = 21 },    /* text_setup@C9_A0_D0, 1101 */
-    { .dataOffset = 1397388, .properties = 13, .width = 30, .height = 21 },    /* text_setup@C9_A0_D1, 1101 */
-    { .dataOffset = 1398648, .properties = 13, .width = 41, .height = 21 },    /* text_setup@C0_A1_D0, 1101 */
-    { .dataOffset = 1400370, .properties = 13, .width = 44, .height = 21 },    /* text_setup@C0_A1_D1, 1101 */
-    { .dataOffset = 1402218, .properties = 13, .width = 46, .height = 21 },    /* text_setup@C1_A1_D0, 1101 */
-    { .dataOffset = 1404150, .properties = 13, .width = 49, .height = 21 },    /* text_setup@C1_A1_D1, 1101 */
-    { .dataOffset = 1406208, .properties = 13, .width = 80, .height = 21 },    /* text_setup@C2_A1_D0, 1101 */
-    { .dataOffset = 1409568, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C2_A1_D1, 1101 */
-    { .dataOffset = 1413138, .properties = 13, .width = 89, .height = 21 },    /* text_setup@C3_A1_D0, 1101 */
-    { .dataOffset = 1416876, .properties = 13, .width = 93, .height = 21 },    /* text_setup@C3_A1_D1, 1101 */
-    { .dataOffset = 1420782, .properties = 13, .width = 52, .height = 21 },    /* text_setup@C4_A1_D0, 1101 */
-    { .dataOffset = 1422966, .properties = 13, .width = 55, .height = 21 },    /* text_setup@C4_A1_D1, 1101 */
-    { .dataOffset = 1425276, .properties = 13, .width = 91, .height = 21 },    /* text_setup@C5_A1_D0, 1101 */
-    { .dataOffset = 1429098, .properties = 13, .width = 96, .height = 21 },    /* text_setup@C5_A1_D1, 1101 */
-    { .dataOffset = 1433130, .properties = 13, .width = 81, .height = 21 },    /* text_setup@C6_A1_D0, 1101 */
-    { .dataOffset = 1436532, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C6_A1_D1, 1101 */
-    { .dataOffset = 1440102, .properties = 13, .width = 35, .height = 21 },    /* text_setup@C7_A1_D0, 1101 */
-    { .dataOffset = 1441572, .properties = 13, .width = 36, .height = 21 },    /* text_setup@C7_A1_D1, 1101 */
-    { .dataOffset = 1443084, .properties = 13, .width = 76, .height = 21 },    /* text_setup@C8_A1_D0, 1101 */
-    { .dataOffset = 1446276, .properties = 13, .width = 77, .height = 21 },    /* text_setup@C8_A1_D1, 1101 */
-    { .dataOffset = 1449510, .properties = 13, .width = 29, .height = 21 },    /* text_setup@C9_A1_D0, 1101 */
-    { .dataOffset = 1450728, .properties = 13, .width = 30, .height = 21 },    /* text_setup@C9_A1_D1, 1101 */
-    { .dataOffset = 1451988, .properties = 9, .width = 56, .height = 21 },    /* text_spanish@A0_D0, 1001 */
-    { .dataOffset = 1454340, .properties = 9, .width = 59, .height = 21 },    /* text_spanish@A0_D1, 1001 */
-    { .dataOffset = 1456818, .properties = 9, .width = 56, .height = 21 },    /* text_spanish@A1_D0, 1001 */
-    { .dataOffset = 1459170, .properties = 9, .width = 59, .height = 21 },    /* text_spanish@A1_D1, 1001 */
-    { .dataOffset = 1461648, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C0_A0_D0, 1101 */
-    { .dataOffset = 1463748, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C0_A0_D1, 1101 */
-    { .dataOffset = 1465932, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C1_A0_D0, 1101 */
-    { .dataOffset = 1468032, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C1_A0_D1, 1101 */
-    { .dataOffset = 1470216, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C2_A0_D0, 1101 */
-    { .dataOffset = 1472316, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C2_A0_D1, 1101 */
-    { .dataOffset = 1474500, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C3_A0_D0, 1101 */
-    { .dataOffset = 1476600, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C3_A0_D1, 1101 */
-    { .dataOffset = 1478784, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C4_A0_D0, 1101 */
-    { .dataOffset = 1480506, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C4_A0_D1, 1101 */
-    { .dataOffset = 1482312, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C5_A0_D0, 1101 */
-    { .dataOffset = 1484034, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C5_A0_D1, 1101 */
-    { .dataOffset = 1485840, .properties = 13, .width = 39, .height = 21 },    /* text_theme@C6_A0_D0, 1101 */
-    { .dataOffset = 1487478, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C6_A0_D1, 1101 */
-    { .dataOffset = 1489200, .properties = 13, .width = 34, .height = 21 },    /* text_theme@C7_A0_D0, 1101 */
-    { .dataOffset = 1490628, .properties = 13, .width = 35, .height = 21 },    /* text_theme@C7_A0_D1, 1101 */
-    { .dataOffset = 1492098, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C8_A0_D0, 1101 */
-    { .dataOffset = 1493820, .properties = 13, .width = 42, .height = 21 },    /* text_theme@C8_A0_D1, 1101 */
-    { .dataOffset = 1495584, .properties = 13, .width = 30, .height = 21 },    /* text_theme@C9_A0_D0, 1101 */
-    { .dataOffset = 1496844, .properties = 13, .width = 31, .height = 21 },    /* text_theme@C9_A0_D1, 1101 */
-    { .dataOffset = 1498146, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C0_A1_D0, 1101 */
-    { .dataOffset = 1500246, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C0_A1_D1, 1101 */
-    { .dataOffset = 1502430, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C1_A1_D0, 1101 */
-    { .dataOffset = 1504530, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C1_A1_D1, 1101 */
-    { .dataOffset = 1506714, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C2_A1_D0, 1101 */
-    { .dataOffset = 1508814, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C2_A1_D1, 1101 */
-    { .dataOffset = 1510998, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C3_A1_D0, 1101 */
-    { .dataOffset = 1513098, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C3_A1_D1, 1101 */
-    { .dataOffset = 1515282, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C4_A1_D0, 1101 */
-    { .dataOffset = 1517004, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C4_A1_D1, 1101 */
-    { .dataOffset = 1518810, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C5_A1_D0, 1101 */
-    { .dataOffset = 1520532, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C5_A1_D1, 1101 */
-    { .dataOffset = 1522338, .properties = 13, .width = 39, .height = 21 },    /* text_theme@C6_A1_D0, 1101 */
-    { .dataOffset = 1523976, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C6_A1_D1, 1101 */
-    { .dataOffset = 1525698, .properties = 13, .width = 34, .height = 21 },    /* text_theme@C7_A1_D0, 1101 */
-    { .dataOffset = 1527126, .properties = 13, .width = 35, .height = 21 },    /* text_theme@C7_A1_D1, 1101 */
-    { .dataOffset = 1528596, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C8_A1_D0, 1101 */
-    { .dataOffset = 1530318, .properties = 13, .width = 42, .height = 21 },    /* text_theme@C8_A1_D1, 1101 */
-    { .dataOffset = 1532082, .properties = 13, .width = 30, .height = 21 },    /* text_theme@C9_A1_D0, 1101 */
-    { .dataOffset = 1533342, .properties = 13, .width = 31, .height = 21 },    /* text_theme@C9_A1_D1, 1101 */
-    { .dataOffset = 1534644, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C0_A0_D0, 1101 */
-    { .dataOffset = 1535988, .properties = 13, .width = 34, .height = 21 },    /* text_theme_dark@C0_A0_D1, 1101 */
-    { .dataOffset = 1537416, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C1_A0_D0, 1101 */
-    { .dataOffset = 1539558, .properties = 13, .width = 53, .height = 21 },    /* text_theme_dark@C1_A0_D1, 1101 */
-    { .dataOffset = 1541784, .properties = 13, .width = 48, .height = 21 },    /* text_theme_dark@C2_A0_D0, 1101 */
-    { .dataOffset = 1543800, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C2_A0_D1, 1101 */
-    { .dataOffset = 1545942, .properties = 13, .width = 56, .height = 21 },    /* text_theme_dark@C3_A0_D0, 1101 */
-    { .dataOffset = 1548294, .properties = 13, .width = 59, .height = 21 },    /* text_theme_dark@C3_A0_D1, 1101 */
-    { .dataOffset = 1550772, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C4_A0_D0, 1101 */
-    { .dataOffset = 1552956, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C4_A0_D1, 1101 */
-    { .dataOffset = 1555224, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C5_A0_D0, 1101 */
-    { .dataOffset = 1557408, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C5_A0_D1, 1101 */
-    { .dataOffset = 1559676, .properties = 13, .width = 61, .height = 21 },    /* text_theme_dark@C6_A0_D0, 1101 */
-    { .dataOffset = 1562238, .properties = 13, .width = 64, .height = 21 },    /* text_theme_dark@C6_A0_D1, 1101 */
-    { .dataOffset = 1564926, .properties = 13, .width = 35, .height = 21 },    /* text_theme_dark@C7_A0_D0, 1101 */
-    { .dataOffset = 1566396, .properties = 13, .width = 36, .height = 21 },    /* text_theme_dark@C7_A0_D1, 1101 */
-    { .dataOffset = 1567908, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C8_A0_D0, 1101 */
-    { .dataOffset = 1569210, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C8_A0_D1, 1101 */
-    { .dataOffset = 1570554, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A0_D0, 1101 */
-    { .dataOffset = 1571856, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A0_D1, 1101 */
-    { .dataOffset = 1573158, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C0_A1_D0, 1101 */
-    { .dataOffset = 1574502, .properties = 13, .width = 34, .height = 21 },    /* text_theme_dark@C0_A1_D1, 1101 */
-    { .dataOffset = 1575930, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C1_A1_D0, 1101 */
-    { .dataOffset = 1578072, .properties = 13, .width = 53, .height = 21 },    /* text_theme_dark@C1_A1_D1, 1101 */
-    { .dataOffset = 1580298, .properties = 13, .width = 48, .height = 21 },    /* text_theme_dark@C2_A1_D0, 1101 */
-    { .dataOffset = 1582314, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C2_A1_D1, 1101 */
-    { .dataOffset = 1584456, .properties = 13, .width = 56, .height = 21 },    /* text_theme_dark@C3_A1_D0, 1101 */
-    { .dataOffset = 1586808, .properties = 13, .width = 59, .height = 21 },    /* text_theme_dark@C3_A1_D1, 1101 */
-    { .dataOffset = 1589286, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C4_A1_D0, 1101 */
-    { .dataOffset = 1591470, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C4_A1_D1, 1101 */
-    { .dataOffset = 1593738, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C5_A1_D0, 1101 */
-    { .dataOffset = 1595922, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C5_A1_D1, 1101 */
-    { .dataOffset = 1598190, .properties = 13, .width = 61, .height = 21 },    /* text_theme_dark@C6_A1_D0, 1101 */
-    { .dataOffset = 1600752, .properties = 13, .width = 64, .height = 21 },    /* text_theme_dark@C6_A1_D1, 1101 */
-    { .dataOffset = 1603440, .properties = 13, .width = 35, .height = 21 },    /* text_theme_dark@C7_A1_D0, 1101 */
-    { .dataOffset = 1604910, .properties = 13, .width = 36, .height = 21 },    /* text_theme_dark@C7_A1_D1, 1101 */
-    { .dataOffset = 1606422, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C8_A1_D0, 1101 */
-    { .dataOffset = 1607724, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C8_A1_D1, 1101 */
-    { .dataOffset = 1609068, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A1_D0, 1101 */
-    { .dataOffset = 1610370, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A1_D1, 1101 */
-    { .dataOffset = 1611672, .properties = 13, .width = 35, .height = 21 },    /* text_theme_light@C0_A0_D0, 1101 */
-    { .dataOffset = 1613142, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C0_A0_D1, 1101 */
-    { .dataOffset = 1614696, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C1_A0_D0, 1101 */
-    { .dataOffset = 1616124, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C1_A0_D1, 1101 */
-    { .dataOffset = 1617678, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C2_A0_D0, 1101 */
-    { .dataOffset = 1619106, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C2_A0_D1, 1101 */
-    { .dataOffset = 1620660, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C3_A0_D0, 1101 */
-    { .dataOffset = 1623096, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C3_A0_D1, 1101 */
-    { .dataOffset = 1625658, .properties = 13, .width = 24, .height = 21 },    /* text_theme_light@C4_A0_D0, 1101 */
-    { .dataOffset = 1626666, .properties = 13, .width = 26, .height = 21 },    /* text_theme_light@C4_A0_D1, 1101 */
-    { .dataOffset = 1627758, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C5_A0_D0, 1101 */
-    { .dataOffset = 1630194, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C5_A0_D1, 1101 */
-    { .dataOffset = 1632756, .properties = 13, .width = 36, .height = 21 },    /* text_theme_light@C6_A0_D0, 1101 */
-    { .dataOffset = 1634268, .properties = 13, .width = 38, .height = 21 },    /* text_theme_light@C6_A0_D1, 1101 */
-    { .dataOffset = 1635864, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C7_A0_D0, 1101 */
-    { .dataOffset = 1636536, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C7_A0_D1, 1101 */
-    { .dataOffset = 1637250, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C8_A0_D0, 1101 */
-    { .dataOffset = 1637922, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C8_A0_D1, 1101 */
-    { .dataOffset = 1638636, .properties = 13, .width = 15, .height = 21 },    /* text_theme_light@C9_A0_D0, 1101 */
-    { .dataOffset = 1639266, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C9_A0_D1, 1101 */
-    { .dataOffset = 1639938, .properties = 13, .width = 35, .height = 21 },    /* text_theme_light@C0_A1_D0, 1101 */
-    { .dataOffset = 1641408, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C0_A1_D1, 1101 */
-    { .dataOffset = 1642962, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C1_A1_D0, 1101 */
-    { .dataOffset = 1644390, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C1_A1_D1, 1101 */
-    { .dataOffset = 1645944, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C2_A1_D0, 1101 */
-    { .dataOffset = 1647372, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C2_A1_D1, 1101 */
-    { .dataOffset = 1648926, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C3_A1_D0, 1101 */
-    { .dataOffset = 1651362, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C3_A1_D1, 1101 */
-    { .dataOffset = 1653924, .properties = 13, .width = 24, .height = 21 },    /* text_theme_light@C4_A1_D0, 1101 */
-    { .dataOffset = 1654932, .properties = 13, .width = 26, .height = 21 },    /* text_theme_light@C4_A1_D1, 1101 */
-    { .dataOffset = 1656024, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C5_A1_D0, 1101 */
-    { .dataOffset = 1658460, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C5_A1_D1, 1101 */
-    { .dataOffset = 1661022, .properties = 13, .width = 36, .height = 21 },    /* text_theme_light@C6_A1_D0, 1101 */
-    { .dataOffset = 1662534, .properties = 13, .width = 38, .height = 21 },    /* text_theme_light@C6_A1_D1, 1101 */
-    { .dataOffset = 1664130, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C7_A1_D0, 1101 */
-    { .dataOffset = 1664802, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C7_A1_D1, 1101 */
-    { .dataOffset = 1665516, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C8_A1_D0, 1101 */
-    { .dataOffset = 1666188, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C8_A1_D1, 1101 */
-    { .dataOffset = 1666902, .properties = 13, .width = 15, .height = 21 },    /* text_theme_light@C9_A1_D0, 1101 */
-    { .dataOffset = 1667532, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C9_A1_D1, 1101 */
-    { .dataOffset = 1668204, .properties = 13, .width = 37, .height = 21 },    /* text_units@C0_A0_D0, 1101 */
-    { .dataOffset = 1669758, .properties = 13, .width = 39, .height = 21 },    /* text_units@C0_A0_D1, 1101 */
-    { .dataOffset = 1671396, .properties = 13, .width = 70, .height = 21 },    /* text_units@C1_A0_D0, 1101 */
-    { .dataOffset = 1674336, .properties = 13, .width = 73, .height = 21 },    /* text_units@C1_A0_D1, 1101 */
-    { .dataOffset = 1677402, .properties = 13, .width = 65, .height = 21 },    /* text_units@C2_A0_D0, 1101 */
-    { .dataOffset = 1680132, .properties = 13, .width = 69, .height = 21 },    /* text_units@C2_A0_D1, 1101 */
-    { .dataOffset = 1683030, .properties = 13, .width = 45, .height = 21 },    /* text_units@C3_A0_D0, 1101 */
-    { .dataOffset = 1684920, .properties = 13, .width = 48, .height = 21 },    /* text_units@C3_A0_D1, 1101 */
-    { .dataOffset = 1686936, .properties = 13, .width = 68, .height = 21 },    /* text_units@C4_A0_D0, 1101 */
-    { .dataOffset = 1689792, .properties = 13, .width = 71, .height = 21 },    /* text_units@C4_A0_D1, 1101 */
-    { .dataOffset = 1692774, .properties = 13, .width = 37, .height = 21 },    /* text_units@C5_A0_D0, 1101 */
-    { .dataOffset = 1694328, .properties = 13, .width = 39, .height = 21 },    /* text_units@C5_A0_D1, 1101 */
-    { .dataOffset = 1695966, .properties = 13, .width = 56, .height = 21 },    /* text_units@C6_A0_D0, 1101 */
-    { .dataOffset = 1698318, .properties = 13, .width = 59, .height = 21 },    /* text_units@C6_A0_D1, 1101 */
-    { .dataOffset = 1700796, .properties = 13, .width = 35, .height = 21 },    /* text_units@C7_A0_D0, 1101 */
-    { .dataOffset = 1702266, .properties = 13, .width = 36, .height = 21 },    /* text_units@C7_A0_D1, 1101 */
-    { .dataOffset = 1703778, .properties = 13, .width = 35, .height = 21 },    /* text_units@C8_A0_D0, 1101 */
-    { .dataOffset = 1705248, .properties = 13, .width = 36, .height = 21 },    /* text_units@C8_A0_D1, 1101 */
-    { .dataOffset = 1706760, .properties = 13, .width = 29, .height = 21 },    /* text_units@C9_A0_D0, 1101 */
-    { .dataOffset = 1707978, .properties = 13, .width = 30, .height = 21 },    /* text_units@C9_A0_D1, 1101 */
-    { .dataOffset = 1709238, .properties = 13, .width = 37, .height = 21 },    /* text_units@C0_A1_D0, 1101 */
-    { .dataOffset = 1710792, .properties = 13, .width = 39, .height = 21 },    /* text_units@C0_A1_D1, 1101 */
-    { .dataOffset = 1712430, .properties = 13, .width = 70, .height = 21 },    /* text_units@C1_A1_D0, 1101 */
-    { .dataOffset = 1715370, .properties = 13, .width = 73, .height = 21 },    /* text_units@C1_A1_D1, 1101 */
-    { .dataOffset = 1718436, .properties = 13, .width = 65, .height = 21 },    /* text_units@C2_A1_D0, 1101 */
-    { .dataOffset = 1721166, .properties = 13, .width = 69, .height = 21 },    /* text_units@C2_A1_D1, 1101 */
-    { .dataOffset = 1724064, .properties = 13, .width = 45, .height = 21 },    /* text_units@C3_A1_D0, 1101 */
-    { .dataOffset = 1725954, .properties = 13, .width = 48, .height = 21 },    /* text_units@C3_A1_D1, 1101 */
-    { .dataOffset = 1727970, .properties = 13, .width = 68, .height = 21 },    /* text_units@C4_A1_D0, 1101 */
-    { .dataOffset = 1730826, .properties = 13, .width = 71, .height = 21 },    /* text_units@C4_A1_D1, 1101 */
-    { .dataOffset = 1733808, .properties = 13, .width = 37, .height = 21 },    /* text_units@C5_A1_D0, 1101 */
-    { .dataOffset = 1735362, .properties = 13, .width = 39, .height = 21 },    /* text_units@C5_A1_D1, 1101 */
-    { .dataOffset = 1737000, .properties = 13, .width = 56, .height = 21 },    /* text_units@C6_A1_D0, 1101 */
-    { .dataOffset = 1739352, .properties = 13, .width = 59, .height = 21 },    /* text_units@C6_A1_D1, 1101 */
-    { .dataOffset = 1741830, .properties = 13, .width = 35, .height = 21 },    /* text_units@C7_A1_D0, 1101 */
-    { .dataOffset = 1743300, .properties = 13, .width = 36, .height = 21 },    /* text_units@C7_A1_D1, 1101 */
-    { .dataOffset = 1744812, .properties = 13, .width = 35, .height = 21 },    /* text_units@C8_A1_D0, 1101 */
-    { .dataOffset = 1746282, .properties = 13, .width = 36, .height = 21 },    /* text_units@C8_A1_D1, 1101 */
-    { .dataOffset = 1747794, .properties = 13, .width = 29, .height = 21 },    /* text_units@C9_A1_D0, 1101 */
-    { .dataOffset = 1749012, .properties = 13, .width = 30, .height = 21 },    /* text_units@C9_A1_D1, 1101 */
-    { .dataOffset = 1750272, .properties = 5, .width = 95, .height = 26 },    /* title_brightness@C0_A0, 101 */
-    { .dataOffset = 1755212, .properties = 5, .width = 96, .height = 26 },    /* title_brightness@C1_A0, 101 */
-    { .dataOffset = 1760204, .properties = 5, .width = 83, .height = 26 },    /* title_brightness@C2_A0, 101 */
-    { .dataOffset = 1764520, .properties = 5, .width = 100, .height = 26 },    /* title_brightness@C3_A0, 101 */
-    { .dataOffset = 1769720, .properties = 5, .width = 44, .height = 26 },    /* title_brightness@C4_A0, 101 */
-    { .dataOffset = 1772008, .properties = 5, .width = 99, .height = 26 },    /* title_brightness@C5_A0, 101 */
-    { .dataOffset = 1777156, .properties = 5, .width = 78, .height = 26 },    /* title_brightness@C6_A0, 101 */
-    { .dataOffset = 1781212, .properties = 5, .width = 43, .height = 26 },    /* title_brightness@C7_A0, 101 */
-    { .dataOffset = 1783448, .properties = 5, .width = 53, .height = 26 },    /* title_brightness@C8_A0, 101 */
-    { .dataOffset = 1786204, .properties = 5, .width = 36, .height = 26 },    /* title_brightness@C9_A0, 101 */
-    { .dataOffset = 1788076, .properties = 5, .width = 95, .height = 26 },    /* title_brightness@C0_A1, 101 */
-    { .dataOffset = 1793016, .properties = 5, .width = 96, .height = 26 },    /* title_brightness@C1_A1, 101 */
-    { .dataOffset = 1798008, .properties = 5, .width = 83, .height = 26 },    /* title_brightness@C2_A1, 101 */
-    { .dataOffset = 1802324, .properties = 5, .width = 100, .height = 26 },    /* title_brightness@C3_A1, 101 */
-    { .dataOffset = 1807524, .properties = 5, .width = 44, .height = 26 },    /* title_brightness@C4_A1, 101 */
-    { .dataOffset = 1809812, .properties = 5, .width = 99, .height = 26 },    /* title_brightness@C5_A1, 101 */
-    { .dataOffset = 1814960, .properties = 5, .width = 78, .height = 26 },    /* title_brightness@C6_A1, 101 */
-    { .dataOffset = 1819016, .properties = 5, .width = 43, .height = 26 },    /* title_brightness@C7_A1, 101 */
-    { .dataOffset = 1821252, .properties = 5, .width = 53, .height = 26 },    /* title_brightness@C8_A1, 101 */
-    { .dataOffset = 1824008, .properties = 5, .width = 36, .height = 26 },    /* title_brightness@C9_A1, 101 */
-    { .dataOffset = 1825880, .properties = 5, .width = 33, .height = 26 },    /* title_info@C0_A0, 101 */
-    { .dataOffset = 1827596, .properties = 5, .width = 33, .height = 26 },    /* title_info@C1_A0, 101 */
-    { .dataOffset = 1829312, .properties = 5, .width = 33, .height = 26 },    /* title_info@C2_A0, 101 */
-    { .dataOffset = 1831028, .properties = 5, .width = 33, .height = 26 },    /* title_info@C3_A0, 101 */
-    { .dataOffset = 1832744, .properties = 5, .width = 108, .height = 26 },    /* title_info@C4_A0, 101 */
-    { .dataOffset = 1838360, .properties = 5, .width = 113, .height = 26 },    /* title_info@C5_A0, 101 */
-    { .dataOffset = 1844236, .properties = 5, .width = 124, .height = 26 },    /* title_info@C6_A0, 101 */
-    { .dataOffset = 1850684, .properties = 5, .width = 44, .height = 26 },    /* title_info@C7_A0, 101 */
-    { .dataOffset = 1852972, .properties = 5, .width = 43, .height = 26 },    /* title_info@C8_A0, 101 */
-    { .dataOffset = 1855208, .properties = 5, .width = 38, .height = 26 },    /* title_info@C9_A0, 101 */
-    { .dataOffset = 1857184, .properties = 5, .width = 33, .height = 26 },    /* title_info@C0_A1, 101 */
-    { .dataOffset = 1858900, .properties = 5, .width = 33, .height = 26 },    /* title_info@C1_A1, 101 */
-    { .dataOffset = 1860616, .properties = 5, .width = 33, .height = 26 },    /* title_info@C2_A1, 101 */
-    { .dataOffset = 1862332, .properties = 5, .width = 33, .height = 26 },    /* title_info@C3_A1, 101 */
-    { .dataOffset = 1864048, .properties = 5, .width = 108, .height = 26 },    /* title_info@C4_A1, 101 */
-    { .dataOffset = 1869664, .properties = 5, .width = 113, .height = 26 },    /* title_info@C5_A1, 101 */
-    { .dataOffset = 1875540, .properties = 5, .width = 124, .height = 26 },    /* title_info@C6_A1, 101 */
-    { .dataOffset = 1881988, .properties = 5, .width = 44, .height = 26 },    /* title_info@C7_A1, 101 */
-    { .dataOffset = 1884276, .properties = 5, .width = 43, .height = 26 },    /* title_info@C8_A1, 101 */
-    { .dataOffset = 1886512, .properties = 5, .width = 38, .height = 26 },    /* title_info@C9_A1, 101 */
-    { .dataOffset = 1888488, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C0_A0, 101 */
-    { .dataOffset = 1891868, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C1_A0, 101 */
-    { .dataOffset = 1895248, .properties = 5, .width = 70, .height = 26 },    /* title_interval@C2_A0, 101 */
-    { .dataOffset = 1898888, .properties = 5, .width = 81, .height = 26 },    /* title_interval@C3_A0, 101 */
-    { .dataOffset = 1903100, .properties = 5, .width = 77, .height = 26 },    /* title_interval@C4_A0, 101 */
-    { .dataOffset = 1907104, .properties = 5, .width = 82, .height = 26 },    /* title_interval@C5_A0, 101 */
-    { .dataOffset = 1911368, .properties = 5, .width = 91, .height = 26 },    /* title_interval@C6_A0, 101 */
-    { .dataOffset = 1916100, .properties = 5, .width = 42, .height = 26 },    /* title_interval@C7_A0, 101 */
-    { .dataOffset = 1918284, .properties = 5, .width = 19, .height = 26 },    /* title_interval@C8_A0, 101 */
-    { .dataOffset = 1919272, .properties = 5, .width = 18, .height = 26 },    /* title_interval@C9_A0, 101 */
-    { .dataOffset = 1920208, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C0_A1, 101 */
-    { .dataOffset = 1923588, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C1_A1, 101 */
-    { .dataOffset = 1926968, .properties = 5, .width = 70, .height = 26 },    /* title_interval@C2_A1, 101 */
-    { .dataOffset = 1930608, .properties = 5, .width = 81, .height = 26 },    /* title_interval@C3_A1, 101 */
-    { .dataOffset = 1934820, .properties = 5, .width = 77, .height = 26 },    /* title_interval@C4_A1, 101 */
-    { .dataOffset = 1938824, .properties = 5, .width = 82, .height = 26 },    /* title_interval@C5_A1, 101 */
-    { .dataOffset = 1943088, .properties = 5, .width = 91, .height = 26 },    /* title_interval@C6_A1, 101 */
-    { .dataOffset = 1947820, .properties = 5, .width = 42, .height = 26 },    /* title_interval@C7_A1, 101 */
-    { .dataOffset = 1950004, .properties = 5, .width = 19, .height = 26 },    /* title_interval@C8_A1, 101 */
-    { .dataOffset = 1950992, .properties = 5, .width = 18, .height = 26 },    /* title_interval@C9_A1, 101 */
-    { .dataOffset = 1951928, .properties = 5, .width = 88, .height = 26 },    /* title_language@C0_A0, 101 */
-    { .dataOffset = 1956504, .properties = 5, .width = 39, .height = 26 },    /* title_language@C1_A0, 101 */
-    { .dataOffset = 1958532, .properties = 5, .width = 74, .height = 26 },    /* title_language@C2_A0, 101 */
-    { .dataOffset = 1962380, .properties = 5, .width = 65, .height = 26 },    /* title_language@C3_A0, 101 */
-    { .dataOffset = 1965760, .properties = 5, .width = 60, .height = 26 },    /* title_language@C4_A0, 101 */
-    { .dataOffset = 1968880, .properties = 5, .width = 59, .height = 26 },    /* title_language@C5_A0, 101 */
-    { .dataOffset = 1971948, .properties = 5, .width = 50, .height = 26 },    /* title_language@C6_A0, 101 */
-    { .dataOffset = 1974548, .properties = 5, .width = 43, .height = 26 },    /* title_language@C7_A0, 101 */
-    { .dataOffset = 1976784, .properties = 5, .width = 43, .height = 26 },    /* title_language@C8_A0, 101 */
-    { .dataOffset = 1979020, .properties = 5, .width = 35, .height = 26 },    /* title_language@C9_A0, 101 */
-    { .dataOffset = 1980840, .properties = 5, .width = 88, .height = 26 },    /* title_language@C0_A1, 101 */
-    { .dataOffset = 1985416, .properties = 5, .width = 39, .height = 26 },    /* title_language@C1_A1, 101 */
-    { .dataOffset = 1987444, .properties = 5, .width = 74, .height = 26 },    /* title_language@C2_A1, 101 */
-    { .dataOffset = 1991292, .properties = 5, .width = 65, .height = 26 },    /* title_language@C3_A1, 101 */
-    { .dataOffset = 1994672, .properties = 5, .width = 60, .height = 26 },    /* title_language@C4_A1, 101 */
-    { .dataOffset = 1997792, .properties = 5, .width = 59, .height = 26 },    /* title_language@C5_A1, 101 */
-    { .dataOffset = 2000860, .properties = 5, .width = 50, .height = 26 },    /* title_language@C6_A1, 101 */
-    { .dataOffset = 2003460, .properties = 5, .width = 43, .height = 26 },    /* title_language@C7_A1, 101 */
-    { .dataOffset = 2005696, .properties = 5, .width = 43, .height = 26 },    /* title_language@C8_A1, 101 */
-    { .dataOffset = 2007932, .properties = 5, .width = 35, .height = 26 },    /* title_language@C9_A1, 101 */
-    { .dataOffset = 2009752, .properties = 5, .width = 54, .height = 26 },    /* title_limits@C0_A0, 101 */
-    { .dataOffset = 2012560, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C1_A0, 101 */
-    { .dataOffset = 2016408, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C2_A0, 101 */
-    { .dataOffset = 2020256, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C3_A0, 101 */
-    { .dataOffset = 2023636, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C4_A0, 101 */
-    { .dataOffset = 2027016, .properties = 5, .width = 48, .height = 26 },    /* title_limits@C5_A0, 101 */
-    { .dataOffset = 2029512, .properties = 5, .width = 124, .height = 26 },    /* title_limits@C6_A0, 101 */
-    { .dataOffset = 2035960, .properties = 5, .width = 41, .height = 26 },    /* title_limits@C7_A0, 101 */
-    { .dataOffset = 2038092, .properties = 5, .width = 35, .height = 26 },    /* title_limits@C8_A0, 101 */
-    { .dataOffset = 2039912, .properties = 5, .width = 39, .height = 26 },    /* title_limits@C9_A0, 101 */
-    { .dataOffset = 2041940, .properties = 5, .width = 54, .height = 26 },    /* title_limits@C0_A1, 101 */
-    { .dataOffset = 2044748, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C1_A1, 101 */
-    { .dataOffset = 2048596, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C2_A1, 101 */
-    { .dataOffset = 2052444, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C3_A1, 101 */
-    { .dataOffset = 2055824, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C4_A1, 101 */
-    { .dataOffset = 2059204, .properties = 5, .width = 48, .height = 26 },    /* title_limits@C5_A1, 101 */
-    { .dataOffset = 2061700, .properties = 5, .width = 124, .height = 26 },    /* title_limits@C6_A1, 101 */
-    { .dataOffset = 2068148, .properties = 5, .width = 41, .height = 26 },    /* title_limits@C7_A1, 101 */
-    { .dataOffset = 2070280, .properties = 5, .width = 35, .height = 26 },    /* title_limits@C8_A1, 101 */
-    { .dataOffset = 2072100, .properties = 5, .width = 39, .height = 26 },    /* title_limits@C9_A1, 101 */
-    { .dataOffset = 2074128, .properties = 5, .width = 99, .height = 26 },    /* title_main_menu@C0_A0, 101 */
-    { .dataOffset = 2079276, .properties = 5, .width = 106, .height = 26 },    /* title_main_menu@C1_A0, 101 */
-    { .dataOffset = 2084788, .properties = 5, .width = 104, .height = 26 },    /* title_main_menu@C2_A0, 101 */
-    { .dataOffset = 2090196, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C3_A0, 101 */
-    { .dataOffset = 2097060, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C4_A0, 101 */
-    { .dataOffset = 2103924, .properties = 5, .width = 144, .height = 26 },    /* title_main_menu@C5_A0, 101 */
-    { .dataOffset = 2111412, .properties = 5, .width = 138, .height = 26 },    /* title_main_menu@C6_A0, 101 */
-    { .dataOffset = 2118588, .properties = 5, .width = 65, .height = 26 },    /* title_main_menu@C7_A0, 101 */
-    { .dataOffset = 2121968, .properties = 5, .width = 112, .height = 26 },    /* title_main_menu@C8_A0, 101 */
-    { .dataOffset = 2127792, .properties = 5, .width = 84, .height = 26 },    /* title_main_menu@C9_A0, 101 */
-    { .dataOffset = 2132160, .properties = 5, .width = 99, .height = 26 },    /* title_main_menu@C0_A1, 101 */
-    { .dataOffset = 2137308, .properties = 5, .width = 106, .height = 26 },    /* title_main_menu@C1_A1, 101 */
-    { .dataOffset = 2142820, .properties = 5, .width = 104, .height = 26 },    /* title_main_menu@C2_A1, 101 */
-    { .dataOffset = 2148228, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C3_A1, 101 */
-    { .dataOffset = 2155092, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C4_A1, 101 */
-    { .dataOffset = 2161956, .properties = 5, .width = 144, .height = 26 },    /* title_main_menu@C5_A1, 101 */
-    { .dataOffset = 2169444, .properties = 5, .width = 138, .height = 26 },    /* title_main_menu@C6_A1, 101 */
-    { .dataOffset = 2176620, .properties = 5, .width = 65, .height = 26 },    /* title_main_menu@C7_A1, 101 */
-    { .dataOffset = 2180000, .properties = 5, .width = 112, .height = 26 },    /* title_main_menu@C8_A1, 101 */
-    { .dataOffset = 2185824, .properties = 5, .width = 84, .height = 26 },    /* title_main_menu@C9_A1, 101 */
-    { .dataOffset = 2190192, .properties = 5, .width = 125, .height = 26 },    /* title_measurement@C0_A0, 101 */
-    { .dataOffset = 2196692, .properties = 5, .width = 72, .height = 26 },    /* title_measurement@C1_A0, 101 */
-    { .dataOffset = 2200436, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C2_A0, 101 */
-    { .dataOffset = 2204700, .properties = 5, .width = 67, .height = 26 },    /* title_measurement@C3_A0, 101 */
-    { .dataOffset = 2208184, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C4_A0, 101 */
-    { .dataOffset = 2212448, .properties = 5, .width = 110, .height = 26 },    /* title_measurement@C5_A0, 101 */
-    { .dataOffset = 2218168, .properties = 5, .width = 106, .height = 26 },    /* title_measurement@C6_A0, 101 */
-    { .dataOffset = 2223680, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C7_A0, 101 */
-    { .dataOffset = 2225916, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C8_A0, 101 */
-    { .dataOffset = 2228152, .properties = 5, .width = 39, .height = 26 },    /* title_measurement@C9_A0, 101 */
-    { .dataOffset = 2230180, .properties = 5, .width = 125, .height = 26 },    /* title_measurement@C0_A1, 101 */
-    { .dataOffset = 2236680, .properties = 5, .width = 72, .height = 26 },    /* title_measurement@C1_A1, 101 */
-    { .dataOffset = 2240424, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C2_A1, 101 */
-    { .dataOffset = 2244688, .properties = 5, .width = 67, .height = 26 },    /* title_measurement@C3_A1, 101 */
-    { .dataOffset = 2248172, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C4_A1, 101 */
-    { .dataOffset = 2252436, .properties = 5, .width = 110, .height = 26 },    /* title_measurement@C5_A1, 101 */
-    { .dataOffset = 2258156, .properties = 5, .width = 106, .height = 26 },    /* title_measurement@C6_A1, 101 */
-    { .dataOffset = 2263668, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C7_A1, 101 */
-    { .dataOffset = 2265904, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C8_A1, 101 */
-    { .dataOffset = 2268140, .properties = 5, .width = 39, .height = 26 },    /* title_measurement@C9_A1, 101 */
-    { .dataOffset = 2270168, .properties = 5, .width = 73, .height = 26 },    /* title_settings@C0_A0, 101 */
-    { .dataOffset = 2273964, .properties = 5, .width = 103, .height = 26 },    /* title_settings@C1_A0, 101 */
-    { .dataOffset = 2279320, .properties = 5, .width = 120, .height = 26 },    /* title_settings@C2_A0, 101 */
-    { .dataOffset = 2285560, .properties = 5, .width = 104, .height = 26 },    /* title_settings@C3_A0, 101 */
-    { .dataOffset = 2290968, .properties = 5, .width = 127, .height = 26 },    /* title_settings@C4_A0, 101 */
-    { .dataOffset = 2297572, .properties = 5, .width = 116, .height = 26 },    /* title_settings@C5_A0, 101 */
-    { .dataOffset = 2303604, .properties = 5, .width = 109, .height = 26 },    /* title_settings@C6_A0, 101 */
-    { .dataOffset = 2309272, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C7_A0, 101 */
-    { .dataOffset = 2311508, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C8_A0, 101 */
-    { .dataOffset = 2313744, .properties = 5, .width = 38, .height = 26 },    /* title_settings@C9_A0, 101 */
-    { .dataOffset = 2315720, .properties = 5, .width = 73, .height = 26 },    /* title_settings@C0_A1, 101 */
-    { .dataOffset = 2319516, .properties = 5, .width = 103, .height = 26 },    /* title_settings@C1_A1, 101 */
-    { .dataOffset = 2324872, .properties = 5, .width = 120, .height = 26 },    /* title_settings@C2_A1, 101 */
-    { .dataOffset = 2331112, .properties = 5, .width = 104, .height = 26 },    /* title_settings@C3_A1, 101 */
-    { .dataOffset = 2336520, .properties = 5, .width = 127, .height = 26 },    /* title_settings@C4_A1, 101 */
-    { .dataOffset = 2343124, .properties = 5, .width = 116, .height = 26 },    /* title_settings@C5_A1, 101 */
-    { .dataOffset = 2349156, .properties = 5, .width = 109, .height = 26 },    /* title_settings@C6_A1, 101 */
-    { .dataOffset = 2354824, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C7_A1, 101 */
-    { .dataOffset = 2357060, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C8_A1, 101 */
-    { .dataOffset = 2359296, .properties = 5, .width = 38, .height = 26 },    /* title_settings@C9_A1, 101 */
-    { .dataOffset = 2361272, .properties = 5, .width = 51, .height = 26 },    /* title_setup@C0_A0, 101 */
-    { .dataOffset = 2363924, .properties = 5, .width = 57, .height = 26 },    /* title_setup@C1_A0, 101 */
-    { .dataOffset = 2366888, .properties = 5, .width = 100, .height = 26 },    /* title_setup@C2_A0, 101 */
-    { .dataOffset = 2372088, .properties = 5, .width = 111, .height = 26 },    /* title_setup@C3_A0, 101 */
-    { .dataOffset = 2377860, .properties = 5, .width = 66, .height = 26 },    /* title_setup@C4_A0, 101 */
-    { .dataOffset = 2381292, .properties = 5, .width = 115, .height = 26 },    /* title_setup@C5_A0, 101 */
-    { .dataOffset = 2387272, .properties = 5, .width = 101, .height = 26 },    /* title_setup@C6_A0, 101 */
-    { .dataOffset = 2392524, .properties = 5, .width = 43, .height = 26 },    /* title_setup@C7_A0, 101 */
-    { .dataOffset = 2394760, .properties = 5, .width = 94, .height = 26 },    /* title_setup@C8_A0, 101 */
-    { .dataOffset = 2399648, .properties = 5, .width = 37, .height = 26 },    /* title_setup@C9_A0, 101 */
-    { .dataOffset = 2401572, .properties = 5, .width = 51, .height = 26 },    /* title_setup@C0_A1, 101 */
-    { .dataOffset = 2404224, .properties = 5, .width = 57, .height = 26 },    /* title_setup@C1_A1, 101 */
-    { .dataOffset = 2407188, .properties = 5, .width = 100, .height = 26 },    /* title_setup@C2_A1, 101 */
-    { .dataOffset = 2412388, .properties = 5, .width = 111, .height = 26 },    /* title_setup@C3_A1, 101 */
-    { .dataOffset = 2418160, .properties = 5, .width = 66, .height = 26 },    /* title_setup@C4_A1, 101 */
-    { .dataOffset = 2421592, .properties = 5, .width = 115, .height = 26 },    /* title_setup@C5_A1, 101 */
-    { .dataOffset = 2427572, .properties = 5, .width = 101, .height = 26 },    /* title_setup@C6_A1, 101 */
-    { .dataOffset = 2432824, .properties = 5, .width = 43, .height = 26 },    /* title_setup@C7_A1, 101 */
-    { .dataOffset = 2435060, .properties = 5, .width = 94, .height = 26 },    /* title_setup@C8_A1, 101 */
-    { .dataOffset = 2439948, .properties = 5, .width = 37, .height = 26 },    /* title_setup@C9_A1, 101 */
-    { .dataOffset = 2441872, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C0_A0, 101 */
-    { .dataOffset = 2445148, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C1_A0, 101 */
-    { .dataOffset = 2448424, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C2_A0, 101 */
-    { .dataOffset = 2451700, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C3_A0, 101 */
-    { .dataOffset = 2454976, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C4_A0, 101 */
-    { .dataOffset = 2457680, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C5_A0, 101 */
-    { .dataOffset = 2460384, .properties = 5, .width = 49, .height = 26 },    /* title_theme@C6_A0, 101 */
-    { .dataOffset = 2462932, .properties = 5, .width = 42, .height = 26 },    /* title_theme@C7_A0, 101 */
-    { .dataOffset = 2465116, .properties = 5, .width = 51, .height = 26 },    /* title_theme@C8_A0, 101 */
-    { .dataOffset = 2467768, .properties = 5, .width = 38, .height = 26 },    /* title_theme@C9_A0, 101 */
-    { .dataOffset = 2469744, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C0_A1, 101 */
-    { .dataOffset = 2473020, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C1_A1, 101 */
-    { .dataOffset = 2476296, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C2_A1, 101 */
-    { .dataOffset = 2479572, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C3_A1, 101 */
-    { .dataOffset = 2482848, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C4_A1, 101 */
-    { .dataOffset = 2485552, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C5_A1, 101 */
-    { .dataOffset = 2488256, .properties = 5, .width = 49, .height = 26 },    /* title_theme@C6_A1, 101 */
-    { .dataOffset = 2490804, .properties = 5, .width = 42, .height = 26 },    /* title_theme@C7_A1, 101 */
-    { .dataOffset = 2492988, .properties = 5, .width = 51, .height = 26 },    /* title_theme@C8_A1, 101 */
-    { .dataOffset = 2495640, .properties = 5, .width = 38, .height = 26 },    /* title_theme@C9_A1, 101 */
-    { .dataOffset = 2497616, .properties = 5, .width = 45, .height = 26 },    /* title_units@C0_A0, 101 */
-    { .dataOffset = 2499956, .properties = 5, .width = 87, .height = 26 },    /* title_units@C1_A0, 101 */
-    { .dataOffset = 2504480, .properties = 5, .width = 81, .height = 26 },    /* title_units@C2_A0, 101 */
-    { .dataOffset = 2508692, .properties = 5, .width = 56, .height = 26 },    /* title_units@C3_A0, 101 */
-    { .dataOffset = 2511604, .properties = 5, .width = 84, .height = 26 },    /* title_units@C4_A0, 101 */
-    { .dataOffset = 2515972, .properties = 5, .width = 46, .height = 26 },    /* title_units@C5_A0, 101 */
-    { .dataOffset = 2518364, .properties = 5, .width = 70, .height = 26 },    /* title_units@C6_A0, 101 */
-    { .dataOffset = 2522004, .properties = 5, .width = 43, .height = 26 },    /* title_units@C7_A0, 101 */
-    { .dataOffset = 2524240, .properties = 5, .width = 43, .height = 26 },    /* title_units@C8_A0, 101 */
-    { .dataOffset = 2526476, .properties = 5, .width = 36, .height = 26 },    /* title_units@C9_A0, 101 */
-    { .dataOffset = 2528348, .properties = 5, .width = 45, .height = 26 },    /* title_units@C0_A1, 101 */
-    { .dataOffset = 2530688, .properties = 5, .width = 87, .height = 26 },    /* title_units@C1_A1, 101 */
-    { .dataOffset = 2535212, .properties = 5, .width = 81, .height = 26 },    /* title_units@C2_A1, 101 */
-    { .dataOffset = 2539424, .properties = 5, .width = 56, .height = 26 },    /* title_units@C3_A1, 101 */
-    { .dataOffset = 2542336, .properties = 5, .width = 84, .height = 26 },    /* title_units@C4_A1, 101 */
-    { .dataOffset = 2546704, .properties = 5, .width = 46, .height = 26 },    /* title_units@C5_A1, 101 */
-    { .dataOffset = 2549096, .properties = 5, .width = 70, .height = 26 },    /* title_units@C6_A1, 101 */
-    { .dataOffset = 2552736, .properties = 5, .width = 43, .height = 26 },    /* title_units@C7_A1, 101 */
-    { .dataOffset = 2554972, .properties = 5, .width = 43, .height = 26 },    /* title_units@C8_A1, 101 */
-    { .dataOffset = 2557208, .properties = 5, .width = 36, .height = 26 },    /* title_units@C9_A1, 101 */
+{                                                                      /* filename, fileproperty, datalocation */
+    { .dataOffset = 60, .properties = 2, .width = 32, .height = 27 },    /* IRL-Logo_@B000, 10, 0 - SD */
+    { .dataOffset = 1788, .properties = 2, .width = 36, .height = 29 },    /* IRL-Logo_@B001, 10, 0 - SD */
+    { .dataOffset = 3876, .properties = 2, .width = 39, .height = 32 },    /* IRL-Logo_@B002, 10, 0 - SD */
+    { .dataOffset = 6372, .properties = 2, .width = 42, .height = 35 },    /* IRL-Logo_@B003, 10, 0 - SD */
+    { .dataOffset = 9312, .properties = 2, .width = 46, .height = 37 },    /* IRL-Logo_@B004, 10, 0 - SD */
+    { .dataOffset = 12716, .properties = 2, .width = 49, .height = 40 },    /* IRL-Logo_@B005, 10, 0 - SD */
+    { .dataOffset = 16636, .properties = 2, .width = 52, .height = 43 },    /* IRL-Logo_@B006, 10, 0 - SD */
+    { .dataOffset = 21108, .properties = 2, .width = 56, .height = 46 },    /* IRL-Logo_@B007, 10, 0 - SD */
+    { .dataOffset = 26260, .properties = 2, .width = 59, .height = 48 },    /* IRL-Logo_@B008, 10, 0 - SD */
+    { .dataOffset = 31924, .properties = 2, .width = 62, .height = 50 },    /* IRL-Logo_@B009, 10, 0 - SD */
+    { .dataOffset = 38124, .properties = 2, .width = 65, .height = 54 },    /* IRL-Logo_@B010, 10, 0 - SD */
+    { .dataOffset = 45144, .properties = 2, .width = 69, .height = 56 },    /* IRL-Logo_@B011, 10, 0 - SD */
+    { .dataOffset = 52872, .properties = 2, .width = 72, .height = 59 },    /* IRL-Logo_@B012, 10, 0 - SD */
+    { .dataOffset = 61368, .properties = 2, .width = 76, .height = 62 },    /* IRL-Logo_@B013, 10, 0 - SD */
+    { .dataOffset = 70792, .properties = 2, .width = 79, .height = 64 },    /* IRL-Logo_@B014, 10, 0 - SD */
+    { .dataOffset = 80904, .properties = 2, .width = 82, .height = 67 },    /* IRL-Logo_@B015, 10, 0 - SD */
+    { .dataOffset = 91892, .properties = 2, .width = 86, .height = 69 },    /* IRL-Logo_@B016, 10, 0 - SD */
+    { .dataOffset = 103760, .properties = 2, .width = 89, .height = 72 },    /* IRL-Logo_@B017, 10, 0 - SD */
+    { .dataOffset = 116576, .properties = 2, .width = 92, .height = 75 },    /* IRL-Logo_@B018, 10, 0 - SD */
+    { .dataOffset = 130376, .properties = 2, .width = 95, .height = 77 },    /* IRL-Logo_@B019, 10, 0 - SD */
+    { .dataOffset = 145006, .properties = 2, .width = 100, .height = 80 },    /* IRL-Logo_@B020, 10, 0 - SD */
+    { .dataOffset = 161006, .properties = 2, .width = 102, .height = 83 },    /* IRL-Logo_@B021, 10, 0 - SD */
+    { .dataOffset = 177938, .properties = 2, .width = 105, .height = 85 },    /* IRL-Logo_@B022, 10, 0 - SD */
+    { .dataOffset = 195788, .properties = 2, .width = 109, .height = 88 },    /* IRL-Logo_@B023, 10, 0 - SD */
+    { .dataOffset = 214972, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 215924, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 216876, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 217828, .properties = 9, .width = 28, .height = 17 },    /* icon_Arrow-Back@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 218780, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 220280, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 221780, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 223280, .properties = 9, .width = 30, .height = 25 },    /* icon_Brightness@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 224780, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 225748, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 226716, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 227684, .properties = 9, .width = 22, .height = 22 },    /* icon_Brush@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 228652, .properties = 1, .width = 20, .height = 20 },    /* icon_Clock@A0, 1, 0 - SD */
+    { .dataOffset = 229452, .properties = 1, .width = 20, .height = 20 },    /* icon_Clock@A1, 1, 0 - SD */
+    { .dataOffset = 230252, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 231220, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 232188, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 233156, .properties = 9, .width = 22, .height = 22 },    /* icon_Focus@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 234124, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 235092, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 236060, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 237028, .properties = 9, .width = 22, .height = 22 },    /* icon_Gear@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 237996, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 238796, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 239596, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 240396, .properties = 9, .width = 20, .height = 20 },    /* icon_Global@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 241196, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 242078, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 242960, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 243842, .properties = 9, .width = 21, .height = 21 },    /* icon_Info@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 244724, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 245780, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 246836, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 247892, .properties = 9, .width = 24, .height = 22 },    /* icon_Limit@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 248948, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 249076, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 249204, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 249332, .properties = 9, .width = 16, .height = 4 },    /* icon_minus@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 249460, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 249972, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 250484, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 250996, .properties = 9, .width = 16, .height = 16 },    /* icon_plus@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 251508, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 252300, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 253092, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 253884, .properties = 9, .width = 22, .height = 18 },    /* icon_Pulse@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 254676, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 255324, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 255972, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 256620, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-Checked@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 257268, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 257916, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 258564, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 259212, .properties = 9, .width = 18, .height = 18 },    /* icon_Radio-Button-UnChecked@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 259860, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 260828, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 261796, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 262764, .properties = 9, .width = 22, .height = 22 },    /* icon_Sliders@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 263732, .properties = 1, .width = 25, .height = 18 },    /* icon_Wifi@A0, 1, 0 - SD */
+    { .dataOffset = 264632, .properties = 1, .width = 25, .height = 18 },    /* icon_Wifi@A1, 1, 0 - SD */
+    { .dataOffset = 265532, .properties = 0, .width = 128, .height = 128 },    /* IRL_Logo 128, 0, 0 - SD */
+    { .dataOffset = 298300, .properties = 0, .width = 48, .height = 48 },    /* IRL_Logo_48, 0, 0 - SD */
+    { .dataOffset = 302908, .properties = 13, .width = 35, .height = 21 },    /* text_back@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 304378, .properties = 13, .width = 37, .height = 21 },    /* text_back@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 305932, .properties = 13, .width = 41, .height = 21 },    /* text_back@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 307654, .properties = 13, .width = 44, .height = 21 },    /* text_back@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 309502, .properties = 13, .width = 50, .height = 21 },    /* text_back@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 311602, .properties = 13, .width = 53, .height = 21 },    /* text_back@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 313828, .properties = 13, .width = 27, .height = 21 },    /* text_back@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 314962, .properties = 13, .width = 28, .height = 21 },    /* text_back@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 316138, .properties = 13, .width = 38, .height = 21 },    /* text_back@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 317734, .properties = 13, .width = 41, .height = 21 },    /* text_back@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 319456, .properties = 13, .width = 54, .height = 21 },    /* text_back@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 321724, .properties = 13, .width = 57, .height = 21 },    /* text_back@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 324118, .properties = 13, .width = 46, .height = 21 },    /* text_back@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 326050, .properties = 13, .width = 49, .height = 21 },    /* text_back@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 328108, .properties = 13, .width = 35, .height = 21 },    /* text_back@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 329578, .properties = 13, .width = 36, .height = 21 },    /* text_back@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 331090, .properties = 13, .width = 29, .height = 21 },    /* text_back@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 332308, .properties = 13, .width = 30, .height = 21 },    /* text_back@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 333568, .properties = 13, .width = 46, .height = 21 },    /* text_back@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 335500, .properties = 13, .width = 47, .height = 21 },    /* text_back@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 337474, .properties = 13, .width = 35, .height = 21 },    /* text_back@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 338944, .properties = 13, .width = 37, .height = 21 },    /* text_back@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 340498, .properties = 13, .width = 41, .height = 21 },    /* text_back@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 342220, .properties = 13, .width = 44, .height = 21 },    /* text_back@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 344068, .properties = 13, .width = 50, .height = 21 },    /* text_back@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 346168, .properties = 13, .width = 53, .height = 21 },    /* text_back@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 348394, .properties = 13, .width = 27, .height = 21 },    /* text_back@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 349528, .properties = 13, .width = 28, .height = 21 },    /* text_back@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 350704, .properties = 13, .width = 38, .height = 21 },    /* text_back@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 352300, .properties = 13, .width = 41, .height = 21 },    /* text_back@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 354022, .properties = 13, .width = 54, .height = 21 },    /* text_back@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 356290, .properties = 13, .width = 57, .height = 21 },    /* text_back@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 358684, .properties = 13, .width = 46, .height = 21 },    /* text_back@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 360616, .properties = 13, .width = 49, .height = 21 },    /* text_back@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 362674, .properties = 13, .width = 35, .height = 21 },    /* text_back@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 364144, .properties = 13, .width = 36, .height = 21 },    /* text_back@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 365656, .properties = 13, .width = 29, .height = 21 },    /* text_back@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 366874, .properties = 13, .width = 30, .height = 21 },    /* text_back@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 368134, .properties = 13, .width = 46, .height = 21 },    /* text_back@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 370066, .properties = 13, .width = 47, .height = 21 },    /* text_back@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 372040, .properties = 13, .width = 76, .height = 21 },    /* text_brightness@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 375232, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 378592, .properties = 13, .width = 77, .height = 21 },    /* text_brightness@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 381826, .properties = 13, .width = 81, .height = 21 },    /* text_brightness@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 385228, .properties = 13, .width = 67, .height = 21 },    /* text_brightness@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 388042, .properties = 13, .width = 71, .height = 21 },    /* text_brightness@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 391024, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 394384, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 397912, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 399382, .properties = 13, .width = 38, .height = 21 },    /* text_brightness@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 400978, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 404338, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 407866, .properties = 13, .width = 63, .height = 21 },    /* text_brightness@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 410512, .properties = 13, .width = 66, .height = 21 },    /* text_brightness@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 413284, .properties = 13, .width = 34, .height = 21 },    /* text_brightness@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 414712, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 416182, .properties = 13, .width = 41, .height = 21 },    /* text_brightness@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 417904, .properties = 13, .width = 43, .height = 21 },    /* text_brightness@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 419710, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 420928, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 422146, .properties = 13, .width = 76, .height = 21 },    /* text_brightness@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 425338, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 428698, .properties = 13, .width = 77, .height = 21 },    /* text_brightness@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 431932, .properties = 13, .width = 81, .height = 21 },    /* text_brightness@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 435334, .properties = 13, .width = 67, .height = 21 },    /* text_brightness@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 438148, .properties = 13, .width = 71, .height = 21 },    /* text_brightness@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 441130, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 444490, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 448018, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 449488, .properties = 13, .width = 38, .height = 21 },    /* text_brightness@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 451084, .properties = 13, .width = 80, .height = 21 },    /* text_brightness@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 454444, .properties = 13, .width = 84, .height = 21 },    /* text_brightness@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 457972, .properties = 13, .width = 63, .height = 21 },    /* text_brightness@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 460618, .properties = 13, .width = 66, .height = 21 },    /* text_brightness@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 463390, .properties = 13, .width = 34, .height = 21 },    /* text_brightness@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 464818, .properties = 13, .width = 35, .height = 21 },    /* text_brightness@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 466288, .properties = 13, .width = 41, .height = 21 },    /* text_brightness@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 468010, .properties = 13, .width = 43, .height = 21 },    /* text_brightness@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 469816, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 471034, .properties = 13, .width = 29, .height = 21 },    /* text_brightness@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 472252, .properties = 9, .width = 33, .height = 21 },    /* text_chinese_sim@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 473638, .properties = 9, .width = 34, .height = 21 },    /* text_chinese_sim@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 475066, .properties = 9, .width = 33, .height = 21 },    /* text_chinese_sim@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 476452, .properties = 9, .width = 34, .height = 21 },    /* text_chinese_sim@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 477880, .properties = 9, .width = 16, .height = 21 },    /* text_deg_cel@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 478552, .properties = 9, .width = 17, .height = 21 },    /* text_deg_cel@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 479266, .properties = 9, .width = 16, .height = 21 },    /* text_deg_cel@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 479938, .properties = 9, .width = 17, .height = 21 },    /* text_deg_cel@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 480652, .properties = 9, .width = 15, .height = 21 },    /* text_deg_far@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 481282, .properties = 9, .width = 16, .height = 21 },    /* text_deg_far@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 481954, .properties = 9, .width = 15, .height = 21 },    /* text_deg_far@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 482584, .properties = 9, .width = 16, .height = 21 },    /* text_deg_far@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 483256, .properties = 9, .width = 82, .height = 21 },    /* text_dutch@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 486700, .properties = 9, .width = 86, .height = 21 },    /* text_dutch@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 490312, .properties = 9, .width = 82, .height = 21 },    /* text_dutch@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 493756, .properties = 9, .width = 86, .height = 21 },    /* text_dutch@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 497368, .properties = 9, .width = 51, .height = 21 },    /* text_english@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 499510, .properties = 9, .width = 54, .height = 21 },    /* text_english@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 501778, .properties = 9, .width = 51, .height = 21 },    /* text_english@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 503920, .properties = 9, .width = 54, .height = 21 },    /* text_english@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 506188, .properties = 9, .width = 61, .height = 21 },    /* text_french@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 508750, .properties = 9, .width = 64, .height = 21 },    /* text_french@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 511438, .properties = 9, .width = 61, .height = 21 },    /* text_french@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 514000, .properties = 9, .width = 64, .height = 21 },    /* text_french@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 516688, .properties = 9, .width = 58, .height = 21 },    /* text_german@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 519124, .properties = 9, .width = 61, .height = 21 },    /* text_german@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 521686, .properties = 9, .width = 58, .height = 21 },    /* text_german@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 524122, .properties = 9, .width = 61, .height = 21 },    /* text_german@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 526684, .properties = 13, .width = 32, .height = 21 },    /* text_high@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 528028, .properties = 13, .width = 34, .height = 21 },    /* text_high@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 529456, .properties = 13, .width = 38, .height = 21 },    /* text_high@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 531052, .properties = 13, .width = 40, .height = 21 },    /* text_high@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 532732, .properties = 13, .width = 37, .height = 21 },    /* text_high@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 534286, .properties = 13, .width = 39, .height = 21 },    /* text_high@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 535924, .properties = 13, .width = 34, .height = 21 },    /* text_high@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 537352, .properties = 13, .width = 36, .height = 21 },    /* text_high@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 538864, .properties = 13, .width = 29, .height = 21 },    /* text_high@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 540082, .properties = 13, .width = 31, .height = 21 },    /* text_high@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 541384, .properties = 13, .width = 29, .height = 21 },    /* text_high@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 542602, .properties = 13, .width = 31, .height = 21 },    /* text_high@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 543904, .properties = 13, .width = 67, .height = 21 },    /* text_high@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 546718, .properties = 13, .width = 70, .height = 21 },    /* text_high@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 549658, .properties = 13, .width = 17, .height = 21 },    /* text_high@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 550372, .properties = 13, .width = 18, .height = 21 },    /* text_high@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 551128, .properties = 13, .width = 32, .height = 21 },    /* text_high@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 552472, .properties = 13, .width = 33, .height = 21 },    /* text_high@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 553858, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 555202, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 556546, .properties = 13, .width = 32, .height = 21 },    /* text_high@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 557890, .properties = 13, .width = 34, .height = 21 },    /* text_high@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 559318, .properties = 13, .width = 38, .height = 21 },    /* text_high@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 560914, .properties = 13, .width = 40, .height = 21 },    /* text_high@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 562594, .properties = 13, .width = 37, .height = 21 },    /* text_high@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 564148, .properties = 13, .width = 39, .height = 21 },    /* text_high@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 565786, .properties = 13, .width = 34, .height = 21 },    /* text_high@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 567214, .properties = 13, .width = 36, .height = 21 },    /* text_high@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 568726, .properties = 13, .width = 29, .height = 21 },    /* text_high@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 569944, .properties = 13, .width = 31, .height = 21 },    /* text_high@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 571246, .properties = 13, .width = 29, .height = 21 },    /* text_high@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 572464, .properties = 13, .width = 31, .height = 21 },    /* text_high@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 573766, .properties = 13, .width = 67, .height = 21 },    /* text_high@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 576580, .properties = 13, .width = 70, .height = 21 },    /* text_high@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 579520, .properties = 13, .width = 17, .height = 21 },    /* text_high@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 580234, .properties = 13, .width = 18, .height = 21 },    /* text_high@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 580990, .properties = 13, .width = 32, .height = 21 },    /* text_high@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 582334, .properties = 13, .width = 33, .height = 21 },    /* text_high@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 583720, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 585064, .properties = 13, .width = 32, .height = 21 },    /* text_high@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 586408, .properties = 13, .width = 27, .height = 21 },    /* text_info@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 587542, .properties = 13, .width = 29, .height = 21 },    /* text_info@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 588760, .properties = 13, .width = 27, .height = 21 },    /* text_info@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 589894, .properties = 13, .width = 29, .height = 21 },    /* text_info@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 591112, .properties = 13, .width = 27, .height = 21 },    /* text_info@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 592246, .properties = 13, .width = 29, .height = 21 },    /* text_info@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 593464, .properties = 13, .width = 27, .height = 21 },    /* text_info@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 594598, .properties = 13, .width = 29, .height = 21 },    /* text_info@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 595816, .properties = 13, .width = 86, .height = 21 },    /* text_info@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 599428, .properties = 13, .width = 91, .height = 21 },    /* text_info@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 603250, .properties = 13, .width = 90, .height = 21 },    /* text_info@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 607030, .properties = 13, .width = 95, .height = 21 },    /* text_info@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 611020, .properties = 13, .width = 99, .height = 21 },    /* text_info@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 615178, .properties = 13, .width = 103, .height = 21 },    /* text_info@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 619504, .properties = 13, .width = 35, .height = 21 },    /* text_info@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 620974, .properties = 13, .width = 36, .height = 21 },    /* text_info@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 622486, .properties = 13, .width = 35, .height = 21 },    /* text_info@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 623956, .properties = 13, .width = 36, .height = 21 },    /* text_info@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 625468, .properties = 13, .width = 31, .height = 21 },    /* text_info@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 626770, .properties = 13, .width = 32, .height = 21 },    /* text_info@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 628114, .properties = 13, .width = 27, .height = 21 },    /* text_info@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 629248, .properties = 13, .width = 29, .height = 21 },    /* text_info@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 630466, .properties = 13, .width = 27, .height = 21 },    /* text_info@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 631600, .properties = 13, .width = 29, .height = 21 },    /* text_info@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 632818, .properties = 13, .width = 27, .height = 21 },    /* text_info@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 633952, .properties = 13, .width = 29, .height = 21 },    /* text_info@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 635170, .properties = 13, .width = 27, .height = 21 },    /* text_info@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 636304, .properties = 13, .width = 29, .height = 21 },    /* text_info@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 637522, .properties = 13, .width = 86, .height = 21 },    /* text_info@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 641134, .properties = 13, .width = 91, .height = 21 },    /* text_info@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 644956, .properties = 13, .width = 90, .height = 21 },    /* text_info@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 648736, .properties = 13, .width = 95, .height = 21 },    /* text_info@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 652726, .properties = 13, .width = 99, .height = 21 },    /* text_info@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 656884, .properties = 13, .width = 103, .height = 21 },    /* text_info@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 661210, .properties = 13, .width = 35, .height = 21 },    /* text_info@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 662680, .properties = 13, .width = 36, .height = 21 },    /* text_info@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 664192, .properties = 13, .width = 35, .height = 21 },    /* text_info@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 665662, .properties = 13, .width = 36, .height = 21 },    /* text_info@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 667174, .properties = 13, .width = 31, .height = 21 },    /* text_info@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 668476, .properties = 13, .width = 32, .height = 21 },    /* text_info@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 669820, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C000_D001, 111, -1 */
+    { .dataOffset = 673978, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C001_D001, 111, -1 */
+    { .dataOffset = 678136, .properties = 13, .width = 143, .height = 21 },    /* text_intern_temp@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C002_D001, 111, -1 */
+    { .dataOffset = 684142, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C003_D001, 111, -1 */
+    { .dataOffset = 690526, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C004_D001, 111, -1 */
+    { .dataOffset = 696910, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C005_D001, 111, -1 */
+    { .dataOffset = 703294, .properties = 13, .width = 196, .height = 21 },    /* text_intern_temp@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C006_D001, 111, -1 */
+    { .dataOffset = 711526, .properties = 13, .width = 77, .height = 21 },    /* text_intern_temp@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C007_D001, 111, -1 */
+    { .dataOffset = 714760, .properties = 13, .width = 74, .height = 21 },    /* text_intern_temp@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C008_D001, 111, -1 */
+    { .dataOffset = 717868, .properties = 13, .width = 71, .height = 21 },    /* text_intern_temp@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A000_C009_D001, 111, -1 */
+    { .dataOffset = 720850, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C000_D001, 111, -1 */
+    { .dataOffset = 725008, .properties = 13, .width = 99, .height = 21 },    /* text_intern_temp@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C001_D001, 111, -1 */
+    { .dataOffset = 729166, .properties = 13, .width = 143, .height = 21 },    /* text_intern_temp@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C002_D001, 111, -1 */
+    { .dataOffset = 735172, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C003_D001, 111, -1 */
+    { .dataOffset = 741556, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C004_D001, 111, -1 */
+    { .dataOffset = 747940, .properties = 13, .width = 152, .height = 21 },    /* text_intern_temp@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C005_D001, 111, -1 */
+    { .dataOffset = 754324, .properties = 13, .width = 196, .height = 21 },    /* text_intern_temp@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C006_D001, 111, -1 */
+    { .dataOffset = 762556, .properties = 13, .width = 77, .height = 21 },    /* text_intern_temp@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C007_D001, 111, -1 */
+    { .dataOffset = 765790, .properties = 13, .width = 74, .height = 21 },    /* text_intern_temp@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C008_D001, 111, -1 */
+    { .dataOffset = 768898, .properties = 13, .width = 71, .height = 21 },    /* text_intern_temp@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 4294967295, .properties = 7, .width = 0, .height = 0 },    /* Dummy file, TEXT_INTERN_TEMP__A001_C009_D001, 111, -1 */
+    { .dataOffset = 771880, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 774064, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 776374, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 778558, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 780868, .properties = 13, .width = 56, .height = 21 },    /* text_interval@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 783220, .properties = 13, .width = 60, .height = 21 },    /* text_interval@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 785740, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 788470, .properties = 13, .width = 69, .height = 21 },    /* text_interval@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 791368, .properties = 13, .width = 62, .height = 21 },    /* text_interval@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 793972, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 796702, .properties = 13, .width = 66, .height = 21 },    /* text_interval@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 799474, .properties = 13, .width = 70, .height = 21 },    /* text_interval@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 802414, .properties = 13, .width = 73, .height = 21 },    /* text_interval@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 805480, .properties = 13, .width = 76, .height = 21 },    /* text_interval@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 808672, .properties = 13, .width = 34, .height = 21 },    /* text_interval@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 810100, .properties = 13, .width = 35, .height = 21 },    /* text_interval@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 811570, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 812200, .properties = 13, .width = 16, .height = 21 },    /* text_interval@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 812872, .properties = 13, .width = 14, .height = 21 },    /* text_interval@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 813460, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 814090, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 816274, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 818584, .properties = 13, .width = 52, .height = 21 },    /* text_interval@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 820768, .properties = 13, .width = 55, .height = 21 },    /* text_interval@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 823078, .properties = 13, .width = 56, .height = 21 },    /* text_interval@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 825430, .properties = 13, .width = 60, .height = 21 },    /* text_interval@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 827950, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 830680, .properties = 13, .width = 69, .height = 21 },    /* text_interval@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 833578, .properties = 13, .width = 62, .height = 21 },    /* text_interval@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 836182, .properties = 13, .width = 65, .height = 21 },    /* text_interval@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 838912, .properties = 13, .width = 66, .height = 21 },    /* text_interval@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 841684, .properties = 13, .width = 70, .height = 21 },    /* text_interval@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 844624, .properties = 13, .width = 73, .height = 21 },    /* text_interval@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 847690, .properties = 13, .width = 76, .height = 21 },    /* text_interval@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 850882, .properties = 13, .width = 34, .height = 21 },    /* text_interval@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 852310, .properties = 13, .width = 35, .height = 21 },    /* text_interval@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 853780, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 854410, .properties = 13, .width = 16, .height = 21 },    /* text_interval@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 855082, .properties = 13, .width = 14, .height = 21 },    /* text_interval@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 855670, .properties = 13, .width = 15, .height = 21 },    /* text_interval@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 856300, .properties = 9, .width = 52, .height = 21 },    /* text_italian@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 858484, .properties = 9, .width = 56, .height = 21 },    /* text_italian@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 860836, .properties = 9, .width = 52, .height = 21 },    /* text_italian@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 863020, .properties = 9, .width = 56, .height = 21 },    /* text_italian@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 865372, .properties = 9, .width = 50, .height = 21 },    /* text_japanese@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 867472, .properties = 9, .width = 51, .height = 21 },    /* text_japanese@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 869614, .properties = 9, .width = 50, .height = 21 },    /* text_japanese@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 871714, .properties = 9, .width = 51, .height = 21 },    /* text_japanese@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 873856, .properties = 9, .width = 46, .height = 21 },    /* text_korean@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 875788, .properties = 9, .width = 47, .height = 21 },    /* text_korean@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 877762, .properties = 9, .width = 46, .height = 21 },    /* text_korean@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 879694, .properties = 9, .width = 47, .height = 21 },    /* text_korean@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 881668, .properties = 13, .width = 70, .height = 21 },    /* text_language@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 884608, .properties = 13, .width = 74, .height = 21 },    /* text_language@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 887716, .properties = 13, .width = 31, .height = 21 },    /* text_language@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 889018, .properties = 13, .width = 33, .height = 21 },    /* text_language@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 890404, .properties = 13, .width = 59, .height = 21 },    /* text_language@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 892882, .properties = 13, .width = 62, .height = 21 },    /* text_language@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 895486, .properties = 13, .width = 52, .height = 21 },    /* text_language@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 897670, .properties = 13, .width = 55, .height = 21 },    /* text_language@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 899980, .properties = 13, .width = 48, .height = 21 },    /* text_language@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 901996, .properties = 13, .width = 51, .height = 21 },    /* text_language@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 904138, .properties = 13, .width = 47, .height = 21 },    /* text_language@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 906112, .properties = 13, .width = 50, .height = 21 },    /* text_language@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 908212, .properties = 13, .width = 40, .height = 21 },    /* text_language@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 909892, .properties = 13, .width = 42, .height = 21 },    /* text_language@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 911656, .properties = 13, .width = 35, .height = 21 },    /* text_language@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 913126, .properties = 13, .width = 36, .height = 21 },    /* text_language@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 914638, .properties = 13, .width = 35, .height = 21 },    /* text_language@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 916108, .properties = 13, .width = 36, .height = 21 },    /* text_language@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 917620, .properties = 13, .width = 29, .height = 21 },    /* text_language@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 918838, .properties = 13, .width = 30, .height = 21 },    /* text_language@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 920098, .properties = 13, .width = 70, .height = 21 },    /* text_language@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 923038, .properties = 13, .width = 74, .height = 21 },    /* text_language@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 926146, .properties = 13, .width = 31, .height = 21 },    /* text_language@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 927448, .properties = 13, .width = 33, .height = 21 },    /* text_language@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 928834, .properties = 13, .width = 59, .height = 21 },    /* text_language@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 931312, .properties = 13, .width = 62, .height = 21 },    /* text_language@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 933916, .properties = 13, .width = 52, .height = 21 },    /* text_language@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 936100, .properties = 13, .width = 55, .height = 21 },    /* text_language@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 938410, .properties = 13, .width = 48, .height = 21 },    /* text_language@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 940426, .properties = 13, .width = 51, .height = 21 },    /* text_language@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 942568, .properties = 13, .width = 47, .height = 21 },    /* text_language@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 944542, .properties = 13, .width = 50, .height = 21 },    /* text_language@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 946642, .properties = 13, .width = 40, .height = 21 },    /* text_language@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 948322, .properties = 13, .width = 42, .height = 21 },    /* text_language@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 950086, .properties = 13, .width = 35, .height = 21 },    /* text_language@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 951556, .properties = 13, .width = 36, .height = 21 },    /* text_language@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 953068, .properties = 13, .width = 35, .height = 21 },    /* text_language@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 954538, .properties = 13, .width = 36, .height = 21 },    /* text_language@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 956050, .properties = 13, .width = 29, .height = 21 },    /* text_language@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 957268, .properties = 13, .width = 30, .height = 21 },    /* text_language@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 958528, .properties = 13, .width = 43, .height = 21 },    /* text_limits@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 960334, .properties = 13, .width = 46, .height = 21 },    /* text_limits@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 962266, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 964744, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 967348, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 969826, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 972430, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 974614, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 976924, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 979108, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 981418, .properties = 13, .width = 38, .height = 21 },    /* text_limits@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 983014, .properties = 13, .width = 41, .height = 21 },    /* text_limits@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 984736, .properties = 13, .width = 100, .height = 21 },    /* text_limits@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 988936, .properties = 13, .width = 104, .height = 21 },    /* text_limits@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 993304, .properties = 13, .width = 34, .height = 21 },    /* text_limits@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 994732, .properties = 13, .width = 35, .height = 21 },    /* text_limits@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 996202, .properties = 13, .width = 28, .height = 21 },    /* text_limits@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 997378, .properties = 13, .width = 29, .height = 21 },    /* text_limits@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 998596, .properties = 13, .width = 31, .height = 21 },    /* text_limits@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 999898, .properties = 13, .width = 32, .height = 21 },    /* text_limits@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1001242, .properties = 13, .width = 43, .height = 21 },    /* text_limits@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1003048, .properties = 13, .width = 46, .height = 21 },    /* text_limits@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1004980, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1007458, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1010062, .properties = 13, .width = 59, .height = 21 },    /* text_limits@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1012540, .properties = 13, .width = 62, .height = 21 },    /* text_limits@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1015144, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1017328, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1019638, .properties = 13, .width = 52, .height = 21 },    /* text_limits@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1021822, .properties = 13, .width = 55, .height = 21 },    /* text_limits@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1024132, .properties = 13, .width = 38, .height = 21 },    /* text_limits@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1025728, .properties = 13, .width = 41, .height = 21 },    /* text_limits@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1027450, .properties = 13, .width = 100, .height = 21 },    /* text_limits@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1031650, .properties = 13, .width = 104, .height = 21 },    /* text_limits@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1036018, .properties = 13, .width = 34, .height = 21 },    /* text_limits@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1037446, .properties = 13, .width = 35, .height = 21 },    /* text_limits@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1038916, .properties = 13, .width = 28, .height = 21 },    /* text_limits@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1040092, .properties = 13, .width = 29, .height = 21 },    /* text_limits@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1041310, .properties = 13, .width = 31, .height = 21 },    /* text_limits@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1042612, .properties = 13, .width = 32, .height = 21 },    /* text_limits@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1043956, .properties = 13, .width = 29, .height = 21 },    /* text_low@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1045174, .properties = 13, .width = 31, .height = 21 },    /* text_low@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1046476, .properties = 13, .width = 34, .height = 21 },    /* text_low@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1047904, .properties = 13, .width = 36, .height = 21 },    /* text_low@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1049416, .properties = 13, .width = 50, .height = 21 },    /* text_low@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1051516, .properties = 13, .width = 53, .height = 21 },    /* text_low@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1053742, .properties = 13, .width = 26, .height = 21 },    /* text_low@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1054834, .properties = 13, .width = 27, .height = 21 },    /* text_low@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1055968, .properties = 13, .width = 31, .height = 21 },    /* text_low@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1057270, .properties = 13, .width = 33, .height = 21 },    /* text_low@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1058656, .properties = 13, .width = 44, .height = 21 },    /* text_low@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1060504, .properties = 13, .width = 46, .height = 21 },    /* text_low@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1062436, .properties = 13, .width = 55, .height = 21 },    /* text_low@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1064746, .properties = 13, .width = 58, .height = 21 },    /* text_low@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1067182, .properties = 13, .width = 17, .height = 21 },    /* text_low@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1067896, .properties = 13, .width = 18, .height = 21 },    /* text_low@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1068652, .properties = 13, .width = 32, .height = 21 },    /* text_low@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1069996, .properties = 13, .width = 33, .height = 21 },    /* text_low@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1071382, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1072684, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1073986, .properties = 13, .width = 29, .height = 21 },    /* text_low@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1075204, .properties = 13, .width = 31, .height = 21 },    /* text_low@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1076506, .properties = 13, .width = 34, .height = 21 },    /* text_low@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1077934, .properties = 13, .width = 36, .height = 21 },    /* text_low@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1079446, .properties = 13, .width = 50, .height = 21 },    /* text_low@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1081546, .properties = 13, .width = 53, .height = 21 },    /* text_low@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1083772, .properties = 13, .width = 26, .height = 21 },    /* text_low@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1084864, .properties = 13, .width = 27, .height = 21 },    /* text_low@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1085998, .properties = 13, .width = 31, .height = 21 },    /* text_low@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1087300, .properties = 13, .width = 33, .height = 21 },    /* text_low@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1088686, .properties = 13, .width = 44, .height = 21 },    /* text_low@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1090534, .properties = 13, .width = 46, .height = 21 },    /* text_low@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1092466, .properties = 13, .width = 55, .height = 21 },    /* text_low@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1094776, .properties = 13, .width = 58, .height = 21 },    /* text_low@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1097212, .properties = 13, .width = 17, .height = 21 },    /* text_low@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1097926, .properties = 13, .width = 18, .height = 21 },    /* text_low@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1098682, .properties = 13, .width = 32, .height = 21 },    /* text_low@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1100026, .properties = 13, .width = 33, .height = 21 },    /* text_low@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1101412, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1102714, .properties = 13, .width = 31, .height = 21 },    /* text_low@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1104016, .properties = 1, .width = 54, .height = 21 },    /* text_mcsgui@A0, 1, 0 - SD */
+    { .dataOffset = 1106284, .properties = 1, .width = 54, .height = 21 },    /* text_mcsgui@A1, 1, 0 - SD */
+    { .dataOffset = 1108552, .properties = 13, .width = 100, .height = 21 },    /* text_measurement@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1112752, .properties = 13, .width = 104, .height = 21 },    /* text_measurement@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1117120, .properties = 13, .width = 57, .height = 21 },    /* text_measurement@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1119514, .properties = 13, .width = 60, .height = 21 },    /* text_measurement@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1122034, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1124764, .properties = 13, .width = 68, .height = 21 },    /* text_measurement@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1127620, .properties = 13, .width = 53, .height = 21 },    /* text_measurement@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1129846, .properties = 13, .width = 56, .height = 21 },    /* text_measurement@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1132198, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1134928, .properties = 13, .width = 69, .height = 21 },    /* text_measurement@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1137826, .properties = 13, .width = 88, .height = 21 },    /* text_measurement@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1141522, .properties = 13, .width = 93, .height = 21 },    /* text_measurement@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1145428, .properties = 13, .width = 85, .height = 21 },    /* text_measurement@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1148998, .properties = 13, .width = 89, .height = 21 },    /* text_measurement@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1152736, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1154206, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1155718, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1157188, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1158700, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1160044, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1161388, .properties = 13, .width = 100, .height = 21 },    /* text_measurement@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1165588, .properties = 13, .width = 104, .height = 21 },    /* text_measurement@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1169956, .properties = 13, .width = 57, .height = 21 },    /* text_measurement@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1172350, .properties = 13, .width = 60, .height = 21 },    /* text_measurement@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1174870, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1177600, .properties = 13, .width = 68, .height = 21 },    /* text_measurement@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1180456, .properties = 13, .width = 53, .height = 21 },    /* text_measurement@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1182682, .properties = 13, .width = 56, .height = 21 },    /* text_measurement@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1185034, .properties = 13, .width = 65, .height = 21 },    /* text_measurement@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1187764, .properties = 13, .width = 69, .height = 21 },    /* text_measurement@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1190662, .properties = 13, .width = 88, .height = 21 },    /* text_measurement@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1194358, .properties = 13, .width = 93, .height = 21 },    /* text_measurement@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1198264, .properties = 13, .width = 85, .height = 21 },    /* text_measurement@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1201834, .properties = 13, .width = 89, .height = 21 },    /* text_measurement@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1205572, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1207042, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1208554, .properties = 13, .width = 35, .height = 21 },    /* text_measurement@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1210024, .properties = 13, .width = 36, .height = 21 },    /* text_measurement@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1211536, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1212880, .properties = 13, .width = 32, .height = 21 },    /* text_measurement@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1214224, .properties = 9, .width = 61, .height = 21 },    /* text_russian@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 1216786, .properties = 9, .width = 64, .height = 21 },    /* text_russian@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 1219474, .properties = 9, .width = 61, .height = 21 },    /* text_russian@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 1222036, .properties = 9, .width = 64, .height = 21 },    /* text_russian@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 1224724, .properties = 13, .width = 59, .height = 21 },    /* text_settings@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1227202, .properties = 13, .width = 62, .height = 21 },    /* text_settings@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1229806, .properties = 13, .width = 82, .height = 21 },    /* text_settings@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1233250, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1236904, .properties = 13, .width = 96, .height = 21 },    /* text_settings@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1240936, .properties = 13, .width = 101, .height = 21 },    /* text_settings@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1245178, .properties = 13, .width = 83, .height = 21 },    /* text_settings@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1248664, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1252318, .properties = 13, .width = 102, .height = 21 },    /* text_settings@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1256602, .properties = 13, .width = 107, .height = 21 },    /* text_settings@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1261096, .properties = 13, .width = 93, .height = 21 },    /* text_settings@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1265002, .properties = 13, .width = 97, .height = 21 },    /* text_settings@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1269076, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1272730, .properties = 13, .width = 91, .height = 21 },    /* text_settings@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1276552, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1278022, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1279534, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1281004, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1282516, .properties = 13, .width = 29, .height = 21 },    /* text_settings@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1283734, .properties = 13, .width = 31, .height = 21 },    /* text_settings@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1285036, .properties = 13, .width = 59, .height = 21 },    /* text_settings@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1287514, .properties = 13, .width = 62, .height = 21 },    /* text_settings@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1290118, .properties = 13, .width = 82, .height = 21 },    /* text_settings@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1293562, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1297216, .properties = 13, .width = 96, .height = 21 },    /* text_settings@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1301248, .properties = 13, .width = 101, .height = 21 },    /* text_settings@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1305490, .properties = 13, .width = 83, .height = 21 },    /* text_settings@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1308976, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1312630, .properties = 13, .width = 102, .height = 21 },    /* text_settings@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1316914, .properties = 13, .width = 107, .height = 21 },    /* text_settings@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1321408, .properties = 13, .width = 93, .height = 21 },    /* text_settings@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1325314, .properties = 13, .width = 97, .height = 21 },    /* text_settings@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1329388, .properties = 13, .width = 87, .height = 21 },    /* text_settings@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1333042, .properties = 13, .width = 91, .height = 21 },    /* text_settings@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1336864, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1338334, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1339846, .properties = 13, .width = 35, .height = 21 },    /* text_settings@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1341316, .properties = 13, .width = 36, .height = 21 },    /* text_settings@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1342828, .properties = 13, .width = 29, .height = 21 },    /* text_settings@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1344046, .properties = 13, .width = 31, .height = 21 },    /* text_settings@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1345348, .properties = 13, .width = 41, .height = 21 },    /* text_setup@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1347070, .properties = 13, .width = 44, .height = 21 },    /* text_setup@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1348918, .properties = 13, .width = 46, .height = 21 },    /* text_setup@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1350850, .properties = 13, .width = 49, .height = 21 },    /* text_setup@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1352908, .properties = 13, .width = 80, .height = 21 },    /* text_setup@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1356268, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1359838, .properties = 13, .width = 89, .height = 21 },    /* text_setup@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1363576, .properties = 13, .width = 93, .height = 21 },    /* text_setup@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1367482, .properties = 13, .width = 52, .height = 21 },    /* text_setup@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1369666, .properties = 13, .width = 55, .height = 21 },    /* text_setup@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1371976, .properties = 13, .width = 91, .height = 21 },    /* text_setup@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1375798, .properties = 13, .width = 96, .height = 21 },    /* text_setup@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1379830, .properties = 13, .width = 81, .height = 21 },    /* text_setup@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1383232, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1386802, .properties = 13, .width = 35, .height = 21 },    /* text_setup@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1388272, .properties = 13, .width = 36, .height = 21 },    /* text_setup@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1389784, .properties = 13, .width = 76, .height = 21 },    /* text_setup@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1392976, .properties = 13, .width = 77, .height = 21 },    /* text_setup@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1396210, .properties = 13, .width = 29, .height = 21 },    /* text_setup@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1397428, .properties = 13, .width = 30, .height = 21 },    /* text_setup@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1398688, .properties = 13, .width = 41, .height = 21 },    /* text_setup@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1400410, .properties = 13, .width = 44, .height = 21 },    /* text_setup@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1402258, .properties = 13, .width = 46, .height = 21 },    /* text_setup@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1404190, .properties = 13, .width = 49, .height = 21 },    /* text_setup@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1406248, .properties = 13, .width = 80, .height = 21 },    /* text_setup@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1409608, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1413178, .properties = 13, .width = 89, .height = 21 },    /* text_setup@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1416916, .properties = 13, .width = 93, .height = 21 },    /* text_setup@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1420822, .properties = 13, .width = 52, .height = 21 },    /* text_setup@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1423006, .properties = 13, .width = 55, .height = 21 },    /* text_setup@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1425316, .properties = 13, .width = 91, .height = 21 },    /* text_setup@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1429138, .properties = 13, .width = 96, .height = 21 },    /* text_setup@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1433170, .properties = 13, .width = 81, .height = 21 },    /* text_setup@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1436572, .properties = 13, .width = 85, .height = 21 },    /* text_setup@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1440142, .properties = 13, .width = 35, .height = 21 },    /* text_setup@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1441612, .properties = 13, .width = 36, .height = 21 },    /* text_setup@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1443124, .properties = 13, .width = 76, .height = 21 },    /* text_setup@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1446316, .properties = 13, .width = 77, .height = 21 },    /* text_setup@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1449550, .properties = 13, .width = 29, .height = 21 },    /* text_setup@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1450768, .properties = 13, .width = 30, .height = 21 },    /* text_setup@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1452028, .properties = 9, .width = 56, .height = 21 },    /* text_spanish@A0_D0, 1001, 0 - SD */
+    { .dataOffset = 1454380, .properties = 9, .width = 59, .height = 21 },    /* text_spanish@A0_D1, 1001, 0 - SD */
+    { .dataOffset = 1456858, .properties = 9, .width = 56, .height = 21 },    /* text_spanish@A1_D0, 1001, 0 - SD */
+    { .dataOffset = 1459210, .properties = 9, .width = 59, .height = 21 },    /* text_spanish@A1_D1, 1001, 0 - SD */
+    { .dataOffset = 1461688, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1463788, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1465972, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1468072, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1470256, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1472356, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1474540, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1476640, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1478824, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1480546, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1482352, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1484074, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1485880, .properties = 13, .width = 39, .height = 21 },    /* text_theme@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1487518, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1489240, .properties = 13, .width = 34, .height = 21 },    /* text_theme@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1490668, .properties = 13, .width = 35, .height = 21 },    /* text_theme@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1492138, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1493860, .properties = 13, .width = 42, .height = 21 },    /* text_theme@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1495624, .properties = 13, .width = 30, .height = 21 },    /* text_theme@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1496884, .properties = 13, .width = 31, .height = 21 },    /* text_theme@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1498186, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1500286, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1502470, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1504570, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1506754, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1508854, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1511038, .properties = 13, .width = 50, .height = 21 },    /* text_theme@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1513138, .properties = 13, .width = 52, .height = 21 },    /* text_theme@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1515322, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1517044, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1518850, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1520572, .properties = 13, .width = 43, .height = 21 },    /* text_theme@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1522378, .properties = 13, .width = 39, .height = 21 },    /* text_theme@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1524016, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1525738, .properties = 13, .width = 34, .height = 21 },    /* text_theme@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1527166, .properties = 13, .width = 35, .height = 21 },    /* text_theme@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1528636, .properties = 13, .width = 41, .height = 21 },    /* text_theme@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1530358, .properties = 13, .width = 42, .height = 21 },    /* text_theme@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1532122, .properties = 13, .width = 30, .height = 21 },    /* text_theme@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1533382, .properties = 13, .width = 31, .height = 21 },    /* text_theme@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1534684, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1536028, .properties = 13, .width = 34, .height = 21 },    /* text_theme_dark@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1537456, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1539598, .properties = 13, .width = 53, .height = 21 },    /* text_theme_dark@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1541824, .properties = 13, .width = 48, .height = 21 },    /* text_theme_dark@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1543840, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1545982, .properties = 13, .width = 56, .height = 21 },    /* text_theme_dark@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1548334, .properties = 13, .width = 59, .height = 21 },    /* text_theme_dark@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1550812, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1552996, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1555264, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1557448, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1559716, .properties = 13, .width = 61, .height = 21 },    /* text_theme_dark@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1562278, .properties = 13, .width = 64, .height = 21 },    /* text_theme_dark@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1564966, .properties = 13, .width = 35, .height = 21 },    /* text_theme_dark@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1566436, .properties = 13, .width = 36, .height = 21 },    /* text_theme_dark@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1567948, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1569250, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1570594, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1571896, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1573198, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1574542, .properties = 13, .width = 34, .height = 21 },    /* text_theme_dark@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1575970, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1578112, .properties = 13, .width = 53, .height = 21 },    /* text_theme_dark@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1580338, .properties = 13, .width = 48, .height = 21 },    /* text_theme_dark@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1582354, .properties = 13, .width = 51, .height = 21 },    /* text_theme_dark@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1584496, .properties = 13, .width = 56, .height = 21 },    /* text_theme_dark@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1586848, .properties = 13, .width = 59, .height = 21 },    /* text_theme_dark@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1589326, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1591510, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1593778, .properties = 13, .width = 52, .height = 21 },    /* text_theme_dark@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1595962, .properties = 13, .width = 54, .height = 21 },    /* text_theme_dark@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1598230, .properties = 13, .width = 61, .height = 21 },    /* text_theme_dark@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1600792, .properties = 13, .width = 64, .height = 21 },    /* text_theme_dark@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1603480, .properties = 13, .width = 35, .height = 21 },    /* text_theme_dark@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1604950, .properties = 13, .width = 36, .height = 21 },    /* text_theme_dark@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1606462, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1607764, .properties = 13, .width = 32, .height = 21 },    /* text_theme_dark@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1609108, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1610410, .properties = 13, .width = 31, .height = 21 },    /* text_theme_dark@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1611712, .properties = 13, .width = 35, .height = 21 },    /* text_theme_light@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1613182, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1614736, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1616164, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1617718, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1619146, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1620700, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1623136, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1625698, .properties = 13, .width = 24, .height = 21 },    /* text_theme_light@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1626706, .properties = 13, .width = 26, .height = 21 },    /* text_theme_light@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1627798, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1630234, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1632796, .properties = 13, .width = 36, .height = 21 },    /* text_theme_light@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1634308, .properties = 13, .width = 38, .height = 21 },    /* text_theme_light@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1635904, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1636576, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1637290, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1637962, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1638676, .properties = 13, .width = 15, .height = 21 },    /* text_theme_light@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1639306, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1639978, .properties = 13, .width = 35, .height = 21 },    /* text_theme_light@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1641448, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1643002, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1644430, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1645984, .properties = 13, .width = 34, .height = 21 },    /* text_theme_light@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1647412, .properties = 13, .width = 37, .height = 21 },    /* text_theme_light@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1648966, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1651402, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1653964, .properties = 13, .width = 24, .height = 21 },    /* text_theme_light@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1654972, .properties = 13, .width = 26, .height = 21 },    /* text_theme_light@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1656064, .properties = 13, .width = 58, .height = 21 },    /* text_theme_light@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1658500, .properties = 13, .width = 61, .height = 21 },    /* text_theme_light@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1661062, .properties = 13, .width = 36, .height = 21 },    /* text_theme_light@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1662574, .properties = 13, .width = 38, .height = 21 },    /* text_theme_light@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1664170, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1664842, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1665556, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1666228, .properties = 13, .width = 17, .height = 21 },    /* text_theme_light@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1666942, .properties = 13, .width = 15, .height = 21 },    /* text_theme_light@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1667572, .properties = 13, .width = 16, .height = 21 },    /* text_theme_light@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1668244, .properties = 13, .width = 37, .height = 21 },    /* text_units@C0_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1669798, .properties = 13, .width = 39, .height = 21 },    /* text_units@C0_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1671436, .properties = 13, .width = 70, .height = 21 },    /* text_units@C1_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1674376, .properties = 13, .width = 73, .height = 21 },    /* text_units@C1_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1677442, .properties = 13, .width = 65, .height = 21 },    /* text_units@C2_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1680172, .properties = 13, .width = 69, .height = 21 },    /* text_units@C2_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1683070, .properties = 13, .width = 45, .height = 21 },    /* text_units@C3_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1684960, .properties = 13, .width = 48, .height = 21 },    /* text_units@C3_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1686976, .properties = 13, .width = 68, .height = 21 },    /* text_units@C4_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1689832, .properties = 13, .width = 71, .height = 21 },    /* text_units@C4_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1692814, .properties = 13, .width = 37, .height = 21 },    /* text_units@C5_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1694368, .properties = 13, .width = 39, .height = 21 },    /* text_units@C5_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1696006, .properties = 13, .width = 56, .height = 21 },    /* text_units@C6_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1698358, .properties = 13, .width = 59, .height = 21 },    /* text_units@C6_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1700836, .properties = 13, .width = 35, .height = 21 },    /* text_units@C7_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1702306, .properties = 13, .width = 36, .height = 21 },    /* text_units@C7_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1703818, .properties = 13, .width = 35, .height = 21 },    /* text_units@C8_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1705288, .properties = 13, .width = 36, .height = 21 },    /* text_units@C8_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1706800, .properties = 13, .width = 29, .height = 21 },    /* text_units@C9_A0_D0, 1101, 0 - SD */
+    { .dataOffset = 1708018, .properties = 13, .width = 30, .height = 21 },    /* text_units@C9_A0_D1, 1101, 0 - SD */
+    { .dataOffset = 1709278, .properties = 13, .width = 37, .height = 21 },    /* text_units@C0_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1710832, .properties = 13, .width = 39, .height = 21 },    /* text_units@C0_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1712470, .properties = 13, .width = 70, .height = 21 },    /* text_units@C1_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1715410, .properties = 13, .width = 73, .height = 21 },    /* text_units@C1_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1718476, .properties = 13, .width = 65, .height = 21 },    /* text_units@C2_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1721206, .properties = 13, .width = 69, .height = 21 },    /* text_units@C2_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1724104, .properties = 13, .width = 45, .height = 21 },    /* text_units@C3_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1725994, .properties = 13, .width = 48, .height = 21 },    /* text_units@C3_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1728010, .properties = 13, .width = 68, .height = 21 },    /* text_units@C4_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1730866, .properties = 13, .width = 71, .height = 21 },    /* text_units@C4_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1733848, .properties = 13, .width = 37, .height = 21 },    /* text_units@C5_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1735402, .properties = 13, .width = 39, .height = 21 },    /* text_units@C5_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1737040, .properties = 13, .width = 56, .height = 21 },    /* text_units@C6_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1739392, .properties = 13, .width = 59, .height = 21 },    /* text_units@C6_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1741870, .properties = 13, .width = 35, .height = 21 },    /* text_units@C7_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1743340, .properties = 13, .width = 36, .height = 21 },    /* text_units@C7_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1744852, .properties = 13, .width = 35, .height = 21 },    /* text_units@C8_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1746322, .properties = 13, .width = 36, .height = 21 },    /* text_units@C8_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1747834, .properties = 13, .width = 29, .height = 21 },    /* text_units@C9_A1_D0, 1101, 0 - SD */
+    { .dataOffset = 1749052, .properties = 13, .width = 30, .height = 21 },    /* text_units@C9_A1_D1, 1101, 0 - SD */
+    { .dataOffset = 1750312, .properties = 5, .width = 95, .height = 26 },    /* title_brightness@C0_A0, 101, 0 - SD */
+    { .dataOffset = 1755252, .properties = 5, .width = 96, .height = 26 },    /* title_brightness@C1_A0, 101, 0 - SD */
+    { .dataOffset = 1760244, .properties = 5, .width = 83, .height = 26 },    /* title_brightness@C2_A0, 101, 0 - SD */
+    { .dataOffset = 1764560, .properties = 5, .width = 100, .height = 26 },    /* title_brightness@C3_A0, 101, 0 - SD */
+    { .dataOffset = 1769760, .properties = 5, .width = 44, .height = 26 },    /* title_brightness@C4_A0, 101, 0 - SD */
+    { .dataOffset = 1772048, .properties = 5, .width = 99, .height = 26 },    /* title_brightness@C5_A0, 101, 0 - SD */
+    { .dataOffset = 1777196, .properties = 5, .width = 78, .height = 26 },    /* title_brightness@C6_A0, 101, 0 - SD */
+    { .dataOffset = 1781252, .properties = 5, .width = 43, .height = 26 },    /* title_brightness@C7_A0, 101, 0 - SD */
+    { .dataOffset = 1783488, .properties = 5, .width = 53, .height = 26 },    /* title_brightness@C8_A0, 101, 0 - SD */
+    { .dataOffset = 1786244, .properties = 5, .width = 36, .height = 26 },    /* title_brightness@C9_A0, 101, 0 - SD */
+    { .dataOffset = 1788116, .properties = 5, .width = 95, .height = 26 },    /* title_brightness@C0_A1, 101, 0 - SD */
+    { .dataOffset = 1793056, .properties = 5, .width = 96, .height = 26 },    /* title_brightness@C1_A1, 101, 0 - SD */
+    { .dataOffset = 1798048, .properties = 5, .width = 83, .height = 26 },    /* title_brightness@C2_A1, 101, 0 - SD */
+    { .dataOffset = 1802364, .properties = 5, .width = 100, .height = 26 },    /* title_brightness@C3_A1, 101, 0 - SD */
+    { .dataOffset = 1807564, .properties = 5, .width = 44, .height = 26 },    /* title_brightness@C4_A1, 101, 0 - SD */
+    { .dataOffset = 1809852, .properties = 5, .width = 99, .height = 26 },    /* title_brightness@C5_A1, 101, 0 - SD */
+    { .dataOffset = 1815000, .properties = 5, .width = 78, .height = 26 },    /* title_brightness@C6_A1, 101, 0 - SD */
+    { .dataOffset = 1819056, .properties = 5, .width = 43, .height = 26 },    /* title_brightness@C7_A1, 101, 0 - SD */
+    { .dataOffset = 1821292, .properties = 5, .width = 53, .height = 26 },    /* title_brightness@C8_A1, 101, 0 - SD */
+    { .dataOffset = 1824048, .properties = 5, .width = 36, .height = 26 },    /* title_brightness@C9_A1, 101, 0 - SD */
+    { .dataOffset = 1825920, .properties = 5, .width = 33, .height = 26 },    /* title_info@C0_A0, 101, 0 - SD */
+    { .dataOffset = 1827636, .properties = 5, .width = 33, .height = 26 },    /* title_info@C1_A0, 101, 0 - SD */
+    { .dataOffset = 1829352, .properties = 5, .width = 33, .height = 26 },    /* title_info@C2_A0, 101, 0 - SD */
+    { .dataOffset = 1831068, .properties = 5, .width = 33, .height = 26 },    /* title_info@C3_A0, 101, 0 - SD */
+    { .dataOffset = 1832784, .properties = 5, .width = 108, .height = 26 },    /* title_info@C4_A0, 101, 0 - SD */
+    { .dataOffset = 1838400, .properties = 5, .width = 113, .height = 26 },    /* title_info@C5_A0, 101, 0 - SD */
+    { .dataOffset = 1844276, .properties = 5, .width = 124, .height = 26 },    /* title_info@C6_A0, 101, 0 - SD */
+    { .dataOffset = 1850724, .properties = 5, .width = 44, .height = 26 },    /* title_info@C7_A0, 101, 0 - SD */
+    { .dataOffset = 1853012, .properties = 5, .width = 43, .height = 26 },    /* title_info@C8_A0, 101, 0 - SD */
+    { .dataOffset = 1855248, .properties = 5, .width = 38, .height = 26 },    /* title_info@C9_A0, 101, 0 - SD */
+    { .dataOffset = 1857224, .properties = 5, .width = 33, .height = 26 },    /* title_info@C0_A1, 101, 0 - SD */
+    { .dataOffset = 1858940, .properties = 5, .width = 33, .height = 26 },    /* title_info@C1_A1, 101, 0 - SD */
+    { .dataOffset = 1860656, .properties = 5, .width = 33, .height = 26 },    /* title_info@C2_A1, 101, 0 - SD */
+    { .dataOffset = 1862372, .properties = 5, .width = 33, .height = 26 },    /* title_info@C3_A1, 101, 0 - SD */
+    { .dataOffset = 1864088, .properties = 5, .width = 108, .height = 26 },    /* title_info@C4_A1, 101, 0 - SD */
+    { .dataOffset = 1869704, .properties = 5, .width = 113, .height = 26 },    /* title_info@C5_A1, 101, 0 - SD */
+    { .dataOffset = 1875580, .properties = 5, .width = 124, .height = 26 },    /* title_info@C6_A1, 101, 0 - SD */
+    { .dataOffset = 1882028, .properties = 5, .width = 44, .height = 26 },    /* title_info@C7_A1, 101, 0 - SD */
+    { .dataOffset = 1884316, .properties = 5, .width = 43, .height = 26 },    /* title_info@C8_A1, 101, 0 - SD */
+    { .dataOffset = 1886552, .properties = 5, .width = 38, .height = 26 },    /* title_info@C9_A1, 101, 0 - SD */
+    { .dataOffset = 1888528, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C0_A0, 101, 0 - SD */
+    { .dataOffset = 1891908, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C1_A0, 101, 0 - SD */
+    { .dataOffset = 1895288, .properties = 5, .width = 70, .height = 26 },    /* title_interval@C2_A0, 101, 0 - SD */
+    { .dataOffset = 1898928, .properties = 5, .width = 81, .height = 26 },    /* title_interval@C3_A0, 101, 0 - SD */
+    { .dataOffset = 1903140, .properties = 5, .width = 77, .height = 26 },    /* title_interval@C4_A0, 101, 0 - SD */
+    { .dataOffset = 1907144, .properties = 5, .width = 82, .height = 26 },    /* title_interval@C5_A0, 101, 0 - SD */
+    { .dataOffset = 1911408, .properties = 5, .width = 91, .height = 26 },    /* title_interval@C6_A0, 101, 0 - SD */
+    { .dataOffset = 1916140, .properties = 5, .width = 42, .height = 26 },    /* title_interval@C7_A0, 101, 0 - SD */
+    { .dataOffset = 1918324, .properties = 5, .width = 19, .height = 26 },    /* title_interval@C8_A0, 101, 0 - SD */
+    { .dataOffset = 1919312, .properties = 5, .width = 18, .height = 26 },    /* title_interval@C9_A0, 101, 0 - SD */
+    { .dataOffset = 1920248, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C0_A1, 101, 0 - SD */
+    { .dataOffset = 1923628, .properties = 5, .width = 65, .height = 26 },    /* title_interval@C1_A1, 101, 0 - SD */
+    { .dataOffset = 1927008, .properties = 5, .width = 70, .height = 26 },    /* title_interval@C2_A1, 101, 0 - SD */
+    { .dataOffset = 1930648, .properties = 5, .width = 81, .height = 26 },    /* title_interval@C3_A1, 101, 0 - SD */
+    { .dataOffset = 1934860, .properties = 5, .width = 77, .height = 26 },    /* title_interval@C4_A1, 101, 0 - SD */
+    { .dataOffset = 1938864, .properties = 5, .width = 82, .height = 26 },    /* title_interval@C5_A1, 101, 0 - SD */
+    { .dataOffset = 1943128, .properties = 5, .width = 91, .height = 26 },    /* title_interval@C6_A1, 101, 0 - SD */
+    { .dataOffset = 1947860, .properties = 5, .width = 42, .height = 26 },    /* title_interval@C7_A1, 101, 0 - SD */
+    { .dataOffset = 1950044, .properties = 5, .width = 19, .height = 26 },    /* title_interval@C8_A1, 101, 0 - SD */
+    { .dataOffset = 1951032, .properties = 5, .width = 18, .height = 26 },    /* title_interval@C9_A1, 101, 0 - SD */
+    { .dataOffset = 1951968, .properties = 5, .width = 88, .height = 26 },    /* title_language@C0_A0, 101, 0 - SD */
+    { .dataOffset = 1956544, .properties = 5, .width = 39, .height = 26 },    /* title_language@C1_A0, 101, 0 - SD */
+    { .dataOffset = 1958572, .properties = 5, .width = 74, .height = 26 },    /* title_language@C2_A0, 101, 0 - SD */
+    { .dataOffset = 1962420, .properties = 5, .width = 65, .height = 26 },    /* title_language@C3_A0, 101, 0 - SD */
+    { .dataOffset = 1965800, .properties = 5, .width = 60, .height = 26 },    /* title_language@C4_A0, 101, 0 - SD */
+    { .dataOffset = 1968920, .properties = 5, .width = 59, .height = 26 },    /* title_language@C5_A0, 101, 0 - SD */
+    { .dataOffset = 1971988, .properties = 5, .width = 50, .height = 26 },    /* title_language@C6_A0, 101, 0 - SD */
+    { .dataOffset = 1974588, .properties = 5, .width = 43, .height = 26 },    /* title_language@C7_A0, 101, 0 - SD */
+    { .dataOffset = 1976824, .properties = 5, .width = 43, .height = 26 },    /* title_language@C8_A0, 101, 0 - SD */
+    { .dataOffset = 1979060, .properties = 5, .width = 35, .height = 26 },    /* title_language@C9_A0, 101, 0 - SD */
+    { .dataOffset = 1980880, .properties = 5, .width = 88, .height = 26 },    /* title_language@C0_A1, 101, 0 - SD */
+    { .dataOffset = 1985456, .properties = 5, .width = 39, .height = 26 },    /* title_language@C1_A1, 101, 0 - SD */
+    { .dataOffset = 1987484, .properties = 5, .width = 74, .height = 26 },    /* title_language@C2_A1, 101, 0 - SD */
+    { .dataOffset = 1991332, .properties = 5, .width = 65, .height = 26 },    /* title_language@C3_A1, 101, 0 - SD */
+    { .dataOffset = 1994712, .properties = 5, .width = 60, .height = 26 },    /* title_language@C4_A1, 101, 0 - SD */
+    { .dataOffset = 1997832, .properties = 5, .width = 59, .height = 26 },    /* title_language@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2000900, .properties = 5, .width = 50, .height = 26 },    /* title_language@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2003500, .properties = 5, .width = 43, .height = 26 },    /* title_language@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2005736, .properties = 5, .width = 43, .height = 26 },    /* title_language@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2007972, .properties = 5, .width = 35, .height = 26 },    /* title_language@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2009792, .properties = 5, .width = 54, .height = 26 },    /* title_limits@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2012600, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2016448, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2020296, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2023676, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2027056, .properties = 5, .width = 48, .height = 26 },    /* title_limits@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2029552, .properties = 5, .width = 124, .height = 26 },    /* title_limits@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2036000, .properties = 5, .width = 41, .height = 26 },    /* title_limits@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2038132, .properties = 5, .width = 35, .height = 26 },    /* title_limits@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2039952, .properties = 5, .width = 39, .height = 26 },    /* title_limits@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2041980, .properties = 5, .width = 54, .height = 26 },    /* title_limits@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2044788, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2048636, .properties = 5, .width = 74, .height = 26 },    /* title_limits@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2052484, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2055864, .properties = 5, .width = 65, .height = 26 },    /* title_limits@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2059244, .properties = 5, .width = 48, .height = 26 },    /* title_limits@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2061740, .properties = 5, .width = 124, .height = 26 },    /* title_limits@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2068188, .properties = 5, .width = 41, .height = 26 },    /* title_limits@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2070320, .properties = 5, .width = 35, .height = 26 },    /* title_limits@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2072140, .properties = 5, .width = 39, .height = 26 },    /* title_limits@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2074168, .properties = 5, .width = 99, .height = 26 },    /* title_main_menu@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2079316, .properties = 5, .width = 106, .height = 26 },    /* title_main_menu@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2084828, .properties = 5, .width = 104, .height = 26 },    /* title_main_menu@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2090236, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2097100, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2103964, .properties = 5, .width = 144, .height = 26 },    /* title_main_menu@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2111452, .properties = 5, .width = 138, .height = 26 },    /* title_main_menu@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2118628, .properties = 5, .width = 65, .height = 26 },    /* title_main_menu@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2122008, .properties = 5, .width = 112, .height = 26 },    /* title_main_menu@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2127832, .properties = 5, .width = 84, .height = 26 },    /* title_main_menu@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2132200, .properties = 5, .width = 99, .height = 26 },    /* title_main_menu@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2137348, .properties = 5, .width = 106, .height = 26 },    /* title_main_menu@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2142860, .properties = 5, .width = 104, .height = 26 },    /* title_main_menu@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2148268, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2155132, .properties = 5, .width = 132, .height = 26 },    /* title_main_menu@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2161996, .properties = 5, .width = 144, .height = 26 },    /* title_main_menu@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2169484, .properties = 5, .width = 138, .height = 26 },    /* title_main_menu@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2176660, .properties = 5, .width = 65, .height = 26 },    /* title_main_menu@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2180040, .properties = 5, .width = 112, .height = 26 },    /* title_main_menu@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2185864, .properties = 5, .width = 84, .height = 26 },    /* title_main_menu@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2190232, .properties = 5, .width = 125, .height = 26 },    /* title_measurement@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2196732, .properties = 5, .width = 72, .height = 26 },    /* title_measurement@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2200476, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2204740, .properties = 5, .width = 67, .height = 26 },    /* title_measurement@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2208224, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2212488, .properties = 5, .width = 110, .height = 26 },    /* title_measurement@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2218208, .properties = 5, .width = 106, .height = 26 },    /* title_measurement@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2223720, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2225956, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2228192, .properties = 5, .width = 39, .height = 26 },    /* title_measurement@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2230220, .properties = 5, .width = 125, .height = 26 },    /* title_measurement@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2236720, .properties = 5, .width = 72, .height = 26 },    /* title_measurement@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2240464, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2244728, .properties = 5, .width = 67, .height = 26 },    /* title_measurement@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2248212, .properties = 5, .width = 82, .height = 26 },    /* title_measurement@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2252476, .properties = 5, .width = 110, .height = 26 },    /* title_measurement@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2258196, .properties = 5, .width = 106, .height = 26 },    /* title_measurement@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2263708, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2265944, .properties = 5, .width = 43, .height = 26 },    /* title_measurement@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2268180, .properties = 5, .width = 39, .height = 26 },    /* title_measurement@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2270208, .properties = 5, .width = 73, .height = 26 },    /* title_settings@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2274004, .properties = 5, .width = 103, .height = 26 },    /* title_settings@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2279360, .properties = 5, .width = 120, .height = 26 },    /* title_settings@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2285600, .properties = 5, .width = 104, .height = 26 },    /* title_settings@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2291008, .properties = 5, .width = 127, .height = 26 },    /* title_settings@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2297612, .properties = 5, .width = 116, .height = 26 },    /* title_settings@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2303644, .properties = 5, .width = 109, .height = 26 },    /* title_settings@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2309312, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2311548, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2313784, .properties = 5, .width = 38, .height = 26 },    /* title_settings@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2315760, .properties = 5, .width = 73, .height = 26 },    /* title_settings@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2319556, .properties = 5, .width = 103, .height = 26 },    /* title_settings@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2324912, .properties = 5, .width = 120, .height = 26 },    /* title_settings@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2331152, .properties = 5, .width = 104, .height = 26 },    /* title_settings@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2336560, .properties = 5, .width = 127, .height = 26 },    /* title_settings@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2343164, .properties = 5, .width = 116, .height = 26 },    /* title_settings@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2349196, .properties = 5, .width = 109, .height = 26 },    /* title_settings@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2354864, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2357100, .properties = 5, .width = 43, .height = 26 },    /* title_settings@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2359336, .properties = 5, .width = 38, .height = 26 },    /* title_settings@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2361312, .properties = 5, .width = 51, .height = 26 },    /* title_setup@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2363964, .properties = 5, .width = 57, .height = 26 },    /* title_setup@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2366928, .properties = 5, .width = 100, .height = 26 },    /* title_setup@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2372128, .properties = 5, .width = 111, .height = 26 },    /* title_setup@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2377900, .properties = 5, .width = 66, .height = 26 },    /* title_setup@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2381332, .properties = 5, .width = 115, .height = 26 },    /* title_setup@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2387312, .properties = 5, .width = 101, .height = 26 },    /* title_setup@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2392564, .properties = 5, .width = 43, .height = 26 },    /* title_setup@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2394800, .properties = 5, .width = 94, .height = 26 },    /* title_setup@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2399688, .properties = 5, .width = 37, .height = 26 },    /* title_setup@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2401612, .properties = 5, .width = 51, .height = 26 },    /* title_setup@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2404264, .properties = 5, .width = 57, .height = 26 },    /* title_setup@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2407228, .properties = 5, .width = 100, .height = 26 },    /* title_setup@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2412428, .properties = 5, .width = 111, .height = 26 },    /* title_setup@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2418200, .properties = 5, .width = 66, .height = 26 },    /* title_setup@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2421632, .properties = 5, .width = 115, .height = 26 },    /* title_setup@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2427612, .properties = 5, .width = 101, .height = 26 },    /* title_setup@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2432864, .properties = 5, .width = 43, .height = 26 },    /* title_setup@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2435100, .properties = 5, .width = 94, .height = 26 },    /* title_setup@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2439988, .properties = 5, .width = 37, .height = 26 },    /* title_setup@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2441912, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2445188, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2448464, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2451740, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2455016, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2457720, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2460424, .properties = 5, .width = 49, .height = 26 },    /* title_theme@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2462972, .properties = 5, .width = 42, .height = 26 },    /* title_theme@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2465156, .properties = 5, .width = 51, .height = 26 },    /* title_theme@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2467808, .properties = 5, .width = 38, .height = 26 },    /* title_theme@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2469784, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2473060, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2476336, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2479612, .properties = 5, .width = 63, .height = 26 },    /* title_theme@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2482888, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2485592, .properties = 5, .width = 52, .height = 26 },    /* title_theme@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2488296, .properties = 5, .width = 49, .height = 26 },    /* title_theme@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2490844, .properties = 5, .width = 42, .height = 26 },    /* title_theme@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2493028, .properties = 5, .width = 51, .height = 26 },    /* title_theme@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2495680, .properties = 5, .width = 38, .height = 26 },    /* title_theme@C9_A1, 101, 0 - SD */
+    { .dataOffset = 2497656, .properties = 5, .width = 45, .height = 26 },    /* title_units@C0_A0, 101, 0 - SD */
+    { .dataOffset = 2499996, .properties = 5, .width = 87, .height = 26 },    /* title_units@C1_A0, 101, 0 - SD */
+    { .dataOffset = 2504520, .properties = 5, .width = 81, .height = 26 },    /* title_units@C2_A0, 101, 0 - SD */
+    { .dataOffset = 2508732, .properties = 5, .width = 56, .height = 26 },    /* title_units@C3_A0, 101, 0 - SD */
+    { .dataOffset = 2511644, .properties = 5, .width = 84, .height = 26 },    /* title_units@C4_A0, 101, 0 - SD */
+    { .dataOffset = 2516012, .properties = 5, .width = 46, .height = 26 },    /* title_units@C5_A0, 101, 0 - SD */
+    { .dataOffset = 2518404, .properties = 5, .width = 70, .height = 26 },    /* title_units@C6_A0, 101, 0 - SD */
+    { .dataOffset = 2522044, .properties = 5, .width = 43, .height = 26 },    /* title_units@C7_A0, 101, 0 - SD */
+    { .dataOffset = 2524280, .properties = 5, .width = 43, .height = 26 },    /* title_units@C8_A0, 101, 0 - SD */
+    { .dataOffset = 2526516, .properties = 5, .width = 36, .height = 26 },    /* title_units@C9_A0, 101, 0 - SD */
+    { .dataOffset = 2528388, .properties = 5, .width = 45, .height = 26 },    /* title_units@C0_A1, 101, 0 - SD */
+    { .dataOffset = 2530728, .properties = 5, .width = 87, .height = 26 },    /* title_units@C1_A1, 101, 0 - SD */
+    { .dataOffset = 2535252, .properties = 5, .width = 81, .height = 26 },    /* title_units@C2_A1, 101, 0 - SD */
+    { .dataOffset = 2539464, .properties = 5, .width = 56, .height = 26 },    /* title_units@C3_A1, 101, 0 - SD */
+    { .dataOffset = 2542376, .properties = 5, .width = 84, .height = 26 },    /* title_units@C4_A1, 101, 0 - SD */
+    { .dataOffset = 2546744, .properties = 5, .width = 46, .height = 26 },    /* title_units@C5_A1, 101, 0 - SD */
+    { .dataOffset = 2549136, .properties = 5, .width = 70, .height = 26 },    /* title_units@C6_A1, 101, 0 - SD */
+    { .dataOffset = 2552776, .properties = 5, .width = 43, .height = 26 },    /* title_units@C7_A1, 101, 0 - SD */
+    { .dataOffset = 2555012, .properties = 5, .width = 43, .height = 26 },    /* title_units@C8_A1, 101, 0 - SD */
+    { .dataOffset = 2557248, .properties = 5, .width = 36, .height = 26 },    /* title_units@C9_A1, 101, 0 - SD */
 };
 
 const uint8_t maxProperty[FS_MAX_FILE_PROPERTIES] =
@@ -1031,7 +1031,7 @@ file_search_result_e fs_getFileInfo(
         return FILE_SEARCH_OK;
     }
 
-    if (FS_MAX_FILE_PROPERTIES != propertiesLength)
+    if (FS_MAX_FILE_PROPERTIES > propertiesLength)
     {
         return FILE_SEARCH_PROPERTY_LENGTH;
     }
@@ -1074,6 +1074,11 @@ file_search_result_e fs_getFileInfo(
     }
 
     return FILE_SEARCH_OK;
+}
+
+fs_compression_e fs_getCompression(fs_data_location_e location)
+{
+    return FS_DATA_LOCATION_0_COMPRESSION;
 }
 
 /*** end of file ***/

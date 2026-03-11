@@ -1,5 +1,27 @@
-Pixeldata offset: 20
-CRC: 1296140220
+Starting bitmap conversion...
+Clearing build folders...
+Output Folder: C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_3
+Number of Instructions: 4
+Number of Translations: 10
+Font Instructions Converted: 1
+Text Instructions Converted: 2
+Icon Instructions Converted: 1
+Bitmap conversion finished...
+WARNING Data location not found in settings for file: IRL_Logo 128, using default data location
+WARNING Data location not found in settings for file: IRL_Logo_48, using default data location
+WARNING Data location not found in settings for file: Play, using default data location
+WARNING Data location not found in settings for file: Play_Pressed, using default data location
+WARNING Data location not found in settings for file: Stop, using default data location
+WARNING Data location not found in settings for file: Stop_Pressed, using default data location
+Pixel data offset: 60
+CRC: 4132810887
+Pixel data offset: 60
+CRC: 4132810887
+INFO External display image file header written. Offset: 60
+INFO Data locations written. Offset: 80
+INFO File infos written. Offset: 2573
+INFO Character infos written. Offset: 5993
+INFO Pixel data Offset: 930063
 Build successful
-Build V2.0.0.19
+Build V2.1.0.0
 277 File(s) and 6 Font(s) added

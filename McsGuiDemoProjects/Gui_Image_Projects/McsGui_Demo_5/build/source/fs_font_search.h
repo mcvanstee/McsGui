@@ -17,7 +17,7 @@ extern "C" {
 #include <stdint.h>
 
 #ifndef FS_PIXEL_DATA_CRC
-#define FS_PIXEL_DATA_CRC 3298614859u
+#define FS_PIXEL_DATA_CRC 2878314812u
 #endif
 
 #define FS_FONTS 4
@@ -25,6 +25,7 @@ extern "C" {
 #define FS_FONTS_DIGIT_ONLY 2
 #define FS_CHAR_INFOS_IN_DIGIT_ONLY_FONT 12
 #define FS_BYTES_PER_PIXEL 2
+#define FS_FONT_DATA_LOCATION 1
 
 typedef enum
 {
@@ -43,7 +44,7 @@ typedef struct
     uint8_t height;         // Height of bmp in pixels
 } fs_char_info_s;
 
-bool fs_getCharInfo(const char c, const font_key_e font_key, fs_char_info_s *p_out_char_info);
+bool fs_getCharInfo(const char c, const font_key_e font_key, fs_char_info_s *p_out_char_info, uint8_t *p_dataLocation);
 
 
 #ifdef __cplusplus

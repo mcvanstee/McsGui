@@ -495,7 +495,7 @@ static inline int32_t fs_getFontIndex(const font_key_e font_key)
 }
 
 
-bool fs_getCharInfo(const char c, const font_key_e font_key, fs_char_info_s *p_out_char_info)
+bool fs_getCharInfo(const char c, const font_key_e font_key, fs_char_info_s *p_out_char_info, uint8_t *p_dataLocation)
 {
     bool charInfoFound = false;
     const int32_t charIndex = fs_getCharIndex(font_key, c);
@@ -512,16 +512,18 @@ bool fs_getCharInfo(const char c, const font_key_e font_key, fs_char_info_s *p_o
             {
                 *p_out_char_info = fs_char_info[fontIndex][charIndex];
                 charInfoFound = true;
+                *p_dataLocation = FS_FONT_DATA_LOCATION;
             }
             break;
         }
         case FONT_KEY_ROBOTO_36_B:
         case FONT_KEY_ROBOTO_48_B:
         {
-            if ((FS_CHAR_INFOS_IN_DIGIT_ONLY_FONT > charIndex) && (FS_FONTS > fontIndex) && (charIndex >= 0) && (fontIndex >= 0))
+            if ((FS_CHAR_INFOS_IN_DIGIT_ONLY_FONT > charIndex) && (FS_CHAR_INFOS_IN_DIGIT_ONLY_FONT > fontIndex) && (charIndex >= 0) && (fontIndex >= 0))
             {
                 *p_out_char_info = fs_char_info_digits[fontIndex][charIndex];
                 charInfoFound = true;
+                *p_dataLocation = FS_FONT_DATA_LOCATION;
             }
             break;
         }

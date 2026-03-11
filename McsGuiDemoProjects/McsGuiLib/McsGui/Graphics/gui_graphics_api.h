@@ -37,13 +37,12 @@ extern void graphics_drawRectFill(
 extern bool graphics_getBmpFileInfo(
         const uint32_t bmpKey, const uint8_t *p_properties,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation
-        );
+        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation);
 
 extern bool graphics_getCharacterInfo(
         const char character, const FontData_s *p_fontData,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset);
+        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation);
 
 extern void graphics_drawImage(
         const uint16_t xPos, const uint16_t yPos,

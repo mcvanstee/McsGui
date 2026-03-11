@@ -18,6 +18,7 @@
 #include "fs_version.h"
 #include "fs_pixeldata.h"
 #include "Graphics/gui_graphics_api.h"
+#include "Core/gui_log.h"
 
 #define MAX_BUFFER_SIZE_PIXELS 256
 #define MAX_FILE_PATH_LENGTH 50
@@ -25,7 +26,11 @@
 
 #define GUI_IMAGE_FILE GUI_IMAGE_DIRECTORY FS_IMAGE_FILE_NAME
 
-static void gui_image_drawImageFromSD(
+static void gui_image_drawImageFromSD_RLE(
+        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t width, const uint16_t height,
+        const uint32_t dataAddress);
+static void gui_image_drawImageFromSD_RLE_A(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
         const uint32_t dataAddress,
@@ -60,13 +65,30 @@ void gui_image_drawImage(
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
         )
 {
-    if (FS_FILE_LOCATION_CODE == dataLocation)
+    if (FS_DATA_LOCATION_1 == dataLocation)
     {
         gui_image_drawImageFromCode16BitBus(xPos, yPos, width, height, dataAddress, foreColor, backColor);
     }
-    else if (FS_FILE_LOCATION_PIXEL_DATA == dataLocation)
+    else if (FS_DATA_LOCATION_0 == dataLocation)
     {
-        gui_image_drawImageFromSD(xPos, yPos, width, height, dataAddress, foreColor, backColor);
+        if (!m_imageFileOpen)
+        {
+            gui_log_error("gui_image_fileNotOpen");
+            return;
+        }
+
+        switch (fs_getCompression(dataLocation))
+        {
+            case RLE:
+                gui_image_drawImageFromSD_RLE(xPos, yPos, width, height, dataAddress);
+                break;
+            case RLE_ALPHA:
+                gui_image_drawImageFromSD_RLE_A(xPos, yPos, width, height, dataAddress, foreColor, backColor);
+                break;
+            default:
+                /* TODO all pixels stored */
+                return;
+        }
     }
     else
     {
@@ -93,11 +115,10 @@ static void gui_image_drawImageFromCode16BitBus(
     display_hal_stopDataTransmission();
 }
 
-static void gui_image_drawImageFromSD(
+static void gui_image_drawImageFromSD_RLE(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataAddress,
-        const uint32_t foreColor, const uint32_t backColor)
+        const uint32_t dataAddress)
 {
     f_lseek(&m_imageFile, dataAddress);
 
@@ -120,6 +141,44 @@ static void gui_image_drawImageFromSD(
         if (pixelsToTransfer > *p_noOfPixels)
         {
             pixelsToTransfer -= *p_noOfPixels;
+        }
+        else
+        {
+            pixelsToTransfer = 0;
+        }
+    }
+
+    display_hal_stopDataTransmission();
+}
+
+static void gui_image_drawImageFromSD_RLE_A(
+        const uint16_t xPos, const uint16_t yPos,
+        const uint16_t width, const uint16_t height,
+        const uint32_t dataAddress,
+        const uint32_t foreColor, const uint32_t backColor)
+{
+    f_lseek(&m_imageFile, dataAddress);
+
+    display_setAddressWindow(xPos, yPos, width, height);
+    display_hal_startDataTransmission();
+
+    uint32_t pixelsToTransfer = width * height;
+
+    while (pixelsToTransfer > 0)
+    {
+        uint8_t pixeldata[2] = {0};
+        UINT bytesRead = 0;
+        f_read(&m_imageFile, pixeldata, sizeof(pixeldata), &bytesRead);
+
+        const uint16_t noOfPixels = (pixeldata[0] + 1);
+        const uint8_t pixel = pixeldata[1];
+        const uint16_t color = fs_getPixelColor(foreColor, backColor, pixel);
+
+        display_hal_writePixels(color, noOfPixels);
+
+        if (pixelsToTransfer > noOfPixels)
+        {
+            pixelsToTransfer -= noOfPixels;
         }
         else
         {
@@ -213,7 +272,7 @@ bool graphics_getBmpFileInfo(
 {
     /* Get the bmp info from the filesystem. */
     fs_file_info_s fsFileInfo = {0};
-    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, FS_MAX_FILE_PROPERTIES, &fsFileInfo, p_out_dataLocation);
+    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, GUI_CONFIG_NUMBER_OF_PROPERTIES, &fsFileInfo, p_out_dataLocation);
     const bool fileFound = (result == FILE_SEARCH_OK);
 
     *p_out_width = fsFileInfo.width;
@@ -226,11 +285,11 @@ bool graphics_getBmpFileInfo(
 bool graphics_getCharacterInfo(
         const char character, const FontData_s *p_fontData,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset)
+        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation)
 {
     /* Get the character info from the filesystem. */
     fs_char_info_s char_info = {0};
-    const bool charFound = fs_getCharInfo(character, p_fontData->font, &char_info);
+    const bool charFound = fs_getCharInfo(character, p_fontData->font, &char_info, p_out_dataLocation);
 
     *p_out_width = char_info.width;
     *p_out_height = char_info.height;

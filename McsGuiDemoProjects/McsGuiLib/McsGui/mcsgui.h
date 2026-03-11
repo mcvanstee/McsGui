@@ -3,7 +3,7 @@
 |             McsGui - Generic GUI module for small embedded systems.               |
 |___________________________________________________________________________________|
 |                                                                                   |
-|  Copyright (c) 2020, Marijn van Stee, all rights reserved.                        |
+|  Copyright (c) 2026, Marijn van Stee, all rights reserved.                        |
 |                                                                                   |
 |                                                                                   |
 |  Redistribution and use in source and binary forms, with or without               |
@@ -63,8 +63,8 @@ extern "C" {
 #include "Utils/utils_array.h"
 #include "ExternalDisplay/external_display.h"
 
-#define MCSGUI_VERSION_MAJOR 2
-#define MCSGUI_VERSION_MINOR 1
+#define MCSGUI_VERSION_MAJOR 3
+#define MCSGUI_VERSION_MINOR 0
 #define MCSGUI_VERSION_PATCH 0
 
 #ifdef __cplusplus

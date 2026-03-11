@@ -27,6 +27,7 @@ typedef struct
 
 void fs_read(uint16_t *p_buffer, uint32_t bufferLength, fs_pixeldata_info_s *p_pixelDataInfo);
 void fs_transferPixels(fs_pixeldata_info_s *p_pixelDataInfo, void (*transferPixels)(const uint16_t color, const int32_t noOfpixels));
+uint16_t fs_getPixelColor(const uint32_t foreColor, const uint32_t backColor, const uint8_t pixelValue);
 
 
 #ifdef __cplusplus

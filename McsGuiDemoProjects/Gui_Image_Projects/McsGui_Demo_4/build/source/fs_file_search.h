@@ -17,10 +17,11 @@ extern "C" {
 #include <stdint.h>
 
 #ifndef FS_PIXEL_DATA_CRC
-#define FS_PIXEL_DATA_CRC 856524958u
+#define FS_PIXEL_DATA_CRC 186606574u
 #endif
 
 #define FS_FILES 996
+#define FS_DATA_LOCATION_0_COMPRESSION 0 /* Compression None */
 #define FS_MAX_FILE_PROPERTIES 4U
 #define FS_BYTES_PER_PIXEL 2
 
@@ -41,6 +42,18 @@ typedef enum
     FILE_SEARCH_DUMMY_NO_DATA = 4,
     FILE_SEARCH_ERROR_READING_DATA = 5,
 } file_search_result_e;
+
+typedef enum
+{
+    FS_DATA_LOCATION_0 = 0,
+} fs_data_location_e;
+
+typedef enum
+{
+    NONE = 0,
+    RLE = 1,
+    RLE_ALPHA = 2,
+} fs_compression_e;
 
 typedef enum
 {
@@ -183,6 +196,8 @@ file_search_result_e fs_getFileInfo(
                             const uint8_t propertiesLength,
                             fs_file_info_s *p_out_file_info,
                             uint8_t *p_dataLocation);
+
+fs_compression_e fs_getCompression(const fs_data_location_e dataLocation);
 
 
 #ifdef __cplusplus

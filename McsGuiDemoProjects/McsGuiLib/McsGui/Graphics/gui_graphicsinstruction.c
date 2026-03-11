@@ -17,6 +17,13 @@ void graphics_instruction_image_init(
 #if GUI_CONFIG_USE_BITMAP_COLORS
         , const Color_t foreColor, const Color_t backColor
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+    , uint8_t dataType, uint32_t bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    , uint8_t *p_properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
         )
 {
     graphic_instructions_init(
@@ -29,6 +36,31 @@ void graphics_instruction_image_init(
     p_instruction->instructionData.imageData.foreColor = foreColor;
     p_instruction->instructionData.imageData.backColor = backColor;
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+    if (GRAPHICS_DATA_TYPE_BMP == dataType)
+    {
+        p_instruction->instructionData.imageData.dataType = dataType;
+        p_instruction->instructionData.imageData.bmpKey = bmpKey;
+    }
+    else
+    {
+        // For font character, the first byte of the bmpKey is the character ASCII value,
+        // the second byte is the font key, the last 2 bytes are reserved
+        p_instruction->instructionData.imageData.dataType = dataType;
+        p_instruction->instructionData.imageData.bmpKey = bmpKey;     // [X] [X] [fontKey] [ASCII]
+    }
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+    if ((GRAPHICS_DATA_TYPE_BMP == dataType) && (GUI_CONFIG_NUMBER_OF_PROPERTIES > 0))
+    {
+        for (uint8_t i = 0; i < GUI_CONFIG_NUMBER_OF_PROPERTIES; i++)
+        {
+            p_instruction->instructionData.imageData.properties[i] = p_properties[i];
+        }
+    }
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
+
 }
 
 void graphics_instruction_fill_init(

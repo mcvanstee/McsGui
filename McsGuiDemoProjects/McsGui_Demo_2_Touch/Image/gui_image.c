@@ -52,7 +52,7 @@ bool gui_image_initialize(void)
 static void gui_image_drawImage(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataAddress)
+        const uint32_t dataAddress, const uint8_t dataLocation)
 {
     volatile uint32_t pixelsToTransfer = width * height;
     m_p_readBuffer = m_dataBuffer_1;
@@ -186,7 +186,7 @@ bool graphics_getBmpFileInfo(
 {
     /* Get the bmp info from the filesystem. */
     fs_file_info_s fsFileInfo = {0};
-    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, FS_MAX_FILE_PROPERTIES, &fsFileInfo, p_out_dataLocation);
+    file_search_result_e result = fs_getFileInfo(bmpKey, p_properties, GUI_CONFIG_NUMBER_OF_PROPERTIES, &fsFileInfo, p_out_dataLocation);
     const bool fileFound = (result == FILE_SEARCH_OK);
 
     *p_out_width = fsFileInfo.width;
@@ -199,11 +199,11 @@ bool graphics_getBmpFileInfo(
 bool graphics_getCharacterInfo(
         const char character, const FontData_s *p_fontData,
         uint16_t *p_out_width, uint16_t *p_out_height,
-        uint32_t *p_out_dataOffset)
+        uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation)
 {
     /* Get the character info from the filesystem. */
     fs_char_info_s char_info = {0};
-    const bool charFound = fs_getCharInfo(character, p_fontData->font, &char_info);
+    const bool charFound = fs_getCharInfo(character, p_fontData->font, &char_info, p_out_dataLocation);
 
     *p_out_width = char_info.width;
     *p_out_height = char_info.height;
@@ -215,13 +215,12 @@ bool graphics_getCharacterInfo(
 void graphics_drawImage(
         const uint16_t xPos, const uint16_t yPos,
         const uint16_t width, const uint16_t height,
-        const uint32_t dataOffset
+        const uint32_t dataOffset, const uint8_t dataLocation
 #if GUI_CONFIG_USE_BITMAP_COLORS
-        , const uint8_t dataLocation
         , const uint32_t foreColor, const uint32_t backColor
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 )
 {
     /* Draw bmp data on display */
-    gui_image_drawImage(xPos, yPos, width, height, dataOffset);
+    gui_image_drawImage(xPos, yPos, width, height, dataOffset, dataLocation);
 }

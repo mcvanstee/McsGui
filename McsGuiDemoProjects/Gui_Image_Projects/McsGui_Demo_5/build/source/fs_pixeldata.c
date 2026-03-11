@@ -6477,4 +6477,9 @@ void fs_transferPixels(fs_pixeldata_info_s *p_pixelDataInfo, void (*transferPixe
     }
 }
 
+uint16_t fs_getPixelColor(const uint32_t foreColor, const uint32_t backColor, const uint8_t pixelValue)
+{
+    return fs_getColor(foreColor, backColor, pixelValue);
+}
+
 /*** end of file ***/

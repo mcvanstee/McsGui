@@ -409,13 +409,15 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
         uint16_t fontWidth = 0;
         uint16_t fontHeight = 0;
         uint32_t fontDataOffset = 0;
+        uint8_t dataLocation = 0;
 
         bool charInfoFound = graphics_getCharacterInfo(
                 p_baseComponent->p_text[charIndex],
                 p_fontData,
                 &fontWidth,
                 &fontHeight,
-                &fontDataOffset);
+                &fontDataOffset,
+                &dataLocation);
 
         if (charInfoFound)
         {
@@ -426,12 +428,20 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
             		&instruction,
                     characterXPos, (p_baseComponent->y + textOffset.height),
                     fontWidth, fontHeight,
-                    fontDataOffset, 0
+                    fontDataOffset, dataLocation
 #if GUI_CONFIG_USE_BITMAP_COLORS
                     ,
                     p_fontData->fontColor,
                     p_fontData->backgroundColor
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+#if GUI_USE_EXTERNAL_DISPLAY
+                    , GRAPHICS_DATA_TYPE_FONT_CHAR
+                    , ((uint8_t)p_baseComponent->p_text[charIndex] << 8) | ((uint8_t)p_fontData->font) // The first byte of the bmpKey is the character ASCII value, the second byte is the font key, the last 2 bytes are reserved
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+                    , p_baseComponent->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
                     );
 
             graphics_queueGraphicsInstruction(&instruction);
@@ -521,8 +531,15 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
                 p_baseComponent->foreColor,
                 p_baseComponent->background
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
-                );
 
+#if GUI_USE_EXTERNAL_DISPLAY
+                , GRAPHICS_DATA_TYPE_BMP
+                , p_baseComponent->bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+                , p_baseComponent->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+#endif /* GUI_USE_EXTERNAL_DISPLAY */
+                );
 
         graphics_alignBmp(p_baseComponent, p_newInstruction);
 
@@ -959,9 +976,10 @@ static inline GuiSize_s graphics_getTextSize(const char *p_text, const size_t st
         uint16_t fontWidth = 0;
         uint16_t fontHeight = 0;
         uint32_t fontDataOffset = 0;
+        uint8_t dataLocation = 0;
 
         bool charInfoFound = graphics_getCharacterInfo(p_text[charIndex],
-                p_fontData, &fontWidth, &fontHeight, &fontDataOffset);
+                p_fontData, &fontWidth, &fontHeight, &fontDataOffset, &dataLocation);
 
         if (charInfoFound)
         {
