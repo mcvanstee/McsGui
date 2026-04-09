@@ -16,9 +16,9 @@ extern "C" {
 #define FS_IMAGE_FILE_VERSION_MAJOR  1u
 #define FS_IMAGE_FILE_VERSION_MINOR  1u
 #define FS_IMAGE_FILE_VERSION_PATCH  0u
-#define FS_IMAGE_FILE_VERSION_REVISION  0u
+#define FS_IMAGE_FILE_VERSION_REVISION  3u
 
-#define FS_IMAGE_FILE_NAME "demo_1_2_pixeldata_1_1_0_0"
+#define FS_IMAGE_FILE_NAME "demo_1_2_pixeldata_1_1_0_3.bin"
 
 #ifdef __cplusplus
 }

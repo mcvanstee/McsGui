@@ -17,11 +17,11 @@ static inline void display_hal_writeGpioBus(const uint16_t data, const int32_t l
 void display_hal_init(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-    GPIO_InitStruct.Pin = GPIO_PIN_5 | GPIO_PIN_7;
+    GPIO_InitStruct.Pin = GPIO_PIN_3;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
     display_hal_chipSelectHigh();
     display_hal_dataMode();
@@ -80,13 +80,13 @@ void display_hal_stopDataTransmission(void)
 static inline void display_hal_writeGpioBus(const uint16_t data, const int32_t length)
 {
     GPIOE->BSRR = (~data << 16) | data; // Set data pins
-    GPIOA->BRR = (uint32_t)GPIO_PIN_5; // Set CLK low
+    GPIOF->BRR = (uint32_t)GPIO_PIN_3; // Set CLK low
 
     for (int32_t i = 0; i < length; i++)
     {
         // Toggle CLK
-        GPIOA->BSRR = (uint32_t) GPIO_PIN_5; // Set CLK high
-        GPIOA->BRR = (uint32_t) GPIO_PIN_5;  // Set CLK low
+        GPIOF->BSRR = (uint32_t) GPIO_PIN_3; // Set CLK high
+        GPIOF->BRR = (uint32_t) GPIO_PIN_3;  // Set CLK low
     }
 }
 

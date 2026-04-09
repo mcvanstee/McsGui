@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>McsGui_Demo_5</Name>
-  <ProjectFolder>C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_5</ProjectFolder>
   <UserSourceFolder />
   <Instructions>
     <ConverterInstruction xsi:type="FontInstruction">
@@ -417,6 +416,11 @@
             </TextStyleIDs>
           </TextRecord>
         </Records>
+        <ColumnWidths>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+        </ColumnWidths>
         <TranslationProperty>
           <Name />
           <Description />
@@ -424,7 +428,7 @@
         </TranslationProperty>
         <Translate>false</Translate>
       </Table>
-      <DataLocationId>1</DataLocationId>
+      <DataLocationId>0</DataLocationId>
     </ConverterInstruction>
     <ConverterInstruction xsi:type="TextInstruction">
       <Name>Text translate</Name>
@@ -585,7 +589,7 @@
               <string>Accent color</string>
               <string>Accent kleur</string>
               <string>Farbe der Akzente</string>
-              <string>Couleur d'accentuation</string>
+              <string>Couleur d'accent</string>
               <string>Color de acento</string>
               <string>Colore d'accento</string>
               <string>Акцентный цвет</string>
@@ -822,6 +826,20 @@
             </TextStyleIDs>
           </TextRecord>
         </Records>
+        <ColumnWidths>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+        </ColumnWidths>
         <TranslationProperty>
           <Name>C</Name>
           <Description />
@@ -1156,9 +1174,9 @@
     <VersionMajor>1</VersionMajor>
     <VersionMinor>0</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>74</VersionRevision>
+    <VersionRevision>114</VersionRevision>
     <GuiPixelDataFile>demo5_pixeldata</GuiPixelDataFile>
-    <CreateDebugFiles>false</CreateDebugFiles>
+    <LogVerbose>true</LogVerbose>
     <CopySourceFiles>false</CopySourceFiles>
     <PixelDataFormat>
       <PixelFormat>RGB565</PixelFormat>
@@ -1169,7 +1187,7 @@
       <DataLocation>
         <LocationID>0</LocationID>
         <Name>SD</Name>
-        <DataLocationType>File</DataLocationType>
+        <DataLocationType>File_1</DataLocationType>
         <CompressionType>RLE</CompressionType>
       </DataLocation>
       <DataLocation>

@@ -16,7 +16,7 @@
 #include "fs_file_search.h"
 #include "fs_font_search.h"
 #include "fs_version.h"
-#include "fs_pixeldata.h"
+#include "fs_pixeldata_rle_a.h"
 #include "Graphics/gui_graphics_api.h"
 #include "Core/gui_log.h"
 
@@ -129,18 +129,18 @@ static void gui_image_drawImageFromSD_RLE(
 
     while (pixelsToTransfer > 0)
     {
-        uint8_t pixeldata[6] = {0};
+        uint8_t pixeldata[3] = {0};
         UINT bytesRead = 0;
         f_read(&m_imageFile, pixeldata, sizeof(pixeldata), &bytesRead);
 
-        uint32_t *p_noOfPixels = (uint32_t*)&pixeldata[0];
-        uint16_t *p_color = (uint16_t*)&pixeldata[4];
+        uint8_t noOfPixels = pixeldata[0];
+        uint16_t *p_color = (uint16_t*)&pixeldata[1];
 
-        display_hal_writePixels(*p_color, *p_noOfPixels);
+        display_hal_writePixels(*p_color, noOfPixels);
 
-        if (pixelsToTransfer > *p_noOfPixels)
+        if (pixelsToTransfer > noOfPixels)
         {
-            pixelsToTransfer -= *p_noOfPixels;
+            pixelsToTransfer -= noOfPixels;
         }
         else
         {
@@ -170,7 +170,7 @@ static void gui_image_drawImageFromSD_RLE_A(
         UINT bytesRead = 0;
         f_read(&m_imageFile, pixeldata, sizeof(pixeldata), &bytesRead);
 
-        const uint16_t noOfPixels = (pixeldata[0] + 1);
+        const uint16_t noOfPixels = pixeldata[0];
         const uint8_t pixel = pixeldata[1];
         const uint16_t color = fs_getPixelColor(foreColor, backColor, pixel);
 

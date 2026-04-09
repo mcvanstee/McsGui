@@ -17,7 +17,7 @@ extern "C" {
 #include <stdint.h>
 
 #ifndef FS_PIXEL_DATA_CRC
-#define FS_PIXEL_DATA_CRC 4119475913u
+#define FS_PIXEL_DATA_CRC 1343025040u
 #endif
 
 #define FS_FILES 864

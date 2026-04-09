@@ -6,8 +6,8 @@
  *
  */
 
-#ifndef FS_PIXELDATA_H_
-#define FS_PIXELDATA_H_
+#ifndef FS_PIXELDATA_RLE_A_H_
+#define FS_PIXELDATA_RLE_A_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,4 +34,4 @@ uint16_t fs_getPixelColor(const uint32_t foreColor, const uint32_t backColor, co
 }
 #endif /*__cplusplus*/
 
-#endif /*FS_PIXELDATA_H_*/
+#endif /*FS_PIXELDATA_RLE_A_H_*/

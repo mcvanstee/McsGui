@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>McsGui_Demo_3</Name>
-  <ProjectFolder>C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_3</ProjectFolder>
   <UserSourceFolder />
   <Instructions>
     <ConverterInstruction xsi:type="FontInstruction">
@@ -678,6 +677,20 @@
             </TextStyleIDs>
           </TextRecord>
         </Records>
+        <ColumnWidths>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+          <int>60</int>
+        </ColumnWidths>
         <TranslationProperty>
           <Name>A</Name>
           <Description />
@@ -829,6 +842,7 @@
             </TextStyleIDs>
           </TextRecord>
         </Records>
+        <ColumnWidths />
         <TranslationProperty>
           <Name />
           <Description />
@@ -1550,9 +1564,9 @@
     <VersionMajor>2</VersionMajor>
     <VersionMinor>1</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>1</VersionRevision>
+    <VersionRevision>2</VersionRevision>
     <GuiPixelDataFile>demo_3_pixeldata</GuiPixelDataFile>
-    <CreateDebugFiles>false</CreateDebugFiles>
+    <LogVerbose>true</LogVerbose>
     <CopySourceFiles>false</CopySourceFiles>
     <PixelDataFormat>
       <PixelFormat>RGB565</PixelFormat>
@@ -1563,7 +1577,7 @@
       <DataLocation>
         <LocationID>0</LocationID>
         <Name>SD</Name>
-        <DataLocationType>File</DataLocationType>
+        <DataLocationType>File_1</DataLocationType>
         <CompressionType>None</CompressionType>
       </DataLocation>
       <DataLocation>

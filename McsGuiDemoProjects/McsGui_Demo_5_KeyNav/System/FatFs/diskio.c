@@ -36,6 +36,7 @@ extern SD_HandleTypeDef hsd1;
 
 static inline DSTATUS SD_CheckStatus(BYTE lun);
 static inline uint8_t BSP_SD_GetCardState(void);
+static inline void BSP_SD_GetCardInfo(BSP_SD_CardInfo *CardInfo);
 static inline uint8_t BSP_SD_Init(void);
 
 
@@ -161,21 +162,21 @@ DRESULT disk_ioctl (
 
       /* Get number of sectors on the disk (DWORD) */
       case GET_SECTOR_COUNT :
-        HAL_SD_GetCardInfo(&hsd1, &CardInfo);
+        BSP_SD_GetCardInfo(&CardInfo);
         *(DWORD*)buff = CardInfo.LogBlockNbr;
         res = RES_OK;
         break;
 
       /* Get R/W sector size (WORD) */
       case GET_SECTOR_SIZE :
-        HAL_SD_GetCardInfo(&hsd1, &CardInfo);
+        BSP_SD_GetCardInfo(&CardInfo);
         *(WORD*)buff = CardInfo.LogBlockSize;
         res = RES_OK;
         break;
 
       /* Get erase block size in unit of sector (DWORD) */
       case GET_BLOCK_SIZE :
-        HAL_SD_GetCardInfo(&hsd1, &CardInfo);
+        BSP_SD_GetCardInfo(&CardInfo);
         *(DWORD*)buff = CardInfo.LogBlockSize / SD_DEFAULT_BLOCK_SIZE;
         res = RES_OK;
         break;
@@ -212,6 +213,12 @@ static inline uint8_t BSP_SD_GetCardState(void)
     return ((HAL_SD_GetCardState(&hsd1) == HAL_SD_CARD_TRANSFER) ? SD_TRANSFER_OK : SD_TRANSFER_BUSY);
 }
 
+static inline void BSP_SD_GetCardInfo(BSP_SD_CardInfo *CardInfo)
+{
+  /* Get SD card Information */
+  HAL_SD_GetCardInfo(&hsd1, CardInfo);
+}
+
 static inline uint8_t BSP_SD_Init(void)
 {
   uint8_t sd_state = MSD_OK;
@@ -230,3 +237,4 @@ static inline uint8_t BSP_SD_Init(void)
 
   return sd_state;
 }
+

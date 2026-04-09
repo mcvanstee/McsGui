@@ -205,7 +205,7 @@ void gui_app_drawFooterBackground(void)
 
 static void gui_app_initDisplay(void)
 {
-    display_init(DisplayDriver_ILI9486, STYLE_DISPLAY_HEIGHT, STYLE_DISPLAY_WIDTH, LandscapeFlip, false);
+    display_init(DisplayDriver_ILI9486, STYLE_DISPLAY_HEIGHT, STYLE_DISPLAY_WIDTH, Landscape, false);
     display_setBacklight(DISPLAY_DEFAULT_BRIGTHNESS);
 
 #ifdef USE_DISPLAY_AND_SD_CARD
