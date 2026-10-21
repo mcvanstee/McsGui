@@ -87,7 +87,7 @@ void slider_init(Slider_s *p_slider)
 {
     base_initParentComp(&p_slider->base, slider_delete);
     base_setOnDisplay(&p_slider->base, slider_onDisplay);
-    base_setDimensions(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
+    base_setSize(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
 
     button_init(&p_slider->minusButton);
     button_init(&p_slider->plusButton);
@@ -96,10 +96,10 @@ void slider_init(Slider_s *p_slider)
     base_addTouch(&p_slider->minusButton, &p_slider->minusTouch);
     base_addTouch(&p_slider->plusButton, &p_slider->plusTouch);
 
-    base_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_PANE_MINUS);
-    base_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PANE_PLUS);
-    base_setDimensions(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
-    base_setDimensions(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    button_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_PANE_MINUS);
+    button_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PANE_PLUS);
+    button_setSize(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    button_setSize(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
 
     button_setOnReleased(&p_slider->minusButton, slider_decreaseValue);
     button_setOnReleased(&p_slider->plusButton, slider_increaseValue);
@@ -190,16 +190,16 @@ static void slider_onDisplay(BaseComponent_s *p_base)
 
     if (p_slider->value == p_slider->minValue)
     {
-        base_display(&barRight);
+        rectangle_display(&barRight);
     }
     else if (p_slider->value == p_slider->maxValue)
     {
-        base_display(&barLeft);
+        rectangle_display(&barLeft);
     }
     else
     {
-        base_display(&barLeft);
-        base_display(&barRight);
+        rectangle_display(&barLeft);
+        rectangle_display(&barRight);
     }
 
     slider_displayKnob(p_slider);
@@ -234,11 +234,11 @@ static void slider_displayValue(Slider_s *p_slider)
 	textblock_init(&textBlock);
 	textblock_setFont(&textBlock, theme_getDefaultFont());
 	textblock_setFontBackColor(&textBlock, theme_getPaneColor());
-	base_setTransparent(&textBlock, false);
-	base_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT + 8));
-	base_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
+	textblock_setDrawBackground(&textBlock, true);
+	textblock_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT + 8));
+	textblock_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
 	snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%d %s", p_slider->value, "%");
-	base_display(&textBlock);
+	textblock_display(&textBlock);
 }
 
 static void slider_displayKnob(Slider_s *p_slider)
@@ -250,7 +250,7 @@ static void slider_displayKnob(Slider_s *p_slider)
     label_init(&label);
     label_initBmpPos(&label, FILE_KEY_BUTTON_SLIDER, knobX, knobY);
     theme_applyThemeProperty(&label);
-    base_display(&label);
+    label_display(&label);
 }
 
 static void slider_decreaseValue(Button_s *p_button)
@@ -268,7 +268,7 @@ static void slider_decreaseValue(Button_s *p_button)
                 &rect, theme_getPaneColor(),
                 knobX + 2, knobY,
                 knobX1 - knobX, GUI_SLIDER_KNOB_HEIGHT);
-        base_display(&rect);
+        rectangle_display(&rect);
 
         p_slider->value -= p_slider->step;
         base_display(&p_slider->base);
@@ -295,7 +295,7 @@ static void slider_increaseValue(Button_s *p_button)
                 &rect, theme_getPaneColor(),
                 knobX, knobY,
                 knobX1 - knobX, GUI_SLIDER_KNOB_HEIGHT);
-        base_display(&rect);
+        rectangle_display(&rect);
 
         p_slider->value += p_slider->step;
         base_display(&p_slider->base);

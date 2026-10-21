@@ -87,19 +87,21 @@ const static KeyboardBtn_s kb_btnRow4[] = {
 
 void keyboard_init(Keyboard_s *p_keyboard)
 {
-    textblock_init(&p_keyboard->textBlock);
-    textblock_setFont(&p_keyboard->textBlock, theme_getKeyboardFont());
-    textblock_setFontForeColor(&p_keyboard->textBlock, theme_getPaneTextColor());
-    textblock_setFontBackColor(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
-    textblock_setHorizontalTextAlignment(&p_keyboard->textBlock, Text_Align_Left);
-    base_setDimensions(p_keyboard, 430, 23);
-    base_setPosition(p_keyboard, 25, 32);
-    base_setTransparent(p_keyboard, false);
+    TextBlock_s *p_textBlock = &p_keyboard->textBlock;
+
+    textblock_init(p_textBlock);
+    textblock_setFont(p_textBlock, theme_getKeyboardFont());
+    textblock_setFontForeColor(p_textBlock, theme_getPaneTextColor());
+    textblock_setFontBackColor(p_textBlock, theme_keyboard_getTextBackColor());
+    textblock_setTextHorizontalAlignment(p_textBlock, Text_Align_Left);
+    textblock_setSize(p_textBlock, 430, 23);
+    textblock_setPosition(p_textBlock, 25, 32);
+    textblock_setDrawBackground(p_textBlock, true);
 
     p_keyboard->keyboardType = LowerCase;
-    base_setOnDisplay(&p_keyboard->textBlock.base, keyboard_onDisplay);
-    base_setOnDelete(&p_keyboard->textBlock.base, keyboard_delete);
-    base_setOnHandleEvent(&p_keyboard->textBlock.base, keyboard_handleEvent);
+    base_setOnDisplay(&p_textBlock->base, keyboard_onDisplay);
+    base_setOnDelete(&p_textBlock->base, keyboard_delete);
+    base_setOnHandleEvent(&p_textBlock->base, keyboard_handleEvent);
     base_setFocus(p_keyboard, true);
 
     p_keyboard->selectedBtnIndex = 0;
@@ -146,7 +148,7 @@ static void keyboard_onDisplay(BaseComponent_s *p_baseComponent)
     Label_s textbox;
     label_initBmpPos(&textbox, FILE_KEY_KEYBOARD_TEXTBOX, 0, 0);
     theme_setThemeProperty(&textbox);
-    base_display(&textbox);
+    label_display(&textbox);
     graphics_displayComponent(p_baseComponent); // display text
 
     keyboard_showKeyboard(p_keyboard);
@@ -360,9 +362,9 @@ static bool keyboard_handleBtnEnterPress(Keyboard_s *p_keyboard)
         if (textLength > 0)
         {
             p_keyboard->textBlock.text[textLength - 1] = 0;
-            base_setTransparent(&p_keyboard->textBlock, false);
+            textblock_setDrawBackground(&p_keyboard->textBlock, true);
             graphics_displayComponent(&p_keyboard->textBlock.base); // display text
-            base_setTransparent(&p_keyboard->textBlock, true);
+            textblock_setDrawBackground(&p_keyboard->textBlock, false);
             keyboard_textNotifyChanged(p_keyboard);
         }
     }
@@ -531,7 +533,7 @@ static void keyboard_showCursor(GuiPoint_s *p_point, GuiSize_s *p_size)
             &cursor, p_point->x - 2, p_point->y - 2,
             p_size->width + 4, p_size->height + 4, 2, theme_getCursorColor());
     rectangle_setRadius(&cursor, 5);
-    base_display(&cursor);
+    rectangle_display(&cursor);
 }
 
 static void keyboard_showKeyboard(Keyboard_s *p_keyboard)
@@ -541,7 +543,7 @@ static void keyboard_showKeyboard(Keyboard_s *p_keyboard)
     Label_s keyboard;
     label_initBmpPos(&keyboard, kbBmp, 0, 84);
     theme_setThemeProperty(&keyboard);
-    base_display(&keyboard);
+    label_display(&keyboard);
 }
 
 static void keyboard_removeCursor(GuiPoint_s *p_point, GuiSize_s *p_size)
@@ -551,5 +553,5 @@ static void keyboard_removeCursor(GuiPoint_s *p_point, GuiSize_s *p_size)
             &cursor, p_point->x - 2, p_point->y - 2,
             p_size->width + 4, p_size->height + 4, 2, theme_getBackgroundColor());
     rectangle_setRadius(&cursor, 5);
-    base_display(&cursor);
+    rectangle_display(&cursor);
 }

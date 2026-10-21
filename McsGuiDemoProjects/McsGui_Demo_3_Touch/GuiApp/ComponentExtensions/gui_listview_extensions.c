@@ -6,7 +6,7 @@ void listview_ext_activeItemChanged(ListView_s *p_listView)
 
     if (viewWindowChanged)
     {
-        base_display(p_listView);
+        listview_display(p_listView);
 
         return;
     }

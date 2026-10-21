@@ -77,14 +77,16 @@ void spinner_input_delete(BaseComponent_s *p_spinnerInputBase)
 
 void spinner_input_init(SpinnerInput_s *p_spinnerInput)
 {
-    textblock_init(&p_spinnerInput->valueTextBlock);
-    textblock_setFont(&p_spinnerInput->valueTextBlock, FONT_KEY_ROBOTO_36_B);
-    textblock_setFontBackColor(&p_spinnerInput->valueTextBlock, theme_getPaneColor());
-    base_setTransparent(&p_spinnerInput->valueTextBlock, false);
-    base_setOnDelete(p_spinnerInput, spinner_input_delete);
-    base_setOnDisplay(p_spinnerInput, spinner_input_onDisplay);
-    base_setOnFocusChanged(p_spinnerInput, spinner_input_focusChanged);
-    base_setOnHandleEvent(p_spinnerInput, spinner_input_handleEvent);
+    TextBlock_s *p_valueTextBlock = &p_spinnerInput->valueTextBlock;
+
+    textblock_init(p_valueTextBlock);
+    textblock_setFont(p_valueTextBlock, FONT_KEY_ROBOTO_36_B);
+    textblock_setFontBackColor(p_valueTextBlock, theme_getPaneColor());
+    textblock_setDrawBackground(p_valueTextBlock, true);
+    base_setOnDelete(&p_valueTextBlock->base, spinner_input_delete);
+    base_setOnDisplay(&p_valueTextBlock->base, spinner_input_onDisplay);
+    base_setOnFocusChanged(&p_valueTextBlock->base, spinner_input_focusChanged);
+    base_setOnHandleEvent(&p_valueTextBlock->base, spinner_input_handleEvent);
 
     keynav_init(&p_spinnerInput->keyNavigation);
     base_addKeyNavigation(p_spinnerInput, &p_spinnerInput->keyNavigation);
@@ -226,8 +228,8 @@ static void spinner_input_displayUpValue(SpinnerInput_s *p_spinnerInput)
     anchor_setBottomAnchor(&upValueTb, p_spinnerInput, Gui_Anchor_Top);
     anchor_setHorizontalCenter(&upValueTb, p_spinnerInput);
 
-    base_display(&upValueTb);
-    p_spinnerInput->upTbSize = base_getSize(&upValueTb);
+    textblock_display(&upValueTb);
+    p_spinnerInput->upTbSize = base_getGuiSize(&upValueTb.base);
 }
 
 static void spinner_input_displayDownValue(SpinnerInput_s *p_spinnerInput)
@@ -246,15 +248,15 @@ static void spinner_input_displayDownValue(SpinnerInput_s *p_spinnerInput)
     anchor_setTopAnchor(&downValueTb, p_spinnerInput, Gui_Anchor_Bottom);
     anchor_setHorizontalCenter(&downValueTb, p_spinnerInput);
 
-    base_display(&downValueTb);
-    p_spinnerInput->downTbSize = base_getSize(&downValueTb);
+    textblock_display(&downValueTb);
+    p_spinnerInput->downTbSize = base_getGuiSize(&downValueTb.base);
 }
 
 static void spinner_input_initUpDownTextblock(TextBlock_s *p_textBlock, const GuiSize_s size)
 {
     textblock_initTextSize(p_textBlock, "", size.width, size.height);
     textblock_setFontAndColor(p_textBlock, FONT_KEY_ROBOTO_22_R, theme_getPaneTextColor(), theme_getPaneColor());
-    base_setTransparent(p_textBlock, false);
+    textblock_setDrawBackground(p_textBlock, true);
 }
 
 static void spinner_input_increaseValue(SpinnerInput_s *p_spinnerInput)

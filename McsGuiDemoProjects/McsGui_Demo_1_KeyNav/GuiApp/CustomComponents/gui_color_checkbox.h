@@ -16,5 +16,6 @@ ColorCheckbox_s *color_checkbox_newInit(void);
 void color_checkbox_delete(BaseComponent_s *p_colorCheckboxBase);
 void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox);
 void color_checkbox_setColor(ColorCheckbox_s *p_colorCheckbox, Color_t color);
+void color_checkbox_setId(ColorCheckbox_s *p_colorCheckbox, const uint8_t id);
 
 #endif /* CUSTOMCOMPONENTS_GUI_COLOR_CHECKBOX_H_ */

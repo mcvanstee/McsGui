@@ -73,14 +73,16 @@ void checkbox_label_delete(BaseComponent_s *p_checkboxLabelBase)
 
 void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
 {
-    checkbox_init(&p_checkboxLabel->checkBox);
+    Checkbox_s *p_checkbox = &p_checkboxLabel->checkBox;
+
+    checkbox_init(p_checkbox);
     p_checkboxLabel->label = FILE_KEY_NONE;
-    base_setDimensions(p_checkboxLabel, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
-    base_setOnDelete(p_checkboxLabel, checkbox_label_delete);
-    base_setOnDisplay(p_checkboxLabel, checkbox_label_onDisplay);
+    checkbox_setSize(p_checkbox, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+    base_setOnDelete(&p_checkbox->base, checkbox_label_delete);
+    base_setOnDisplay(&p_checkbox->base, checkbox_label_onDisplay);
     touch_init(&p_checkboxLabel->touch);
     base_addTouch(&p_checkboxLabel->checkBox, &p_checkboxLabel->touch);
-    checkbox_setOnSelectionChanged(&p_checkboxLabel->checkBox, checkbox_label_selectionChanged);
+    checkbox_setOnSelectionChanged(p_checkbox, checkbox_label_selectionChanged);
 }
 
 void checkbox_label_initLabel(CheckboxLabel_s *p_checkboxLabel, file_key_e label)
@@ -102,22 +104,22 @@ static void checkbox_label_onDisplay(BaseComponent_s *p_baseComponent)
     Label_s label;
     label_initBmpPos(&label, p_checkboxLabel->label, p_baseComponent->x, p_baseComponent->y);
     theme_applyThemeProperty(&label);
-    base_setHeight(&label, CHECKBOX_HEIGHT);
-    base_setHorizontalAlignment(&label.base, Gui_Align_Left);
-    base_setLeftPadding(&label.base, 30);
+    label_setHeight(&label, CHECKBOX_HEIGHT);
+    label_setBmpHorizontalAlignment(&label, Gui_Align_Left);
+    label_setBmpLeftPadding(&label, 30);
     gui_app_translate(&label);
-    base_display(&label);
+    label_display(&label);
 }
 
 static void checkbox_label_updateSelection(Checkbox_s *p_checkbox)
 {
     const uint32_t icon = p_checkbox->checked ? FILE_KEY_ICON_PANE_RADIO_BUTTON_CHECKED : FILE_KEY_ICON_PANE_RADIO_BUTTON_UNCHECKED;
-    base_setBmpKey(p_checkbox, icon);
+    checkbox_setBmpKey(p_checkbox, icon);
 }
 
 static void checkbox_label_selectionChanged(Checkbox_s *p_checkbox)
 {
     checkbox_label_updateSelection(p_checkbox);
-    base_display(p_checkbox);
+    checkbox_display(p_checkbox);
 }
 

@@ -49,12 +49,12 @@ static void stv_create(View_s *p_view)
     DigitInput_s *p_hh1 = digit_input_newInit();
     digit_input_setValue(p_hh1, hh1);
     digit_input_setMaxValue(p_hh1, 2);
-    base_setId(p_hh1, STV_INPUT_HH_1_ID);
+    digit_input_setId(p_hh1, STV_INPUT_HH_1_ID);
     row_addComponent(p_timeInput, p_hh1);
 
     DigitInput_s *p_hh2 = digit_input_newInit();
     digit_input_setValue(p_hh2, hh2);
-    base_setId(p_hh2, STV_INPUT_HH_2_ID);
+    digit_input_setId(p_hh2, STV_INPUT_HH_2_ID);
     row_addComponent(p_timeInput, p_hh2);
 
     TextBlock_s *p_colon = textblock_newInit();
@@ -65,12 +65,12 @@ static void stv_create(View_s *p_view)
     DigitInput_s *p_mm1 = digit_input_newInit();
     digit_input_setValue(p_mm1, mm1);
     digit_input_setMaxValue(p_mm1, 5);
-    base_setId(p_mm1, STV_INPUT_MM_1_ID);
+    digit_input_setId(p_mm1, STV_INPUT_MM_1_ID);
     row_addComponent(p_timeInput, p_mm1);
 
     DigitInput_s *p_mm2 = digit_input_newInit();
     digit_input_setValue(p_mm2, mm2);
-    base_setId(p_mm2, STV_INPUT_MM_2_ID);
+    digit_input_setId(p_mm2, STV_INPUT_MM_2_ID);
     row_addComponent(p_timeInput, p_mm2);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);

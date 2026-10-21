@@ -19,9 +19,8 @@ static void iv_create(View_s *p_view)
 
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     view_addComponent(p_view, p_item);
 
     NumberInput_s *p_numberInput = num_input_newInit();

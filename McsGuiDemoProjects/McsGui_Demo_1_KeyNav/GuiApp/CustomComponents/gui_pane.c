@@ -76,29 +76,29 @@ void pane_init(Pane_s *p_pane)
     base_initParentComp(&p_pane->base, pane_delete);
     base_setOnDisplay(&p_pane->base, pane_onDisplay);
     base_setPosition(&p_pane->base, GUI_PANE_X, GUI_PANE_Y);
-    base_setDimensions(&p_pane->base, GUI_PANE_WIDTH, GUI_PANE_HEIGHT);
+    base_setSize(&p_pane->base, GUI_PANE_WIDTH, GUI_PANE_HEIGHT);
 }
 
 static void pane_onDisplay(BaseComponent_s *p_base)
 {
     Rectangle_s background;
     rectangle_init(&background);
-    rectangle_showBorderOnly(&background, true);
+    rectangle_setShowBorderOnly(&background, true);
     rectangle_setBorderThickness(&background, GUI_PANE_BORDER_THICKNESS);
     rectangle_setBorderColor(&background, theme_getBackgroundColor());
-    base_setDimensions(&background, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
-    base_setPosition(&background, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_display(&background);
+    rectangle_setSize(&background, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    rectangle_setPosition(&background, STYLE_VIEW_X, STYLE_VIEW_Y);
+    rectangle_display(&background);
 
     Rectangle_s paneBorder;
     rectangle_init(&paneBorder);
-    rectangle_showBorderOnly(&paneBorder, true);
+    rectangle_setShowBorderOnly(&paneBorder, true);
     rectangle_setBorderThickness(&paneBorder, 1);
     rectangle_setBorderColor(&paneBorder, theme_getPaneBorderColor());
     rectangle_setRadius(&paneBorder, 5);
-    base_setDimensions(&paneBorder, p_base->width, p_base->height);
-    base_setPosition(&paneBorder, p_base->x + 1, p_base->y + 1);
-    base_display(&paneBorder);
+    rectangle_setSize(&paneBorder, p_base->width, p_base->height);
+    rectangle_setPosition(&paneBorder, p_base->x + 1, p_base->y + 1);
+    rectangle_display(&paneBorder);
 
     Rectangle_s paneBackground;
     rectangle_initFillPosSize(
@@ -106,5 +106,5 @@ static void pane_onDisplay(BaseComponent_s *p_base)
             p_base->x, p_base->y,
             p_base->width, p_base->height);
     rectangle_setRadius(&paneBackground, 5);
-    base_display(&paneBackground);
+    rectangle_display(&paneBackground);
 }

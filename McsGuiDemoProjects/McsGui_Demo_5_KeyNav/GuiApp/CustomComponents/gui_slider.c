@@ -76,7 +76,7 @@ void slider_init(Slider_s *p_slider)
     base_setOnDisplay(&p_slider->base, slider_onDisplay);
     base_setOnFocusChanged(&p_slider->base, slider_focusChanged);
     base_setOnHandleEvent(&p_slider->base, slider_handleEvent);
-    base_setDimensions(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
+    base_setSize(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
 
     keynav_init(&p_slider->keyNavigation);
     base_addKeyNavigation(&p_slider->base, &p_slider->keyNavigation);
@@ -164,16 +164,16 @@ static void slider_onDisplay(BaseComponent_s *p_base)
 
     if (p_slider->value == p_slider->minValue)
     {
-        base_display(&barRight);
+        rectangle_display(&barRight);
     }
     else if (p_slider->value == p_slider->maxValue)
     {
-        base_display(&barLeft);
+        rectangle_display(&barLeft);
     }
     else
     {
-        base_display(&barLeft);
-        base_display(&barRight);
+        rectangle_display(&barLeft);
+        rectangle_display(&barRight);
     }
 
     slider_displayKnob(p_slider);
@@ -188,7 +188,7 @@ static void slider_displayKnob(Slider_s *p_slider)
     label_init(&label);
     label_initBmpPos(&label, FILE_KEY_BUTTON_SLIDER, knobX, knobY);
     theme_setThemeProperty(&label);
-    base_display(&label);
+    label_display(&label);
 }
 
 static void slider_focusChanged(BaseComponent_s *p_base)
@@ -215,7 +215,7 @@ static bool slider_handleEvent(BaseComponent_s *p_sliderBase, const GuiEvent_s *
                     &rect, theme_getPaneColor(),
                     knobX + 2, knobY,
                     knobX1 - knobX, GUI_SLIDER_KNOB_HEIGHT);
-            base_display(&rect);
+            rectangle_display(&rect);
 
             p_slider->value -= p_slider->step;
             base_display(p_sliderBase);
@@ -239,7 +239,7 @@ static bool slider_handleEvent(BaseComponent_s *p_sliderBase, const GuiEvent_s *
                     &rect, theme_getPaneColor(),
                     knobX, knobY,
                     knobX1 - knobX, GUI_SLIDER_KNOB_HEIGHT);
-            base_display(&rect);
+            rectangle_display(&rect);
 
             p_slider->value += p_slider->step;
             base_display(p_sliderBase);

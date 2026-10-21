@@ -71,9 +71,9 @@ static void ctv_create(View_s *p_view)
 	textblock_initText(p_pointTB, "(x, y) = (0, 0)");
 	textblock_setFont(p_pointTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 	textblock_setFontBackColor(p_pointTB, CTV_BACKGROUND_COLOR);
-	base_setWidth(p_pointTB, 200);
-	base_setTransparent(p_pointTB,  false);
-	base_setId(p_pointTB, CTB_POINT_TEXTBLOCK_ID);
+	textblock_setWidth(p_pointTB, 200);
+	textblock_setDrawBackground(p_pointTB, true);
+	textblock_setId(p_pointTB, CTB_POINT_TEXTBLOCK_ID);
 	base_addNewInitAnchor(p_pointTB);
 	anchor_setCenterInParent(p_pointTB, p_instructionTB);
 	anchor_setTopMargin(p_pointTB, 20);
@@ -82,8 +82,8 @@ static void ctv_create(View_s *p_view)
 	textblock_initText(p_adcValuesTB, "ADC (x,y,z): (0, 0, 0)");
 	textblock_setFont(p_adcValuesTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 	textblock_setFontBackColor(p_adcValuesTB, CTV_BACKGROUND_COLOR);
-	base_setWidth(p_adcValuesTB, 200);
-	base_setId(p_adcValuesTB, CTB_ADC_VALUES_TEXTBLOCK_ID);
+	textblock_setWidth(p_adcValuesTB, 200);
+	textblock_setId(p_adcValuesTB, CTB_ADC_VALUES_TEXTBLOCK_ID);
 	base_addNewInitAnchor(p_adcValuesTB);
 	anchor_setTopAnchor(p_adcValuesTB, p_pointTB, Gui_Anchor_Bottom);
 	anchor_setHorizontalCenter(p_adcValuesTB, p_pointTB);
@@ -92,12 +92,11 @@ static void ctv_create(View_s *p_view)
 	textblock_initText(p_button, "Exit");
 	textblock_setFont(p_button, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 	textblock_setFontBackColor(p_button, COLOR_BACKGROUND);
-
-	base_setId(p_button, CTB_EXIT_BUTTON_TEXT_ID);
-	base_setDimensions(p_button, 100, 20);
+	textblock_setId(p_button, CTB_EXIT_BUTTON_TEXT_ID);
+	textblock_setSize(p_button, 100, 20);
+	textblock_setVisible(p_button, false);
+	textblock_setDrawBackground(p_button, true);
 	base_addNewInitAnchor(p_button);
-	base_setVisible(p_button, false);
-	base_setTransparent(p_pointTB,  false);
 	base_addNewInitTouch(p_button);
 	touch_setOnPressed(p_button->base.p_touch, cvt_exitCalibration);
 	anchor_setTopAnchor(p_button, p_adcValuesTB, Gui_Anchor_Bottom);
@@ -114,7 +113,7 @@ static void ctv_createCalibrationView(void)
 {
 	Rectangle_s background;
 	rectangle_initFillPosSize(&background, CTV_BACKGROUND_COLOR , 0, 0, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
-	base_display(&background);
+	rectangle_display(&background);
 
 	m_calibrationPointIndex = 0;
 	cvt_drawCalibrationCrosshair(p_1.x, p_1.y, CTV_CROSSHAIR_COLOR);
@@ -124,11 +123,11 @@ static void cvt_drawCalibrationCrosshair(uint16_t x, uint16_t y, Color_t color)
 {
 	Rectangle_s horizontalLine;
 	rectangle_initFillPosSize(&horizontalLine, color, x - (CTV_CROSSHAIR_SIZE / 2), y, CTV_CROSSHAIR_SIZE, 1);
-	base_display(&horizontalLine);
+	rectangle_display(&horizontalLine);
 
 	Rectangle_s verticalLine;
 	rectangle_initFillPosSize(&verticalLine, color, x, y - (CTV_CROSSHAIR_SIZE / 2), 1, CTV_CROSSHAIR_SIZE);
-	base_display(&verticalLine);
+	rectangle_display(&verticalLine);
 }
 
 static void cvt_handleEvent(View_s *p_view, GuiEvent_s *p_event)
@@ -180,8 +179,8 @@ static void cvt_handlePressed(GuiPoint_s pointPressed)
 			cvt_saveCalibrationValues();
 
 			TextBlock_s *p_buttonText = (TextBlock_s *)view_getComponentById(gui_app_getView(), CTB_EXIT_BUTTON_TEXT_ID);
-			base_setVisible(p_buttonText, true);
-			base_display(p_buttonText);
+			textblock_setVisible(p_buttonText, true);
+			textblock_display(p_buttonText);
 		}
 		else
 		{
@@ -217,7 +216,7 @@ static void cvt_updateTouchPointValues(View_s *p_view, GuiPoint_s pointPressed)
 			GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL,
 			"(x, y) = (%d, %d)",
 			pointPressed.x, pointPressed.y);
-	base_display(p_pointTB);
+	textblock_display(p_pointTB);
 
 	TouchADCValues_s adcValues = touch_dr_getAdcValues();
 
@@ -227,7 +226,7 @@ static void cvt_updateTouchPointValues(View_s *p_view, GuiPoint_s pointPressed)
 			GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL,
 			"ADC (x,y,z): (%d, %d, %d)",
 			adcValues.x, adcValues.y, adcValues.z);
-	base_display(p_adcValuesTB);
+	textblock_display(p_adcValuesTB);
 }
 
 static void cvt_showCalibrationResult(const bool passed)
@@ -236,10 +235,10 @@ static void cvt_showCalibrationResult(const bool passed)
 	textblock_initTextPos(&resultTB,
 			(passed ? "Calibration successful" : "Calibration failed"),
 			0, 150);
-	base_setWidth(&resultTB, STYLE_DISPLAY_WIDTH);
-	base_setBackground(&resultTB, CTV_BACKGROUND_COLOR);
+	textblock_setWidth(&resultTB, STYLE_DISPLAY_WIDTH);
+	textblock_setBackgroundColor(&resultTB, CTV_BACKGROUND_COLOR);
 	textblock_setFont(&resultTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-	base_display(&resultTB);
+	textblock_display(&resultTB);
 }
 
 static TouchCalibrationValues_s cvt_calculateCalibrationValues(void)

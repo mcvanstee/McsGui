@@ -4,17 +4,17 @@
 Row_s *gui_addFooterButtonRow(View_s *p_view)
 {
     Rectangle_s *p_rect = rectangle_newInit();
-    rectangle_showBorderOnly(p_rect, true);
+    rectangle_setShowBorderOnly(p_rect, true);
     rectangle_setBorderThickness(p_rect, 6);
     rectangle_setBorderColor(p_rect, theme_getFooterColor());
-    base_setDimensions(&p_rect->base, STYLE_DISPLAY_WIDTH - 10, 48);
-    base_setPosition(&p_rect->base, 5, 266);
+    rectangle_setSize(p_rect, STYLE_DISPLAY_WIDTH - 10, 48);
+    rectangle_setPosition(p_rect, 5, 266);
     view_addComponent(p_view, p_rect);
 
     Row_s *p_row = row_newInit();
     row_setSpacing(p_row, 10);
-    base_setBackground(p_row, theme_getBackgroundColor());
-    base_setTransparent(p_row, false);
+    row_setBackgroundColor(p_row, theme_getFooterColor());
+    row_setDrawBackground(p_row, true);
     base_addNewInitAnchor(p_row);
     anchor_setCenterInParent(p_row, p_rect);
     view_addComponent(p_view, p_row);

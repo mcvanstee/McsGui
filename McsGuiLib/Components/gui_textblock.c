@@ -6,6 +6,7 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
+static void textblock_delete(BaseComponent_s *p_textBlockBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticTextBMemInUse[GUI_CONFIG_TEXTBLOCK_BUFFER_SIZE] = {0};
@@ -60,7 +61,7 @@ TextBlock_s *textblock_newInit(void)
  * @param[in] p_textBlockBase Pointer to the TextBlock component to be freed.
  *
  */
-void textblock_delete(BaseComponent_s *p_textBlockBase)
+static void textblock_delete(BaseComponent_s *p_textBlockBase)
 {
     base_clear(p_textBlockBase);
 
@@ -90,6 +91,7 @@ void textblock_init(TextBlock_s *p_textBlock)
     base_initTextComp(&p_textBlock->base, p_textBlock->text, &p_textBlock->fontData, textblock_delete);
     p_textBlock->text[0] = '\0';
     p_textBlock->valueChanged = NULL;
+    p_textBlock->base.onHandleEvent = NULL;
 }
 
 
@@ -120,7 +122,7 @@ void textblock_initTextSize(
 {
 	textblock_init(p_textBlock);
 	strncpy(p_textBlock->text, p_text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH);
-	base_setDimensions(p_textBlock, width, height);
+	base_setSize(&p_textBlock->base, width, height);
 }
 
 
@@ -138,7 +140,7 @@ void textblock_initTextPos(
 {
     textblock_init(p_textBlock);
     strncpy(p_textBlock->text, p_text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH);
-    base_setPosition(p_textBlock, x, y);
+    base_setPosition(&p_textBlock->base, x, y);
 }
 
 
@@ -158,7 +160,7 @@ void textblock_initTextPosSize(
         const uint16_t width, const uint16_t height)
 {
     textblock_initTextPos(p_textBlock, p_text, x, y);
-    base_setDimensions(p_textBlock, width, height);
+    base_setSize(&p_textBlock->base, width, height);
 }
 
 
@@ -180,8 +182,8 @@ void textblock_initTextPosSizeBack(
         const Color_t color)
 {
     textblock_initTextPosSize(p_textBlock, p_text, x, y, width, height);
-    base_setBackground(p_textBlock, color);
-    base_setTransparent(p_textBlock, false);
+    p_textBlock->base.drawBackground = true;
+    p_textBlock->base.backgroundColor = color;
 }
 
 
@@ -194,11 +196,52 @@ void textblock_initTextPosSizeBack(
 void textblock_setText(TextBlock_s *p_textBlock, const char *p_text)
 {
 	strncpy(p_textBlock->text, p_text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH);
+}
 
-	if (p_textBlock->valueChanged != NULL)
+
+/**
+ * @brief Set the TextBlock text and notify value changed.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] p_text.
+ *
+ */
+void textblock_setTextNotifyChanged(TextBlock_s *p_textBlock, const char *p_text)
+{
+    strncpy(p_textBlock->text, p_text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH);
+
+    if (NULL != p_textBlock->valueChanged)
     {
-        p_textBlock->valueChanged();
+        p_textBlock->valueChanged(p_textBlock);
     }
+
+    if (NULL != p_textBlock->valueChangedEvent)
+    {
+        p_textBlock->valueChangedEvent();
+    }
+}
+
+
+/**
+ * @brief Set the TextBlock value changed callback function.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] valueChanged Callback function that is called when the text value of the TextBlock changes. The callback function receives a pointer to the TextBlock component as a parameter.
+ *
+ */
+void textblock_setValueChanged(TextBlock_s *p_textBlock, void (*valueChanged)(TextBlock_s *p_textBlock))
+{
+    p_textBlock->valueChanged = valueChanged;
+}
+
+
+/**
+ * @brief Set the TextBlock value changed event callback function.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] valueChangedEvent.
+ *
+ */
+void textblock_setValueChangedEvent(TextBlock_s *p_textBlock, void (*valueChangedEvent)(void))
+{
+    p_textBlock->valueChangedEvent = valueChangedEvent;
 }
 
 
@@ -214,6 +257,7 @@ void textblock_setFont(TextBlock_s *p_textBlock, const uint8_t font)
 }
 
 
+#if GUI_CONFIG_USE_BITMAP_COLORS
 /**
  * @brief Set the TextBlock font foreground color.
  * @param[in] p_textBlock Pointer to the TextBlock component.
@@ -235,7 +279,7 @@ void textblock_setFontForeColor(TextBlock_s *p_textBlock, const Color_t foreColo
 void textblock_setFontBackColor(TextBlock_s *p_textBlock, const Color_t backColor)
 {
     p_textBlock->fontData.backgroundColor = backColor;
-    base_setBackground(p_textBlock, backColor);
+    base_setBackgroundColor(&p_textBlock->base, backColor);
 }
 
 
@@ -252,20 +296,9 @@ void textblock_setFontAndColor(TextBlock_s *p_textBlock, const uint8_t font, con
     p_textBlock->fontData.font = font;
     p_textBlock->fontData.fontColor = foreColor;
     p_textBlock->fontData.backgroundColor = backColor;
-    base_setBackground(p_textBlock, backColor);
+    base_setBackgroundColor(&p_textBlock->base, backColor);
 }
-
-
-/**
- * @brief Set the TextBlock value changed callback function.
- * @param[in] p_textBlock Pointer to the TextBlock component.
- * @param[in] color.
- *
- */
-void textblock_setValueChanged(TextBlock_s *p_textBlock, void (*valueChanged)(void))
-{
-    p_textBlock->valueChanged = valueChanged;
-}
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 
 /**
@@ -290,7 +323,7 @@ void textblock_setTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e 
  */
 void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
 {
-    p_textBlock->base.horizontalAlignment = (uint8_t) alignment;
+    p_textBlock->base.horizontalAlignment = (uint8_t)alignment;
 }
 
 
@@ -302,7 +335,7 @@ void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAl
  */
 void textblock_setVerticalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
 {
-    p_textBlock->base.verticalAlignment = (uint8_t) alignment;
+    p_textBlock->base.verticalAlignment = (uint8_t)alignment;
 }
 
 
@@ -369,6 +402,142 @@ void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding
 void textblock_setBottomTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
 {
     p_textBlock->base.bottomPadding = padding;
+}
+
+
+/**
+ * @brief Display the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ *
+ */
+void textblock_display(TextBlock_s *p_textBlock)
+{
+    base_display(&p_textBlock->base);
+}
+
+
+/**
+ * @brief Set the TextBlock id.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] id Id of the TextBlock component.
+ *
+ */
+void textblock_setId(TextBlock_s *p_textBlock, const uint8_t id)
+{
+    if (id > 0)
+    {
+        p_textBlock->base.id = id;
+    }
+}
+
+
+/**
+ * @brief Set the TextBlock x-position.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] x x-position of the TextBlock component.
+ *
+ */
+void textblock_setX(TextBlock_s *p_textBlock, const uint16_t x)
+{
+    base_setX(&p_textBlock->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] y y-position of the TextBlock component.
+ *
+ */
+void textblock_setY(TextBlock_s *p_textBlock, const uint16_t y)
+{
+    base_setY(&p_textBlock->base, y);
+}
+
+
+/**
+ * @brief Set the width of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] width Width of the TextBlock component.
+ *
+ */
+void textblock_setWidth(TextBlock_s *p_textBlock, const uint16_t width)
+{
+    base_setWidth(&p_textBlock->base, width);
+}
+
+
+/**
+ * @brief Set the height of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] height Height of the TextBlock component.
+ *
+ */
+void textblock_setHeight(TextBlock_s *p_textBlock, const uint16_t height)
+{
+    base_setHeight(&p_textBlock->base, height);
+}
+
+
+/**
+ * @brief Set the position of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] x x-position of the TextBlock component.
+ * @param[in] y y-position of the TextBlock component.
+ *
+ */
+void textblock_setPosition(TextBlock_s *p_textBlock, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_textBlock->base, x, y);
+}
+
+
+/**
+ * @brief Set the size of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] width Width of the TextBlock component.
+ * @param[in] height Height of the TextBlock component.
+ *
+ */
+void textblock_setSize(TextBlock_s *p_textBlock, const uint16_t width, const uint16_t height)
+{
+    base_setSize(&p_textBlock->base, width, height);
+}
+
+
+/**
+ * @brief Set the visibility of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] visible true if the TextBlock component should be visible, false otherwise.
+ *
+ */
+void textblock_setVisible(TextBlock_s *p_textBlock, const bool visible)
+{
+    p_textBlock->base.visible = visible;
+}
+
+
+/**
+ * @brief Set the background color of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] color Background color of the TextBlock component.
+ *
+ */
+void textblock_setBackgroundColor(TextBlock_s *p_textBlock, const Color_t color)
+{
+    p_textBlock->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Set the drawBackground flag of the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] drawBackground If true, background is drawn when onDisplay is called.
+ *
+ */
+void textblock_setDrawBackground(TextBlock_s *p_textBlock, const bool drawBackground)
+{
+    p_textBlock->base.drawBackground = drawBackground;
 }
 
 

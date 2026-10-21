@@ -44,7 +44,7 @@ static void stv_create(View_s *p_view)
     num_input_setMinimumValue(p_hhInput, 0);
     num_input_setMaximumValue(p_hhInput, 23);
     num_input_setOrientation(p_hhInput, NumberInput_Orientation_Vertical);
-    base_setId(p_hhInput, STV_INPUT_HH_ID);
+    num_input_setId(p_hhInput, STV_INPUT_HH_ID);
     row_addComponent(p_timeInput, p_hhInput);
 
     TextBlock_s *p_colon = textblock_newInit();
@@ -57,7 +57,7 @@ static void stv_create(View_s *p_view)
     num_input_setMinimumValue(p_mmInput, 0);
     num_input_setMaximumValue(p_mmInput, 59);
     num_input_setOrientation(p_mmInput, NumberInput_Orientation_Vertical);
-    base_setId(p_mmInput, STV_INPUT_MM_ID);
+    num_input_setId(p_mmInput, STV_INPUT_MM_ID);
     row_addComponent(p_timeInput, p_mmInput);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);

@@ -68,8 +68,8 @@ void group_box_init(GroupBox_s *p_groupBox)
 			0, 0, 1, COLOR_SEPARATOR);
 	p_groupBox->title = FILE_KEY_NONE;
 	p_groupBox->titleHeightOffset = 0;
-	base_setOnDelete(p_groupBox, group_box_delete);
-	base_setOnDisplay(p_groupBox, group_box_onDisplay);
+	base_setOnDelete(&p_groupBox->rect.base, group_box_delete);
+	base_setOnDisplay(&p_groupBox->rect.base, group_box_onDisplay);
 }
 
 void group_box_setTitleHeightOffset(GroupBox_s *p_groupBox, int8_t offset)
@@ -82,11 +82,21 @@ void group_box_addComponent(GroupBox_s *p_groupBox, void *p_component)
 	base_addChild(&p_groupBox->rect.base, p_component);
 }
 
+void group_box_setId(GroupBox_s *p_groupBox, const uint8_t id)
+{
+    base_setId(&p_groupBox->rect.base, id);
+}
+
+void group_box_display(GroupBox_s *p_groupBox)
+{
+    base_display(&p_groupBox->rect.base);
+}
+
 GroupBox_s *group_box_newInitTitleSize(
 		file_key_e title, uint16_t width, uint16_t height)
 {
 	GroupBox_s *p_groupBox = group_box_newInit();
-	base_setDimensions(&p_groupBox->rect.base, width, height);
+	base_setSize(&p_groupBox->rect.base, width, height);
 	p_groupBox->title = title;
 
 	return p_groupBox;
@@ -97,7 +107,7 @@ GroupBox_s *group_box_newInitTitlePosSize(
 {
 	GroupBox_s *p_groupBox = group_box_newInit();
 	base_setPosition(&p_groupBox->rect.base, x, y);
-	base_setDimensions(&p_groupBox->rect.base, width, height);
+	base_setSize(&p_groupBox->rect.base, width, height);
 	p_groupBox->title = title;
 
 	return p_groupBox;
@@ -120,6 +130,6 @@ static void group_box_onDisplay(BaseComponent_s *p_base)
 	base_setPosition(&titleLabel.base, p_base->x + 10, y);
 
 	graphics_displayComponent(&p_groupBox->rect.base);
-	base_display(&titleLabel);
+	label_display(&titleLabel);
 }
 

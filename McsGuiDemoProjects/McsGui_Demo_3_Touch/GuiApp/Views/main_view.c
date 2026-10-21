@@ -43,14 +43,13 @@ static void mv_create(View_s *p_view)
     gui_app_clearView();
 	view_setHandleEvent(p_view, mv_updateTemp);
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
-	Pane_s *p_tempPane = pane_newInit();
+	Pane_s *p_tempPane = pane_new();
+	pane_initSize(p_tempPane, PANE_WIDTH, PANE_1_HEIGHT);
 	pane_setBorderPane(p_tempPane, true);
-	base_setDimensions(&p_tempPane->base, PANE_WIDTH, PANE_1_HEIGHT);
     base_addNewInitAnchor(p_tempPane);
     anchor_setTopAnchor(p_tempPane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_tempPane, p_item, Gui_Anchor_Left);
@@ -58,24 +57,24 @@ static void mv_create(View_s *p_view)
     anchor_setLeftMargin(p_tempPane, 10);
 	view_addComponent(p_view, p_tempPane);
 
-	Pane_s *p_paneHistory = pane_newInit();
-	base_setDimensions(&p_paneHistory->base, PANE_WIDTH, PANE_1_HEIGHT);
+	Pane_s *p_paneHistory = pane_new();
+	pane_initSize(p_paneHistory, PANE_WIDTH, PANE_1_HEIGHT);
 	pane_setBorderPane(p_paneHistory, true);
 	base_addNewInitAnchor(p_paneHistory);
 	anchor_setLeftAnchor(p_paneHistory, p_tempPane, Gui_Anchor_Left);
 	anchor_setTopAnchor(p_paneHistory, p_tempPane, Gui_Anchor_Bottom);
 	view_addComponent(p_view, p_paneHistory);
 
-	Pane_s *p_timePane = pane_newInit();
-	base_setDimensions(&p_timePane->base, PANE_WIDTH, PANE_2_HEIGHT);
+	Pane_s *p_timePane = pane_new();
+	pane_initSize(p_timePane, PANE_WIDTH, PANE_2_HEIGHT);
 	base_addNewInitAnchor(p_timePane);
 	anchor_setLeftAnchor(p_timePane, p_tempPane, Gui_Anchor_Right);
 	anchor_setTopAnchor(p_timePane, p_tempPane, Gui_Anchor_Top);
 	anchor_setLeftMargin(p_timePane, 11);
 	view_addComponent(p_view, p_timePane);
 
-	Pane_s *p_infoPane = pane_newInit();
-	base_setDimensions(&p_infoPane->base, PANE_WIDTH, PANE_2_HEIGHT);
+	Pane_s *p_infoPane = pane_new();
+	pane_initSize(p_infoPane, PANE_WIDTH, PANE_2_HEIGHT);
 	base_addNewInitAnchor(p_infoPane);
 	anchor_setLeftAnchor(p_infoPane, p_tempPane, Gui_Anchor_Right);
 	anchor_setTopAnchor(p_infoPane, p_timePane, Gui_Anchor_Bottom);
@@ -105,9 +104,9 @@ static void mv_tempPaneAddContent(Pane_s *p_pane)
     textblock_initTextSize(p_tempTextBlock, "-", 40, 24);
     textblock_setFont(p_tempTextBlock, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setFontBackColor(p_tempTextBlock, COLOR_BACKGROUND);
-    textblock_setHorizontalTextAlignment(p_tempTextBlock, Text_Align_Right);
-    base_setTransparent(p_tempTextBlock, false);
-    base_setId(p_tempTextBlock, MV_TEMP_TEXTBLOCK_ID);
+    textblock_setTextHorizontalAlignment(p_tempTextBlock, Text_Align_Right);
+    textblock_setDrawBackground(p_tempTextBlock, true);
+    textblock_setId(p_tempTextBlock, MV_TEMP_TEXTBLOCK_ID);
     mv_setTemp(p_tempTextBlock);
     row_addComponent(p_row, p_tempTextBlock);
 
@@ -116,8 +115,8 @@ static void mv_tempPaneAddContent(Pane_s *p_pane)
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
-    base_setHeight(p_tempUnitLabel, 24);
-    base_setTopPadding(p_tempUnitLabel, 2);
+    label_setHeight(p_tempUnitLabel, 24);
+    label_setBmpTopPadding(p_tempUnitLabel, 2);
     row_addComponent(p_row, p_tempUnitLabel);
 }
 
@@ -149,17 +148,17 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 	{
 		Label_s *p_timeLabel = label_newInit();
 		label_initBmp(p_timeLabel, FILE_KEY_ICON_PANE_CLOCK);
-		base_setHeight(p_timeLabel, 30);
+		label_setHeight(p_timeLabel, 30);
 		column_addComponent(p_columnLeft, p_timeLabel);
 
 		TextBlock_s *p_timeTextBlock = textblock_newInit();
 		textblock_setFont(p_timeTextBlock, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 		textblock_setFontBackColor(p_timeTextBlock, COLOR_PANE);
-		textblock_setHorizontalTextAlignment(p_timeTextBlock, Text_Align_Left);
-		textblock_setTopTextPadding(p_timeTextBlock, 2);
-		base_setTransparent(p_timeTextBlock, false);
-		base_setId(p_timeTextBlock, MV_TIME_TEXTBLOCK_ID);
-		base_setHeight(p_timeTextBlock, 30);
+		textblock_setTextHorizontalAlignment(p_timeTextBlock, Text_Align_Left);
+		textblock_setTextTopPadding(p_timeTextBlock, 2);
+		textblock_setDrawBackground(p_timeTextBlock, true);
+		textblock_setId(p_timeTextBlock, MV_TIME_TEXTBLOCK_ID);
+		textblock_setHeight(p_timeTextBlock, 30);
 		column_addComponent(p_columnRight, p_timeTextBlock);
 
 		mv_setTime(p_timeTextBlock, &sTime);
@@ -169,17 +168,17 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 	{
 		Label_s *p_dateLabel = label_newInit();
 		label_initBmp(p_dateLabel, FILE_KEY_ICON_PANE_AGENDA);
-		base_setHeight(p_dateLabel, 30);
+		label_setHeight(p_dateLabel, 30);
 		column_addComponent(p_columnLeft, p_dateLabel);
 
 		TextBlock_s *p_dateTextBlock = textblock_newInit();
 		textblock_setFont(p_dateTextBlock, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
 		textblock_setFontBackColor(p_dateTextBlock, COLOR_PANE);
-		textblock_setHorizontalTextAlignment(p_dateTextBlock, Text_Align_Left);
-		textblock_setTopTextPadding(p_dateTextBlock, 2);
-		base_setTransparent(p_dateTextBlock, false);
-		base_setId(p_dateTextBlock, MV_DATE_TEXTBLOCK_ID);
-		base_setHeight(p_dateTextBlock, 30);
+		textblock_setTextHorizontalAlignment(p_dateTextBlock, Text_Align_Left);
+		textblock_setTextTopPadding(p_dateTextBlock, 2);
+		textblock_setDrawBackground(p_dateTextBlock, true);
+		textblock_setId(p_dateTextBlock, MV_DATE_TEXTBLOCK_ID);
+		textblock_setHeight(p_dateTextBlock, 30);
 		column_addComponent(p_columnRight, p_dateTextBlock);
 
 		mv_setDate(p_dateTextBlock, &sDate);
@@ -337,7 +336,7 @@ static void mv_updateDateTime(const bool forceUpdate)
             if (p_timeTextBlock != NULL)
             {
                 mv_setTime(p_timeTextBlock, &sTime);
-                base_display(p_timeTextBlock);
+                textblock_display(p_timeTextBlock);
             }
         }
 
@@ -348,7 +347,7 @@ static void mv_updateDateTime(const bool forceUpdate)
             if (p_dateTextBlock != NULL)
             {
                 mv_setDate(p_dateTextBlock, &sDate);
-                base_display(p_dateTextBlock);
+                textblock_display(p_dateTextBlock);
             }
         }
     }

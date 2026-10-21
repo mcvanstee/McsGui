@@ -2,7 +2,6 @@ Starting bitmap conversion...
 Clearing build folders...
 Output Folder: C:\Development\IRL_Development\ST_Projects\McsGui_Project\McsGui\McsGuiDemoProjects\Gui_Image_Projects\McsGui_Demo_1_2\build
 Number of Instructions: 4
-Number of Translations: 10
 Font Instructions Converted: 1
 Text Instructions Converted: 2
 Icon Instructions Converted: 1
@@ -961,7 +960,7 @@ File: title_time@C7_A1
 File: title_time@C8_A1
 File: title_time@C9_A1
 Pixel data offset: 50
-CRC: 1343025040
+CRC: 97705631
 Starting creation of external image file...
 External display image file header written. Offset: 50
 Data locations written. Offset: 70
@@ -970,5 +969,5 @@ Character infos written. Offset: 14739
 Pixel data Offset: 1836247
 External image file creation completed.
 Build successful
-Build V1.1.0.3
+Build V1.1.0.5
 864 File(s) and 12 Font(s) added

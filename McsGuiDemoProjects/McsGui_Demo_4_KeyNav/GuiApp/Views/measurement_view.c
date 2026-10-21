@@ -29,9 +29,8 @@ static void msmv_create(View_s *p_view)
     header_setTitle(FILE_KEY_TITLE_MEASUREMENT);
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Label_s *p_tempLabel = label_newInit();
@@ -47,10 +46,10 @@ static void msmv_create(View_s *p_view)
     textblock_initTextSize(p_tempTextBlock, "0", 55, 30);
     textblock_setFont(p_tempTextBlock, theme_getDefaultFont());
     textblock_setFontBackColor(p_tempTextBlock, theme_getBackgroundColor());
-    textblock_setHorizontalTextAlignment(p_tempTextBlock, Text_Align_Right);
-    textblock_setTopTextPadding(p_tempTextBlock, 1);
-    base_setTransparent(p_tempTextBlock, false);
-    base_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);
+    textblock_setTextHorizontalAlignment(p_tempTextBlock, Text_Align_Right);
+    textblock_setTextTopPadding(p_tempTextBlock, 1);
+    textblock_setDrawBackground(p_tempTextBlock, true);
+    textblock_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);
     base_addNewInitAnchor(p_tempTextBlock);
     anchor_setLeftAnchor(p_tempTextBlock, p_tempLabel, Gui_Anchor_Right);
     anchor_setVerticalCenter(p_tempTextBlock, p_tempLabel);

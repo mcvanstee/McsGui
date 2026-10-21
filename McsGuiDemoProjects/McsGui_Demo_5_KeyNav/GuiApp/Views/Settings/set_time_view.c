@@ -41,7 +41,7 @@ static void stv_create(View_s *p_view)
     SpinnerInput_s *p_hh = spinner_input_new();
     spinner_input_initValues(p_hh, sTime.Hours, 0, 23);
     spinner_input_setLeadingZeros(p_hh, 2);
-    base_setId(p_hh, STV_INPUT_HH_ID);
+    base_setId(&p_hh->valueTextBlock.base, STV_INPUT_HH_ID);
     row_addComponent(p_timeInput, p_hh);
 
     TextBlock_s *p_colon = textblock_newInit();
@@ -53,7 +53,7 @@ static void stv_create(View_s *p_view)
     SpinnerInput_s *p_mm = spinner_input_new();
     spinner_input_initValues(p_mm, sTime.Minutes, 0, 59);
     spinner_input_setLeadingZeros(p_mm, 2);
-    base_setId(p_mm, STV_INPUT_MM_ID);
+    base_setId(&p_mm->valueTextBlock.base, STV_INPUT_MM_ID);
     row_addComponent(p_timeInput, p_mm);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);

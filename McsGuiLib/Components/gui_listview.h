@@ -42,8 +42,8 @@ typedef struct list_view_s
 
 ListView_s *listview_new(void);
 ListView_s *listview_newInit(void);
+
 void listview_init(ListView_s *p_listView);
-void listview_delete(BaseComponent_s *p_listViewBase);
 void listview_initPosSize(
         ListView_s *p_listView,
         const uint16_t x, const uint16_t y,
@@ -51,12 +51,19 @@ void listview_initPosSize(
 
 void listview_setItemsVisible(ListView_s *p_listView, const int8_t itemsVisible);
 void listview_setRowHight(ListView_s *p_listView, const uint8_t rowHight);
-void listview_addComponent(ListView_s *p_listView, BaseComponent_s *p_itemBase);
+
 void listview_addItem(ListView_s *p_listView, ListViewItem_s *p_listViewItem);
-bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event);
+void listview_addComponent(ListView_s *p_listView, BaseComponent_s *p_itemBase);
+
+int8_t listview_getActiveIndex(ListView_s *p_listView);
+BaseComponent_s *listview_getActive(ListView_s *p_listView);
+BaseComponent_s *listview_getPreviousActive(ListView_s *p_listView);
+BaseComponent_s *listview_getAtIndex(ListView_s *p_listView, const int8_t index);
+
 bool listview_moveUp(ListView_s *p_listView);
 bool listview_moveDown(ListView_s *p_listView);
 bool listview_getViewWindowChanged(ListView_s *p_listView);
+void listview_updateVisibleItems(ListView_s *p_listView);
 
 void listview_setActiveIndex(ListView_s *p_listView, const int8_t index);
 void listview_setActiveIndexNotifyChanged(ListView_s *p_listView, const int8_t index);
@@ -69,10 +76,18 @@ void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_
 void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListView_s *p_listView));
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
-int8_t listview_getActiveIndex(ListView_s *p_listView);
-BaseComponent_s *listview_getActive(ListView_s *p_listView);
-BaseComponent_s *listview_getPreviousActive(ListView_s *p_listView);
-BaseComponent_s *listview_getAtIndex(ListView_s *p_listView, const int8_t index);
+void listview_setId(ListView_s *p_listView, const uint8_t id);
+
+void listview_setX(ListView_s *p_listView, const uint16_t x);
+void listview_setY(ListView_s *p_listView, const uint16_t y);
+void listview_setWidth(ListView_s *p_listView, const uint16_t width);
+void listview_setHeight(ListView_s *p_listView, const uint16_t height);
+void listview_setPosition(ListView_s *p_listView, const uint16_t x, const uint16_t y);
+void listview_setSize(ListView_s *p_listView, const uint16_t width, const uint16_t height);
+
+void listview_setVisible(ListView_s *p_listView, const bool visible);
+void listview_setBackgroundColor(ListView_s *p_listView, const Color_t color);
+void listview_setDrawBackground(ListView_s *p_listView, const bool drawBackground);
 
 #ifdef __cplusplus
 } /* extern "C" */

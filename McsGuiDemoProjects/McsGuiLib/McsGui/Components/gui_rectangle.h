@@ -29,9 +29,7 @@ typedef struct rectangle_s
 Rectangle_s *rectangle_new(void);
 Rectangle_s *rectangle_newInit(void);
 
-void rectangle_delete(BaseComponent_s *p_rectangleBase);
 void rectangle_init(Rectangle_s *p_rectangle);
-
 void rectangle_initFillSize(
         Rectangle_s *p_rectangle, const Color_t color,
         const uint16_t width, const uint16_t height);
@@ -63,12 +61,25 @@ void rectangle_initBorderPosSize(
         const uint16_t width, const uint16_t height,
         const uint8_t borderThickness, const Color_t borderColor);
 
-void rectangle_displayDirect(Rectangle_s *p_rectangle);
+void rectangle_display(Rectangle_s *p_rectangle);
+void rectangle_setId(Rectangle_s *p_rectangle, const uint32_t id);
+
 void rectangle_setColor(Rectangle_s *p_rectangle, const Color_t color);
-void rectangle_showBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly);
 void rectangle_setBorderColor(Rectangle_s *p_rectangle, const Color_t color);
+
+void rectangle_setShowBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly);
 void rectangle_setBorderThickness(Rectangle_s *p_rectangle, const uint8_t thickness);
 void rectangle_setRadius(Rectangle_s *p_rectangle, const uint8_t radius);
+
+void rectangle_setX(Rectangle_s *p_rectangle, const uint16_t x);
+void rectangle_setY(Rectangle_s *p_rectangle, const uint16_t y);
+void rectangle_setWidth(Rectangle_s *p_rectangle, const uint16_t width);
+void rectangle_setHeight(Rectangle_s *p_rectangle, const uint16_t height);
+void rectangle_setPosition(Rectangle_s *p_rectangle, const uint16_t x, const uint16_t y);
+void rectangle_setSize(Rectangle_s *p_rectangle, const uint16_t width, const uint16_t height);
+
+void rectangle_setVisible(Rectangle_s *p_rectangle, const bool visible);
+
 
 #ifdef __cplusplus
 } /* extern "C" */

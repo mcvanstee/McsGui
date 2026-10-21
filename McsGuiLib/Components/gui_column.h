@@ -26,13 +26,21 @@ typedef struct gui_column_s
 Column_s *column_new(void);
 Column_s *column_newInit(void);
 
-void column_delete(BaseComponent_s *p_columnBase);
 void column_init(Column_s *p_column);
 
-void column_setSpacing(Column_s *p_column, uint8_t spacing);
+void column_setSpacing(Column_s *p_column, const uint8_t spacing);
+void column_setCellHeight(Column_s *p_column, const uint16_t cellHeight);
 void column_addComponent(Column_s *p_column, void *p_component);
 
-BaseComponent_s *column_getComponent(Column_s *p_column, uint8_t index);
+BaseComponent_s *column_getComponentAtIndex(Column_s *p_column, const uint8_t index);
+
+void column_setX(Column_s *p_column, const uint16_t x);
+void column_setY(Column_s *p_column, const uint16_t y);
+void column_setPosition(Column_s *p_column, const uint16_t x, const uint16_t y);
+
+void column_setVisible(Column_s *p_column, const bool visible);
+void column_setBackgroundColor(Column_s *p_column, const Color_t color);
+void column_setDrawBackground(Column_s *p_column, const bool drawBackground);
 
 #ifdef __cplusplus
 } /* extern "C" */

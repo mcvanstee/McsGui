@@ -23,9 +23,8 @@ static void iv_create(View_s *p_view, void (*p_navBackView)(void))
     header_setTitle(FILE_KEY_TITLE_INFO);
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     base_addNewInitAnchor(p_item);
 
     TextBlock_s *p_irlTB = textblock_newInit();

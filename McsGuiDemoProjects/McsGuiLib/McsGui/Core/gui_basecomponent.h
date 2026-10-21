@@ -38,13 +38,6 @@ typedef enum
 } GuiAlignment_e;
 
 
-typedef enum
-{
-    Gui_Visibility_Visible = 0,
-    Gui_Visibility_Hidden = 1,
-} GuiVisibility_e;
-
-
 /** @enum BaseComponentType_e
  *
  *
@@ -88,10 +81,10 @@ typedef struct base_component_s
     char *p_text;                /**< String, pointer to dynamic text buffer */
     bool visible;                   /**< If visible component is displayed when onDisplay is called */
     void *p_data;                   /**< Depending on BaseType, NULL, FillData_s or TextData_s */
-    bool transparent;
-    Color_t background;
+    bool drawBackground;             /**< If true, background is drawn when onDisplay is called */
+    Color_t backgroundColor;         /**< Background color for text or image and background fill*/
 #if GUI_CONFIG_USE_BITMAP_COLORS
-    Color_t foreColor;              /**< Foreground color for text or image */
+    Color_t foregroundColor;              /**< Foreground color for text or image */
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
     void (*onDelete)(struct base_component_s *p_base);
     bool (*onHandleEvent)(struct base_component_s *p_base, const GuiEvent_s *p_event);
@@ -147,53 +140,52 @@ void base_initTextComp(
 void base_clear(BaseComponent_s *p_base);
 void base_clearChildList(BaseComponent_s *p_base);
 void base_addChild(BaseComponent_s *p_parentBase, BaseComponent_s *p_childBase);
-void base_display(void *p_component);
+void base_display(BaseComponent_s *p_base);
 
-void base_setBmpKey(void *p_component, const uint32_t fileKey);
-void base_setXPos(void *p_component, const uint16_t x);
-void base_setYPos(void *p_component, const uint16_t y);
-void base_setWidth(void *p_component, const uint16_t width);
-void base_setHeight(void *p_component, const uint16_t height);
-void base_setPosition(void *p_component, const uint16_t x, const uint16_t y);
-void base_setDimensions(void *p_component, const uint16_t width, const uint16_t height);
-void base_setSize(void *p_component, const GuiSize_s guiSize);
+void base_setBmpKey(BaseComponent_s *p_base, const uint32_t fileKey);
+void base_setX(BaseComponent_s *p_base, const uint16_t x);
+void base_setY(BaseComponent_s *p_base, const uint16_t y);
+void base_setWidth(BaseComponent_s *p_base, const uint16_t width);
+void base_setHeight(BaseComponent_s *p_base, const uint16_t height);
+void base_setPosition(BaseComponent_s *p_base, const uint16_t x, const uint16_t y);
+void base_setSize(BaseComponent_s *p_base, const uint16_t width, const uint16_t height);
+void base_setGuiSize(BaseComponent_s *p_base, const GuiSize_s guiSize);
+#if GUI_CONFIG_USE_FILE_PROPERTIES
 void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue);
-void base_setBackground(void *p_component, const Color_t color);
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+void base_setBackgroundColor(BaseComponent_s *p_base, const Color_t color);
 #if GUI_CONFIG_USE_BITMAP_COLORS
-void base_setForeColor(void *p_component, const Color_t color);
+void base_setForegroundColor(BaseComponent_s *p_base, const Color_t color);
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
-void base_setTransparent(void *p_component, const bool transparent);
-void base_setVisibility(void *p_component, const GuiVisibility_e visibility);
-void base_setVisible(void *p_component, const bool visible);
-void base_setId(void *p_component, const uint8_t id);
-void base_setOnDelete(void *p_component, void (*onDelete)(BaseComponent_s *p_base));
-void base_setOnDisplay(void *p_component, void (*onDisplay)(BaseComponent_s *p_base));
-void base_setOnHandleEvent(void *p_component, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event));
+void base_setDrawBackground(BaseComponent_s *p_base, const bool drawBackground);
+void base_setVisible(BaseComponent_s *p_base, const bool visible);
+void base_setId(BaseComponent_s *p_base, const uint8_t id);
+void base_setOnDelete(BaseComponent_s *p_base, void (*onDelete)(BaseComponent_s *p_base));
+void base_setOnDisplay(BaseComponent_s *p_base, void (*onDisplay)(BaseComponent_s *p_base));
+void base_setOnHandleEvent(BaseComponent_s *p_base, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event));
 
-GuiVisibility_e base_getVisibility(void *p_component);
-
-uint16_t base_getXPos(void *p_component);
-uint16_t base_getYPos(void *p_component);
-uint16_t base_getWidth(void *p_component);
-uint16_t base_getHeight(void *p_component);
-GuiSize_s base_getSize(void *p_component);
+uint16_t base_getX(BaseComponent_s *p_base);
+uint16_t base_getY(BaseComponent_s *p_base);
+uint16_t base_getWidth(BaseComponent_s *p_base);
+uint16_t base_getHeight(BaseComponent_s *p_base);
+GuiSize_s base_getGuiSize(BaseComponent_s *p_base);
 
 bool base_iterateNextChild(BaseComponent_s *p_parentBase, BaseComponent_s **p_iterator);
 void base_executeForEachChild(BaseComponent_s *p_parentBase, void(*functionToExecute)(void *p_childBase));
 
 /* BMP Alignment */
-void base_setAlignment(void *p_component, const GuiAlignment_e horizontal, const GuiAlignment_e vertical);
-void base_setHorizontalAlignment(void *p_component, const GuiAlignment_e alignment);
-void base_setVerticalAlignment(void *p_component, const GuiAlignment_e alignment);
+void base_setAlignment(BaseComponent_s *p_base, const GuiAlignment_e horizontal, const GuiAlignment_e vertical);
+void base_setHorizontalAlignment(BaseComponent_s *p_base, const GuiAlignment_e alignment);
+void base_setVerticalAlignment(BaseComponent_s *p_base, const GuiAlignment_e alignment);
 
-void base_setPadding(void *p_component, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
-void base_setLeftPadding(void *p_component, const uint8_t padding);
-void base_setTopPadding(void *p_component, const uint8_t padding);
-void base_setRightPadding(void *p_component, const uint8_t padding);
-void base_setBottomPadding(void *p_component, const uint8_t padding);
+void base_setPadding(BaseComponent_s *p_base, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
+void base_setLeftPadding(BaseComponent_s *p_base, const uint8_t padding);
+void base_setTopPadding(BaseComponent_s *p_base, const uint8_t padding);
+void base_setRightPadding(BaseComponent_s *p_base, const uint8_t padding);
+void base_setBottomPadding(BaseComponent_s *p_base, const uint8_t padding);
 
 #if GUI_CONFIG_USE_ON_BEFORE_DISPLAY
-void base_setOnBeforeDisplay(void *p_component, void (*onBeforeDisplay)(BaseComponent_s *p_base));
+void base_setOnBeforeDisplay(BaseComponent_s *p_base, void (*onBeforeDisplay)(BaseComponent_s *p_base));
 #endif /* GUI_CONFIG_USE_ON_BEFORE_DISPLAY */
 
 #if GUI_CONFIG_USE_ANCHOR

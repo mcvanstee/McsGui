@@ -12,11 +12,11 @@ void header_setTitle(file_key_e title)
 {
     Label_s titleLabel;
     label_initBmpPosSizeBack(&titleLabel, title, 120, 0, 240, 40, theme_getHeaderColor());
-    base_setTopPadding(&titleLabel, 1);
+    label_setBmpTopPadding(&titleLabel, 1);
     theme_applyThemeProperty(&titleLabel);
     gui_app_translate(&titleLabel);
 
-    base_display(&titleLabel);
+    label_display(&titleLabel);
 }
 
 void header_updateTime(const bool update)
@@ -47,9 +47,9 @@ void header_updateDateTime(const bool forceUpdate)
         textblock_initTextPosSize(&time, "00:00", 36, 9, 100, 24);
         sprintf(time.text, "%02d:%02d", sTime.Hours, sTime.Minutes);
         textblock_setFont(&time, theme_getHeaderFontSmall());
-        base_setHorizontalAlignment(&time.base, Gui_Align_Left);
-        base_setLeftPadding(&time.base, 2);
-        base_display(&time.base);
+        textblock_setTextHorizontalAlignment(&time, Text_Align_Left);
+        textblock_setTextLeftPadding(&time, 2);
+        textblock_display(&time);
     }
 }
 
@@ -60,12 +60,12 @@ void header_showAlarm(const bool showAlarm)
         Label_s alarmLabel;
         label_initBmpPosSize(&alarmLabel, FILE_KEY_ICON_HEADER_BELL, STYLE_DISPLAY_WIDTH - 70, 0, 40, 40);
         theme_applyThemeProperty(&alarmLabel);
-        base_display(&alarmLabel);
+        label_display(&alarmLabel);
     }
     else
     {
         Rectangle_s rect;
         rectangle_initFillPosSize(&rect, theme_getHeaderColor(), STYLE_DISPLAY_WIDTH - 70, 0, 30, 40);
-        base_display(&rect);
+        rectangle_display(&rect);
     }
 }

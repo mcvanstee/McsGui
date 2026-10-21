@@ -75,9 +75,9 @@ void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
     p_checkboxLabel->labelWidth = 0;
     p_checkboxLabel->labelPadding = 0;
     p_checkboxLabel->onSelectionChanged = NULL;
-    base_setDimensions(p_checkboxLabel, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
-    base_setOnDelete(p_checkboxLabel, checkbox_label_delete);
-    base_setOnDisplay(p_checkboxLabel, checkbox_label_onDisplay);
+    base_setSize(&p_checkboxLabel->checkBox.base, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+    base_setOnDelete(&p_checkboxLabel->checkBox.base, checkbox_label_delete);
+    base_setOnDisplay(&p_checkboxLabel->checkBox.base, checkbox_label_onDisplay);
     touch_init(&p_checkboxLabel->touch);
     base_addTouch(&p_checkboxLabel->checkBox, &p_checkboxLabel->touch);
     checkbox_setOnSelectionChanged(&p_checkboxLabel->checkBox, checkbox_label_selectionChanged);
@@ -86,7 +86,7 @@ void checkbox_label_init(CheckboxLabel_s *p_checkboxLabel)
 void checkbox_label_init_1(CheckboxLabel_s *p_checkboxLabel, file_key_e label)
 {
     checkbox_label_init(p_checkboxLabel);
-    base_setBmpKey(p_checkboxLabel, FILE_KEY_RADIO_BUTTON);
+    base_setBmpKey(&p_checkboxLabel->checkBox.base, FILE_KEY_RADIO_BUTTON);
     p_checkboxLabel->label = label;
     p_checkboxLabel->labelPadding = 30;
 }
@@ -94,7 +94,7 @@ void checkbox_label_init_1(CheckboxLabel_s *p_checkboxLabel, file_key_e label)
 void checkbox_label_initSwitch(CheckboxLabel_s *p_checkboxLabel, file_key_e label)
 {
     checkbox_label_init(p_checkboxLabel);
-    base_setBmpKey(p_checkboxLabel, FILE_KEY_ICON_SWITCH);
+    base_setBmpKey(&p_checkboxLabel->checkBox.base, FILE_KEY_ICON_SWITCH);
     p_checkboxLabel->label = label;
     p_checkboxLabel->labelPadding = 60;
 }
@@ -103,11 +103,11 @@ void checkbox_label_displayLabel(CheckboxLabel_s *p_checkboxLabel)
 {
     Label_s label;
     label_initBmp(&label, p_checkboxLabel->label);
-    base_setWidth(&label, p_checkboxLabel->labelWidth);
+    label_setWidth(&label, p_checkboxLabel->labelWidth);
 
     if (p_checkboxLabel->labelWidth != 0)
     {
-    	base_setBackground(&label, COLOR_BACKGROUND);
+    	label_setBackgroundColor(&label, COLOR_BACKGROUND);
     }
 
     base_setHorizontalAlignment(&label.base, Gui_Align_Left);
@@ -121,7 +121,17 @@ void checkbox_label_displayLabel(CheckboxLabel_s *p_checkboxLabel)
     anchor_setTopMargin(&label, 1);
 
     gui_app_translate(&label);
-    base_display(&label);
+    label_display(&label);
+}
+
+void checkbox_label_setWidth(CheckboxLabel_s *p_checkboxLabel, const uint16_t width)
+{
+    base_setWidth(&p_checkboxLabel->checkBox.base, width);
+}
+
+void checkbox_label_setHeight(CheckboxLabel_s *p_checkboxLabel, const uint16_t height)
+{
+    base_setHeight(&p_checkboxLabel->checkBox.base, height);
 }
 
 void checkbox_label_setOnSelectionChanged(
@@ -157,6 +167,6 @@ static void checkbox_label_selectionChanged(Checkbox_s *p_checkbox)
 		p_checkboxLabel->onSelectionChanged(p_checkboxLabel);
 	}
 
-    base_display(p_checkbox);
+    checkbox_display(p_checkbox);
 }
 

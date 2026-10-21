@@ -68,8 +68,8 @@ void footer_btn_delete(BaseComponent_s *p_footerButtonBase)
 void footer_btn_init(FooterButton_s *p_footerButton)
 {
     button_init(&p_footerButton->button);
-    base_setOnDelete(p_footerButton, footer_btn_delete);
-    base_setOnDisplay(p_footerButton, footer_btn_onDisplay);
+    base_setOnDelete(&p_footerButton->button.base, footer_btn_delete);
+    base_setOnDisplay(&p_footerButton->button.base, footer_btn_onDisplay);
     touch_init(&p_footerButton->touch);
     base_addTouch(&p_footerButton->button.base, &p_footerButton->touch);
     p_footerButton->content = FILE_KEY_NONE;
@@ -83,7 +83,7 @@ void footer_btn_initIcon(
     footer_btn_init(p_footerButton);
 
     base_setBmpKey(&p_footerButton->button.base, FILE_KEY_BUTTON_FOOTER_BUTTON);
-    base_setDimensions(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
+    base_setSize(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
     button_setOnReleasedEvent(&p_footerButton->button, onPressed);
 
     p_footerButton->content = icon;
@@ -104,7 +104,7 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
             p_buttonBase->width, p_buttonBase->height);
     theme_applyThemeProperty(&content);
     theme_applyAccentColorProperty(&content);
-    base_display(&content);
+    label_display(&content);
 }
 
 static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent)
@@ -115,5 +115,5 @@ static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent)
             p_baseComponent->x, p_baseComponent->y,
             p_baseComponent->width, p_baseComponent->height);
     rectangle_setRadius(&rect, 4);
-    base_display(&rect);
+    rectangle_display(&rect);
 }

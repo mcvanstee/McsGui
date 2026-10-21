@@ -5,6 +5,7 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
+static void radiogroup_delete(BaseComponent_s *p_radioGroupBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticRGMemInUse[GUI_CONFIG_RADIOGROUP_BUFFER_SIZE] = {0};
@@ -59,7 +60,7 @@ RadioGroup_s *radiogroup_newInit(void)
  * @param[in] p_radioGroupBase Pointer to the RadioGroup component to be freed.
  *
  */
-void radiogroup_delete(BaseComponent_s *p_radioGroupBase)
+static void radiogroup_delete(BaseComponent_s *p_radioGroupBase)
 {
     base_clear(p_radioGroupBase);
 #if GUI_USE_DYNAMIC_MEMORY

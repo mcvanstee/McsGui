@@ -12,10 +12,15 @@ typedef struct
 
 Pane_s *pane_new(void);
 Pane_s *pane_newInit(void);
+
 void pane_delete(BaseComponent_s *p_paneBase);
 void pane_init(Pane_s *p_pane);
+void pane_initSize(Pane_s *p_pane, const uint16_t width, const uint16_t height);
+
 void pane_setRadius(Pane_s *p_pane, uint8_t radius);
 void pane_setBorderPane(Pane_s *p_pane, bool borderPane);
 void pane_addComponent(Pane_s *p_pane, void *p_component);
+
+void pane_setSize(Pane_s *p_pane, const uint16_t width, const uint16_t height);
 
 #endif /* CUSTOMCOMPONENTS_GUI_PANE_H_ */

@@ -23,9 +23,8 @@ static void bv_create(View_s *p_view)
 
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
 
     Slider_s *p_slider = slider_newInit();
     slider_setValue(p_slider, settings_getDisplayBrightness());

@@ -6,6 +6,9 @@
 #include "Core/gui_memory.h"
 #include "gui_radiogroup.h"
 
+static void checkbox_delete(BaseComponent_s *p_checkboxBase);
+static bool checkbox_handleEvent(BaseComponent_s *p_checkboxBase, const GuiEvent_s *p_event);
+
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticCBMemInUse[GUI_CONFIG_CHECKBOX_BUFFER_SIZE] = {0};
 static Checkbox_s staticCBMem[GUI_CONFIG_CHECKBOX_BUFFER_SIZE] = {0};
@@ -58,7 +61,7 @@ Checkbox_s *checkbox_newInit(void)
  * @brief Delete the checkbox component. This function calls the gui_mem_free function to free the allocated memory.
  * @param[in] p_checkboxBase Pointer to the Checkbox component to be freed.
  */
-void checkbox_delete(BaseComponent_s *p_checkboxBase)
+static void checkbox_delete(BaseComponent_s *p_checkboxBase)
 {
     base_clear(p_checkboxBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -148,6 +151,18 @@ void checkbox_initBmpPosSize(
 
 
 /**
+ * @brief Get the selection of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @return true if the checkbox is selected, false otherwise.
+ *
+ */
+bool checkbox_isChecked(Checkbox_s *p_checkbox)
+{
+    return p_checkbox->checked;
+}
+
+
+/**
  * @brief Set the on-selection-changed callback function.
  * @param[in] p_checkbox Pointer to the checkbox component.
  * @param[in] onSelectionChanged Pointer to the callback function, with a Checkbox_s pointer variable.
@@ -187,7 +202,288 @@ void checkbox_setSelectionNotifyChanged(Checkbox_s *p_checkbox, const bool selec
     }
 }
 
-bool checkbox_handleEvent(BaseComponent_s *p_checkboxBase, const GuiEvent_s *p_event)
+
+/**
+ * @brief Display the checkbox component.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ *
+ */
+void checkbox_display(Checkbox_s *p_checkbox)
+{
+    base_display(&p_checkbox->base);
+}
+
+
+/**
+ * @brief Set the id of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] id Id of the checkbox.
+ *
+ */
+void checkbox_setId(Checkbox_s *p_checkbox, const uint32_t id)
+{
+    if (id > 0)
+    {
+        p_checkbox->base.id = id;
+    }
+}
+
+
+/**
+ * @brief Set the bmp-key of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] bmpKey Bmp-key of the checkbox.
+ *
+ */
+void checkbox_setBmpKey(Checkbox_s *p_checkbox, const uint32_t bmpKey)
+{
+    p_checkbox->base.bmpKey = bmpKey;
+}
+
+
+/**
+ * @brief Set the x-position of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] x x-position of the checkbox.
+ *
+ */
+void checkbox_setX(Checkbox_s *p_checkbox, const uint16_t x)
+{
+    base_setX(&p_checkbox->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] y y-position of the checkbox.
+ *
+ */
+void checkbox_setY(Checkbox_s *p_checkbox, const uint16_t y)
+{
+    base_setY(&p_checkbox->base, y);
+}
+
+
+/**
+ * @brief Set the width of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] width Width of the checkbox.
+ *
+ */
+void checkbox_setWidth(Checkbox_s *p_checkbox, const uint16_t width)
+{
+    base_setWidth(&p_checkbox->base, width);
+}
+
+
+/**
+ * @brief Set the height of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] height Height of the checkbox.
+ *
+ */
+void checkbox_setHeight(Checkbox_s *p_checkbox, const uint16_t height)
+{
+    base_setHeight(&p_checkbox->base, height);
+}
+
+
+/**
+ * @brief Set the position of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] x x-position of the checkbox.
+ * @param[in] y y-position of the checkbox.
+ *
+ */
+void checkbox_setPosition(Checkbox_s *p_checkbox, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_checkbox->base, x, y);
+}
+
+
+/**
+ * @brief Set the size of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] width Width of the checkbox.
+ * @param[in] height Height of the checkbox.
+ *
+ */
+void checkbox_setSize(Checkbox_s *p_checkbox, const uint16_t width, const uint16_t height)
+{
+    base_setSize(&p_checkbox->base, width, height);
+}
+
+
+/**
+ * @brief Set the visibility of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] visible Whether the checkbox should be visible.
+ *
+ */
+void checkbox_setVisible(Checkbox_s *p_checkbox, const bool visible)
+{
+    base_setVisible(&p_checkbox->base, visible);
+}
+
+
+/**
+ * @brief Set the background color of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] color Background color of the checkbox.
+ *
+ */
+void checkbox_setBackgroundColor(Checkbox_s *p_checkbox, const Color_t color)
+{
+    p_checkbox->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Set whether the background of the checkbox should be drawn.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] drawBackground Whether the background should be drawn.
+ *
+ */
+void checkbox_setDrawBackground(Checkbox_s *p_checkbox, const bool drawBackground)
+{
+    p_checkbox->base.drawBackground = drawBackground;
+}
+
+
+/**
+ * @brief Set the foreground color of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] color Foreground color of the checkbox.
+ *
+ */
+#if GUI_CONFIG_USE_BITMAP_COLORS
+void checkbox_setForegroundColor(Checkbox_s *p_checkbox, const Color_t color)
+{
+    p_checkbox->base.foregroundColor = color;
+}
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+
+
+/**
+ * @brief Set the bitmap alignment of the checkbox.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] horizontalAlignment Horizontal alignment of the bitmap.
+ * @param[in] verticalAlignment Vertical alignment of the bitmap.
+ *
+ */
+void checkbox_setBmpAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e horizontalAlignment, const GuiAlignment_e verticalAlignment)
+{
+    p_checkbox->base.horizontalAlignment = (uint8_t)horizontalAlignment;
+    p_checkbox->base.verticalAlignment = (uint8_t)verticalAlignment;
+}
+
+
+/**
+ * @brief Set the horizontal alignment of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] horizontalAlignment Horizontal alignment of the bitmap.
+ *
+ */
+void checkbox_setBmpHorizontalAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e horizontalAlignment)
+{
+    p_checkbox->base.horizontalAlignment = (uint8_t)horizontalAlignment;
+}
+
+
+/**
+ * @brief Set the vertical alignment of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] verticalAlignment Vertical alignment of the bitmap.
+ *
+ */
+void checkbox_setBmpVerticalAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e verticalAlignment)
+{
+    p_checkbox->base.verticalAlignment = (uint8_t)verticalAlignment;
+}
+
+
+/**
+ * @brief Set the padding of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] left Left padding of the bitmap.
+ * @param[in] top Top padding of the bitmap.
+ * @param[in] right Right padding of the bitmap.
+ * @param[in] bottom Bottom padding of the bitmap.
+ *
+ */
+void checkbox_setBmpPadding(Checkbox_s *p_checkbox, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom)
+{
+    p_checkbox->base.leftPadding = left;
+    p_checkbox->base.rightPadding = right;
+    p_checkbox->base.topPadding = top;
+    p_checkbox->base.bottomPadding = bottom;
+}
+
+
+/**
+ * @brief Set the left padding of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] padding Left padding of the bitmap.
+ *
+ */
+void checkbox_setBmpLeftPadding(Checkbox_s *p_checkbox, const uint8_t padding)
+{
+    p_checkbox->base.leftPadding = padding;
+}
+
+
+/**
+ * @brief Set the right padding of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] padding Right padding of the bitmap.
+ *
+ */
+void checkbox_setBmpRightPadding(Checkbox_s *p_checkbox, const uint8_t padding)
+{
+    p_checkbox->base.rightPadding = padding;
+}
+
+
+/**
+ * @brief Set the top padding of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] padding Top padding of the bitmap.
+ *
+ */
+void checkbox_setBmpTopPadding(Checkbox_s *p_checkbox, const uint8_t padding)
+{
+    p_checkbox->base.topPadding = padding;
+}
+
+
+/**
+ * @brief Set the bottom padding of the checkbox bitmap.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] padding Bottom padding of the bitmap.
+ *
+ */
+void checkbox_setBmpBottomPadding(Checkbox_s *p_checkbox, const uint8_t padding)
+{
+    p_checkbox->base.bottomPadding = padding;
+}
+
+
+#if GUI_CONFIG_USE_KEY_NAVIGATION
+/**
+ * @brief Set the on-focus-changed callback function.
+ * @param[in] p_checkbox Pointer to the checkbox component.
+ * @param[in] onFocusChanged Pointer to the callback function, with a BaseComponent_s pointer variable.
+ *
+ */
+void checkbox_setOnFocusChanged(Checkbox_s *p_checkbox, void (*onFocusChanged)(BaseComponent_s *p_base))
+{
+    p_checkbox->base.onFocusChanged = onFocusChanged;
+}
+#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+
+static bool checkbox_handleEvent(BaseComponent_s *p_checkboxBase, const GuiEvent_s *p_event)
 {
     Checkbox_s *p_checkbox = (Checkbox_s *)p_checkboxBase;
     bool eventHandled = false;
@@ -216,19 +512,6 @@ bool checkbox_handleEvent(BaseComponent_s *p_checkboxBase, const GuiEvent_s *p_e
 
     return eventHandled;
 }
-
-#if GUI_CONFIG_USE_KEY_NAVIGATION
-/**
- * @brief Set the on-focus-changed callback function.
- * @param[in] p_checkbox Pointer to the checkbox component.
- * @param[in] onFocusChanged Pointer to the callback function, with a BaseComponent_s pointer variable.
- *
- */
-void checkbox_setOnFocusChanged(Checkbox_s *p_checkbox, void (*onFocusChanged)(BaseComponent_s *p_base))
-{
-    p_checkbox->base.onFocusChanged = onFocusChanged;
-}
-#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 
 /*** end of file ***/

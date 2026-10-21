@@ -6,6 +6,8 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
+static void listviewitem_delete(BaseComponent_s *p_itemBase);
+static bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_event);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticLVMIMemInUse[GUI_CONFIG_LISTVIEWITEM_BUFFER_SIZE] = {0};
@@ -60,7 +62,7 @@ ListViewItem_s *listviewitem_newInit(void)
  * @param[in] p_itemBase Pointer to the ListViewItem component to be freed.
  *
  */
-void listviewitem_delete(BaseComponent_s *p_itemBase)
+static void listviewitem_delete(BaseComponent_s *p_itemBase)
 {
     base_clear(p_itemBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -140,7 +142,7 @@ void listviewitem_setDataObject(ListViewItem_s *p_listViewItem, void *p_dataObje
     p_listViewItem->base.p_data = p_dataObject;
 }
 
-bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_event)
+static bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_event)
 {
     ListViewItem_s *p_listViewItem = (ListViewItem_s *)p_itemBase;
     bool eventHandled = true;
@@ -177,6 +179,8 @@ bool listviewitem_handleEvent(BaseComponent_s *p_itemBase, const GuiEvent_s *p_e
     }
     else
     {
+        eventHandled = false;
+
         BaseComponent_s *p_iterator = p_itemBase->p_childList;
         while (p_iterator != NULL)
         {
@@ -266,6 +270,33 @@ void listviewitem_setPressedEvent(ListViewItem_s *p_listViewItem, void (*p_press
 void listviewitem_setOnReleasedEvent(ListViewItem_s *p_listViewItem, void (*p_onReleased)(void))
 {
     p_listViewItem->onReleasedEvent = p_onReleased;
+}
+
+
+/**
+ * @brief Set the id of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] id Id of the ListViewItem.
+ *
+ */
+void listviewitem_setId(ListViewItem_s *p_listViewItem, const uint32_t id)
+{
+    if (id > 0)
+    {
+        p_listViewItem->base.id = id;
+    }
+}
+
+
+/**
+ * @brief Set the background color of the ListViewItem_s.
+ * @param[in] p_listViewItem Pointer to ListViewItem.
+ * @param[in] color Background color of the ListViewItem.
+ *
+ */
+void listviewitem_setBackgroundColor(ListViewItem_s *p_listViewItem, const Color_t color)
+{
+    p_listViewItem->base.backgroundColor = color;
 }
 
 

@@ -89,7 +89,7 @@ void slider_init(Slider_s *p_slider)
 {
     base_initParentComp(&p_slider->base, slider_delete);
     base_setOnDisplay(&p_slider->base, slider_onDisplay);
-    base_setDimensions(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
+    base_setSize(&p_slider->base, GUI_SLIDER_WIDTH, GUI_SLIDER_HEIGHT);
 
     button_init(&p_slider->minusButton);
     button_init(&p_slider->plusButton);
@@ -98,10 +98,10 @@ void slider_init(Slider_s *p_slider)
     base_addKeyNavigation(&p_slider->minusButton.base, &p_slider->minusKeyNavigation);
     base_addKeyNavigation(&p_slider->plusButton.base, &p_slider->plusKeyNavigation);
 
-    base_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_MINUS);
-    base_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PLUS);
-    base_setDimensions(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
-    base_setDimensions(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    button_setBmpKey(&p_slider->minusButton, FILE_KEY_ICON_MINUS);
+    button_setBmpKey(&p_slider->plusButton, FILE_KEY_ICON_PLUS);
+    button_setSize(&p_slider->minusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
+    button_setSize(&p_slider->plusButton, GUI_SLIDER_BUTTON_WIDTH, GUI_SLIDER_BUTTON_HEIGHT);
     slider_setMinusBtnPosition(p_slider);
     slider_setPlusBtnPosition(p_slider);
     button_setOnFocusChanged(&p_slider->minusButton, slider_buttonFocusChanged);
@@ -204,7 +204,7 @@ static void slider_displayBar(Slider_s *p_slider)
     Rectangle_s border;
     rectangle_initBorderPosSize(
         &border, p_base->x, yBar, p_base->width, GUI_SLIDER_BAR_HEIGHT, GUI_SLIDER_BORDER_WIDTH, theme_getSeparatorColor());
-    base_display(&border);
+    rectangle_display(&border);
 
     Rectangle_s barLeft;
     rectangle_initFillPosSize(
@@ -220,16 +220,16 @@ static void slider_displayBar(Slider_s *p_slider)
 
     if (p_slider->value == p_slider->minValue)
     {
-        base_display(&barRight);
+        rectangle_display(&barRight);
     }
     else if (p_slider->value == p_slider->maxValue)
     {
-        base_display(&barLeft);
+        rectangle_display(&barLeft);
     }
     else
     {
-        base_display(&barLeft);
-        base_display(&barRight);
+        rectangle_display(&barLeft);
+        rectangle_display(&barRight);
     }
 }
 
@@ -251,12 +251,12 @@ static void slider_setPlusBtnPosition(Slider_s *p_slider)
 static void slider_displayBtn(Button_s *p_button)
 {
     const Color_t color = theme_getFocusItemColor(p_button->base.focused);
-    base_setBackground(&p_button->base, color);
+    button_setBackgroundColor(p_button, color);
 
     const property_value_focus_e propertyValueFocus =
             (p_button->base.focused) ? PROPERTY_FOCUS_VALUE_TRUE : PROPERTY_FOCUS_VALUE_FALSE;
     base_setProperty(p_button, FILE_PROPERTY_FOCUS, propertyValueFocus);
-    base_display(p_button);
+    button_display(p_button);
 
     const Color_t borderColor = p_button->base.focused ? COLOR_ACCENT_RED : theme_getSeparatorColor();
 
@@ -264,7 +264,7 @@ static void slider_displayBtn(Button_s *p_button)
     rectangle_initBorderPosSize(
         &border, p_button->base.x, p_button->base.y, p_button->base.width,
         p_button->base.height, GUI_SLIDER_BORDER_WIDTH, borderColor);
-    base_display(&border);
+    rectangle_display(&border);
 }
 
 static void slider_displayValue(Slider_s *p_slider)
@@ -274,12 +274,12 @@ static void slider_displayValue(Slider_s *p_slider)
     TextBlock_s textBlock;
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, theme_getDefaultFont());
-    base_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT));
-    base_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
-    base_setBackground(&textBlock, theme_getBackgroundColor());
-    base_setTransparent(&textBlock, false);
+    textblock_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT));
+    textblock_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);
+    textblock_setBackgroundColor(&textBlock, theme_getBackgroundColor());
+    textblock_setDrawBackground(&textBlock, true);
     snprintf(textBlock.text, TEXTBLOCK_MAX_STRING_LENGTH, "%d", p_slider->value);
-    base_display(&textBlock);
+    textblock_display(&textBlock);
 }
 
 static void slider_decreaseValue(Button_s *p_button)

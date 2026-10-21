@@ -79,13 +79,15 @@ const static KeyboardBtn_s kb_btnRow4[] = {
 
 void keyboard_init(Keyboard_s *p_keyboard)
 {
-    textblock_init(&p_keyboard->textBlock);
+    TextBlock_s *p_textBlock = &p_keyboard->textBlock;
+
+    textblock_init(p_textBlock);
     textblock_setFont(&p_keyboard->textBlock, theme_getKeyboardFont());
-    base_setDimensions(&p_keyboard->textBlock.base, 430, 23);
-    base_setPosition(&p_keyboard->textBlock.base, 25, 32);
-    base_setHorizontalAlignment(&p_keyboard->textBlock.base, Gui_Align_Left);
-    base_setBackground(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
-    base_setTransparent(&p_keyboard->textBlock, false);
+    textblock_setSize(p_textBlock, 430, 23);
+    textblock_setPosition(p_textBlock, 25, 32);
+    textblock_setTextHorizontalAlignment(p_textBlock, Gui_Align_Left);
+    textblock_setBackgroundColor(&p_keyboard->textBlock, theme_keyboard_getTextBackColor());
+    textblock_setDrawBackground(&p_keyboard->textBlock, true);
     touch_init(&p_keyboard->touch);
     base_addTouch(&p_keyboard->textBlock, &p_keyboard->touch);
     touch_setTouchArea(&p_keyboard->touch, 0, KB_ROW1_Y, STYLE_DISPLAY_WIDTH, (STYLE_DISPLAY_HEIGHT - KB_ROW1_Y));
@@ -137,7 +139,7 @@ static void keyboard_onDisplay(BaseComponent_s *p_baseComponent)
     Label_s textbox;
     label_initBmpPos(&textbox, FILE_KEY_KEYBOARD_TEXTBOX, 0, 0);
     theme_applyThemeProperty(&textbox);
-    base_display(&textbox);
+    label_display(&textbox);
     graphics_displayComponent(p_baseComponent); // display text
 
     keyboard_showKeyboard(p_keyboard);
@@ -180,9 +182,9 @@ static bool keyboard_handleBtnEnterPress(Keyboard_s *p_keyboard, const GuiEvent_
         if (textLength > 0)
         {
             p_keyboard->textBlock.text[textLength - 1] = 0;
-            base_setTransparent(&p_keyboard->textBlock, false);
+            textblock_setDrawBackground(&p_keyboard->textBlock, true);
             graphics_displayComponent(&p_keyboard->textBlock.base); // display text
-            base_setTransparent(&p_keyboard->textBlock, true);
+            textblock_setDrawBackground(&p_keyboard->textBlock, false);
             keyboard_textNotifyChanged(p_keyboard);
         }
     }
@@ -352,5 +354,5 @@ static void keyboard_showKeyboard(Keyboard_s *p_keyboard)
     Label_s keyboard;
     label_initBmpPos(&keyboard, kbBmp, 0, 84);
     theme_applyThemeProperty(&keyboard);
-    base_display(&keyboard);
+    label_display(&keyboard);
 }

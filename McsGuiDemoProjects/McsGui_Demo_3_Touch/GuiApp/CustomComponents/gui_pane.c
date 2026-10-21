@@ -71,6 +71,12 @@ void pane_init(Pane_s *p_pane)
     p_pane->borderPane = false;
 }
 
+void pane_initSize(Pane_s *p_pane, const uint16_t width, const uint16_t height)
+{
+    pane_init(p_pane);
+    base_setSize(&p_pane->base, width, height);
+}
+
 void pane_setRadius(Pane_s *p_pane, uint8_t radius)
 {
     p_pane->radius = radius;
@@ -84,6 +90,11 @@ void pane_setBorderPane(Pane_s *p_pane, bool borderPane)
 void pane_addComponent(Pane_s *p_pane, void *p_component)
 {
 	base_addChild(&p_pane->base, (BaseComponent_s *)p_component);
+}
+
+void pane_setSize(Pane_s *p_pane, const uint16_t width, const uint16_t height)
+{
+    base_setSize(&p_pane->base, width, height);
 }
 
 static void pane_onDisplay(BaseComponent_s *p_base)
@@ -104,7 +115,7 @@ static void pane_onDisplay(BaseComponent_s *p_base)
 				p_base->width, p_base->height,
 				1, COLOR_SEPARATOR);
 		rectangle_setRadius(&paneBorder, p_pane->radius);
-		base_display(&paneBorder);
+		rectangle_display(&paneBorder);
 	}
 	else
 	{
@@ -114,7 +125,7 @@ static void pane_onDisplay(BaseComponent_s *p_base)
 				p_base->x, p_base->y,
 				p_base->width, p_base->height);
 		rectangle_setRadius(&paneBackground, p_pane->radius);
-		base_display(&paneBackground);
+		rectangle_display(&paneBackground);
 	}
 
 	graphics_displayComponent(p_base);

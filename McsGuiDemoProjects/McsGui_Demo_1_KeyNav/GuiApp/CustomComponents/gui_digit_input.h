@@ -18,6 +18,7 @@ DigitInput_s *digit_input_newInit(void);
 
 void digit_input_delete(BaseComponent_s *p_digitInputBase);
 void digit_input_init(DigitInput_s *p_digitInput);
+void digit_input_setId(DigitInput_s *p_digitInput, uint8_t id);
 
 void digit_input_setValue(DigitInput_s *p_digitInput, uint8_t value);
 uint8_t digit_input_getValue(DigitInput_s *p_digitInput);

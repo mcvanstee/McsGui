@@ -28,8 +28,8 @@ static void sv_create(View_s *p_view)
 	gui_app_clearView();
 
     Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    item_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
+    item_setSize(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_displayGB = group_box_newInitTitleSize(

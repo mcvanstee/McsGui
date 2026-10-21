@@ -80,8 +80,8 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
 {
     Row_s *p_row = row_newInit();
     row_setSpacing(p_row, 10);
-    base_setBackground(p_row, theme_getPaneColor());
-    base_setTransparent(p_row, false);
+    row_setBackgroundColor(p_row, theme_getPaneColor());
+    row_setDrawBackground(p_row, true);
     base_addNewInitAnchor(p_row);
     anchor_setTopAnchor(p_row, p_pane, Gui_Anchor_Top);
     anchor_setTopMargin(p_row, 10);
@@ -99,15 +99,15 @@ static void ac_addAccentColorButtons(View_s *p_view, Pane_s *p_pane)
     ColorCheckbox_s *p_redCheckbox = color_checkbox_new();
     color_checkbox_init(p_redCheckbox);
     color_checkbox_setColor(p_redCheckbox, COLOR_ACCENT_RED);
-    base_setId(p_redCheckbox, AC_VIEW_ACCENT_RED_CHECKBOX_ID);
+    color_checkbox_setId(p_redCheckbox, AC_VIEW_ACCENT_RED_CHECKBOX_ID);
 
     ColorCheckbox_s *p_blueCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_blueCheckbox, COLOR_ACCENT_BLUE);
-    base_setId(p_blueCheckbox, AC_VIEW_ACCENT_BLUE_CHECKBOX_ID);
+    color_checkbox_setId(p_blueCheckbox, AC_VIEW_ACCENT_BLUE_CHECKBOX_ID);
 
     ColorCheckbox_s *p_greenCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_greenCheckbox, COLOR_ACCENT_GREEN);
-    base_setId(p_greenCheckbox, AC_VIEW_ACCENT_GREEN_CHECKBOX_ID);
+    color_checkbox_setId(p_greenCheckbox, AC_VIEW_ACCENT_GREEN_CHECKBOX_ID);
 
     row_addComponent(p_row, p_redCheckbox);
     row_addComponent(p_row, p_blueCheckbox);
@@ -144,8 +144,8 @@ static void ac_addCursorColorButtons(View_s *p_view, Pane_s *p_pane)
 {
     Row_s *p_row = row_newInit();
     row_setSpacing(p_row, 10);
-    base_setBackground(p_row, theme_getPaneColor());
-    base_setTransparent(p_row, false);
+    row_setBackgroundColor(p_row, theme_getPaneColor());
+    row_setDrawBackground(p_row, true);
     base_addNewInitAnchor(p_row);
     anchor_setTopAnchor(p_row, p_pane, Gui_Anchor_Top);
     anchor_setTopMargin(p_row, 70);
@@ -162,15 +162,15 @@ static void ac_addCursorColorButtons(View_s *p_view, Pane_s *p_pane)
 
     ColorCheckbox_s *p_redCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_redCheckbox, COLOR_ACCENT_RED);
-    base_setId(p_redCheckbox, AC_VIEW_CURSOR_RED_CHECKBOX_ID);
+    color_checkbox_setId(p_redCheckbox, AC_VIEW_CURSOR_RED_CHECKBOX_ID);
 
     ColorCheckbox_s *p_blueCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_blueCheckbox, COLOR_ACCENT_BLUE);
-    base_setId(p_blueCheckbox, AC_VIEW_CURSOR_BLUE_CHECKBOX_ID);
+    color_checkbox_setId(p_blueCheckbox, AC_VIEW_CURSOR_BLUE_CHECKBOX_ID);
 
     ColorCheckbox_s *p_greenCheckbox = color_checkbox_newInit();
     color_checkbox_setColor(p_greenCheckbox, COLOR_ACCENT_GREEN);
-    base_setId(p_greenCheckbox, AC_VIEW_CURSOR_GREEN_CHECKBOX_ID);
+    color_checkbox_setId(p_greenCheckbox, AC_VIEW_CURSOR_GREEN_CHECKBOX_ID);
 
     row_addComponent(p_row, p_redCheckbox);
     row_addComponent(p_row, p_blueCheckbox);

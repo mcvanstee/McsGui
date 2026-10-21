@@ -99,9 +99,9 @@ void button_custom_delete(BaseComponent_s *p_buttonBase)
 void button_custom_init(ButtonCustom_s *p_customButton)
 {
     button_init(&p_customButton->button);
-    base_setOnDelete(p_customButton, button_custom_delete);
-    base_setOnDisplay(p_customButton, btnc_onDisplay);
-    base_setBmpKey(p_customButton, FILE_KEY_NONE);
+    base_setOnDelete(&p_customButton->button.base, button_custom_delete);
+    base_setOnDisplay(&p_customButton->button.base, btnc_onDisplay);
+    button_setBmpKey(&p_customButton->button, FILE_KEY_NONE);
     p_customButton->textBmp = FILE_KEY_NONE;
     touch_init(&p_customButton->touch);
     base_addTouch(p_customButton, &p_customButton->touch);
@@ -118,7 +118,7 @@ void button_custom_init(ButtonCustom_s *p_customButton)
 
 void button_custom_setIcon(ButtonCustom_s *p_button, const file_key_e icon)
 {
-    base_setBmpKey(p_button, icon);
+    button_setBmpKey(&p_button->button, icon);
 }
 
 void button_custom_setTextBmp(ButtonCustom_s *p_button, const file_key_e text)
@@ -138,12 +138,12 @@ void button_custom_setFont(ButtonCustom_s *p_button, const uint8_t font)
 
 void button_custom_setColor(ButtonCustom_s *p_button, const Color_t color)
 {
-    base_setBackground(p_button, color);
+    button_setBackgroundColor(&p_button->button, color);
 }
 
 void button_custom_showBorderOnly(ButtonCustom_s *p_button, const bool showBorderOnly)
 {
-    base_setTransparent(p_button, showBorderOnly);
+    button_setDrawBackground(&p_button->button, !showBorderOnly);
 }
 
 void button_custom_setBorderColor(ButtonCustom_s *p_button, const Color_t color)
@@ -168,7 +168,7 @@ static void btnc_onDisplay(BaseComponent_s *p_base)
 
     Rectangle_s background;
     rectangle_initFillPosSize(
-        &background, p_base->background,
+        &background, p_base->backgroundColor,
         p_base->x, p_base->y,
         p_base->width, p_base->height);
     rectangle_setRadius(&background, p_customButton->borderData.radius);
@@ -212,7 +212,7 @@ static void btnc_displayCustomText(ButtonCustom_s *p_customButton, Rectangle_s *
 {
     TextBlock_s textBlock;
     textblock_initText(&textBlock, p_customButton->text);
-    base_setDimensions(&textBlock.base, p_customButton->button.base.width, p_customButton->button.base.height);
+    textblock_setSize(&textBlock, p_customButton->button.base.width, p_customButton->button.base.height);
     textblock_setFont(&textBlock, p_customButton->fontData.font);
 
     GuiAnchor_s anchor;
@@ -220,15 +220,15 @@ static void btnc_displayCustomText(ButtonCustom_s *p_customButton, Rectangle_s *
     base_addAnchor(&textBlock, &anchor);
     anchor_setCenterInParent(&textBlock, p_background);
 
-    base_display(p_background);
-    base_display(&textBlock);
+    rectangle_display(p_background);
+    textblock_display(&textBlock);
 }
 
 static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectangle_s *p_background)
 {
     Label_s icon;
     label_initBmp(&icon, p_customButton->button.base.bmpKey);
-    base_setDimensions(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
+    base_setSize(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
 
     GuiAnchor_s anchorIcon;
     anchor_init(&anchorIcon);
@@ -239,12 +239,12 @@ static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectan
 
     TextBlock_s textBlock;
     textblock_initText(&textBlock, p_customButton->text);
-    base_setDimensions(
-        &textBlock.base,
+    textblock_setSize(
+        &textBlock,
         (p_customButton->button.base.width - p_customButton->iconWidth - p_customButton->iconLeftMargin - p_customButton->textLeftMargin),
         p_customButton->button.base.height);
     textblock_setFont(&textBlock, p_customButton->fontData.font);
-    base_setHorizontalAlignment(&textBlock, Gui_Align_Left);
+    textblock_setTextHorizontalAlignment(&textBlock, Text_Align_Left);
 
     GuiAnchor_s textAnchor;
     anchor_init(&textAnchor);
@@ -253,9 +253,9 @@ static void btnc_displayIconAndCustomText(ButtonCustom_s *p_customButton, Rectan
     anchor_setLeftAnchor(&textBlock, &icon, Gui_Anchor_Right);
     anchor_setLeftMargin(&textBlock, p_customButton->textLeftMargin);
 
-    base_display(p_background);
-    base_display(&icon);
-    base_display(&textBlock);
+    rectangle_display(p_background);
+    label_display(&icon);
+    textblock_display(&textBlock);
 }
 
 static void btnc_displayIcon(ButtonCustom_s *p_customButton)
@@ -267,25 +267,25 @@ static void btnc_displayIcon(ButtonCustom_s *p_customButton)
         p_customButton->button.base.x, p_customButton->button.base.y,
         p_customButton->button.base.width, p_customButton->button.base.height);
     btnc_displayBackground(p_customButton);
-    base_display(&icon);
+    label_display(&icon);
 }
 
 static void btnc_displayBmpText(ButtonCustom_s *p_customButton, Rectangle_s *p_background)
 {
     Label_s textBmp;
     label_initBmp(&textBmp, p_customButton->textBmp);
-    base_setDimensions(&textBmp.base, p_customButton->button.base.width, p_customButton->button.base.height);
+    label_setSize(&textBmp, p_customButton->button.base.width, p_customButton->button.base.height);
     gui_app_translate(&textBmp);
 
-    base_display(p_background);
-    base_display(&textBmp);
+    rectangle_display(p_background);
+    label_display(&textBmp);
 }
 
 static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle_s *p_background)
 {
     Label_s icon;
     label_initBmp(&icon, p_customButton->button.base.bmpKey);
-    base_setDimensions(&icon.base, p_customButton->iconWidth, p_customButton->iconWidth);
+    label_setSize(&icon, p_customButton->iconWidth, p_customButton->iconWidth);
 
     GuiAnchor_s anchorIcon;
     anchor_init(&anchorIcon);
@@ -296,11 +296,11 @@ static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle
 
     Label_s textBmp;
     label_initBmp(&textBmp, p_customButton->textBmp);
-    base_setDimensions(
-        &textBmp.base,
+    label_setSize(
+        &textBmp,
         (p_customButton->button.base.width - p_customButton->iconWidth - p_customButton->iconLeftMargin - p_customButton->textLeftMargin),
         p_customButton->button.base.height);
-    base_setHorizontalAlignment(&textBmp, Gui_Align_Left);
+    label_setBmpHorizontalAlignment(&textBmp, Gui_Align_Left);
     gui_app_translate(&textBmp);
 
     GuiAnchor_s anchorTextBmp;
@@ -310,24 +310,24 @@ static void btnc_displayIconAndBmpText(ButtonCustom_s *p_customButton, Rectangle
     anchor_setLeftAnchor(&textBmp, &icon, Gui_Anchor_Right);
     anchor_setLeftMargin(&textBmp, p_customButton->textLeftMargin);
 
-    base_display(p_background);
-    base_display(&icon);
-    base_display(&textBmp);
+    rectangle_display(p_background);
+    label_display(&icon);
+    label_display(&textBmp);
 }
 
 static void btnc_displayBackground(ButtonCustom_s *p_customButton)
 {
-    if ((!p_customButton->button.base.transparent) &&
+    if ((p_customButton->button.base.drawBackground) &&
         (p_customButton->borderData.borderThickness == 0))
     {
         Rectangle_s background;
         rectangle_initFillPosSize(
-                &background, p_customButton->button.base.background,
+                &background, p_customButton->button.base.backgroundColor,
                 p_customButton->button.base.x, p_customButton->button.base.y,
                 p_customButton->button.base.width, p_customButton->button.base.height);
-        base_display(&background);
+        rectangle_display(&background);
     }
-    else if ((p_customButton->button.base.transparent) &&
+    else if ((!p_customButton->button.base.drawBackground) &&
              (p_customButton->borderData.borderThickness > 0))
     {
         Rectangle_s background;
@@ -336,18 +336,18 @@ static void btnc_displayBackground(ButtonCustom_s *p_customButton)
                 p_customButton->button.base.x, p_customButton->button.base.y,
                 p_customButton->button.base.width, p_customButton->button.base.height,
                 p_customButton->borderData.borderThickness, p_customButton->borderData.borderColor);
-        base_display(&background);
+        rectangle_display(&background);
     }
-    else if ((!p_customButton->button.base.transparent) &&
+    else if ((p_customButton->button.base.drawBackground) &&
              (p_customButton->borderData.borderThickness >= 0))
     {
         Rectangle_s background;
         rectangle_initFillBorderPosSize(
-                &background, p_customButton->button.base.background,
+                &background, p_customButton->button.base.backgroundColor,
                 p_customButton->button.base.x, p_customButton->button.base.y,
                 p_customButton->button.base.width, p_customButton->button.base.height,
                 p_customButton->borderData.borderThickness, p_customButton->borderData.borderColor);
-        base_display(&background);
+        rectangle_display(&background);
     }
     else
     {

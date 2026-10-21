@@ -22,4 +22,7 @@ void group_box_init(GroupBox_s *p_groupBox);
 void group_box_setTitleHeightOffset(GroupBox_s *p_groupBox, int8_t offset);
 void group_box_addComponent(GroupBox_s *p_groupBox, void *p_component);
 
+void group_box_setId(GroupBox_s *p_groupBox, const uint8_t id);
+void group_box_display(GroupBox_s *p_groupBox);
+
 #endif /* CUSTOMCOMPONENTS_GUI_GROUP_BOX_H_ */

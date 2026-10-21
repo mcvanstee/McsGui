@@ -31,7 +31,8 @@ typedef struct text_block_s
 {
     BaseComponent_s base;
     FontData_s fontData;
-    void (*valueChanged)(void);
+    void (*valueChanged)(struct text_block_s *p_textBlock);
+    void (*valueChangedEvent)(void);
     char text[TEXTBLOCK_MAX_STRING_LENGTH_INC_NULL];
 } TextBlock_s;
 
@@ -39,34 +40,27 @@ typedef struct text_block_s
 TextBlock_s *textblock_new(void);
 TextBlock_s *textblock_newInit(void);
 
-void textblock_delete(BaseComponent_s *p_textBlockBase);
 void textblock_init(TextBlock_s *p_textBlock);
 void textblock_initText(TextBlock_s *p_textBlock, const char *p_text);
-void textblock_initTextSize(
-        TextBlock_s *p_textBlock, const char *p_text,
-        const uint16_t width, const uint16_t height);
-
-void textblock_initTextPos(
-        TextBlock_s *p_textBlock, const char *p_text,
-        const uint16_t x, const uint16_t y);
-
+void textblock_initTextSize(TextBlock_s *p_textBlock, const char *p_text, const uint16_t width, const uint16_t height);
+void textblock_initTextPos(TextBlock_s *p_textBlock, const char *p_text, const uint16_t x, const uint16_t y);
 void textblock_initTextPosSize(
-        TextBlock_s *p_textBlock, const char *p_text,
-        const uint16_t x, const uint16_t y,
-        const uint16_t width, const uint16_t height);
-
+    TextBlock_s *p_textBlock, const char *p_text, const uint16_t x, const uint16_t y, const uint16_t width, const uint16_t height);
 void textblock_initTextPosSizeBack(
-        TextBlock_s *p_textBlock, const char *p_text,
-        const uint16_t x, const uint16_t y,
-        const uint16_t width, const uint16_t height,
-        const Color_t color);
+    TextBlock_s *p_textBlock, const char *p_text, const uint16_t x, const uint16_t y,
+    const uint16_t width, const uint16_t height, const Color_t color);
 
 void textblock_setText(TextBlock_s *p_textBlock, const char *p_text);
+void textblock_setTextNotifyChanged(TextBlock_s *p_textBlock, const char *p_text);
+void textblock_setValueChanged(TextBlock_s *p_textBlock, void (*valueChanged)(TextBlock_s *p_textBlock));
+void textblock_setValueChangedEvent(TextBlock_s *p_textBlock, void (*valueChangedEvent)(void));
+
 void textblock_setFont(TextBlock_s *p_textBlock, const uint8_t font);
+#if GUI_CONFIG_USE_BITMAP_COLORS
 void textblock_setFontForeColor(TextBlock_s *p_textBlock, const Color_t foreColor);
 void textblock_setFontBackColor(TextBlock_s *p_textBlock, const Color_t backColor);
 void textblock_setFontAndColor(TextBlock_s *p_textBlock, const uint8_t font, const Color_t foreColor, const Color_t backColor);
-void textblock_setValueChanged(TextBlock_s *p_textBlock, void (*valueChanged)(void));
+#endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 void textblock_setTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e horizontal, const TextAlignment_e vertical);
 void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment);
@@ -77,6 +71,20 @@ void textblock_setLeftTextPadding(TextBlock_s *p_textBlock, const uint8_t paddin
 void textblock_setRightTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
 void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
 void textblock_setBottomTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
+
+void textblock_display(TextBlock_s *p_textBlock);
+void textblock_setId(TextBlock_s *p_textBlock, const uint8_t id);
+
+void textblock_setX(TextBlock_s *p_textBlock, const uint16_t x);
+void textblock_setY(TextBlock_s *p_textBlock, const uint16_t y);
+void textblock_setWidth(TextBlock_s *p_textBlock, const uint16_t width);
+void textblock_setHeight(TextBlock_s *p_textBlock, const uint16_t height);
+void textblock_setPosition(TextBlock_s *p_textBlock, const uint16_t x, const uint16_t y);
+void textblock_setSize(TextBlock_s *p_textBlock, const uint16_t width, const uint16_t height);
+
+void textblock_setVisible(TextBlock_s *p_textBlock, const bool visible);
+void textblock_setBackgroundColor(TextBlock_s *p_textBlock, const Color_t color);
+void textblock_setDrawBackground(TextBlock_s *p_textBlock, const bool drawBackground);
 
 #ifdef __cplusplus
 } /* extern "C" */

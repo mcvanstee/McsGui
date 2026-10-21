@@ -7,13 +7,13 @@
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 
+static void grid_delete(BaseComponent_s *p_gridBase);
+static void grid_display(BaseComponent_s *p_gridBase);
+
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticGridMemInUse[GUI_CONFIG_GRID_BUFFER_SIZE] = {0};
 static Grid_s staticGridMem[GUI_CONFIG_GRID_BUFFER_SIZE] = {0};
 #endif /* GUI_USE_DYNAMIC_MEMORY */
-
-
-static void grid_display(BaseComponent_s *p_gridBase);
 
 
 /**
@@ -64,7 +64,7 @@ Grid_s *grid_newInit(void)
  * @param[in] p_gridBase Pointer to the Grid_s component to be freed.
  *
  */
-void grid_delete(BaseComponent_s *p_gridBase)
+static void grid_delete(BaseComponent_s *p_gridBase)
 {
     base_clear(p_gridBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -103,12 +103,59 @@ void grid_init(Grid_s *p_grid)
 
 
 /**
+ * @brief Initializes the Grid_s component with the number of rows and columns.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] rows The number of rows in the grid.
+ * @param[in] columns The number of columns in the grid.
+ *
+ */
+void grid_initRowCol(Grid_s *p_grid, const uint8_t rows, const uint8_t columns)
+{
+    grid_init(p_grid);
+    p_grid->rows = rows;
+    p_grid->columns = columns;
+}
+
+
+/**
+ * @brief Initializes the Grid_s component with the position.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] x The x position of the grid.
+ * @param[in] y The y position of the grid.
+ *
+ */
+void grid_initPos(Grid_s *p_grid, const uint16_t x, const uint16_t y)
+{
+    grid_init(p_grid);
+    base_setPosition(&p_grid->base, x, y);
+}
+
+
+/**
+ * @brief Initializes the Grid_s component with the position, number of rows and columns.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] x The x position of the grid.
+ * @param[in] y The y position of the grid.
+ * @param[in] rows The number of rows in the grid.
+ * @param[in] columns The number of columns in the grid.
+ *
+ */
+void grid_initPosRowCol(Grid_s *p_grid, const uint16_t x, const uint16_t y, const uint8_t rows, const uint8_t columns)
+{
+    grid_init(p_grid);
+    base_setPosition(&p_grid->base, x, y);
+    p_grid->rows = rows;
+    p_grid->columns = columns;
+}
+
+
+/**
  * @brief Set the row spacing between the components in the grid.
  * @param[in] p_grid Pointer to the Grid_s component.
  * @param[in] spacing The spacing between the rows.
  *
  */
-void grid_setRowSpacing(Grid_s *p_grid, uint8_t spacing)
+void grid_setRowSpacing(Grid_s *p_grid, const uint8_t spacing)
 {
     p_grid->rowSpacing = spacing;
 }
@@ -120,7 +167,7 @@ void grid_setRowSpacing(Grid_s *p_grid, uint8_t spacing)
  * @param[in] spacing The spacing between the columns.
  *
  */
-void grid_setColumnSpacing(Grid_s *p_grid, uint8_t spacing)
+void grid_setColumnSpacing(Grid_s *p_grid, const uint8_t spacing)
 {
     p_grid->columnSpacing = spacing;
 }
@@ -132,7 +179,7 @@ void grid_setColumnSpacing(Grid_s *p_grid, uint8_t spacing)
  * @param[in] columns The number of columns.
  *
  */
-void grid_setColumns(Grid_s *p_grid, uint8_t columns)
+void grid_setColumns(Grid_s *p_grid, const uint8_t columns)
 {
     p_grid->columns = columns;
 }
@@ -144,7 +191,7 @@ void grid_setColumns(Grid_s *p_grid, uint8_t columns)
  * @param[in] rows The number of rows.
  *
  */
-void grid_setRows(Grid_s *p_grid, uint8_t rows)
+void grid_setRows(Grid_s *p_grid, const uint8_t rows)
 {
     p_grid->rows = rows;
 }
@@ -187,7 +234,7 @@ void grid_addComponent(Grid_s *p_grid, void *p_base)
  * @return Pointer to the component.
  *
  */
-BaseComponent_s *grid_getComponent(Grid_s *p_grid, uint8_t row, uint8_t column)
+BaseComponent_s *grid_getComponent(Grid_s *p_grid, const uint8_t row, const uint8_t column)
 {
     const uint8_t index = (row * p_grid->columns) + column;
 
@@ -202,7 +249,7 @@ BaseComponent_s *grid_getComponent(Grid_s *p_grid, uint8_t row, uint8_t column)
  * @return Pointer to the component.
  *
  */
-BaseComponent_s* grid_getComponentAtIndex(Grid_s *p_grid, uint8_t index)
+BaseComponent_s* grid_getComponentAtIndex(Grid_s *p_grid, const uint8_t index)
 {
     if ((p_grid->base.p_childList == NULL) || (index >= p_grid->componentCount))
     {
@@ -233,7 +280,7 @@ BaseComponent_s* grid_getComponentAtIndex(Grid_s *p_grid, uint8_t index)
  * @param[in] cellWidth The width of the cells.
  *
  */
-void grid_setCellWidth(Grid_s *p_grid, uint16_t cellWidth)
+void grid_setCellWidth(Grid_s *p_grid, const uint16_t cellWidth)
 {
     p_grid->cellWidth = cellWidth;
 }
@@ -245,9 +292,75 @@ void grid_setCellWidth(Grid_s *p_grid, uint16_t cellWidth)
  * @param[in] cellHeight The height of the cells.
  *
  */
-void grid_setCellHeight(Grid_s *p_grid, uint16_t cellHeight)
+void grid_setCellHeight(Grid_s *p_grid, const uint16_t cellHeight)
 {
     p_grid->cellHeight = cellHeight;
+}
+
+
+/**
+ * @brief Set the x-position of the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] x x-position of the grid.
+ *
+ */
+void grid_setX(Grid_s *p_grid, const uint16_t x)
+{
+    base_setX(&p_grid->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] y y-position of the grid.
+ *
+ */
+void grid_setY(Grid_s *p_grid, const uint16_t y)
+{
+    base_setY(&p_grid->base, y);
+}
+
+
+void grid_setPosition(Grid_s *p_grid, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_grid->base, x, y);
+}
+
+
+/**
+ * @brief Set the visibility of the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] visible Whether the grid is visible or not.
+ *
+ */
+void grid_setVisible(Grid_s *p_grid, const bool visible)
+{
+    p_grid->base.visible = visible;
+}
+
+
+/**
+ * @brief Set the background color of the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] color The background color of the grid.
+ *
+ */
+void grid_setBackgroundColor(Grid_s *p_grid, const Color_t color)
+{
+    p_grid->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Set whether to draw the background of the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] drawBackground Whether to draw the background of the grid.
+ *
+ */
+void grid_setDrawBackground(Grid_s *p_grid, const bool drawBackground)
+{
+    p_grid->base.drawBackground = drawBackground;
 }
 
 
@@ -262,10 +375,10 @@ static void grid_display(BaseComponent_s *p_gridBase)
 
     uint16_t maxWidth = 0;
     uint16_t maxHeight = 0;
-    uint16_t columnSpacing = p_grid->columnSpacing;
-    uint16_t rowSpacing = p_grid->rowSpacing;
-    uint8_t columns = p_grid->columns;
-    uint8_t rows = p_grid->rows;
+    const uint16_t columnSpacing = p_grid->columnSpacing;
+    const uint16_t rowSpacing = p_grid->rowSpacing;
+    const uint8_t columns = p_grid->columns;
+    const uint8_t rows = p_grid->rows;
 
     BaseComponent_s *p_iterator = p_grid->base.p_childList;
     while (p_iterator != NULL)
@@ -301,14 +414,14 @@ static void grid_display(BaseComponent_s *p_gridBase)
     p_iterator = p_grid->base.p_childList;
     for (uint8_t i = 0; i < rows; i++)
     {
-        if ((!p_gridBase->transparent) && (i > 0) && (columnSpacing > 0))
+        if ((p_gridBase->drawBackground) && (i > 0) && (columnSpacing > 0))
         {
             Rectangle_s rect;
             rectangle_initFillPosSize(
-                    &rect, p_gridBase->background,
+                    &rect, p_gridBase->backgroundColor,
                     x, y + (i * maxHeight) + ((i - 1) * columnSpacing),
                     p_grid->base.width, columnSpacing);
-            base_display(&rect);
+            rectangle_display(&rect);
         }
 
         for (uint8_t j = 0; j < columns; j++)
@@ -331,26 +444,26 @@ static void grid_display(BaseComponent_s *p_gridBase)
             }
             else
             {
-                if (!p_gridBase->transparent)
+                if (p_gridBase->drawBackground)
                 {
                     Rectangle_s rect;
-                    rectangle_initFillPosSize(&rect, p_gridBase->background,
+                    rectangle_initFillPosSize(&rect, p_gridBase->backgroundColor,
                             x + (j * (maxWidth + columnSpacing)),
                             y + (i * (maxHeight + rowSpacing)),
                             maxWidth, maxHeight);
-                    base_display(&rect);
+                    rectangle_display(&rect);
                 }
             }
 
-            if ((!p_gridBase->transparent) && (i == 0) && (j < (columns - 1)) && (rowSpacing > 0))
+            if ((p_gridBase->drawBackground) && (i == 0) && (j < (columns - 1)) && (rowSpacing > 0))
             {
                 Rectangle_s rect;
-                rectangle_initFillPosSize(&rect, p_gridBase->background,
+                rectangle_initFillPosSize(&rect, p_gridBase->backgroundColor,
                         x + ((j + 1) * maxWidth) + (j * rowSpacing),
                         y,
                         rowSpacing,
                         p_grid->base.height);
-                base_display(&rect);
+                rectangle_display(&rect);
             }
         }
     }

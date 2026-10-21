@@ -7,13 +7,13 @@
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 
+static void row_delete(BaseComponent_s *p_rowBase);
+static void row_display(BaseComponent_s *p_rowBase);
+
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticRowMemInUse[GUI_CONFIG_ROW_BUFFER_SIZE] = {0};
 static Row_s staticRowMem[GUI_CONFIG_ROW_BUFFER_SIZE] = {0};
 #endif /* GUI_USE_DYNAMIC_MEMORY */
-
-
-static void row_display(BaseComponent_s *p_rowBase);
 
 
 /**
@@ -64,7 +64,7 @@ Row_s *row_newInit(void)
  * @param[in] p_rowBase Pointer to the Row component to be freed.
  *
  */
-void row_delete(BaseComponent_s *p_rowBase)
+static void row_delete(BaseComponent_s *p_rowBase)
 {
     base_clear(p_rowBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -103,7 +103,7 @@ void row_init(Row_s *p_row)
  * @param[in] spacing The spacing between the components.
  *
  */
-void row_setSpacing(Row_s *p_row, uint8_t spacing)
+void row_setSpacing(Row_s *p_row, const uint8_t spacing)
 {
     p_row->spacing = spacing;
 }
@@ -115,7 +115,7 @@ void row_setSpacing(Row_s *p_row, uint8_t spacing)
  * @param[in] cellWidth The width of the cell.
  *
  */
-void row_setCellWidth(Row_s *p_row, uint8_t cellWidth)
+void row_setCellWidth(Row_s *p_row, const uint8_t cellWidth)
 {
     p_row->cellWidth = cellWidth;
 }
@@ -157,7 +157,7 @@ void row_addComponent(Row_s *p_row, void *p_component)
  * @return Pointer to the component.
  *
  */
-BaseComponent_s *row_getComponent(Row_s *p_row, uint8_t index)
+BaseComponent_s *row_getComponentAtIndex(Row_s *p_row, const uint8_t index)
 {
     if ((p_row->base.p_childList == NULL) || (index >= p_row->componentCount))
     {
@@ -172,6 +172,79 @@ BaseComponent_s *row_getComponent(Row_s *p_row, uint8_t index)
     }
 
     return p_iterator;
+}
+
+
+/**
+ * @brief Set the x-position of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] x x-position of the Row component.
+ *
+ */
+void row_setX(Row_s *p_row, const uint16_t x)
+{
+    base_setX(&p_row->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] y y-position of the Row component.
+ *
+ */
+void row_setY(Row_s *p_row, const uint16_t y)
+{
+    base_setY(&p_row->base, y);
+}
+
+
+/**
+ * @brief Set the position of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] x x-position of the Row component.
+ * @param[in] y y-position of the Row component.
+ *
+ */
+void row_setPosition(Row_s *p_row, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_row->base, x, y);
+}
+
+
+/**
+ * @brief Set the visibility of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] visible If true, the Row component is visible. If false, the Row component is hidden.
+ *
+ */
+void row_setVisibility(Row_s *p_row, const bool visible)
+{
+    p_row->base.visible = visible;
+}
+
+
+/**
+ * @brief Set the background color of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] backgroundColor The background color of the Row component.
+ *
+ */
+void row_setBackgroundColor(Row_s *p_row, const Color_t color)
+{
+    p_row->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Set the drawBackground flag of the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] drawBackground If true, the background is drawn when onDisplay is called.
+ *
+ */
+void row_setDrawBackground(Row_s *p_row, const bool drawBackground)
+{
+    p_row->base.drawBackground = drawBackground;
 }
 
 
@@ -240,14 +313,14 @@ static void row_display(BaseComponent_s *p_rowBase)
 
         const uint16_t cellWidth = (p_row->cellWidth > 0) ? p_row->cellWidth : p_iterator->width;
 
-        if (!p_rowBase->transparent && (item < (p_row->componentCount - 1)) && (p_row->spacing > 0))
+        if (p_rowBase->drawBackground && (item < (p_row->componentCount - 1)) && (p_row->spacing > 0))
         {
             Rectangle_s rect;
-            rectangle_initFillPosSize(&rect, p_rowBase->background,
+            rectangle_initFillPosSize(&rect, p_rowBase->backgroundColor,
                     x + cellWidth,
                     p_rowBase->y,
                     p_row->spacing, maxHeight);
-            base_display(&rect);
+            rectangle_display(&rect);
         }
 
         x += cellWidth + p_row->spacing;

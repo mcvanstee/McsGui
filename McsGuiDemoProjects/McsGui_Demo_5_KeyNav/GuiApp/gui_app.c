@@ -146,7 +146,7 @@ void gui_app_clearView(void)
     rectangle_initFillPosSize(
         &background, theme_getBackgroundColor(),
         STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 }
 
 void gui_app_drawBackground(void)
@@ -162,27 +162,27 @@ void gui_app_drawHeaderBackground(void)
     rectangle_initFillPosSize(
         &background, theme_getHeaderColor(),
         STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 
     Rectangle_s separatorTop;
     rectangle_initFillPosSize(
         &separatorTop, theme_getSeparatorColor(),
         STYLE_HEADER_X, SYTLE_HEADER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_SEPARATOR_HEIGHT);
-    base_display(&separatorTop);
+    rectangle_display(&separatorTop);
 
     Label_s clock;
     label_initBmpPosSize(
         &clock, FILE_KEY_ICON_CLOCK,
         STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_HEADER_ICON_WIDTH, STYLE_HEADER_ICON_HEIGHT);
     theme_setHeaderIcon(&clock);
-    base_display(&clock.base);
+    label_display(&clock);
 
     Label_s wifi;
     label_initBmpPosSize(
         &wifi, FILE_KEY_ICON_WIFI,
         (STYLE_DISPLAY_WIDTH - STYLE_HEADER_ICON_WIDTH), STYLE_HEADER_Y, STYLE_HEADER_ICON_HEIGHT, STYLE_HEADER_HEIGHT);
     theme_setHeaderIcon(&wifi);
-    base_display(&wifi.base);
+    label_display(&wifi);
 
     header_updateDateTime(true);
 }
@@ -193,13 +193,13 @@ void gui_app_drawFooterBackground(void)
     rectangle_initFillPosSize(
         &separatorBottom, theme_getSeparatorColor(),
         STYLE_FOOTER_X, STYLE_FOOTER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_SEPARATOR_HEIGHT);
-    base_display(&separatorBottom);
+    rectangle_display(&separatorBottom);
 
     Rectangle_s background;
     rectangle_initFillPosSize(
         &background, theme_getFooterColor(),
         STYLE_FOOTER_X, STYLE_FOOTER_Y, STYLE_DISPLAY_WIDTH, STYLE_FOOTER_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 }
 
 
@@ -520,8 +520,8 @@ void gui_app_showFooterLogo(void)
 {
     Item_s item;
     item_init(&item);
-    base_setPosition(&item, STYLE_FOOTER_X, STYLE_FOOTER_Y);
-    base_setDimensions(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
+    item_setPosition(&item, STYLE_FOOTER_X, STYLE_FOOTER_Y);
+    item_setSize(&item, STYLE_FOOTER_WIDTH, STYLE_FOOTER_HEIGHT);
 
     Label_s logo;
     label_initBmp(&logo, FILE_KEY_IRL_LOGO_48);
@@ -531,7 +531,7 @@ void gui_app_showFooterLogo(void)
     anchor_setRightAnchor(&logo, &item, Gui_Anchor_Right);
     anchor_setVerticalCenter(&logo, &item);
     anchor_setRightMargin(&logo, 10);
-    base_display(&logo);
+    label_display(&logo);
 
     Label_s mcsGui;
     label_initBmp(&mcsGui, FILE_KEY_TEXT_FOOTER_MCSGUI);
@@ -542,7 +542,7 @@ void gui_app_showFooterLogo(void)
     anchor_setRightAnchor(&mcsGui, &logo, Gui_Anchor_Left);
     anchor_setVerticalCenter(&mcsGui, &logo);
     anchor_setRightMargin(&mcsGui, 10);
-    base_display(&mcsGui.base);
+    label_display(&mcsGui);
 }
 
 void gui_app_translate(void *p_component)
@@ -650,7 +650,7 @@ static void gui_app_showBootLogo(const bool showAnimation)
 {
     Rectangle_s background;
     rectangle_initFillSize(&background, COLOR_IRL_BLUE, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 
     int32_t i = (showAnimation) ? 0 : 23;
 
@@ -658,7 +658,7 @@ static void gui_app_showBootLogo(const bool showAnimation)
     {
         Label_s logo;
         label_initBmp(&logo, FILE_KEY_ANIMATION_IRL_LOGO);
-        base_setDimensions(&logo, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
+        label_setSize(&logo, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
         base_setProperty(&logo, FILE_PROPERTY_ANIMATION, (property_value_animation_e)i);
 
         graphics_displayComponent(&logo.base);

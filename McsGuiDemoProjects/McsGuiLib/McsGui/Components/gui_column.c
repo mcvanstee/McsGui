@@ -7,13 +7,13 @@
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 
+static void column_delete(BaseComponent_s *p_columnBase);
+static void column_display(BaseComponent_s *p_columnBase);
+
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticColumnMemInUse[GUI_CONFIG_COLUMN_BUFFER_SIZE] = {0};
 static Column_s staticColumnMem[GUI_CONFIG_COLUMN_BUFFER_SIZE] = {0};
 #endif /* GUI_USE_DYNAMIC_MEMORY */
-
-
-static void column_display(BaseComponent_s *p_columnBase);
 
 
 /**
@@ -50,7 +50,7 @@ return gui_mem_malloc(sizeof(Column_s));
  * @param[in] p_columnBase Pointer to the Column component to be freed.
  *
  */
-void column_delete(BaseComponent_s *p_columnBase)
+static void column_delete(BaseComponent_s *p_columnBase)
 {
     base_clear(p_columnBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -103,9 +103,21 @@ void column_init(Column_s *p_column)
  * @param spacing The spacing between the components.
  *
  */
-void column_setSpacing(Column_s *p_column, uint8_t spacing)
+void column_setSpacing(Column_s *p_column, const uint8_t spacing)
 {
     p_column->spacing = spacing;
+}
+
+
+/**
+ * @brief Sets the height of the cell in pixels. If 0, the height is calculated based on the components.
+ * @param p_column Pointer to the component.
+ * @param cellHeight The height of the cell in pixels.
+ *
+ */
+void column_setCellHeight(Column_s *p_column, const uint16_t cellHeight)
+{
+    p_column->cellHeight = cellHeight;
 }
 
 
@@ -143,7 +155,7 @@ void column_addComponent(Column_s *p_column, void *p_base)
  * @return Pointer to the component.
  *
  */
-BaseComponent_s *column_getComponent(Column_s *p_column, uint8_t index)
+BaseComponent_s *column_getComponentAtIndex(Column_s *p_column, const uint8_t index)
 {
     if ((p_column->base.p_childList == NULL) || (index >= p_column->componentCount))
     {
@@ -158,6 +170,79 @@ BaseComponent_s *column_getComponent(Column_s *p_column, uint8_t index)
     }
 
     return p_iterator;
+}
+
+
+/**
+ * @brief Set the x-position of the Column component.
+ * @param p_column Pointer to the component.
+ * @param x x-position of the component.
+ *
+ */
+void column_setX(Column_s *p_column, const uint16_t x)
+{
+    base_setX(&p_column->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the Column component.
+ * @param p_column Pointer to the component.
+ * @param y y-position of the component.
+ *
+ */
+void column_setY(Column_s *p_column, const uint16_t y)
+{
+    base_setY(&p_column->base, y);
+}
+
+
+/**
+ * @brief Set the position of the Column component.
+ * @param p_column Pointer to the component.
+ * @param x x-position of the component.
+ * @param y y-position of the component.
+ *
+ */
+void column_setPosition(Column_s *p_column, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_column->base, x, y);
+}
+
+
+/**
+ * @brief Set the visibility of the Column component.
+ * @param p_column Pointer to the component.
+ * @param visible If true, the component is visible when onDisplay is called.
+ *
+ */
+void column_setVisible(Column_s *p_column, const bool visible)
+{
+    p_column->base.visible = visible;
+}
+
+
+/**
+ * @brief Set the background color of the Column component.
+ * @param p_column Pointer to the component.
+ * @param color Background color of the component.
+ *
+ */
+void column_setBackgroundColor(Column_s *p_column, const Color_t color)
+{
+    p_column->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Set the drawBackground flag of the Column component.
+ * @param p_column Pointer to the component.
+ * @param drawBackground If true, the background is drawn when onDisplay is called.
+ *
+ */
+void column_setDrawBackground(Column_s *p_column, const bool drawBackground)
+{
+    p_column->base.drawBackground = drawBackground;
 }
 
 
@@ -226,14 +311,14 @@ static void column_display(BaseComponent_s *p_columnBase)
 
         const uint16_t cellHeight = (p_column->cellHeight > 0) ? p_column->cellHeight : p_iterator->height;
 
-        if (!p_columnBase->transparent && (item < (p_column->componentCount - 1)) && (p_column->spacing > 0))
+        if (p_columnBase->drawBackground && (item < (p_column->componentCount - 1)) && (p_column->spacing > 0))
         {
             Rectangle_s rect;
-            rectangle_initFillPosSize(&rect, p_columnBase->background,
+            rectangle_initFillPosSize(&rect, p_columnBase->backgroundColor,
                     p_columnBase->x,
                     y + cellHeight,
                     maxWidth, p_column->spacing);
-            base_display(&rect);
+            rectangle_display(&rect);
         }
 
         y += cellHeight + p_column->spacing;

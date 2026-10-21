@@ -28,7 +28,7 @@ static void set_alarm_view_create(View_s *p_view)
     num_input_setValue(p_numberInput, 1);
     num_input_setMinimumValue(p_numberInput, 1);
     num_input_setMaximumValue(p_numberInput, 60);
-    base_setId(p_numberInput, SAV_INPUT_ID);
+    num_input_setId(p_numberInput, SAV_INPUT_ID);
     base_addNewInitAnchor(p_numberInput);
     anchor_setCenterInParent(p_numberInput, p_pane);
 

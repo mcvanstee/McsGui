@@ -22,9 +22,22 @@ typedef struct gui_item_s
 Item_s *item_new(void);
 Item_s *item_newInit(void);
 
-void item_delete(BaseComponent_s *p_itemBase);
 void item_init(Item_s *p_item);
+void item_initPos(Item_s *p_item, const uint16_t x, const uint16_t y);
+void item_initSize(Item_s *p_item, const uint16_t width, const uint16_t height);
+void item_initPosSize(Item_s *p_item, const uint16_t x, const uint16_t y, const uint16_t width, const uint16_t height);
+
 void item_addComponent(Item_s *p_item, void *p_component);
+
+void item_setId(Item_s *p_item, const uint8_t id);
+void item_setX(Item_s *p_item, const uint16_t x);
+void item_setY(Item_s *p_item, const uint16_t y);
+void item_setWidth(Item_s *p_item, const uint16_t width);
+void item_setHeight(Item_s *p_item, const uint16_t height);
+void item_setPosition(Item_s *p_item, const uint16_t x, const uint16_t y);
+void item_setSize(Item_s *p_item, const uint16_t width, const uint16_t height);
+
+void item_setVisible(Item_s *p_item, const bool visible);
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -19,11 +19,11 @@ ListView_s *listview_ext_newNavigationListView(void)
     listview_setRowHight(p_listView, STYLE_NAV_LISTVIEW_ROW_HEIGHT);
     listview_setItemsVisible(p_listView, 4);
     listview_setOnActiveItemChanged(p_listView, listview_ext_activeNavigationItemChanged);
-    base_setOnHandleEvent(p_listView, listview_ext_handleEvent);
-    base_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
-    base_setBackground(p_listView, theme_getBackgroundColor());
-    base_setTransparent(p_listView, false);
+    base_setOnHandleEvent(&p_listView->base, listview_ext_handleEvent);
+    listview_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
+    listview_setSize(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    listview_setBackgroundColor(p_listView, theme_getBackgroundColor());
+    listview_setDrawBackground(p_listView, true);
     base_addNewInitKeyNavigation(p_listView);
 
     return p_listView;
@@ -34,7 +34,7 @@ void listview_ext_addNavigationItem(ListView_s *p_listView, file_key_e icon, fil
     ListViewItem_s *p_item = listviewitem_newInit();
     listviewitem_setOnReleasedEvent(p_item, p_onPressed);
     listview_addItem(p_listView, p_item);
-    base_setOnDisplay(p_item, listview_ext_displayNavigationItem);
+    base_setOnDisplay(&p_item->base, listview_ext_displayNavigationItem);
 
     Label_s *p_icon = label_new();
     label_initBmp(p_icon, icon);
@@ -54,11 +54,11 @@ ListView_s *listview_ext_newRadioListView(void)
     listview_setRowHight(p_listView, STYLE_NAV_LISTVIEW_ROW_HEIGHT);
     listview_setItemsVisible(p_listView, 4);
     listview_setOnActiveItemChanged(p_listView, listview_ext_activeNavigationItemChanged);
-    base_setOnHandleEvent(p_listView, listview_ext_handleEvent);
-    base_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
-    base_setBackground(p_listView, theme_getBackgroundColor());
-    base_setTransparent(p_listView, false);
+    base_setOnHandleEvent(&p_listView->base, listview_ext_handleEvent);
+    listview_setPosition(p_listView, STYLE_VIEW_X, STYLE_VIEW_Y);
+    listview_setSize(p_listView, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    listview_setBackgroundColor(p_listView, theme_getBackgroundColor());
+    listview_setDrawBackground(p_listView, true);
     base_addNewInitKeyNavigation(p_listView);
 
     return p_listView;
@@ -69,7 +69,7 @@ void listview_ext_addRadioItem(
 {
     ListViewItem_s *p_item = listviewitem_newInit();
     listview_addItem(p_listView, p_item);
-    base_setOnDisplay(p_item, listview_ext_displayRadioItem);
+    base_setOnDisplay(&p_item->base, listview_ext_displayRadioItem);
 
     Checkbox_s *p_checkbox = checkbox_new();
     checkbox_initBmp(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED);
@@ -92,7 +92,7 @@ void listview_ext_activeNavigationItemChanged(ListView_s *p_listView)
 
     if (viewWindowChanged)
     {
-        base_display(p_listView);
+        listview_display(p_listView);
 
         return;
     }
@@ -125,22 +125,22 @@ static void listview_ext_displayNavigationItem(BaseComponent_s *p_itemBase)
     rectangle_initFillPosSize(&background, backgroundColor, p_itemBase->x, p_itemBase->y, p_itemBase->width, p_itemBase->height);
 
     Label_s *p_icon = (Label_s*) p_listViewItem->base.p_childList;
-    base_setHeight(p_icon, p_itemBase->height);
-    base_setWidth(p_icon, STYLE_NAV_ICON_WIDTH);
-    base_setPosition(p_icon, p_itemBase->x, p_itemBase->y);
+    label_setHeight(p_icon, p_itemBase->height);
+    label_setWidth(p_icon, STYLE_NAV_ICON_WIDTH);
+    label_setPosition(p_icon, p_itemBase->x, p_itemBase->y);
     base_setProperty(p_icon, FILE_PROPERTY_FOCUS, focusProperty);
 
     Label_s *p_text = (Label_s*) p_icon->base.p_nextBaseComponent;
-    base_setHeight(p_text, p_itemBase->height);
-    base_setWidth(p_text, p_itemBase->width - STYLE_NAV_ICON_WIDTH);
-    base_setPosition(p_text, p_itemBase->x + STYLE_NAV_ICON_WIDTH, p_itemBase->y);
-    base_setHorizontalAlignment(p_text, Gui_Align_Left);
-    base_setTopPadding(p_text, 1);
+    label_setHeight(p_text, p_itemBase->height);
+    label_setWidth(p_text, p_itemBase->width - STYLE_NAV_ICON_WIDTH);
+    label_setPosition(p_text, p_itemBase->x + STYLE_NAV_ICON_WIDTH, p_itemBase->y);
+    label_setBmpHorizontalAlignment(p_text, Gui_Align_Left);
+    label_setBmpTopPadding(p_text, 1);
     base_setProperty(p_text, FILE_PROPERTY_FOCUS, focusProperty);
 
-    base_display(&background);
-    base_display(p_icon);
-    base_display(p_text);
+    rectangle_display(&background);
+    label_display(p_icon);
+    label_display(p_text);
 }
 
 static void listview_ext_displayRadioItem(BaseComponent_s *p_itemBase)
@@ -156,23 +156,23 @@ static void listview_ext_displayRadioItem(BaseComponent_s *p_itemBase)
     rectangle_initFillPosSize(&background, backgroundColor, p_itemBase->x, p_itemBase->y, p_itemBase->width, p_itemBase->height);
 
     Checkbox_s *p_checkbox = (Checkbox_s*) p_listViewItem->base.p_childList;
-    base_setHeight(p_checkbox, p_itemBase->height);
-    base_setWidth(p_checkbox, STYLE_NAV_ICON_WIDTH);
-    base_setPosition(p_checkbox, p_itemBase->x, p_itemBase->y);
+    checkbox_setHeight(p_checkbox, p_itemBase->height);
+    checkbox_setWidth(p_checkbox, STYLE_NAV_ICON_WIDTH);
+    checkbox_setPosition(p_checkbox, p_itemBase->x, p_itemBase->y);
     base_setProperty(p_checkbox, FILE_PROPERTY_FOCUS, focusProperty);
-    base_setBmpKey(p_checkbox, (p_checkbox->checked ? FILE_KEY_ICON_RADIO_BUTTON_CHECKED : FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED));
+    checkbox_setBmpKey(p_checkbox, (p_checkbox->checked ? FILE_KEY_ICON_RADIO_BUTTON_CHECKED : FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED));
 
     Label_s *p_text = (Label_s*) p_checkbox->base.p_nextBaseComponent;
-    base_setHeight(p_text, p_itemBase->height);
-    base_setWidth(p_text, p_itemBase->width - STYLE_NAV_ICON_WIDTH);
-    base_setPosition(p_text, p_itemBase->x + STYLE_NAV_ICON_WIDTH, p_itemBase->y);
-    base_setHorizontalAlignment(p_text, Gui_Align_Left);
-    base_setTopPadding(p_text, 1);
+    label_setHeight(p_text, p_itemBase->height);
+    label_setWidth(p_text, p_itemBase->width - STYLE_NAV_ICON_WIDTH);
+    label_setPosition(p_text, p_itemBase->x + STYLE_NAV_ICON_WIDTH, p_itemBase->y);
+    label_setBmpHorizontalAlignment(p_text, Gui_Align_Left);
+    label_setBmpTopPadding(p_text, 1);
     base_setProperty(p_text, FILE_PROPERTY_FOCUS, focusProperty);
 
-    base_display(&background);
-    base_display(p_checkbox);
-    base_display(p_text);
+    rectangle_display(&background);
+    checkbox_display(p_checkbox);
+    label_display(p_text);
 }
 
 static bool listview_ext_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event)
@@ -197,17 +197,17 @@ static bool listview_ext_handleEvent(BaseComponent_s *p_listViewBase, const GuiE
 static void listview_ext_selectionChanged(Checkbox_s *p_checkbox)
 {
     listview_ext_updateSelection(p_checkbox);
-    base_display(p_checkbox);
+    checkbox_display(p_checkbox);
 }
 
 static void listview_ext_updateSelection(Checkbox_s *p_checkbox)
 {
     if (p_checkbox->checked)
     {
-        base_setBmpKey(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_CHECKED);
+        checkbox_setBmpKey(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_CHECKED);
     }
     else
     {
-        base_setBmpKey(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED);
+        checkbox_setBmpKey(p_checkbox, FILE_KEY_ICON_RADIO_BUTTON_UNCHECKED);
     }
 }

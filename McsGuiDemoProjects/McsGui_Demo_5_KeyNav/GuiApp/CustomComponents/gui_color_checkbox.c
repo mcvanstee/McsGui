@@ -76,16 +76,18 @@ void color_checkbox_delete(BaseComponent_s *p_colorCheckboxBase)
 
 void color_checkbox_init(ColorCheckbox_s *p_colorCheckbox)
 {
-    checkbox_init(&p_colorCheckbox->checkbox);
+    Checkbox_s *p_checkbox = &p_colorCheckbox->checkbox;
+
+    checkbox_init(p_checkbox);
     p_colorCheckbox->color = 0;
-    base_setBmpKey(p_colorCheckbox, FILE_KEY_ICON_CHECKMARK);
-    base_setDimensions(p_colorCheckbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
-    base_setOnDisplay(p_colorCheckbox, color_checkbox_onDisplay);
-    base_setOnDelete(p_colorCheckbox, color_checkbox_delete);
-    base_setOnFocusChanged(p_colorCheckbox, color_checkbox_focusChanged);
-    base_setHorizontalAlignment(p_colorCheckbox, Gui_Align_Right);
-    base_setVerticalAlignment(p_colorCheckbox, Gui_Align_Top);
-    checkbox_setOnSelectionChanged(&p_colorCheckbox->checkbox, color_checkbox_selectionChanged);
+    checkbox_setBmpKey(p_checkbox, FILE_KEY_ICON_CHECKMARK);
+    checkbox_setSize(p_checkbox, COLOR_CHECKBOX_WIDTH, COLOR_CHECKBOX_HEIGHT);
+    checkbox_setBmpAlignment(p_checkbox, Gui_Align_Right, Gui_Align_Top);
+    checkbox_setOnSelectionChanged(p_checkbox, color_checkbox_selectionChanged);
+    base_setOnDisplay(&p_checkbox->base, color_checkbox_onDisplay);
+    base_setOnDelete(&p_checkbox->base, color_checkbox_delete);
+    base_setOnFocusChanged(p_checkbox, color_checkbox_focusChanged);
+
     keynav_init(&p_colorCheckbox->keyNavigation);
     base_addKeyNavigation(p_colorCheckbox, &p_colorCheckbox->keyNavigation);
 }
@@ -111,7 +113,7 @@ static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent)
             p_baseComponent->x, p_baseComponent->y,
             p_baseComponent->width, p_baseComponent->height);
     rectangle_setRadius(&rect, 3);
-    base_display(&rect);
+    rectangle_display(&rect);
 
     color_checkbox_selectionChanged(&p_colorCheckbox->checkbox);
 
@@ -122,7 +124,7 @@ static void color_checkbox_onDisplay(BaseComponent_s *p_baseComponent)
             p_baseComponent->width, p_baseComponent->height
             , 2, borderColor);
     rectangle_setRadius(&border, 3);
-    base_display(&border);
+    rectangle_display(&border);
 }
 
 static void color_checkbox_focusChanged(BaseComponent_s *p_baseComponent)
@@ -152,7 +154,7 @@ static void color_checkbox_focusChanged(BaseComponent_s *p_baseComponent)
         anchor_setRightAnchor(&border, p_baseComponent, Gui_Anchor_Right);
         anchor_setTopAnchor(&border, p_baseComponent, Gui_Anchor_Top);
 
-        base_display(&border);
+        rectangle_display(&border);
     }
 
     Rectangle_s border;
@@ -162,7 +164,7 @@ static void color_checkbox_focusChanged(BaseComponent_s *p_baseComponent)
             p_baseComponent->width, p_baseComponent->height,
             2, borderColor);
     rectangle_setRadius(&border, 3);
-    base_display(&border);
+    rectangle_display(&border);
 }
 
 static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
@@ -184,15 +186,15 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
         anchor_setRightAnchor(&border, p_base, Gui_Anchor_Right);
         anchor_setTopAnchor(&border, p_base, Gui_Anchor_Top);
 
-        base_display(&border);
+        rectangle_display(&border);
 
         Label_s label;
         label_initBmpPosSize(
                 &label, FILE_KEY_ICON_CHECKMARK,
                 p_base->x, p_base->y,
                 CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
-        base_setBackground(&label, theme_getPaneColor());
-        base_setForeColor(&label, theme_getPaneTextColor());
+        label_setBackgroundColor(&label, theme_getPaneColor());
+        label_setForegroundColor(&label, theme_getPaneTextColor());
 
         GuiAnchor_s anchorLabel;
         anchor_init(&anchorLabel);
@@ -200,7 +202,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
         anchor_setRightAnchor(&label, p_base, Gui_Anchor_Right);
         anchor_setTopAnchor(&label, p_base, Gui_Anchor_Top);
 
-        base_display(&label);
+        label_display(&label);
 
         if (p_checkbox->base.focused)
         {
@@ -210,7 +212,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
             Rectangle_s border;
             rectangle_initBorderPosSize(&border, p_base->x, p_base->y, p_base->width, p_base->height, 2, color);
             rectangle_setRadius(&border, 3);
-            base_display(&border);
+            rectangle_display(&border);
         }
     }
     else
@@ -227,7 +229,7 @@ static void color_checkbox_selectionChanged(Checkbox_s *p_checkbox)
         anchor_setRightAnchor(&rect, p_base, Gui_Anchor_Right);
         anchor_setTopAnchor(&rect, p_base, Gui_Anchor_Top);
 
-        base_display(&rect);
+        rectangle_display(&rect);
     }
 }
 

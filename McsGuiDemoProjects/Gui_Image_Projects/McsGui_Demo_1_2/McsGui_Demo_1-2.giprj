@@ -530,6 +530,7 @@
           <Value>0</Value>
         </TranslationProperty>
         <Translate>false</Translate>
+        <NoOfHeaderProperties>0</NoOfHeaderProperties>
       </Table>
       <DataLocationId>0</DataLocationId>
     </ConverterInstruction>
@@ -981,6 +982,7 @@
           <Value>9</Value>
         </TranslationProperty>
         <Translate>true</Translate>
+        <NoOfHeaderProperties>10</NoOfHeaderProperties>
       </Table>
       <DataLocationId>0</DataLocationId>
     </ConverterInstruction>
@@ -2139,7 +2141,7 @@
     <VersionMajor>1</VersionMajor>
     <VersionMinor>1</VersionMinor>
     <VersionPatch>0</VersionPatch>
-    <VersionRevision>4</VersionRevision>
+    <VersionRevision>6</VersionRevision>
     <GuiPixelDataFile>demo_1_2_pixeldata</GuiPixelDataFile>
     <LogVerbose>true</LogVerbose>
     <CopySourceFiles>false</CopySourceFiles>

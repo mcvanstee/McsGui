@@ -78,20 +78,20 @@ void num_input_init(NumberInput_s *p_numberInput)
 {
     base_initParentComp(&p_numberInput->base, num_input_delete);
     const uint16_t num_input_width = (GUI_NUMBER_INPUT_BUTTON_WIDTH * 2) + GUI_NUMBER_INPUT_TEXT_WIDTH;
-    base_setDimensions(&p_numberInput->base, num_input_width, GUI_NUMBER_INPUT_HEIGHT);
+    base_setSize(&p_numberInput->base, num_input_width, GUI_NUMBER_INPUT_HEIGHT);
 
     button_init(&p_numberInput->decreaseButton);
     button_init(&p_numberInput->increaseButton);
     keynav_init(&p_numberInput->decreaseBtnKeyNav);
     keynav_init(&p_numberInput->increaseBtnKeyNav);
-    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_ICON_MINUS);
-    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_PLUS);
-    base_setBackground(&p_numberInput->decreaseButton, theme_getNumberInputColor());
-    base_setBackground(&p_numberInput->increaseButton, theme_getNumberInputColor());
+    button_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_ICON_MINUS);
+    button_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_ICON_PLUS);
+    button_setBackgroundColor(&p_numberInput->decreaseButton, theme_getNumberInputColor());
+    button_setBackgroundColor(&p_numberInput->increaseButton, theme_getNumberInputColor());
     base_addKeyNavigation(&p_numberInput->decreaseButton, &p_numberInput->decreaseBtnKeyNav);
     base_addKeyNavigation(&p_numberInput->increaseButton, &p_numberInput->increaseBtnKeyNav);
-    base_setDimensions(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
-    base_setDimensions(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    button_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    button_setSize(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     base_setOnFocusChanged(&p_numberInput->decreaseButton, num_input_btn_focusChanged);
     base_setOnFocusChanged(&p_numberInput->increaseButton, num_input_btn_focusChanged);
     button_setOnPressed(&p_numberInput->decreaseButton, num_input_decreaseValue);
@@ -101,8 +101,8 @@ void num_input_init(NumberInput_s *p_numberInput)
 
     base_setOnDisplay(&p_numberInput->base, num_input_onDisplay);
 
-    base_setOnDelete(&p_numberInput->decreaseButton, num_input_buttonDelete);
-    base_setOnDelete(&p_numberInput->increaseButton, num_input_buttonDelete);
+    base_setOnDelete(&p_numberInput->decreaseButton.base, num_input_buttonDelete);
+    base_setOnDelete(&p_numberInput->increaseButton.base, num_input_buttonDelete);
     base_addChild(&p_numberInput->base, &p_numberInput->decreaseButton.base);
     base_addChild(&p_numberInput->base, &p_numberInput->increaseButton.base);
 
@@ -156,7 +156,7 @@ static void num_input_btn_focusChanged(BaseComponent_s *p_btnBase)
             p_btnBase->x, p_btnBase->y,
             GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT,
             2, color);
-    base_display(&border);
+    rectangle_display(&border);
 }
 
 static void num_input_increaseValue(Button_s *p_button)
@@ -201,12 +201,12 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     TextBlock_s textBlock;
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, theme_getDefaultFont());
-    base_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y + 2);
-    base_setDimensions(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT - 4);
-    base_setBackground(&textBlock, theme_getNumberInputColor());
-    base_setTopPadding(&textBlock, 1);
+    textblock_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y + 2);
+    textblock_setSize(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT - 4);
+    textblock_setBackgroundColor(&textBlock, theme_getNumberInputColor());
+    textblock_setTextTopPadding(&textBlock, 1);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
-    base_display(&textBlock);
+    textblock_display(&textBlock);
 }
 
 static void num_input_onDisplay(BaseComponent_s *p_base)
@@ -220,12 +220,12 @@ static void num_input_onDisplay(BaseComponent_s *p_base)
     }
 #endif /* GUI_CONFIG_USE_ANCHOR */
 
-    base_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y);
-    base_display(&p_numberInput->decreaseButton.base);
+    button_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y);
+    button_display(&p_numberInput->decreaseButton);
     num_input_btn_focusChanged(&p_numberInput->decreaseButton.base);
 
-    base_setPosition(&p_numberInput->increaseButton, p_base->x + p_base->width - GUI_NUMBER_INPUT_BUTTON_WIDTH, p_base->y);
-    base_display(&p_numberInput->increaseButton.base);
+    button_setPosition(&p_numberInput->increaseButton, p_base->x + p_base->width - GUI_NUMBER_INPUT_BUTTON_WIDTH, p_base->y);
+    button_display(&p_numberInput->increaseButton);
     num_input_btn_focusChanged(&p_numberInput->increaseButton.base);
 
     Rectangle_s rectangle;
@@ -234,7 +234,7 @@ static void num_input_onDisplay(BaseComponent_s *p_base)
             p_base->x + GUI_NUMBER_INPUT_BUTTON_WIDTH - 2, p_base->y,
             GUI_NUMBER_INPUT_TEXT_WIDTH + 4, GUI_NUMBER_INPUT_HEIGHT,
             2, theme_getSeparatorColor());
-    base_display(&rectangle);
+    rectangle_display(&rectangle);
 
     num_input_displayValue(p_numberInput);
 }

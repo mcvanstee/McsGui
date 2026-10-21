@@ -42,7 +42,7 @@ static void stv_create(View_s *p_view)
     SpinnerInput_s *p_dateInput = spinner_input_new();
     spinner_input_initValues(p_dateInput, sDate.Date, 1, 31);
     spinner_input_setLeadingZeros(p_dateInput, 2);
-    base_setId(p_dateInput, STV_INPUT_DATE_ID);
+    base_setId(&p_dateInput->valueTextBlock.base, STV_INPUT_DATE_ID);
     row_addComponent(p_row, p_dateInput);
 
     TextBlock_s *p_dateSeparator_1 = textblock_newInit();
@@ -53,7 +53,7 @@ static void stv_create(View_s *p_view)
     SpinnerInput_s *p_monthInput = spinner_input_new();
     spinner_input_initValues(p_monthInput, sDate.Month, 1, 12);
     spinner_input_setLeadingZeros(p_monthInput, 2);
-    base_setId(p_monthInput, STV_INPUT_MONTH_ID);
+    base_setId(&p_monthInput->valueTextBlock.base, STV_INPUT_MONTH_ID);
     row_addComponent(p_row, p_monthInput);
 
     TextBlock_s *p_dateSeparator_2 = textblock_newInit();
@@ -63,7 +63,7 @@ static void stv_create(View_s *p_view)
 
     SpinnerInput_s *p_yearInput = spinner_input_new();
     spinner_input_initValues(p_yearInput, sDate.Year + 2000, 2025, 2099);
-    base_setId(p_yearInput, STV_INPUT_YEAR_ID);
+    base_setId(&p_yearInput->valueTextBlock.base, STV_INPUT_YEAR_ID);
     row_addComponent(p_row, p_yearInput);
 
     Row_s *p_footer = gui_addFooterButtonRow(p_view);

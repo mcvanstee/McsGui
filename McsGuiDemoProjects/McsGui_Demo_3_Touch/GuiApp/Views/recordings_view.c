@@ -81,9 +81,8 @@ static void rv_create(View_s *p_view)
 {
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Label_s *p_title = label_new();
@@ -101,9 +100,9 @@ static void rv_create(View_s *p_view)
 
 static void rc_createRecordingsGroupBox(View_s *p_view, Item_s *p_item)
 {
-    Pane_s *p_pane = pane_newInit();
+    Pane_s *p_pane = pane_new();
+    pane_initSize(p_pane, RV_PANEL_WIDTH, RV_PANEL_HEIGHT);
     pane_setBorderPane(p_pane, true);
-    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT);
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_pane, p_item, Gui_Anchor_Left);
@@ -145,7 +144,7 @@ static void rc_createRecordingsGroupBox(View_s *p_view, Item_s *p_item)
     listview_setRowHight(p_listView, rowHight);
     p_listView->itemsVisible = itemsVisible;
     p_listView->onActiveItemChanged = rc_activeItemChanged;
-    base_setDimensions(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
+    listview_setSize(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
     base_setId(&p_listView->base, RV_RECORDINGS_LISTVIEW_ID);
     base_addNewInitTouch(p_listView);
     base_addNewInitAnchor(p_listView);
@@ -174,9 +173,9 @@ static void rc_createRecordingsGroupBox(View_s *p_view, Item_s *p_item)
 
 static void rc_createInfoPane(Item_s *p_item)
 {
-    Pane_s *p_pane = pane_newInit();
+    Pane_s *p_pane = pane_new();
+    pane_initSize(p_pane, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     pane_setBorderPane(p_pane, true);
-    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setRightAnchor(p_pane, p_item, Gui_Anchor_Right);
@@ -187,9 +186,9 @@ static void rc_createInfoPane(Item_s *p_item)
     Button_s *p_deleteButton = button_new();
     button_initBmp(p_deleteButton, FILE_KEY_ICON_TRASH);
     button_setOnPressedEvent(p_deleteButton, rc_deleteRecording);
-    base_setId(&p_deleteButton->base, RV_DELETE_BUTTON_ID);
-    base_setVisible(p_deleteButton, false);
-    base_setDimensions(&p_deleteButton->base, 30, 30);
+    button_setId(p_deleteButton, RV_DELETE_BUTTON_ID);
+    button_setVisible(p_deleteButton, false);
+    button_setSize(p_deleteButton, 30, 30);
     base_addNewInitTouch(p_deleteButton);
     base_addNewInitAnchor(p_deleteButton);
     anchor_setTopAnchor(p_deleteButton, p_pane, Gui_Anchor_Top);
@@ -220,21 +219,21 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
 {
     Label_s *p_label = label_new();
     label_initBmp(p_label, label);
-    base_setHorizontalAlignment(p_label, Gui_Align_Left);
+    label_setBmpHorizontalAlignment(p_label, Gui_Align_Left);
     grid_addComponent(p_grid, p_label);
 
     TextBlock_s *p_textBlock = textblock_newInit();
     textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
     textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
-    textblock_setHorizontalTextAlignment(p_textBlock, Text_Align_Left);
-    base_setTransparent(p_textBlock, false);
-    base_setId(p_textBlock, textBlockId);
+    textblock_setTextHorizontalAlignment(p_textBlock, Text_Align_Left);
+    textblock_setDrawBackground(p_textBlock, true);
+    textblock_setId(p_textBlock, textBlockId);
     grid_addComponent(p_grid, p_textBlock);
 
     Label_s *p_dummyLabel = label_newInit();
     label_initBmp(p_dummyLabel, FILE_KEY_NONE);
-    base_setVisible(p_dummyLabel, false);
+    label_setVisible(p_dummyLabel, false);
     grid_addComponent(p_grid, p_dummyLabel);
 }
 
@@ -256,9 +255,9 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
     textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
     textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
-    textblock_setHorizontalTextAlignment(p_textBlock, Text_Align_Left);
-    base_setTransparent(p_textBlock, false);
-    base_setId(p_textBlock, textBlockId);
+    textblock_setTextHorizontalAlignment(p_textBlock, Text_Align_Left);
+    textblock_setDrawBackground(p_textBlock, true);
+    textblock_setId(p_textBlock, textBlockId);
     grid_addComponent(p_grid, p_textBlock);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == settings_getTemperatureUnit()) ?
@@ -266,15 +265,15 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
 
     Label_s *p_unitLabel = label_new();
     label_initBmp(p_unitLabel, tempUnitKey);
-    base_setWidth(p_unitLabel, 30);
+    label_setWidth(p_unitLabel, 30);
     grid_addComponent(p_grid, p_unitLabel);
 }
 
 static void rc_createReadingsPane(Item_s *p_item)
 {
-    Pane_s *p_pane = pane_newInit();
+    Pane_s *p_pane = pane_new();
+    pane_initSize(p_pane, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     pane_setBorderPane(p_pane, true);
-    base_setDimensions(&p_pane->base, RV_PANEL_WIDTH, RV_PANEL_HEIGHT_SMALL);
     base_addNewInitAnchor(p_pane);
     anchor_setBottomAnchor(p_pane, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_pane, p_item, Gui_Anchor_Right);
@@ -316,7 +315,7 @@ static void rc_createReadingsPane(Item_s *p_item)
 
     Label_s *p_unitLabel = label_new();
     label_initBmp(p_unitLabel, tempUnitKey);
-    base_setWidth(p_unitLabel, 30);
+    label_setWidth(p_unitLabel, 30);
     base_addNewInitAnchor(p_unitLabel);
     anchor_setTopAnchor(p_unitLabel, p_pane, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_unitLabel, p_tempTextRec, Gui_Anchor_Right);
@@ -349,8 +348,8 @@ static void rc_createReadingsPane(Item_s *p_item)
     ListView_s *p_listView = listview_newInit();
     listview_setRowHight(p_listView, rowHight);
     p_listView->itemsVisible = itemsVisible;
-    base_setDimensions(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
-    base_setId(&p_listView->base, RV_READINGS_LISTVIEW_ID);
+    listview_setSize(p_listView, p_pane->base.width - RV_SCROLLBAR_WIDTH, listViewHigh);
+    listview_setId(p_listView, RV_READINGS_LISTVIEW_ID);
     base_addNewInitTouch(p_listView);
     base_addNewInitAnchor(p_listView);
     anchor_setTopAnchor(p_listView, p_rect, Gui_Anchor_Top);
@@ -363,7 +362,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     Button_s *p_upButton = button_new();
     button_initBmp(p_upButton, FILE_KEY_ICON_SCROLL_UP);
     button_setOnPressedEvent(p_upButton, rv_moveReadingsUpButtonPressed);
-    base_setDimensions(&p_upButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
+    button_setSize(p_upButton, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
     base_addNewInitTouch(p_upButton);
     base_addNewInitAnchor(p_upButton);
     anchor_setTopAnchor(p_upButton, p_rect, Gui_Anchor_Top);
@@ -373,7 +372,7 @@ static void rc_createReadingsPane(Item_s *p_item)
     Button_s *p_downButton = button_new();
     button_initBmp(p_downButton, FILE_KEY_ICON_SCROLL_DOWN);
     button_setOnPressedEvent(p_downButton, rc_moveReadingsDownButtonPressed);
-    base_setDimensions(&p_downButton->base, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
+    button_setSize(p_downButton, RV_SCROLLBAR_WIDTH, RV_SCROLLBAR_WIDTH);
     base_addNewInitTouch(p_downButton);
     base_addNewInitAnchor(p_downButton);
     anchor_setBottomAnchor(p_downButton, p_pane, Gui_Anchor_Bottom);
@@ -392,7 +391,7 @@ static void rc_addRecordingItems(ListView_s *p_listView)
         listview_addItem(p_listView, p_listItem);
         p_listItem->base.p_data = &m_recordings[i];
         p_listItem->onPressed = listview_ext_itemPressed;
-        base_setOnDisplay(p_listItem, rc_displayRecordingItem);
+        base_setOnDisplay(&p_listItem->base, rc_displayRecordingItem);
     }
 }
 
@@ -403,7 +402,7 @@ static void rc_addReadingItems(ListView_s *p_listView, int32_t itemsVisible)
         ListViewItem_s *p_listItem = listviewitem_newInit();
         listview_addItem(p_listView, p_listItem);
         p_listItem->base.p_data = &m_readings[i];
-        base_setOnDisplay(p_listItem, rc_displayReadingItem);
+        base_setOnDisplay(&p_listItem->base, rc_displayReadingItem);
     }
 }
 
@@ -419,9 +418,10 @@ static void rc_displayRecordingItem(BaseComponent_s *p_itemBase)
 
     Item_s item;
     item_init(&item);
-    base_setPosition(&item, p_itemBase->x, p_itemBase->y);
-    base_setDimensions(&item, p_itemBase->width, p_itemBase->height);
-    base_setBackground(&item, backgroundColor);
+    item_setPosition(&item, p_itemBase->x, p_itemBase->y);
+    item_setSize(&item, p_itemBase->width, p_itemBase->height);
+    item_setBackgroundColor(&item, backgroundColor);
+    item_setDrawBackground(&item, true);
 
     char p_text[36] = {0};
     sprintf(p_text, "% 3d     %s", p_recording->id, p_recording->start_time);
@@ -437,7 +437,7 @@ static void rc_displayRecordingItem(BaseComponent_s *p_itemBase)
     anchor_setLeftMargin(&idTextBlock, 5);
 
     item_addComponent(&item, &idTextBlock);
-    base_display(&item);
+    item_display(&item);
 }
 
 static void rc_displayReadingItem(BaseComponent_s *p_itemBase)
@@ -445,10 +445,8 @@ static void rc_displayReadingItem(BaseComponent_s *p_itemBase)
     Reading_s *p_reading = (Reading_s*)p_itemBase->p_data;
 
     Item_s item;
-    item_init(&item);
-    base_setPosition(&item, p_itemBase->x, p_itemBase->y);
-    base_setDimensions(&item, p_itemBase->width, p_itemBase->height);
-    base_setBackground(&item, COLOR_BACKGROUND);
+    item_initPosSize(&item, p_itemBase->x, p_itemBase->y, p_itemBase->width, p_itemBase->height);
+    item_setBackgroundColor(&item, COLOR_BACKGROUND);
 
     const float_t tempDivider = (float_t)utils_math_ipow(10, TEMP_RECORDER_DECIMALS);
     char p_text[16] = {0};
@@ -466,7 +464,7 @@ static void rc_displayReadingItem(BaseComponent_s *p_itemBase)
     anchor_setLeftMargin(&textBlock, 5);
 
     item_addComponent(&item, &textBlock);
-    base_display(&item);
+    item_display(&item);
 }
 
 static void rc_activeItemChanged(ListView_s *p_listView)
@@ -514,8 +512,8 @@ static void rc_updateVisibilityDeleteButton(ListView_s *p_listView)
     if (p_listView->previousActiveIndex < 0)
     {
         Button_s *p_deleteButton = (Button_s*) view_getComponentById(gui_app_getView(), RV_DELETE_BUTTON_ID);
-        base_setVisible(p_deleteButton, true);
-        base_display(&p_deleteButton->base);
+        button_setVisible(p_deleteButton, true);
+        button_display(p_deleteButton);
     }
 }
 

@@ -4,11 +4,11 @@
 Grid_s *gui_addPageButtonGrid(View_s *p_view)
 {
     Rectangle_s *p_rect = rectangle_newInit();
-    rectangle_showBorderOnly(p_rect, true);
+    rectangle_setShowBorderOnly(p_rect, true);
     rectangle_setBorderThickness(p_rect, 13);
     rectangle_setBorderColor(p_rect, theme_getBackgroundColor());
-    base_setDimensions(&p_rect->base, STYLE_DISPLAY_WIDTH, 216);
-    base_setPosition(&p_rect->base, 0, 42);
+    rectangle_setSize(p_rect, STYLE_DISPLAY_WIDTH, 216);
+    rectangle_setPosition(p_rect, 0, 42);
     view_addComponent(p_view, p_rect);
 
     Grid_s *p_grid = grid_newInit();
@@ -16,8 +16,8 @@ Grid_s *gui_addPageButtonGrid(View_s *p_view)
     grid_setRows(p_grid, 2);
     grid_setColumnSpacing(p_grid, 10);
     grid_setRowSpacing(p_grid, 10);
-    base_setBackground(p_grid, theme_getBackgroundColor());
-    base_setTransparent(p_grid, false);
+    grid_setBackgroundColor(p_grid, theme_getBackgroundColor());
+    grid_setDrawBackground(p_grid, true);
     base_addNewInitAnchor(&p_grid->base);
     anchor_setCenterInParent(p_grid, p_rect);
     view_addComponent(p_view, p_grid);

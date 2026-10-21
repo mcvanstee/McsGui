@@ -75,7 +75,7 @@ void num_input_delete(BaseComponent_s *p_numberInputBase)
 void num_input_init(NumberInput_s *p_numberInput)
 {
     base_initParentComp(&p_numberInput->base, num_input_delete);
-    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 
     button_init(&p_numberInput->decreaseButton);
     button_init(&p_numberInput->increaseButton);
@@ -83,15 +83,15 @@ void num_input_init(NumberInput_s *p_numberInput)
     touch_init(&p_numberInput->increaseTouch);
     base_addTouch(&p_numberInput->decreaseButton.base, &p_numberInput->decreaseTouch);
     base_addTouch(&p_numberInput->increaseButton.base, &p_numberInput->increaseTouch);
-    base_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_BUTTON_MINUS);
-    base_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_BUTTON_PLUS);
-    base_setDimensions(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
-    base_setDimensions(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    button_setBmpKey(&p_numberInput->decreaseButton, FILE_KEY_BUTTON_MINUS);
+    button_setBmpKey(&p_numberInput->increaseButton, FILE_KEY_BUTTON_PLUS);
+    button_setSize(&p_numberInput->decreaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    button_setSize(&p_numberInput->increaseButton, GUI_NUMBER_INPUT_BUTTON_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
     button_setOnReleased(&p_numberInput->decreaseButton, num_input_decreaseValue);
     button_setOnReleased(&p_numberInput->increaseButton, num_input_increaseValue);
 
-    base_setOnDelete(&p_numberInput->decreaseButton, num_input_btn_delete);
-    base_setOnDelete(&p_numberInput->increaseButton, num_input_btn_delete);
+    base_setOnDelete(&p_numberInput->decreaseButton.base, num_input_btn_delete);
+    base_setOnDelete(&p_numberInput->increaseButton.base, num_input_btn_delete);
     base_setOnDisplay(&p_numberInput->base, num_input_onDisplay);
     base_addChild(&p_numberInput->base, &p_numberInput->decreaseButton.base);
     base_addChild(&p_numberInput->base, &p_numberInput->increaseButton.base);
@@ -124,11 +124,11 @@ void num_input_setOrientation(NumberInput_s *p_numberInput, NumberInputOrientati
 
 	if (NumberInput_Orientation_Horizontal == orientation)
 	{
-	    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+	    base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 	}
 	else
 	{
-	    base_setDimensions(&p_numberInput->base, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_WIDTH);
+	    base_setSize(&p_numberInput->base, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_WIDTH);
 	}
 }
 
@@ -186,21 +186,21 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setFontBackColor(&textBlock, COLOR_BACKGROUND);
-    base_setTransparent(&textBlock, false);
+    textblock_setDrawBackground(&textBlock, true);
 
     if (p_numberInput->orientation == NumberInput_Orientation_Horizontal)
     {
-    	base_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y);
-    	base_setDimensions(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
+    	textblock_setPosition(&textBlock, p_numberInput->base.x + GUI_NUMBER_INPUT_BUTTON_WIDTH, p_numberInput->base.y);
+    	textblock_setSize(&textBlock, GUI_NUMBER_INPUT_TEXT_WIDTH, GUI_NUMBER_INPUT_HEIGHT);
 	}
     else
 	{
-    	base_setPosition(&textBlock, p_numberInput->base.x, p_numberInput->base.y + GUI_NUMBER_INPUT_BUTTON_WIDTH);
-    	base_setDimensions(&textBlock, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_TEXT_WIDTH);
+    	textblock_setPosition(&textBlock, p_numberInput->base.x, p_numberInput->base.y + GUI_NUMBER_INPUT_BUTTON_WIDTH);
+    	textblock_setSize(&textBlock, GUI_NUMBER_INPUT_HEIGHT, GUI_NUMBER_INPUT_TEXT_WIDTH);
 	}
 
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", p_numberInput->value);
-    base_display(&textBlock);
+    textblock_display(&textBlock);
 }
 
 static void num_input_onDisplay(BaseComponent_s *p_base)
@@ -216,17 +216,17 @@ static void num_input_onDisplay(BaseComponent_s *p_base)
 
 	if (p_numberInput->orientation == NumberInput_Orientation_Horizontal)
 	{
-		base_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y);
-		base_setPosition(&p_numberInput->increaseButton, p_base->x + p_base->width - GUI_NUMBER_INPUT_BUTTON_WIDTH, p_base->y);
+		button_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y);
+		button_setPosition(&p_numberInput->increaseButton, p_base->x + p_base->width - GUI_NUMBER_INPUT_BUTTON_WIDTH, p_base->y);
 	}
 	else
 	{
-	    base_setPosition(&p_numberInput->increaseButton, p_base->x, p_base->y);
-	    base_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y + p_base->height - GUI_NUMBER_INPUT_BUTTON_WIDTH);
+	    button_setPosition(&p_numberInput->increaseButton, p_base->x, p_base->y);
+	    button_setPosition(&p_numberInput->decreaseButton, p_base->x, p_base->y + p_base->height - GUI_NUMBER_INPUT_BUTTON_WIDTH);
 	}
 
-    base_display(&p_numberInput->decreaseButton.base);
-    base_display(&p_numberInput->increaseButton.base);
+    button_display(&p_numberInput->decreaseButton);
+    button_display(&p_numberInput->increaseButton);
     num_input_displayValue(p_numberInput);
 }
 

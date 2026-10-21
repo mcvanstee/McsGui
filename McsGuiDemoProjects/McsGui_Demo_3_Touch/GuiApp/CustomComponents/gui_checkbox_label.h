@@ -23,6 +23,9 @@ void checkbox_label_init_1(CheckboxLabel_s *p_checkboxLabel, file_key_e label);
 void checkbox_label_initSwitch(CheckboxLabel_s *p_checkboxLabel, file_key_e label);
 void checkbox_label_displayLabel(CheckboxLabel_s *p_checkboxLabel);
 
+void checkbox_label_setWidth(CheckboxLabel_s *p_checkboxLabel, const uint16_t width);
+void checkbox_label_setHeight(CheckboxLabel_s *p_checkboxLabel, const uint16_t height);
+
 void checkbox_label_setOnSelectionChanged(
 		CheckboxLabel_s *p_checkboxLabel, void (*onSelectionChanged)(CheckboxLabel_s *p_checkboxLabel));
 

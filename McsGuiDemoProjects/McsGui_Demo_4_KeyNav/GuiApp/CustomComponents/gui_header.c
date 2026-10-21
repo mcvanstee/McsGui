@@ -12,11 +12,11 @@ void header_setTitle(file_key_e title)
 {
     Label_s titleLabel;
     label_initBmpPosSizeBack(&titleLabel, title, 85, 1, 150, 38, theme_getHeaderColor());
-    base_setTopPadding(&titleLabel, 1);
+    label_setBmpTopPadding(&titleLabel, 1);
     theme_applyThemeProperty(&titleLabel);
     gui_app_translate(&titleLabel);
 
-    base_display(&titleLabel);
+    label_display(&titleLabel);
 }
 
 void header_updateTime(const bool update)
@@ -61,27 +61,27 @@ void header_drawHeaderBackground(void)
     rectangle_initFillPosSize(
         &background, theme_getHeaderColor(),
         STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 
     Rectangle_s separatorTop;
     rectangle_initFillPosSize(
         &separatorTop, theme_getSeparatorColor(),
         STYLE_HEADER_X, SYTLE_HEADER_SEPARATOR_Y, STYLE_DISPLAY_WIDTH, STYLE_HEADER_SEPARATOR_HEIGHT);
-    base_display(&separatorTop);
+    rectangle_display(&separatorTop);
 
     Label_s clock;
     label_initBmpPosSize(
         &clock, FILE_KEY_ICON_CLOCK,
         STYLE_HEADER_X, STYLE_HEADER_Y, STYLE_HEADER_ICON_WIDTH, STYLE_HEADER_ICON_HEIGHT);
     theme_applyThemeProperty(&clock.base);
-    base_display(&clock.base);
+    label_display(&clock);
 
     Label_s wifi;
     label_initBmpPosSize(
         &wifi, FILE_KEY_ICON_WIFI,
         (STYLE_DISPLAY_WIDTH - STYLE_HEADER_ICON_WIDTH), STYLE_HEADER_Y, STYLE_HEADER_ICON_HEIGHT, STYLE_HEADER_HEIGHT);
     theme_applyThemeProperty(&wifi.base);
-    base_display(&wifi.base);
+    label_display(&wifi);
 
     header_updateDateTime(true);
 }

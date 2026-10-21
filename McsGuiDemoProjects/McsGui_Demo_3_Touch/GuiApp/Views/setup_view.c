@@ -37,14 +37,13 @@ static void sv_create(View_s *p_view)
 
 	m_settings = settings_getSettings();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Pane_s *p_pane = pane_newInit();
     p_pane->borderPane = true;
-    base_setDimensions(p_pane, SV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT - 20));
+    base_setSize(&p_pane->base, SV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT - 20));
     base_addNewInitAnchor(p_pane);
     anchor_setTopAnchor(p_pane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_pane, p_item, Gui_Anchor_Left);
@@ -72,18 +71,18 @@ static void sv_create(View_s *p_view)
 	Button_s *p_saveButton = button_new();
 	button_initBmp(p_saveButton, FILE_KEY_TEXT_SAVE);
 	button_setOnReleased(p_saveButton, sv_saveButtonPressed);
-	gui_app_translate(p_saveButton);
-	base_setDimensions(p_saveButton, 80, 30);
-	base_setBackground(p_saveButton, COLOR_ACCENT_BLUE);
-	base_setTransparent(p_saveButton, false);
-	base_setVisible(p_saveButton, false);
+	button_setId(p_saveButton, SV_SAVE_BUTTON_ID);
+	button_setSize(p_saveButton, 80, 30);
+	button_setBackgroundColor(p_saveButton, COLOR_ACCENT_BLUE);
+	button_setDrawBackground(p_saveButton, true);
+	button_setVisible(p_saveButton, false);
 	base_addNewInitTouch(&p_saveButton->base);
 	base_addNewInitAnchor(p_saveButton);
-	base_setId(p_saveButton, SV_SAVE_BUTTON_ID);
 	anchor_setRightAnchor(p_saveButton, p_pane, Gui_Anchor_Right);
 	anchor_setBottomAnchor(p_saveButton, p_pane, Gui_Anchor_Bottom);
 	anchor_setRightMargin(p_saveButton, 10);
 	anchor_setBottomMargin(p_saveButton, 10);
+	gui_app_translate(p_saveButton);
 	pane_addComponent(p_pane, p_saveButton);
 }
 
@@ -91,13 +90,13 @@ static void sv_addSaveSwitch(Grid_s *p_grid)
 {
     Label_s *p_saveLabel = label_new();
     label_initBmp(p_saveLabel, FILE_KEY_TEXT_SAVE_REC);
+    label_setHeight(p_saveLabel, 30);
     gui_app_translate(p_saveLabel);
-    base_setHeight(p_saveLabel, 30);
     grid_addComponent(p_grid, p_saveLabel);
 
     Checkbox_s *p_checkbox = custom_cmp_createCheckbox(
             FILE_KEY_ICON_SWITCH, m_settings.saveData, sv_checkboxSelectionChanged);
-    base_setDimensions(p_checkbox, 50, 30);
+    checkbox_setSize(p_checkbox, 50, 30);
     grid_addComponent(p_grid, p_checkbox);
 }
 
@@ -105,8 +104,8 @@ static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
 {
     Label_s *p_tempUnitLabel = label_new();
     label_initBmp(p_tempUnitLabel, FILE_KEY_TEXT_UNITS);
+    label_setHeight(p_tempUnitLabel, 30);
     gui_app_translate(p_tempUnitLabel);
-    base_setHeight(p_tempUnitLabel, 30);
     grid_addComponent(p_grid, p_tempUnitLabel);
 
     Row_s *p_row = row_newInit();
@@ -119,13 +118,13 @@ static void sv_addSelectTempUnit(Grid_s *p_grid, Pane_s *p_pane)
 
     CheckboxLabel_s *p_celsiusCBL = checkbox_label_new();
     checkbox_label_init_1(p_celsiusCBL, FILE_KEY_TEXT_DEG_CEL);
-    base_setWidth(p_celsiusCBL, 60);
+    checkbox_label_setWidth(p_celsiusCBL, 60);
     row_addComponent(p_row, p_celsiusCBL);
     radiogroup_addButton(p_radioGroup, &p_celsiusCBL->checkBox);
 
     CheckboxLabel_s *p_fahrenheitCBL = checkbox_label_new();
     checkbox_label_init_1(p_fahrenheitCBL, FILE_KEY_TEXT_DEG_FAR);
-    base_setWidth(p_fahrenheitCBL, 60);
+    checkbox_label_setWidth(p_fahrenheitCBL, 60);
     row_addComponent(p_row, p_fahrenheitCBL);
     radiogroup_addButton(p_radioGroup, &p_fahrenheitCBL->checkBox);
 
@@ -136,8 +135,8 @@ static void sv_addIntervalInput(Grid_s *p_grid)
 {
     Label_s *p_intervalLabel = label_new();
     label_initBmp(p_intervalLabel, FILE_KEY_TEXT_INTERVAL);
+    label_setHeight(p_intervalLabel, 30);
     gui_app_translate(p_intervalLabel);
-    base_setHeight(p_intervalLabel, 30);
     grid_addComponent(p_grid, p_intervalLabel);
 
     NumberInput_s *p_numberInput = num_input_newInit();
@@ -151,8 +150,8 @@ static void sv_addMaxPointsInput(Grid_s *p_grid)
 {
     Label_s *p_maxPointsLabel = label_new();
     label_initBmp(p_maxPointsLabel, FILE_KEY_TEXT_MAX_DATA_POINTS);
+    label_setHeight(p_maxPointsLabel, 30);
     gui_app_translate(p_maxPointsLabel);
-    base_setHeight(p_maxPointsLabel, 30);
     grid_addComponent(p_grid, p_maxPointsLabel);
 
     NumberInput_s *p_maxPointsInput = num_input_newInit();
@@ -164,7 +163,7 @@ static void sv_addMaxPointsInput(Grid_s *p_grid)
 
 static void sv_checkboxSelectionChanged(Checkbox_s *p_checkbox)
 {
-    base_display(p_checkbox);
+    checkbox_display(p_checkbox);
     m_settings.saveData = p_checkbox->checked;
     sv_showSaveButton();
 }
@@ -192,16 +191,16 @@ static void sv_saveButtonPressed(Button_s *p_button)
     settings_setSettings(m_settings);
     settings_save();
 
-    base_setVisible(p_button, false);
+    button_setVisible(p_button, false);
 
 	Label_s label;
 	label_initBmpPosSize(
 	        &label, FILE_KEY_TEXT_SAVED,
 	        p_button->base.x, p_button->base.y,
 	        p_button->base.width, p_button->base.height);
-	base_setBackground(&label, COLOR_BACKGROUND);
-	base_setTransparent(&label, false);
-	base_display(&label);
+	label_setBackgroundColor(&label, COLOR_BACKGROUND);
+	label_setDrawBackground(&label, true);
+	label_display(&label);
 }
 
 static void sv_showSaveButton(void)
@@ -210,7 +209,7 @@ static void sv_showSaveButton(void)
 
     if (!p_saveButton->base.visible)
     {
-        base_setVisible(p_saveButton, true);
-        base_display(p_saveButton);
+        button_setVisible(p_saveButton, true);
+        button_display(p_saveButton);
     }
 }

@@ -14,7 +14,7 @@ Checkbox_s *custom_cmp_createCheckbox(
     }
 
     checkbox_initBmp(p_checkbox, bmpKey);
-    base_setOnDisplay(p_checkbox, custom_cmp_displayCheckbox);
+    base_setOnDisplay(&p_checkbox->base, custom_cmp_displayCheckbox);
     checkbox_setSelection(p_checkbox, checked);
     checkbox_setOnSelectionChanged(p_checkbox, onSelectionChanged);
     base_addNewInitTouch(&p_checkbox->base);

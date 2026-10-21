@@ -70,8 +70,8 @@ static void scrollbar_delete(BaseComponent_s *p_scrollbarBase)
 void scrollbar_init(ScrollBar_s *p_scrollBar)
 {
     base_initParentComp(&p_scrollBar->base, scrollbar_delete);
-    base_setOnDisplay(p_scrollBar, scrollbar_onDisplay);
-    base_setDimensions(p_scrollBar, 10, 10);
+    base_setOnDisplay(&p_scrollBar->base, scrollbar_onDisplay);
+    base_setSize(&p_scrollBar->base, 10, 10);
     anchor_init(&p_scrollBar->anchor);
     base_addAnchor(&p_scrollBar->base, &p_scrollBar->anchor);
 
@@ -82,8 +82,8 @@ void scrollbar_init(ScrollBar_s *p_scrollBar)
     base_addTouch(&p_scrollBar->upButton, &p_scrollBar->upButtonTouch);
     base_addTouch(&p_scrollBar->downButton, &p_scrollBar->downButtonTouch);
 
-    base_setOnDelete(&p_scrollBar->upButton, scrollbar_deleteButton);
-    base_setOnDelete(&p_scrollBar->downButton, scrollbar_deleteButton);
+    base_setOnDelete(&p_scrollBar->upButton.base, scrollbar_deleteButton);
+    base_setOnDelete(&p_scrollBar->downButton.base, scrollbar_deleteButton);
     base_addChild(&p_scrollBar->base, &p_scrollBar->upButton.base);
     base_addChild(&p_scrollBar->base, &p_scrollBar->downButton.base);
 
@@ -125,7 +125,7 @@ void scrollbar_setThumbAreaWidth(ScrollBar_s *p_scrollBar, uint8_t width)
 
 void scrollbar_setThumbAreaColor(ScrollBar_s *p_scrollBar, const Color_t color)
 {
-    base_setBackground(&p_scrollBar->base, color);
+    base_setBackgroundColor(&p_scrollBar->base, color);
 }
 
 void scrollbar_setThumbRadius(ScrollBar_s *p_scrollBar, uint8_t radius)
@@ -155,18 +155,18 @@ void scrollbar_setThumbAreaBorderColor(ScrollBar_s *p_scrollBar, const Color_t c
 
 void scrollbar_setUpIcon(ScrollBar_s *p_scrollBar, const file_key_e icon)
 {
-    base_setBmpKey(&p_scrollBar->upButton, icon);
+    base_setBmpKey(&p_scrollBar->upButton.base, icon);
 }
 
 void scrollbar_setDownIcon(ScrollBar_s *p_scrollBar, const file_key_e icon)
 {
-    base_setBmpKey(&p_scrollBar->downButton, icon);
+    base_setBmpKey(&p_scrollBar->downButton.base, icon);
 }
 
 void scrollbar_setButtonSize(ScrollBar_s *p_scrollBar, uint16_t width, uint16_t height)
 {
-    base_setDimensions(&p_scrollBar->upButton, width, height);
-    base_setDimensions(&p_scrollBar->downButton, width, height);
+    button_setSize(&p_scrollBar->upButton, width, height);
+    button_setSize(&p_scrollBar->downButton, width, height);
 }
 
 void scrollbar_setThumbSize(ScrollBar_s *p_scrollBar, uint16_t thumbSize)
@@ -202,14 +202,14 @@ static void scrollbar_onDisplay(BaseComponent_s *p_scrollbarBase)
     if (p_scrollBar->orientation == Scrollbar_Vertical)
     {
         scrollbar_updateThumbPosition(p_scrollBar);
-        base_setPosition(&p_scrollBar->upButton, p_scrollBar->base.x, p_scrollBar->base.y);
-        base_setPosition(
+        button_setPosition(&p_scrollBar->upButton, p_scrollBar->base.x, p_scrollBar->base.y);
+        button_setPosition(
             &p_scrollBar->downButton,
             p_scrollBar->base.x, p_scrollBar->base.y + p_scrollBar->base.height - p_scrollBar->downButton.base.height);
-        base_display(&p_scrollBar->upButton);
+        button_display(&p_scrollBar->upButton);
         scrollbar_displayThumbArea(p_scrollBar);
         scrollbar_displayThumb(p_scrollBar);
-        base_display(&p_scrollBar->downButton);
+        button_display(&p_scrollBar->downButton);
     }
     else
     {
@@ -240,7 +240,7 @@ static void scrollbar_displayThumbArea(ScrollBar_s *p_scrollBar)
 
     Rectangle_s thumbArea;
     rectangle_initFillPosSize(
-        &thumbArea, p_scrollBar->base.background,
+        &thumbArea, p_scrollBar->base.backgroundColor,
         thumbAreaX, thumbAreaY,
         thumbAreaWidth, thumbAreaHeight);
 
@@ -251,7 +251,7 @@ static void scrollbar_displayThumbArea(ScrollBar_s *p_scrollBar)
     }
 
     rectangle_setRadius(&thumbArea, p_scrollBar->thumbAreaRadius);
-    base_display(&thumbArea);
+    rectangle_display(&thumbArea);
 }
 
 static void scrollbar_displayThumb(ScrollBar_s *p_scrollBar)
@@ -263,7 +263,7 @@ static void scrollbar_displayThumb(ScrollBar_s *p_scrollBar)
         thumbX, p_scrollBar->base.y + p_scrollBar->upButton.base.height + p_scrollBar->thumbPosition,
         p_scrollBar->thumbAreaWidth, p_scrollBar->thumbSize);
     rectangle_setRadius(&thumb, p_scrollBar->thumbRadius);
-    base_display(&thumb);
+    rectangle_display(&thumb);
 }
 
 static void scrollbar_moveUpButtonPressed(Button_s *p_button)

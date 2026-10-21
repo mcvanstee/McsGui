@@ -28,9 +28,8 @@ static void dsv_create(View_s *p_view)
 {
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_dateTimeGB = group_box_newInitTitleSize(FILE_KEY_TITLE_DATE_TIME, GROUP_BOX_WIDTH, GROUP_BOX_HEIGHT);
@@ -46,8 +45,8 @@ static void dsv_create(View_s *p_view)
     Button_s *p_backButton = button_new();
     button_initBmp(p_backButton, FILE_KEY_ICON_BACK);
     button_setOnReleasedEvent(p_backButton, dsv_navigateBack);
+    button_setSize(p_backButton, 50, 50);
     base_addNewInitTouch(p_backButton);
-    base_setDimensions(p_backButton, 50, 50);
     base_addNewInitAnchor(p_backButton);
     anchor_setBottomAnchor(p_backButton, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_backButton, p_item, Gui_Anchor_Right);

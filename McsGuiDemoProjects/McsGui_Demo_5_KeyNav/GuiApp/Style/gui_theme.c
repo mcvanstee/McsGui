@@ -49,56 +49,55 @@ void theme_setCursorColor(Color_t cursorColor)
 
 void theme_setButtonIcon(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getButtonBackgroundColor());
-    base_setForeColor(p_label, theme_getAccentColor());
+    label_setBackgroundColor(p_label, theme_getButtonBackgroundColor());
+    label_setForegroundColor(p_label, theme_getAccentColor());
 }
 
 void theme_setHeaderIcon(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getHeaderColor());
-    base_setForeColor(p_label, COLOR_ACCENT_WHITE);
+    label_setBackgroundColor(p_label, theme_getHeaderColor());
+    label_setForegroundColor(p_label, COLOR_ACCENT_WHITE);
 }
 
 void theme_setCheckboxIcon(Checkbox_s *p_checkbox)
 {
     const Color_t iconColor = p_checkbox->base.focused ? theme_getAccentColor() : theme_getPaneTextColor();
-    base_setBackground(p_checkbox, theme_getPaneColor());
-    base_setForeColor(p_checkbox, iconColor);
+    checkbox_setBackgroundColor(p_checkbox, theme_getPaneColor());
+    checkbox_setForegroundColor(p_checkbox, iconColor);
 }
 
 void theme_setButtonText(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getButtonBackgroundColor());
-    base_setForeColor(p_label, theme_getButtonFontColor());
+    label_setBackgroundColor(p_label, theme_getButtonBackgroundColor());
+    label_setForegroundColor(p_label, theme_getButtonFontColor());
 }
 
 void theme_setHeaderText(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getHeaderColor());
-    base_setForeColor(p_label, COLOR_ACCENT_WHITE);
-    base_setTransparent(p_label, false);
+    label_setBackgroundColor(p_label, theme_getHeaderColor());
+    label_setForegroundColor(p_label, COLOR_ACCENT_WHITE);
+    label_setDrawBackground(p_label, true);
 }
 
 void theme_setFooterText(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getFooterColor());
-    base_setForeColor(p_label, theme_getButtonFontColor());
-    base_setTransparent(p_label, false);
+    label_setBackgroundColor(p_label, theme_getFooterColor());
+    label_setForegroundColor(p_label, theme_getButtonFontColor());
+    label_setDrawBackground(p_label, true);
 }
 
 void theme_setPaneText(Label_s *p_label)
 {
-    base_setBackground(p_label, theme_getPaneColor());
-    base_setForeColor(p_label, theme_getPaneTextColor());
-    base_setTransparent(p_label, false);
+    label_setBackgroundColor(p_label, theme_getPaneColor());
+    label_setForegroundColor(p_label, theme_getPaneTextColor());
+    label_setDrawBackground(p_label, true);
 }
 
 void theme_setPaneTextBlock(TextBlock_s *p_textBlock)
 {
     textblock_setFontBackColor(p_textBlock, theme_getPaneColor());
     textblock_setFontForeColor(p_textBlock, theme_getPaneTextColor());
-    base_setBackground(p_textBlock, theme_getPaneColor());
-    base_setTransparent(p_textBlock, false);
+    textblock_setDrawBackground(p_textBlock, true);
 }
 
 Color_t theme_getButtonFontColor(void)

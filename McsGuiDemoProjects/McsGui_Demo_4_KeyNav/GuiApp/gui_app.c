@@ -146,7 +146,7 @@ void gui_app_clearView(void)
     rectangle_initFillPosSize(
         &background, theme_getBackgroundColor(),
         STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_DISPLAY_WIDTH, STYLE_VIEW_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 }
 
 void gui_app_translate(void *p_component)
@@ -521,20 +521,18 @@ static void gui_app_showLogo(const bool showAnimation)
 {
 	Rectangle_s background;
 	rectangle_initFillSize(&background, COLOR_IRL_BLUE, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
-	base_display(&background);
+	rectangle_display(&background);
 
 	int32_t i = (showAnimation) ? 0 : 23;
 
 	for (; i < 24; i++)
 	{
 	    Item_s item;
-        item_init(&item);
-        base_setPosition(&item, 0, 0);
-        base_setDimensions(&item, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
+        item_initPosSize(&item, 0, 0, STYLE_DISPLAY_WIDTH, STYLE_DISPLAY_HEIGHT);
 
 		Label_s logo;
 		label_initBmp(&logo, FILE_KEY_ANIMATION_IRL_LOGO);
-		base_setDimensions(&logo, 128, 128);
+		label_setSize(&logo, 128, 128);
 		base_setProperty(&logo, FILE_PROPERTY_ANIMATION, (property_value_animation_e)i);
 		GuiAnchor_s anchor;
 		anchor_init(&anchor);

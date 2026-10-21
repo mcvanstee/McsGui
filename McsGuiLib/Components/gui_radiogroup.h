@@ -32,7 +32,6 @@ typedef struct radio_group_s
 RadioGroup_s *radiogroup_new(void);
 RadioGroup_s *radiogroup_newInit(void);
 
-void radiogroup_delete(BaseComponent_s *p_radioGroupBase);
 void radiogroup_init(RadioGroup_s *p_radioGroup);
 
 void radiogroup_addButton(RadioGroup_s *p_radioGroup, Checkbox_s *p_checkbox);

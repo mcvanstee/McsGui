@@ -26,15 +26,21 @@ typedef struct gui_row_s
 Row_s *row_new(void);
 Row_s *row_newInit(void);
 
-void row_delete(BaseComponent_s *p_rowBase);
 void row_init(Row_s *p_row);
 
-void row_setSpacing(Row_s *p_row, uint8_t spacing);
-void row_setCellWidth(Row_s *p_row, uint8_t cellWidth);
+void row_setSpacing(Row_s *p_row, const uint8_t spacing);
+void row_setCellWidth(Row_s *p_row, const uint8_t cellWidth);
 void row_addComponent(Row_s *p_row, void *p_component);
 
-BaseComponent_s *row_getComponent(Row_s *p_row, uint8_t index);
+BaseComponent_s *row_getComponentAtIndex(Row_s *p_row, const uint8_t index);
 
+void row_setX(Row_s *p_row, const uint16_t x);
+void row_setY(Row_s *p_row, const uint16_t y);
+void row_setPosition(Row_s *p_row, const uint16_t x, const uint16_t y);
+
+void row_setVisible(Row_s *p_row, const bool visible);
+void row_setBackgroundColor(Row_s *p_row, const Color_t color);
+void row_setDrawBackground(Row_s *p_row, const bool drawBackground);
 
 #ifdef __cplusplus
 } /* extern "C" */

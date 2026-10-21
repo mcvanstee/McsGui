@@ -5,6 +5,7 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
+static void rectangle_delete(BaseComponent_s *p_rectangleBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticRectMemInUse[GUI_CONFIG_RECTANGLE_BUFFER_SIZE] = {0};
@@ -59,7 +60,7 @@ Rectangle_s *rectangle_newInit(void)
  * @param[in] p_rectangleBase Pointer to the Rectangle component to be freed.
  *
  */
-void rectangle_delete(BaseComponent_s *p_rectangleBase)
+static void rectangle_delete(BaseComponent_s *p_rectangleBase)
 {
     base_clear(p_rectangleBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -86,7 +87,7 @@ void rectangle_init(Rectangle_s *p_rectangle)
 {
     borderdata_init(&p_rectangle->borderData);
     base_initFillComp(&p_rectangle->base, &p_rectangle->borderData, rectangle_delete);
-    p_rectangle->base.transparent = false;
+    p_rectangle->base.drawBackground = true;
 }
 
 
@@ -103,9 +104,8 @@ void rectangle_initFillSize(
         const uint16_t width, const uint16_t height)
 {
     rectangle_init(p_rectangle);
-    p_rectangle->base.background = color;
-    p_rectangle->base.width = width;
-    p_rectangle->base.height = height;
+    p_rectangle->base.backgroundColor = color;
+    base_setSize(&p_rectangle->base, width, height);
 }
 
 
@@ -125,11 +125,9 @@ void rectangle_initFillPosSize(
         const uint16_t width, const uint16_t height)
 {
     rectangle_init(p_rectangle);
-    p_rectangle->base.background = color;
-    p_rectangle->base.x = x;
-    p_rectangle->base.y = y;
-    p_rectangle->base.width = width;
-    p_rectangle->base.height = height;
+    p_rectangle->base.backgroundColor = color;
+    base_setPosition(&p_rectangle->base, x, y);
+    base_setSize(&p_rectangle->base, width, height);
 }
 
 
@@ -195,7 +193,7 @@ void rectangle_initBorderSize(
         const uint8_t borderThickness, const Color_t borderColor)
 {
     rectangle_initFillBorderSize(p_rectangle, 0, width, height, borderThickness, borderColor);
-    p_rectangle->base.transparent = true;
+    p_rectangle->base.drawBackground = false;
 }
 
 
@@ -217,18 +215,33 @@ void rectangle_initBorderPosSize(
         const uint8_t borderThickness, const Color_t borderColor)
 {
     rectangle_initFillBorderPosSize(p_rectangle, 0, x, y, width, height, borderThickness, borderColor);
-    p_rectangle->base.transparent = true;
+    p_rectangle->base.drawBackground = false;
 }
 
 
 /**
- * @brief Display rectangle by calling the onDisplay.
+ * @brief Display the Rectangle component.
  * @param[in] p_rectangle Pointer to the Rectangle component.
  *
  */
-void rectangle_displayDirect(Rectangle_s *p_rectangle)
+void rectangle_display(Rectangle_s *p_rectangle)
 {
-    p_rectangle->base.onDisplay(&p_rectangle->base);
+    base_display(&p_rectangle->base);
+}
+
+
+/**
+ * @brief Set the id of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] id Id of the Rectangle component.
+ *
+ */
+void rectangle_setId(Rectangle_s *p_rectangle, const uint32_t id)
+{
+    if (id > 0)
+    {
+        p_rectangle->base.id = id;
+    }
 }
 
 
@@ -240,16 +253,7 @@ void rectangle_displayDirect(Rectangle_s *p_rectangle)
  */
 void rectangle_setColor(Rectangle_s *p_rectangle, const Color_t color)
 {
-    p_rectangle->base.background = color;
-}
-
-
-/*
- *
- */
-void rectangle_showBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly)
-{
-    p_rectangle->base.transparent = showBorderOnly;
+    p_rectangle->base.backgroundColor = color;
 }
 
 
@@ -272,6 +276,18 @@ void rectangle_setBorderColor(Rectangle_s *p_rectangle, const Color_t color)
 
 
 /**
+ * @brief Set the showBorderOnly flag of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] showBorderOnly If true, only the border is drawn when onDisplay is called.
+ *
+ */
+void rectangle_setShowBorderOnly(Rectangle_s *p_rectangle, const bool showBorderOnly)
+{
+    p_rectangle->base.drawBackground = !showBorderOnly;
+}
+
+
+/**
  * @brief Set the border thickness of the Rectangle component.
  * @param[in] p_rectangle Pointer to the Rectangle component.
  * @param[in] thickness.
@@ -290,6 +306,9 @@ void rectangle_setBorderThickness(Rectangle_s *p_rectangle, const uint8_t thickn
 
 
 /**
+ * @brief Set the radius of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] radius.
  *
  */
 void rectangle_setRadius(Rectangle_s *p_rectangle, const uint8_t radius)
@@ -301,6 +320,92 @@ void rectangle_setRadius(Rectangle_s *p_rectangle, const uint8_t radius)
 
     BorderData_s *p_borderData = (BorderData_s*) p_rectangle->base.p_data;
     p_borderData->radius = radius;
+}
+
+
+/**
+ * @brief Set the x-position of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] x x-position of the Rectangle component.
+ *
+ */
+void rectangle_setX(Rectangle_s *p_rectangle, const uint16_t x)
+{
+    base_setX(&p_rectangle->base, x);
+}
+
+
+/**
+ * @brief Set the y-position of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] y y-position of the Rectangle component.
+ *
+ */
+void rectangle_setY(Rectangle_s *p_rectangle, const uint16_t y)
+{
+    base_setY(&p_rectangle->base, y);
+}
+
+
+/**
+ * @brief Set the width of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] width Width of the Rectangle component.
+ *
+ */
+void rectangle_setWidth(Rectangle_s *p_rectangle, const uint16_t width)
+{
+    base_setWidth(&p_rectangle->base, width);
+}
+
+
+/**
+ * @brief Set the height of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] height Height of the Rectangle component.
+ *
+ */
+void rectangle_setHeight(Rectangle_s *p_rectangle, const uint16_t height)
+{
+    base_setHeight(&p_rectangle->base, height);
+}
+
+
+/**
+ * @brief Set the position of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] x x-position of the Rectangle component.
+ * @param[in] y y-position of the Rectangle component.
+ *
+ */
+void rectangle_setPosition(Rectangle_s *p_rectangle, const uint16_t x, const uint16_t y)
+{
+    base_setPosition(&p_rectangle->base, x, y);
+}
+
+
+/**
+ * @brief Set the size of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] width Width of the Rectangle component.
+ * @param[in] height Height of the Rectangle component.
+ *
+ */
+void rectangle_setSize(Rectangle_s *p_rectangle, const uint16_t width, const uint16_t height)
+{
+    base_setSize(&p_rectangle->base, width, height);
+}
+
+
+/**
+ * @brief Set the visibility of the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] visible If true, the Rectangle component is visible.
+ *
+ */
+void rectangle_setVisible(Rectangle_s *p_rectangle, const bool visible)
+{
+    p_rectangle->base.visible = visible;
 }
 
 

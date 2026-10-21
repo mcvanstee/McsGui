@@ -28,6 +28,7 @@ NumberInput_s *num_input_newInit(void);
 
 void num_input_delete(BaseComponent_s *p_numberInputBase);
 void num_input_init(NumberInput_s *p_numberInput);
+void num_input_setId(NumberInput_s *p_numberInput, uint32_t id);
 
 void num_input_setValue(NumberInput_s *p_numberInput, int32_t value);
 int32_t num_input_getValue(NumberInput_s *p_numberInput);

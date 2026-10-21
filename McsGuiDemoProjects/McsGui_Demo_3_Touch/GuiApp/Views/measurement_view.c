@@ -49,14 +49,13 @@ static void msmv_create(View_s *p_view)
     m_minTemperature_C = m_temperature_C;
     m_maxTemperature_C = m_temperature_C;
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
-    Pane_s *p_tempPane = pane_newInit();
+    Pane_s *p_tempPane = pane_new();
+    pane_initSize(p_tempPane, MSMV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT / 2) - 10);
     p_tempPane->borderPane = true;
-    base_setDimensions(p_tempPane, MSMV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT / 2) - 10);
     base_addNewInitAnchor(p_tempPane);
     anchor_setTopAnchor(p_tempPane, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_tempPane, p_item, Gui_Anchor_Left);
@@ -65,9 +64,9 @@ static void msmv_create(View_s *p_view)
     view_addComponent(p_view, p_tempPane);
     msmv_addTempPaneContent(p_tempPane);
 
-    Pane_s *p_infoPane = pane_newInit();
+    Pane_s *p_infoPane = pane_new();
+    pane_initSize(p_infoPane, MSMV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT / 2) - 10);
     p_infoPane->borderPane = true;
-    base_setDimensions(p_infoPane, MSMV_PANE_WIDTH, (STYLE_DISPLAY_HEIGHT / 2) - 10);
     base_addNewInitAnchor(p_infoPane);
     anchor_setTopAnchor(p_infoPane, p_tempPane, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_infoPane, p_tempPane, Gui_Anchor_Right);
@@ -76,7 +75,7 @@ static void msmv_create(View_s *p_view)
     msmv_addInfoPaneContent(p_infoPane);
 
     Item_s *p_btnItem = item_newInit();
-    base_setDimensions(p_btnItem, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT / 2);
+    item_setSize(p_btnItem, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT / 2);
     base_addNewInitAnchor(p_btnItem);
     anchor_setHorizontalCenter(p_btnItem, p_item);
     anchor_setBottomAnchor(p_btnItem, p_item, Gui_Anchor_Bottom);
@@ -86,9 +85,9 @@ static void msmv_create(View_s *p_view)
     button_initBmp(p_startRecButton, FILE_KEY_BUTTON_PLAY);
     button_setOnPressed(p_startRecButton, msmv_startButtonPressed);
     button_setOnReleased(p_startRecButton, msmv_startButtonReleased);
+    button_setId(p_startRecButton, MSMV_START_BUTTON_ID);
     base_addNewInitAnchor(p_startRecButton);
     anchor_setCenterInParent(p_startRecButton, p_btnItem);
-    base_setId(p_startRecButton, MSMV_START_BUTTON_ID);
     base_addNewInitTouch(&p_startRecButton->base);
     item_addComponent(p_btnItem, p_startRecButton);
 
@@ -96,17 +95,17 @@ static void msmv_create(View_s *p_view)
     button_initBmp(p_stopRecButton, FILE_KEY_BUTTON_STOP);
     button_setOnPressed(p_stopRecButton, msmv_stopButtonPressed);
     button_setOnReleased(p_stopRecButton, msmv_stopButtonReleased);
+    button_setId(p_stopRecButton, MSMV_STOP_BUTTON_ID);
+    button_setVisible(p_stopRecButton, false);
     base_addNewInitAnchor(p_stopRecButton);
     anchor_setCenterInParent(p_stopRecButton, p_btnItem);
-    base_setId(p_stopRecButton, MSMV_STOP_BUTTON_ID);
     base_addNewInitTouch(&p_stopRecButton->base);
-    base_setVisible(p_stopRecButton, false);
     item_addComponent(p_btnItem, p_stopRecButton);
 
     if (temp_recorder_isRecording())
     {
-        base_setVisible(p_startRecButton, false);
-        base_setVisible(p_stopRecButton, true);
+        button_setVisible(p_startRecButton, false);
+        button_setVisible(p_stopRecButton, true);
     }
 }
 
@@ -155,9 +154,9 @@ static void msmv_addInfoPaneContent(Pane_s *p_infoPane)
     TextBlock_s *p_recNumberTB = textblock_newInit();
     textblock_setFont(p_recNumberTB, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
     textblock_setFontBackColor(p_recNumberTB, COLOR_BACKGROUND);
-    textblock_setHorizontalTextAlignment(p_recNumberTB, Text_Align_Left);
-    base_setTransparent(p_recNumberTB, false);
-    base_setId(p_recNumberTB, MSMV_TEXTBLOCK_REC_NUMBER_ID);
+    textblock_setTextHorizontalAlignment(p_recNumberTB, Text_Align_Left);
+    textblock_setDrawBackground(p_recNumberTB, true);
+    textblock_setId(p_recNumberTB, MSMV_TEXTBLOCK_REC_NUMBER_ID);
     grid_addComponent(p_grid, p_recNumberTB);
 
     if (temp_recorder_isRecording())
@@ -196,7 +195,7 @@ static TextBlock_s *msmv_addTempLabel(Grid_s *p_grid, int32_t textBlockId, file_
 
     TextBlock_s *p_tempTextRec = textblock_newInit();
     textblock_setFont(p_tempTextRec, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
-    base_setId(p_tempTextRec, textBlockId);
+    textblock_setId(p_tempTextRec, textBlockId);
     grid_addComponent(p_grid, p_tempTextRec);
 
     const file_key_e tempUnitKey = (TemperatureUnit_Celsius == settings_getTemperatureUnit()) ?
@@ -204,8 +203,8 @@ static TextBlock_s *msmv_addTempLabel(Grid_s *p_grid, int32_t textBlockId, file_
 
     Label_s *p_tempUnitLabel = label_newInit();
     label_initBmp(p_tempUnitLabel, tempUnitKey);
-    base_setHeight(p_tempUnitLabel, 24);
-    base_setTopPadding(p_tempUnitLabel, 2);
+    label_setHeight(p_tempUnitLabel, 24);
+    label_setBmpTopPadding(p_tempUnitLabel, 2);
     grid_addComponent(p_grid, p_tempUnitLabel);
 
     return p_tempTextRec;
@@ -226,8 +225,8 @@ static TextBlock_s *msmv_addInfoLabel(Grid_s *p_grid, file_key_e icon)
 
 static void msmv_startButtonPressed(Button_s *p_startButton)
 {
-    base_setBmpKey(p_startButton, FILE_KEY_BUTTON_PLAY_PRESSED);
-    base_display(p_startButton);
+    button_setBmpKey(p_startButton, FILE_KEY_BUTTON_PLAY_PRESSED);
+    button_display(p_startButton);
 }
 
 static void msmv_startButtonReleased(Button_s *p_startButton)
@@ -235,14 +234,14 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
     const bool recordingStarted = temp_recorder_start();
     Button_s *p_stopButton = (Button_s *)view_getComponentById(gui_app_getView(), MSMV_STOP_BUTTON_ID);
 
-    base_setBmpKey(p_startButton, FILE_KEY_BUTTON_PLAY);
+    button_setBmpKey(p_startButton, FILE_KEY_BUTTON_PLAY);
 
     if (recordingStarted)
     {
-        base_setVisible(p_startButton, false);
+        button_setVisible(p_startButton, false);
 
-        base_setVisible(p_stopButton, true);
-        base_display(p_stopButton);
+        button_setVisible(p_stopButton, true);
+        button_display(p_stopButton);
 
         msmv_updateRecNumber();
         ControlBar_s *p_controlBar = (ControlBar_s *)view_getComponentById(gui_app_getView(), CONTROL_BAR_ID);
@@ -253,11 +252,11 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
     }
     else
     {
-        base_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP);
-        base_setVisible(p_stopButton, false);
+        button_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP);
+        button_setVisible(p_stopButton, false);
 
-        base_setVisible(p_startButton, true);
-        base_display(p_startButton);
+        button_setVisible(p_startButton, true);
+        button_display(p_startButton);
 
         gui_log_error("Recording failed to start");
     }
@@ -265,18 +264,18 @@ static void msmv_startButtonReleased(Button_s *p_startButton)
 
 static void msmv_stopButtonPressed(Button_s *p_stopButton)
 {
-    base_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP_PRESSED);
-    base_display(p_stopButton);
+    button_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP_PRESSED);
+    button_display(p_stopButton);
 }
 
 static void msmv_stopButtonReleased(Button_s *p_stopButton)
 {
-    base_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP);
-    base_setVisible(p_stopButton, false);
+    button_setBmpKey(p_stopButton, FILE_KEY_BUTTON_STOP);
+    button_setVisible(p_stopButton, false);
 
     Button_s *p_startButton = (Button_s *)view_getComponentById(gui_app_getView(), MSMV_START_BUTTON_ID);
-    base_setVisible(p_startButton, true);
-    base_display(p_startButton);
+    button_setVisible(p_startButton, true);
+    button_display(p_startButton);
 
     temp_recorder_stop();
 
@@ -327,9 +326,9 @@ static void msmv_handleEvent(View_s *p_view, GuiEvent_s *p_event)
         unit_converter_getTemperatureStr(
                 p_maxTempTB->text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, m_maxTemperature_C, temperatureUnit);
 
-        base_display(p_tempTB);
-        base_display(p_minTempTB);
-        base_display(p_maxTempTB);
+        textblock_display(p_tempTB);
+        textblock_display(p_minTempTB);
+        textblock_display(p_maxTempTB);
     }
     else if (p_event->event == CUSTOM_GUI_EVENT_REC_NUMBER_CHANGED)
     {
@@ -344,6 +343,6 @@ static void msmv_updateRecNumber(void)
     const int32_t recNumber = temp_recorder_getNumSamples();
     snprintf(recNumberStr, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%ld", recNumber);
     textblock_setText(p_recNumberTB, recNumberStr);
-    base_display(p_recNumberTB);
+    textblock_display(p_recNumberTB);
 }
 

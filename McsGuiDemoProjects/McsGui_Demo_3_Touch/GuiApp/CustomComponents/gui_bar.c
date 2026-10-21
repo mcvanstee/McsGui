@@ -66,8 +66,8 @@ static void bar_delete(BaseComponent_s *p_baseComponent)
 void bar_init(Bar_s *p_bar)
 {
 	base_initParentComp(&p_bar->base, bar_delete);
-	base_setOnDisplay(p_bar, bar_onDisplay);
-	base_setDimensions(p_bar, BAR_WIDTH, BAR_HEIGHT);
+	base_setOnDisplay(&p_bar->base, bar_onDisplay);
+	base_setSize(&p_bar->base, BAR_WIDTH, BAR_HEIGHT);
 
 	p_bar->fillColor = COLOR_ACCENT_BLUE;
 	p_bar->emptyColor = COLOR_BAR_BACKGROUND;
@@ -83,7 +83,7 @@ void bar_setLevel(Bar_s *p_bar, uint8_t level)
 void bar_updateLevel(Bar_s *p_bar, uint8_t level)
 {
 	p_bar->level = level;
-	base_display(p_bar);
+	base_display(&p_bar->base);
 }
 
 void bar_setColors(Bar_s *p_bar, Color_t fillColor, Color_t emptyColor, Color_t borderColor)
@@ -109,7 +109,7 @@ static void bar_onDisplay(BaseComponent_s *p_base)
 			p_base->width, p_base->height,
 			1, p_bar->borderColor);
     rectangle_setRadius(&background, 3);
-	base_display(&background);
+	rectangle_display(&background);
 
 	uint16_t fillHeight = p_base->height * p_bar->level / 100;
 
@@ -122,5 +122,5 @@ static void bar_onDisplay(BaseComponent_s *p_base)
     base_addAnchor(&fill, &anchor);
     anchor_setBottomAnchor(&fill, p_base, Gui_Anchor_Bottom);
     anchor_setLeftAnchor(&fill, p_base, Gui_Anchor_Left);
-    base_display(&fill);
+    rectangle_display(&fill);
 }

@@ -72,11 +72,12 @@ void page_btn_delete(BaseComponent_s *p_pageButtonBase)
 
 void page_btn_init(PageButton_s *p_pageButton)
 {
-	button_init(&p_pageButton->button);
-    base_setOnDelete(p_pageButton, page_btn_delete);
-    base_setOnDisplay(p_pageButton, page_btn_onDisplay);
-    base_setBmpKey(p_pageButton, FILE_KEY_BUTTON_PAGE_BACKGROUND);
-    base_setDimensions(p_pageButton, PAGE_BTN_WIDTH, PAGE_BTN_HEIGHT);
+    Button_s *p_button = &p_pageButton->button;
+
+	button_initBmp(p_button, FILE_KEY_BUTTON_PAGE_BACKGROUND);
+	button_setSize(p_button, PAGE_BTN_WIDTH, PAGE_BTN_HEIGHT);
+    base_setOnDelete(&p_button->base, page_btn_delete);
+    base_setOnDisplay(&p_button->base, page_btn_onDisplay);
 	touch_init(&p_pageButton->touch);
 	base_addTouch(&p_pageButton->button, &p_pageButton->touch);
 
@@ -110,22 +111,22 @@ static void page_btn_onDisplay(BaseComponent_s *p_buttonBase)
 			&icon, p_pageButton->icon,
 			p_buttonBase->x, p_buttonBase->y,
 			p_buttonBase->width, p_buttonBase->height);
+    label_setBmpVerticalAlignment(&icon, Gui_Align_Top);
+    label_setBmpTopPadding(&icon, 20);
 	theme_applyThemeProperty(&icon);
 	theme_applyAccentColorProperty(&icon);
-	base_setVerticalAlignment(&icon, Gui_Align_Top);
-	base_setTopPadding(&icon, 20);
-	base_display(&icon);
+	label_display(&icon);
 
 	Label_s text;
 	label_initBmpPosSize(
 			&text, p_pageButton->text,
 			p_buttonBase->x, p_buttonBase->y,
 			p_buttonBase->width, p_buttonBase->height);
-	base_setVerticalAlignment(&text, Gui_Align_Bottom);
-	base_setBottomPadding(&text, 18);
+	label_setBmpVerticalAlignment(&text, Gui_Align_Bottom);
+	label_setBmpBottomPadding(&text, 18);
 	gui_app_translate(&text);
 	theme_applyThemeProperty(&text);
-	base_display(&text);
+	label_display(&text);
 }
 
 static void page_btn_displayBackground(BaseComponent_s *p_baseComponent)
@@ -136,5 +137,5 @@ static void page_btn_displayBackground(BaseComponent_s *p_baseComponent)
             p_baseComponent->x, p_baseComponent->y,
             p_baseComponent->width, p_baseComponent->height);
     rectangle_setRadius(&rect, 3);
-    base_display(&rect);
+    rectangle_display(&rect);
 }

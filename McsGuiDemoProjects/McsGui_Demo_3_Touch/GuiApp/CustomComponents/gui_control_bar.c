@@ -17,7 +17,7 @@ void control_bar_init(ControlBar_s *p_controlBar)
 {
 	base_initParentComp(&p_controlBar->base, control_bar_delete);
 	base_setPosition(&p_controlBar->base, 0, 0);
-	base_setDimensions(&p_controlBar->base, STYLE_CONTROL_BAR_WIDTH, STYLE_CONTROL_BAR_HEIGHT);
+	base_setSize(&p_controlBar->base, STYLE_CONTROL_BAR_WIDTH, STYLE_CONTROL_BAR_HEIGHT);
 	base_setOnDisplay(&p_controlBar->base, control_bar_onDisplay);
 	base_setOnHandleEvent(&p_controlBar->base, control_bar_handleEvent);
 
@@ -152,7 +152,7 @@ static void control_bar_displayBtn(file_key_e icon, uint16_t x, uint16_t y, bool
 	Label_s label;
 	label_initBmpPosSize(&label, icon, x, y, CONTROL_BAR_BUTTON_WIDTH, CONTROL_BAR_BUTTON_HEIGHT);
 	base_setProperty(&label.base, FILE_PROPERTY_SELECTION, propertyValue);
-	base_display(&label);
+	label_display(&label);
 }
 
 static void control_bar_displayBtnIndex(ControlBar_s *p_controlBar, uint8_t buttonIndex)

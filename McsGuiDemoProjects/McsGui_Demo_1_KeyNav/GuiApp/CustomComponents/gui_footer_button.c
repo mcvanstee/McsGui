@@ -69,8 +69,8 @@ void footer_btn_delete(BaseComponent_s *p_footerButtonBase)
 void footer_btn_init(FooterButton_s *p_footerButton)
 {
     button_init(&p_footerButton->button);
-    base_setOnDelete(p_footerButton, footer_btn_delete);
-    base_setOnDisplay(p_footerButton, footer_btn_onDisplay);
+    base_setOnDelete(&p_footerButton->button.base, footer_btn_delete);
+    base_setOnDisplay(&p_footerButton->button.base, footer_btn_onDisplay);
     keynav_init(&p_footerButton->keyNavigation);
     base_addKeyNavigation(p_footerButton, &p_footerButton->keyNavigation);
     p_footerButton->content = FILE_KEY_NONE;
@@ -84,11 +84,11 @@ void footer_btn_initIcon(
         void (*onPressed)(void))
 {
     footer_btn_init(p_footerButton);
-    base_setBmpKey(&p_footerButton->button.base, FILE_KEY_BUTTON_FOOTER_BUTTON);
+    button_setBmpKey(&p_footerButton->button, FILE_KEY_BUTTON_FOOTER_BUTTON);
     p_footerButton->content = icon;
 
     button_setOnPressedEvent(&p_footerButton->button, onPressed);
-    base_setDimensions(&p_footerButton->button.base, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
+    button_setSize(&p_footerButton->button, FOOTER_BTN_WIDTH, FOOTER_BTN_HEIGHT);
 }
 
 static void footer_btn_focusChanged(BaseComponent_s *p_baseComponent)
@@ -103,7 +103,7 @@ static void footer_btn_focusChanged(BaseComponent_s *p_baseComponent)
             p_baseComponent->width, p_baseComponent->height,
             2, color);
     rectangle_setRadius(&rect, 3);
-    base_display(&rect);
+    rectangle_display(&rect);
 }
 
 static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
@@ -122,7 +122,7 @@ static void footer_btn_onDisplay(BaseComponent_s *p_buttonBase)
             p_buttonBase->width, p_buttonBase->height);
     theme_applyThemeProperty(&content);
     theme_applyAccentColorProperty(&content);
-    base_display(&content);
+    label_display(&content);
 }
 
 static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent)
@@ -133,5 +133,5 @@ static void footer_btn_displayBackground(BaseComponent_s *p_baseComponent)
             p_baseComponent->x, p_baseComponent->y,
             p_baseComponent->width, p_baseComponent->height);
     rectangle_setRadius(&rect, 4);
-    base_display(&rect);
+    rectangle_display(&rect);
 }

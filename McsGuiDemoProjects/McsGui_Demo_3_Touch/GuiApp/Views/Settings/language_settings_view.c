@@ -30,15 +30,14 @@ static void lsv_create(View_s *p_view)
 {
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_DISPLAY_HEIGHT);
     view_addComponent(p_view, p_item);
 
     GroupBox_s *p_languageGB = group_box_newInitTitleSize(
             FILE_KEY_TITLE_LANGUAGE, GROUP_BOX_LARGE_WIDTH, GROUP_BOX_HEIGHT);
     base_addNewInitAnchor(p_languageGB);
-    base_setId(p_languageGB, LSV_LANGUAGE_GROUP_BOX_ID);
+    group_box_setId(p_languageGB, LSV_LANGUAGE_GROUP_BOX_ID);
     anchor_setTopAnchor(p_languageGB, p_item, Gui_Anchor_Top);
     anchor_setLeftAnchor(p_languageGB, p_item, Gui_Anchor_Left);
     anchor_setTopMargin(p_languageGB, 20);
@@ -50,7 +49,7 @@ static void lsv_create(View_s *p_view)
     button_initBmp(p_backButton, FILE_KEY_ICON_BACK);
     button_setOnReleasedEvent(p_backButton, lsv_navigateBack);
     base_addNewInitTouch(p_backButton);
-    base_setDimensions(p_backButton, 50, 50);
+    button_setSize(p_backButton, 50, 50);
     base_addNewInitAnchor(p_backButton);
     anchor_setBottomAnchor(p_backButton, p_item, Gui_Anchor_Bottom);
     anchor_setRightAnchor(p_backButton, p_item, Gui_Anchor_Right);
@@ -116,8 +115,8 @@ static void lsv_languageChanged(RadioGroup_s *p_radioGroup)
         p_languageGB->rect.base.x + 5, p_languageGB->rect.base.y - 10,
         120, 20);
 
-    base_display(&background);
-    base_display(p_languageGB);
+    rectangle_display(&background);
+    group_box_display(p_languageGB);
 }
 
 static void lsv_navigateBack(void)

@@ -118,19 +118,19 @@ void gui_app_clearView(void)
 {
     Rectangle_s background;
     rectangle_initFillPosSize(&background, COLOR_BACKGROUND, 42, 0, (STYLE_DISPLAY_WIDTH - 42), STYLE_DISPLAY_HEIGHT);
-    base_display(&background);
+    rectangle_display(&background);
 }
 
 void gui_app_drawBackground(void)
 {
     Rectangle_s controlBarBackground;
     rectangle_initFillPosSize(&controlBarBackground, COLOR_BACKGROUND, 0, 0, STYLE_CONTROL_BAR_WIDTH, STYLE_DISPLAY_HEIGHT);
-    base_display(&controlBarBackground);
+    rectangle_display(&controlBarBackground);
 
     Rectangle_s separatorLeft;
     rectangle_initFillPosSize(
             &separatorLeft, COLOR_SEPARATOR, STYLE_CONTROL_BAR_WIDTH, 0, STYLE_CONTROL_BAR_SEPARATOR_WIDTH, STYLE_DISPLAY_HEIGHT);
-    base_display(&separatorLeft);
+    rectangle_display(&separatorLeft);
     gui_app_clearView();
 }
 

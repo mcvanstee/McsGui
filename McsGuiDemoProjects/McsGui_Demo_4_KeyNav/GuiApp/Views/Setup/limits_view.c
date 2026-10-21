@@ -20,9 +20,8 @@ static void lv_create(View_s *p_view)
 
     gui_app_clearView();
 
-    Item_s *p_item = item_newInit();
-    base_setPosition(p_item, STYLE_VIEW_X, STYLE_VIEW_Y);
-    base_setDimensions(p_item, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
+    Item_s *p_item = item_new();
+    item_initPosSize(p_item, STYLE_VIEW_X, STYLE_VIEW_Y, STYLE_VIEW_WIDTH, STYLE_VIEW_HEIGHT);
     view_addComponent(p_view, p_item);
 
     Row_s *p_upperRow = row_newInit();
@@ -56,7 +55,7 @@ static void lv_create(View_s *p_view)
 
     Label_s *p_lowerLimitLabel = label_newInit();
     label_setBmpKey(p_lowerLimitLabel, FILE_KEY_TEXT_LOW);
-    base_setAlignment(p_lowerLimitLabel, Gui_Align_Right, Gui_Align_Center);
+    label_setBmpAlignment(p_lowerLimitLabel, Gui_Align_Right, Gui_Align_Center);
     gui_app_translate(p_lowerLimitLabel);
     theme_applyThemeProperty(&p_lowerLimitLabel->base);
     row_addComponent(p_lowerRow, p_lowerLimitLabel);

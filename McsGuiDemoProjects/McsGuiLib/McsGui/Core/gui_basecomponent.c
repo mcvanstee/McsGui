@@ -45,10 +45,10 @@ static void base_init(
     p_base->visible = true;
     p_base->p_data = NULL;
     p_base->p_text = NULL;
-    p_base->transparent = true;
-    p_base->background = 0xFFFFF; // Default background color is white;
+    p_base->drawBackground = false;
+    p_base->backgroundColor = 0xFFFFFF; // Default background color is white;
 #if GUI_CONFIG_USE_BITMAP_COLORS
-    p_base->foreColor = 0x000000; // Default foreground color is black;
+    p_base->foregroundColor = 0x000000; // Default foreground color is black;
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
     p_base->onDelete = onDeleteComponent;
     p_base->onHandleEvent = NULL;
@@ -204,16 +204,14 @@ void base_addChild(
 }
 
 
-void base_display(void *p_component)
+void base_display(BaseComponent_s *p_base)
 {
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
 	p_base->onDisplay(p_base);
 }
 
 void base_setBmpKey(
-		void *p_component, const uint32_t fileKey)
+        BaseComponent_s *p_base, const uint32_t fileKey)
 {
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
 	p_base->bmpKey = fileKey;
 }
 
@@ -224,15 +222,16 @@ void base_setBmpKey(
  *
  */
 void base_setXPos(
-        void *p_component, const uint16_t x)
+        BaseComponent_s *p_base, const uint16_t x)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->x = x;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->x = x;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
@@ -243,15 +242,16 @@ void base_setXPos(
  *
  */
 void base_setYPos(
-        void *p_component, const uint16_t y)
+        BaseComponent_s *p_base, const uint16_t y)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->y = y;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->y = y;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
@@ -262,15 +262,16 @@ void base_setYPos(
  *
  */
 void base_setWidth(
-        void *p_component, const uint16_t width)
+        BaseComponent_s *p_base, const uint16_t width)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->width = width;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->width = width;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
@@ -281,15 +282,16 @@ void base_setWidth(
  *
  */
 void base_setHeight(
-        void *p_component, const uint16_t height)
+        BaseComponent_s *p_base, const uint16_t height)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->height = height;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->height = height;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
@@ -301,62 +303,66 @@ void base_setHeight(
  *
  */
 void base_setPosition(
-        void *p_component, const uint16_t x, const uint16_t y)
+        BaseComponent_s *p_base, const uint16_t x, const uint16_t y)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->x = x;
     p_base->y = y;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->x = x;
     	p_base->p_touch->y = y;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
 /**
- * @brief Set the Dimensions of the base.
+ * @brief Set the width and height of the base.
  * @param[in] p_component Pointer to the (base) component.
  * @param[in] width Width.
  * @param[in] height Height.
  *
  */
-void base_setDimensions(
-        void *p_component, const uint16_t width, const uint16_t height)
+void base_setSize(
+        BaseComponent_s *p_base, const uint16_t width, const uint16_t height)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->width = width;
     p_base->height = height;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
     	p_base->p_touch->width = width;
     	p_base->p_touch->height = height;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
 /**
- * @brief Set the Dimensions of the base.
+ * @brief Set the width and height of the base.
  * @param[in] p_component Pointer to the (base) component.
  * @param[in] guiSize Size structure.
  *
  */
-void base_setSize(void *p_component, const GuiSize_s guiSize)
+void base_setGuiSize(BaseComponent_s *p_base, const GuiSize_s guiSize)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->width = guiSize.width;
     p_base->height = guiSize.height;
 
+#if GUI_CONFIG_USE_TOUCH
     if (NULL != p_base->p_touch)
     {
         p_base->p_touch->width = guiSize.width;
         p_base->p_touch->height = guiSize.height;
     }
+#endif /* GUI_CONFIG_USE_TOUCH */
 }
 
 
+#if GUI_CONFIG_USE_FILE_PROPERTIES
 void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue)
 {
 	if (GUI_CONFIG_NUMBER_OF_PROPERTIES <= propertyKey)
@@ -367,6 +373,7 @@ void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_
 	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
 	p_base->properties[propertyKey] = propertyValue;
 }
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 
 
 /**
@@ -375,100 +382,81 @@ void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_
  * @param[in] color background color.
  *
  */
-void base_setBackground(
-        void *p_component, const Color_t color)
+void base_setBackgroundColor(
+        BaseComponent_s *p_base, const Color_t color)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
-    p_base->background = color;
+    p_base->backgroundColor = color;
 }
 
 #if GUI_CONFIG_USE_BITMAP_COLORS
-void base_setForeColor(void *p_component, const Color_t color)
+void base_setForegroundColor(BaseComponent_s *p_base, const Color_t color)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
-    p_base->foreColor = color;
+    p_base->foregroundColor = color;
 }
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
-void base_setTransparent(void *p_component, const bool transparent)
+
+/**
+ * @brief Set the drawBackground flag of the base.
+ * @param[in] p_component Pointer the to (base) component.
+ * @param[in] drawBackground If true, background is drawn when onDisplay is called.
+ *
+ */
+void base_setDrawBackground(BaseComponent_s *p_base, const bool drawBackground)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
-    p_base->transparent = transparent;
+    p_base->drawBackground = drawBackground;
 }
 
-void base_setVisibility(void *p_component, const GuiVisibility_e visibility)
+void base_setVisible(BaseComponent_s *p_base, const bool visible)
 {
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
-	p_base->visible = (visibility == Gui_Visibility_Visible);
-}
-
-void base_setVisible(void *p_component, const bool visible)
-{
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
 	p_base->visible = visible;
 }
 
-void base_setId(void *p_component, const uint8_t id)
+void base_setId(BaseComponent_s *p_base, const uint8_t id)
 {
     if (id > 0)
     {
-        BaseComponent_s *p_base = (BaseComponent_s*)p_component;
         p_base->id = id;
     }
 }
 
-void base_setOnDelete(void *p_component, void (*onDelete)(BaseComponent_s *p_base))
+void base_setOnDelete(BaseComponent_s *p_base, void (*onDelete)(BaseComponent_s *p_base))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onDelete = onDelete;
 }
 
-void base_setOnDisplay(void *p_component, void (*onDisplay)(BaseComponent_s *p_base))
+void base_setOnDisplay(BaseComponent_s *p_base, void (*onDisplay)(BaseComponent_s *p_base))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onDisplay = onDisplay;
 }
 
-void base_setOnHandleEvent(void *p_component, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event))
+void base_setOnHandleEvent(BaseComponent_s *p_base, bool (*onHandleEvent)(BaseComponent_s *p_base, const GuiEvent_s *p_event))
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     p_base->onHandleEvent = onHandleEvent;
 }
 
-GuiVisibility_e base_getVisibility(void *p_component)
+uint16_t base_getX(BaseComponent_s *p_base)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
-    return (p_base->visible) ? Gui_Visibility_Visible : Gui_Visibility_Hidden;
-}
-
-uint16_t base_getXPos(void *p_component)
-{
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     return p_base->x;
 }
 
-uint16_t base_getYPos(void *p_component)
+uint16_t base_getYPos(BaseComponent_s *p_base)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     return p_base->y;
 }
 
-uint16_t base_getWidth(void *p_component)
+uint16_t base_getWidth(BaseComponent_s *p_base)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     return p_base->width;
 }
 
-uint16_t base_getHeight(void *p_component)
+uint16_t base_getHeight(BaseComponent_s *p_base)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
     return p_base->height;
 }
 
-GuiSize_s base_getSize(void *p_component)
+GuiSize_s base_getGuiSize(BaseComponent_s *p_base)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*)p_component;
-
     GuiSize_s size =
     {
         .width = p_base->width,
@@ -519,9 +507,8 @@ void base_executeForEachChild(BaseComponent_s *p_parentBase, void(*functionToExe
  *
  */
 void base_setAlignment(
-        void *p_component, const GuiAlignment_e horizontal, const GuiAlignment_e vertical)
+        BaseComponent_s *p_base, const GuiAlignment_e horizontal, const GuiAlignment_e vertical)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->horizontalAlignment = (uint8_t)horizontal;
     p_base->verticalAlignment = (uint8_t)vertical;
 }
@@ -534,9 +521,8 @@ void base_setAlignment(
  *
  */
 void base_setHorizontalAlignment(
-        void *p_component, const GuiAlignment_e alignment)
+        BaseComponent_s *p_base, const GuiAlignment_e alignment)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->horizontalAlignment = (uint8_t)alignment;
 }
 
@@ -548,9 +534,8 @@ void base_setHorizontalAlignment(
  *
  */
 void base_setVerticalAlignment(
-        void *p_component, const GuiAlignment_e alignment)
+        BaseComponent_s *p_base, const GuiAlignment_e alignment)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->verticalAlignment = (uint8_t)alignment;
 }
 
@@ -565,11 +550,10 @@ void base_setVerticalAlignment(
  *
  */
 void base_setPadding(
-        void *p_component,
+        BaseComponent_s *p_base,
         const uint8_t left, const uint8_t top,
         const uint8_t right, const uint8_t bottom)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->leftPadding = left;
     p_base->topPadding = top;
     p_base->rightPadding = right;
@@ -577,30 +561,26 @@ void base_setPadding(
 }
 
 void base_setLeftPadding(
-        void *p_component, const uint8_t padding)
+        BaseComponent_s *p_base, const uint8_t padding)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->leftPadding = padding;
 }
 
 void base_setTopPadding(
-        void *p_component, const uint8_t padding)
+        BaseComponent_s *p_base, const uint8_t padding)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->topPadding = padding;
 }
 
 void base_setRightPadding(
-        void *p_component, const uint8_t padding)
+        BaseComponent_s *p_base, const uint8_t padding)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->rightPadding = padding;
 }
 
 void base_setBottomPadding(
-        void *p_component, const uint8_t padding)
+        BaseComponent_s *p_base, const uint8_t padding)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->bottomPadding = padding;
 }
 
@@ -613,10 +593,9 @@ void base_setBottomPadding(
  *
  */
 void base_setOnBeforeDisplay(
-        void *p_component, void (*onBeforeDisplay)(BaseComponent_s *p_base))
+        BaseComponent_s *p_base, void (*onBeforeDisplay)(BaseComponent_s *p_base))
 {
-    BaseComponent_s *p_baseComp = (BaseComponent_s *)p_component;
-    p_baseComp->onBeforeDisplay = onBeforeDisplay;
+    p_base->onBeforeDisplay = onBeforeDisplay;
 }
 #endif /* GUI_CONFIG_USE_ON_BEFORE_DISPLAY */
 

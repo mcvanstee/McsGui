@@ -79,7 +79,7 @@ void digit_input_init(DigitInput_s *p_digitInput)
     base_initParentComp(&p_digitInput->base, digit_input_delete);
     base_setOnDisplay(&p_digitInput->base, digit_input_onDisplay);
     base_setOnHandleEvent(&p_digitInput->base, digit_input_handleEvent);
-    base_setDimensions(&p_digitInput->base, GUI_DIGIT_INPUT_WIDTH, GUI_DIGIT_INPUT_HEIGHT);
+    base_setSize(&p_digitInput->base, GUI_DIGIT_INPUT_WIDTH, GUI_DIGIT_INPUT_HEIGHT);
 
     touch_init(&p_digitInput->touch);
     base_addTouch(&p_digitInput->base, &p_digitInput->touch);
@@ -117,7 +117,7 @@ static void digit_input_onDisplay(BaseComponent_s *p_base)
             p_base->x, p_base->y,
             p_base->width, p_base->height);
     rectangle_setRadius(&background, 3);
-    base_display(&background);
+    rectangle_display(&background);
 
     digit_input_displayValue(p_digitInput);
 }
@@ -160,8 +160,7 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
     if (p_digitInput->editMode)
     {
         Label_s arrowUp;
-        label_init(&arrowUp);
-        base_setBmpKey(&arrowUp, FILE_KEY_ICON_PANE_ARROW_UP);
+        label_initBmp(&arrowUp, FILE_KEY_ICON_PANE_ARROW_UP);
         theme_applyThemeProperty(&arrowUp);
         theme_applyAccentColorProperty(&arrowUp);
 
@@ -173,8 +172,7 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
         anchor_setHorizontalCenter(&arrowUp, p_digitInput);
 
         Label_s arrowDown;
-        label_init(&arrowDown);
-        base_setBmpKey(&arrowDown, FILE_KEY_ICON_PANE_ARROW_DOWN);
+        label_initBmp(&arrowDown, FILE_KEY_ICON_PANE_ARROW_DOWN);
         theme_applyThemeProperty(&arrowDown);
         theme_applyAccentColorProperty(&arrowDown);
 
@@ -185,8 +183,8 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
         anchor_setBottomMargin(&arrowDown, 2);
         anchor_setHorizontalCenter(&arrowDown, p_digitInput);
 
-        base_display(&arrowUp);
-        base_display(&arrowDown);
+        label_display(&arrowUp);
+        label_display(&arrowDown);
     }
     else
     {
@@ -210,8 +208,8 @@ static void digit_input_editModeChanged(DigitInput_s *p_digitInput)
         anchor_setBottomMargin(&eraseDown, 2);
         anchor_setHorizontalCenter(&eraseDown, p_digitInput);
 
-        base_display(&eraseUp);
-        base_display(&eraseDown);
+        rectangle_display(&eraseUp);
+        rectangle_display(&eraseDown);
     }
 
     digit_input_displayTopAndBottomValues(p_digitInput);
@@ -224,12 +222,12 @@ static void digit_input_displayValue(DigitInput_s *p_digitInput)
     TextBlock_s textBlock;
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, theme_getDefaultFont());
-    base_setPosition(&textBlock, p_base->x, p_base->y);
-    base_setDimensions(&textBlock, p_base->width, p_base->height);
-    base_setTopPadding(&textBlock, 1);
-    base_setLeftPadding(&textBlock, 1);
+    textblock_setPosition(&textBlock, p_base->x, p_base->y);
+    textblock_setSize(&textBlock, p_base->width, p_base->height);
+    textblock_setTextTopPadding(&textBlock, 1);
+    textblock_setTextLeftPadding(&textBlock, 1);
     snprintf(textBlock.text, GUI_CONFIG_TEXTBLOCK_MAX_STRING_LENGTH, "%u", p_digitInput->value);
-    base_display(&textBlock);
+    textblock_display(&textBlock);
 
     digit_input_displayTopAndBottomValues(p_digitInput);
 }
@@ -278,8 +276,8 @@ static void digit_input_displayTopAndBottomValues(DigitInput_s *p_digitInput)
         textblock_setText(&valueDownTb, "  ");
     }
 
-    base_display(&valueUpTb);
-    base_display(&valueDownTb);
+    textblock_display(&valueUpTb);
+    textblock_display(&valueDownTb);
 }
 
 static void digit_input_increaseValue(DigitInput_s *p_digitInput)
