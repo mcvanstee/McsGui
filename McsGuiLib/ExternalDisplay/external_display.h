@@ -12,7 +12,6 @@
 extern "C" {
 #endif
 
-#include "Core/gui_event.h"
 #include "Graphics/gui_graphicsinstruction.h"
 
 #define ED_CUSTOM_EVENT_BTNS 14
@@ -21,10 +20,10 @@ extern "C" {
 #define ED_BUTTON_DESCRIPTION_MAX_LENGTH 16
 
 #define ED_IN_BUFFER_LENGTH 64U
-#define ED_OUT_BUFFER_LENGTH 256U
+#define ED_OUT_BUFFER_LENGTH 2048// 1024U
 
 #define ED_CRC_LENGTH_BYTES 4
-#define ED_HEADER_LENGTH 5
+#define ED_HEADER_LENGTH 6
 #define ED_OUT_PACKET_MAX_PAYLOAD (ED_OUT_BUFFER_LENGTH - ED_HEADER_LENGTH - ED_CRC_LENGTH_BYTES)
 
 #define ED_USE_CUSTOM_BUTTONS 1 /* Enable custom button support (0 OFF / 1 ON) */
@@ -54,7 +53,7 @@ typedef struct
 extern EdButtonSetup_s ed_getCustomButton(const uint8_t index);
 #endif /* ED_USE_CUSTOM_BUTTONS */
 
-extern void ed_eventRecevied(GuiEvent_s guiEvent);
+extern void ed_eventRecevied(uint8_t event, uint8_t *p_params, uint8_t paramLengthBytes);
 extern void ed_writeBuffer(uint8_t *p_buffer, uint32_t bytesToWrite);
 extern uint32_t ed_calculateCrc(const uint8_t *p_data, const uint32_t length);
 #if ED_USE_FILE_TRANSFER == 1
@@ -62,6 +61,7 @@ extern void ed_startFileWrite(uint32_t fileSize, const char *p_fileName);
 #endif /* ED_USE_FILE_TRANSFER */
 
 void ed_setSetup(const EdSetup_s setup);
+void ed_sendConfig(void);
 void ed_handleRequest(uint8_t *p_packet);
 void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLength);
 void ed_log(const char *p_message);
@@ -69,7 +69,11 @@ void ed_requestRtcTime(void);
 
 void ed_sendRequestResponseOK(void);
 void ed_sendRequestResponseError(void);
-void ed_sendRequestResponseData(uint8_t *p_data, const uint8_t dataLength);
+void ed_sendRequestResponseData(uint8_t *p_data, const uint16_t dataLength);
+
+uint16_t ed_getDisplayWidth(void);
+uint16_t ed_getDisplayHeight(void);
+void ed_setDisplaySize(const uint16_t width, const uint16_t height);
 
 
 #ifdef __cplusplus

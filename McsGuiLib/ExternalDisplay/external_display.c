@@ -8,8 +8,9 @@
 
 #define ED_PACKET_TYPE_INDEX 3
 #define ED_PAYLOAD_LENGTH_INDEX 4
-#define ED_START_PAYLOAD_INDEX 5
+#define ED_START_PAYLOAD_INDEX 6
 
+#define ED_DISPLAY_INSTRUCTION_HEADER_SIZE 7 /* useBitmapColors (1 byte) + propertiesLength (1 byte) + instructionSize (1 byte) + displayWidth (2 byte) + displayHeigt (2 byte) */
 #define ED_DISPLAY_INSTRUCTION_SIZE 20
 
 typedef enum
@@ -58,11 +59,10 @@ static void ed_addCRC(void);
 static bool ed_checkSyncBytes(const uint8_t *p_packet);
 static bool ed_checkCRC(const uint8_t *p_packet);
 static uint32_t ed_addInstructionToBuffer(GraphicsInstruction_s *p_instruction, const uint32_t payloadLength);
-static void ed_sendConfig(void);
-static void ed_sendCustomButtonSetup(const uint8_t *p_payload, const uint8_t payloadLength);
+static void ed_sendCustomButtonSetup(const uint8_t *p_payload);
 static void ed_createScreenUpdatePacket(void);
-static void ed_handleRequestReceived(const uint8_t *p_payload, const uint8_t payloadLength);
-static void ed_handleEventReceived(const uint8_t *p_payload, const uint8_t payloadLength);
+static void ed_handleRequestReceived(const uint8_t *p_payload, const uint16_t payloadLength);
+static void ed_handleEventReceived(uint8_t *p_payload, const uint16_t payloadLength);
 
 /*  */
 static uint8_t ed_outBuffer[ED_OUT_BUFFER_LENGTH];
@@ -85,8 +85,8 @@ void ed_handleRequest(uint8_t *p_packet)
 	}
 
 	EdPacketType_s packetType = (EdPacketType_s)p_packet[ED_PACKET_TYPE_INDEX];
-	const uint8_t *p_payload = &p_packet[ED_START_PAYLOAD_INDEX];
-	const uint8_t payloadLength = p_packet[ED_PAYLOAD_LENGTH_INDEX];
+	uint8_t *p_payload = &p_packet[ED_START_PAYLOAD_INDEX];
+	const uint16_t payloadLength = utils_array_getUint16(p_packet, ED_PAYLOAD_LENGTH_INDEX);
 
 	switch (packetType)
 	{
@@ -97,11 +97,16 @@ void ed_handleRequest(uint8_t *p_packet)
 			ed_sendConfig();
 			break;
 		case EdPacketType_CustomButtonSetup:
-			ed_sendCustomButtonSetup(p_payload, payloadLength);
+			ed_sendCustomButtonSetup(p_payload);
 			break;
 		case EdPacketType_Event:
 			ed_handleEventReceived(p_payload, payloadLength);
 			break;
+        case EdPacketType_RequestResponse:
+        case EdPacketType_ScreenUpdate:
+        case EdPacketType_LogMessage:
+        case EdPacketType_SyncRtcTime:
+        case EdPacketType_Error:
 		default:
 			break;
 	}
@@ -109,8 +114,7 @@ void ed_handleRequest(uint8_t *p_packet)
 
 void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLength)
 {
-    const uint32_t payloadSizeScreenUpdate = 3U; /* 1 byte for useBitmapColors, 1 byte for propertiesLength, 1 byte for instructionSize */
-	uint32_t payloadLength = payloadSizeScreenUpdate;
+	uint32_t payloadLength = ED_DISPLAY_INSTRUCTION_HEADER_SIZE;
 
     ed_createScreenUpdatePacket();
 
@@ -131,22 +135,22 @@ void ed_updateDisplay(GraphicsInstruction_s *p_buffer, const uint16_t bufferLeng
         {
         	const uint32_t bytesToWrite = ED_HEADER_LENGTH + payloadLength + ED_CRC_LENGTH_BYTES;
 
-        	ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = payloadLength;
+        	utils_array_addUint16(ed_outBuffer, payloadLength, ED_PAYLOAD_LENGTH_INDEX);
         	ed_addCRC();
         	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 
-        	payloadLength = payloadSizeScreenUpdate;
+        	payloadLength = ED_DISPLAY_INSTRUCTION_HEADER_SIZE;
         	ed_createScreenUpdatePacket();
         }
     }
 
     // Write remaining instructions in buffer
     //
-    if (payloadLength > payloadSizeScreenUpdate)
+    if (payloadLength > ED_DISPLAY_INSTRUCTION_HEADER_SIZE)
     {
     	const uint32_t bytesToWrite = ED_HEADER_LENGTH + payloadLength + ED_CRC_LENGTH_BYTES;
 
-    	ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = payloadLength;
+    	utils_array_addUint16(ed_outBuffer, payloadLength, ED_PAYLOAD_LENGTH_INDEX);
     	ed_addCRC();
     	ed_writeBuffer(ed_outBuffer, bytesToWrite);
     }
@@ -158,12 +162,11 @@ void ed_log(const char *p_message)
 
 	ed_setSyncBytes();
 	ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_LogMessage;
-	ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = messageLength;
+	utils_array_addUint16(ed_outBuffer, messageLength, ED_PAYLOAD_LENGTH_INDEX);
 	utils_array_cpy(ed_outBuffer, (uint8_t *)p_message, ED_START_PAYLOAD_INDEX, 0, messageLength);
 	ed_addCRC();
 
-	const uint32_t bytesToWrite =
-	        ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+	const uint32_t bytesToWrite = ED_HEADER_LENGTH + messageLength + ED_CRC_LENGTH_BYTES;
 
 	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
@@ -173,10 +176,10 @@ void ed_requestRtcTime(void)
     ed_setSyncBytes();
     ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_SyncRtcTime;
     ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = 0;
+    ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX + 1] = 0;
     ed_addCRC();
 
-    const uint32_t bytesToWrite =
-            ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+    const uint32_t bytesToWrite = ED_HEADER_LENGTH + ED_CRC_LENGTH_BYTES;
 
     ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
@@ -185,12 +188,11 @@ void ed_sendRequestResponseOK(void)
 {
     ed_setSyncBytes();
     ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_RequestResponse;
-    ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = 1;
+    utils_array_addUint16(ed_outBuffer, 1, ED_PAYLOAD_LENGTH_INDEX);
     ed_outBuffer[ED_START_PAYLOAD_INDEX] = RequestResponseType_OK;
     ed_addCRC();
 
-    const uint32_t bytesToWrite =
-            ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+    const uint32_t bytesToWrite = ED_HEADER_LENGTH + 1 + ED_CRC_LENGTH_BYTES;
 
     ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
@@ -199,32 +201,46 @@ void ed_sendRequestResponseError(void)
 {
     ed_setSyncBytes();
     ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_RequestResponse;
-    ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = 1;
+    utils_array_addUint16(ed_outBuffer, 1, ED_PAYLOAD_LENGTH_INDEX);
     ed_outBuffer[ED_START_PAYLOAD_INDEX] = RequestResponseType_Error;
     ed_addCRC();
 
-    const uint32_t bytesToWrite =
-            ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+    const uint32_t bytesToWrite = ED_HEADER_LENGTH + 1 + ED_CRC_LENGTH_BYTES;
 
     ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
 
-void ed_sendRequestResponseData(uint8_t *p_data, const uint8_t dataLength)
+void ed_sendRequestResponseData(uint8_t *p_data, const uint16_t dataLength)
 {
     ed_setSyncBytes();
     ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_RequestResponse;
-    ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = 1 + dataLength;
+    utils_array_addUint16(ed_outBuffer, 1 + dataLength, ED_PAYLOAD_LENGTH_INDEX);
     ed_outBuffer[ED_START_PAYLOAD_INDEX] = RequestResponseType_Data;
     utils_array_cpy(ed_outBuffer, p_data, ED_START_PAYLOAD_INDEX + 1, 0, dataLength);
     ed_addCRC();
 
-    const uint32_t bytesToWrite =
-            ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+    const uint32_t bytesToWrite = ED_HEADER_LENGTH + 1 + dataLength + ED_CRC_LENGTH_BYTES;
 
     ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
 
-static void ed_sendConfig(void)
+uint16_t ed_getDisplayWidth(void)
+{
+    return ed_setup.width;
+}
+
+uint16_t ed_getDisplayHeight(void)
+{
+    return ed_setup.height;
+}
+
+void ed_setDisplaySize(const uint16_t width, const uint16_t height)
+{
+    ed_setup.width = width;
+    ed_setup.height = height;
+}
+
+void ed_sendConfig(void)
 {
 	EdConfig_s config = {0};
 	config.version = ED_CONFIG_VERSION;
@@ -232,16 +248,16 @@ static void ed_sendConfig(void)
 
 	ed_setSyncBytes();
 	ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_Config;
-	ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = sizeof(EdConfig_s);
+	utils_array_addUint16(ed_outBuffer, sizeof(EdConfig_s), ED_PAYLOAD_LENGTH_INDEX);
 	utils_array_cpy(ed_outBuffer, (uint8_t *)&config, ED_START_PAYLOAD_INDEX, 0, sizeof(EdConfig_s));
 	ed_addCRC();
 
-	const uint32_t bytesToWrite = ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+	const uint32_t bytesToWrite = ED_HEADER_LENGTH + sizeof(EdConfig_s) + ED_CRC_LENGTH_BYTES;
 
 	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 }
 
-static void ed_sendCustomButtonSetup(const uint8_t *p_payload, const uint8_t payloadLength)
+static void ed_sendCustomButtonSetup(const uint8_t *p_payload)
 {
 #if ED_USE_CUSTOM_BUTTONS == 1
 	const uint8_t index = p_payload[0];
@@ -249,11 +265,11 @@ static void ed_sendCustomButtonSetup(const uint8_t *p_payload, const uint8_t pay
 
 	ed_setSyncBytes();
 	ed_outBuffer[ED_PACKET_TYPE_INDEX] = EdPacketType_CustomButtonSetup;
-	ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] = sizeof(EdButtonSetup_s);
+	utils_array_addUint16(ed_outBuffer, sizeof(EdButtonSetup_s), ED_PAYLOAD_LENGTH_INDEX);
 	utils_array_cpy(ed_outBuffer, (uint8_t *)&buttonSetup, ED_START_PAYLOAD_INDEX, 0, sizeof(EdButtonSetup_s));
 	ed_addCRC();
 
-	const uint32_t bytesToWrite = ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX] + ED_CRC_LENGTH_BYTES;
+	const uint32_t bytesToWrite = ED_HEADER_LENGTH + sizeof(EdButtonSetup_s) + ED_CRC_LENGTH_BYTES;
 
 	ed_writeBuffer(ed_outBuffer, bytesToWrite);
 #endif /* ED_USE_CUSTOM_BUTTONS */
@@ -277,9 +293,11 @@ static void ed_createScreenUpdatePacket(void)
     ed_outBuffer[ED_START_PAYLOAD_INDEX] = useBitmapColors;
     ed_outBuffer[ED_START_PAYLOAD_INDEX + 1] = propertiesLength;
     ed_outBuffer[ED_START_PAYLOAD_INDEX + 2] = sizeof(GraphicsInstruction_s);
+    utils_array_addUint16(ed_outBuffer, ed_setup.width, ED_START_PAYLOAD_INDEX + 3);
+    utils_array_addUint16(ed_outBuffer, ed_setup.height, ED_START_PAYLOAD_INDEX + 5);
 }
 
-static void ed_handleRequestReceived(const uint8_t *p_payload, const uint8_t payloadLength)
+static void ed_handleRequestReceived(const uint8_t *p_payload, const uint16_t payloadLength)
 {
     const uint8_t requestType = p_payload[0];
 
@@ -305,18 +323,19 @@ static void ed_handleRequestReceived(const uint8_t *p_payload, const uint8_t pay
     }
 }
 
-static void ed_handleEventReceived(const uint8_t *p_payload, const uint8_t payloadLength)
+static void ed_handleEventReceived(uint8_t *p_payload, const uint16_t payloadLength)
 {
-	GuiEvent_s guiEvent = {0};
-	guiEvent.event = p_payload[0];
+	const uint8_t eventId = p_payload[0];
+	uint8_t eventArgLength = 0;
+	uint8_t *p_eventArgs = NULL;
 
 	if (payloadLength > 1)
 	{
-		const uint8_t eventArgLength = p_payload[1];
-		utils_array_cpy(guiEvent.eventArgs, p_payload, 0, 2, eventArgLength);
+	    eventArgLength = p_payload[1];
+	    p_eventArgs = &p_payload[2];
 	}
 
-	ed_eventRecevied(guiEvent);
+	ed_eventRecevied(eventId, p_eventArgs, eventArgLength);
 }
 
 static void ed_setSyncBytes(void)
@@ -328,7 +347,8 @@ static void ed_setSyncBytes(void)
 
 static void ed_addCRC(void)
 {
-	const uint32_t length = ED_HEADER_LENGTH + ed_outBuffer[ED_PAYLOAD_LENGTH_INDEX];
+    const uint16_t payloadLength = utils_array_getUint16(ed_outBuffer, ED_PAYLOAD_LENGTH_INDEX);
+	const uint32_t length = ED_HEADER_LENGTH + payloadLength;
 	const uint32_t crc = ed_calculateCrc(ed_outBuffer, length);
 	utils_array_addUint32(ed_outBuffer, crc, length);
 }
@@ -340,7 +360,8 @@ static bool ed_checkSyncBytes(const uint8_t *p_packet)
 
 static bool ed_checkCRC(const uint8_t *p_packet)
 {
-	const uint32_t length = ED_HEADER_LENGTH + p_packet[ED_PAYLOAD_LENGTH_INDEX];
+    const uint16_t payloadLength = utils_array_getUint16(p_packet, ED_PAYLOAD_LENGTH_INDEX);
+	const uint32_t length = ED_HEADER_LENGTH + payloadLength;
 	const uint32_t crcFromPacket = utils_array_getUint32(p_packet, length);
 	const uint32_t crc = ed_calculateCrc(p_packet, length);
 
