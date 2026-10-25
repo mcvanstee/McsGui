@@ -24,6 +24,7 @@ typedef struct label_s
 
 Label_s *label_new(void);
 Label_s *label_newInit(void);
+void label_delete(BaseComponent_s *p_labelBase);
 
 void label_init(Label_s *p_label);
 void label_initBmp(Label_s *p_label, const uint32_t bmpKey);
@@ -43,7 +44,7 @@ void label_initBmpPosSizeBack(
         const Color_t backgroundColor);
 
 void label_display(Label_s *p_label);
-void label_setId(Label_s *p_label, const uint32_t id);
+void label_setId(Label_s *p_label, const uint8_t id);
 void label_setBmpKey(Label_s *p_label, const uint32_t bmpKey);
 
 void label_setX(Label_s *p_label, const uint16_t x);
@@ -59,16 +60,25 @@ void label_setDrawBackground(Label_s *p_label, const bool drawBackground);
 #if GUI_CONFIG_USE_BITMAP_COLORS
 void label_setForegroundColor(Label_s *p_label, const Color_t color);
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+void label_setBmpProperty(Label_s *p_label, const uint8_t propertyKey, const uint8_t propertyValue);
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 
 void label_setBmpAlignment(Label_s *p_label, const GuiAlignment_e horizontalAlignment, const GuiAlignment_e verticalAlignment);
 void label_setBmpHorizontalAlignment(Label_s *p_label, const GuiAlignment_e horizontalAlignment);
 void label_setBmpVerticalAlignment(Label_s *p_label, const GuiAlignment_e verticalAlignment);
 
 void label_setBmpPadding(Label_s *p_label, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
-void label_setLeftBmpPadding(Label_s *p_label, const uint8_t padding);
-void label_setRightBmpPadding(Label_s *p_label, const uint8_t padding);
-void label_setTopBmpPadding(Label_s *p_label, const uint8_t padding);
-void label_setBottomBmpPadding(Label_s *p_label, const uint8_t padding);
+void label_setBmpLeftPadding(Label_s *p_label, const uint8_t padding);
+void label_setBmpRightPadding(Label_s *p_label, const uint8_t padding);
+void label_setBmpTopPadding(Label_s *p_label, const uint8_t padding);
+void label_setBmpBottomPadding(Label_s *p_label, const uint8_t padding);
+
+#if GUI_CONFIG_USE_ANCHOR
+void label_addAnchor(Label_s *p_label, Anchor_s *p_anchor);
+void label_addNewInitAnchor(Label_s *p_label);
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
 
 #ifdef __cplusplus
 } /* extern "C" */

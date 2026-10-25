@@ -221,7 +221,7 @@ void base_setBmpKey(
  * @param[in] x x-position.
  *
  */
-void base_setXPos(
+void base_setX(
         BaseComponent_s *p_base, const uint16_t x)
 {
     p_base->x = x;
@@ -241,7 +241,7 @@ void base_setXPos(
  * @param[in] y y-position.
  *
  */
-void base_setYPos(
+void base_setY(
         BaseComponent_s *p_base, const uint16_t y)
 {
     p_base->y = y;
@@ -363,14 +363,13 @@ void base_setGuiSize(BaseComponent_s *p_base, const GuiSize_s guiSize)
 
 
 #if GUI_CONFIG_USE_FILE_PROPERTIES
-void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue)
+void base_setBmpProperty(BaseComponent_s *p_base, const uint8_t propertyKey, const uint8_t propertyValue)
 {
 	if (GUI_CONFIG_NUMBER_OF_PROPERTIES <= propertyKey)
 	{
 		return;
 	}
 
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
 	p_base->properties[propertyKey] = propertyValue;
 }
 #endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
@@ -609,9 +608,8 @@ void base_setOnBeforeDisplay(
  * @warning Make sure the GuiAnchor_s is initialized.
  *
  */
-void base_addAnchor(void *p_component, GuiAnchor_s *p_anchor)
+void base_addAnchor(BaseComponent_s *p_base, Anchor_s *p_anchor)
 {
-    BaseComponent_s *p_base = (BaseComponent_s*) p_component;
     p_base->p_anchor = p_anchor;
 }
 
@@ -622,9 +620,8 @@ void base_addAnchor(void *p_component, GuiAnchor_s *p_anchor)
  * @param[in] p_base Pointer to the BaseComponent_s the Anchor is added to.
  *
  */
-void base_addNewInitAnchor(void *p_component)
+void base_addNewInitAnchor(BaseComponent_s *p_base)
 {
-	BaseComponent_s *p_base = (BaseComponent_s*) p_component;
     p_base->p_anchor = anchor_new();
     p_base->memToFree |= BASE_FREE_ANCHOR_FLAG;
     anchor_init(p_base->p_anchor);
@@ -642,9 +639,8 @@ void base_addNewInitAnchor(void *p_component)
  *
  */
 void base_addKeyNavigation(
-        void *p_component, KeyNavigation_s *p_keyNavigation)
+    BaseComponent_s *p_base, KeyNavigation_s *p_keyNavigation)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->p_keyNavigation = p_keyNavigation;
 }
 
@@ -656,9 +652,8 @@ void base_addKeyNavigation(
  *
  */
 void base_addNewInitKeyNavigation(
-        void *p_component)
+    BaseComponent_s *p_base)
 {
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->p_keyNavigation = keynav_new();
     p_base->memToFree |= BASE_FREE_KEYNAV_FLAG;
     keynav_init(p_base->p_keyNavigation);
@@ -733,9 +728,8 @@ void base_setOnFocusChanged(void *p_component, void (*onFocusChanged)(BaseCompon
  *
  */
 void base_addTouch(
-        void *p_component, Touch_s *p_touch)
+    BaseComponent_s *p_base, Touch_s *p_touch)
 {
-    BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->p_touch = p_touch;
     touch_setTouchArea(p_touch, p_base->x, p_base->y, p_base->width, p_base->height);
 }
@@ -747,9 +741,8 @@ void base_addTouch(
  * @param[in] p_base Pointer to the BaseComponent_s the Touch_s is added to.
  *
  */
-void base_addNewInitTouch(void *p_component)
+void base_addNewInitTouch(BaseComponent_s *p_base)
 {
-	BaseComponent_s *p_base = (BaseComponent_s *)p_component;
     p_base->p_touch = touch_new();
     p_base->memToFree |= BASE_FREE_TOUCH_FLAG;
     touch_init_1(p_base->p_touch, p_base->x, p_base->y, p_base->width, p_base->height);

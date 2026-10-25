@@ -62,7 +62,7 @@ void rectangle_initBorderPosSize(
         const uint8_t borderThickness, const Color_t borderColor);
 
 void rectangle_display(Rectangle_s *p_rectangle);
-void rectangle_setId(Rectangle_s *p_rectangle, const uint32_t id);
+void rectangle_setId(Rectangle_s *p_rectangle, const uint8_t id);
 
 void rectangle_setColor(Rectangle_s *p_rectangle, const Color_t color);
 void rectangle_setBorderColor(Rectangle_s *p_rectangle, const Color_t color);
@@ -79,6 +79,11 @@ void rectangle_setPosition(Rectangle_s *p_rectangle, const uint16_t x, const uin
 void rectangle_setSize(Rectangle_s *p_rectangle, const uint16_t width, const uint16_t height);
 
 void rectangle_setVisible(Rectangle_s *p_rectangle, const bool visible);
+
+#if GUI_CONFIG_USE_ANCHOR
+void rectangle_addAnchor(Rectangle_s *p_rectangle, Anchor_s *p_anchor);
+void rectangle_addNewInitAnchor(Rectangle_s *p_rectangle);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 
 #ifdef __cplusplus

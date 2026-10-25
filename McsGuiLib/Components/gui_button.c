@@ -6,8 +6,6 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
-static void button_delete(BaseComponent_s *p_buttonBase);
-static bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticButtonMemInUse[GUI_CONFIG_BUTTON_BUFFER_SIZE] = {0};
@@ -61,7 +59,7 @@ Button_s *button_newInit(void)
  * @param[in] p_buttonBase Pointer to the Button component to be freed.
  *
  */
-static void button_delete(BaseComponent_s *p_buttonBase)
+void button_delete(BaseComponent_s *p_buttonBase)
 {
     base_clear(p_buttonBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -242,7 +240,7 @@ void button_display(Button_s *p_button)
  * @param[in] id Id of the button.
  *
  */
-void button_setId(Button_s *p_button, const uint32_t id)
+void button_setId(Button_s *p_button, const uint8_t id)
 {
     if (id > 0)
     {
@@ -387,6 +385,21 @@ void button_setForegroundColor(Button_s *p_button, const Color_t color)
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+/**
+ * @brief Set the button property.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] propertyKey Property key of the button.
+ * @param[in] propertyValue Property value of the button.
+ *
+ */
+void button_setBmpProperty(Button_s *p_button, const uint8_t propertyKey, const uint8_t propertyValue)
+{
+    base_setBmpProperty(&p_button->base, propertyKey, propertyValue);
+}
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+
+
 /**
  * @brief Set the button bmp-alignment.
  * @param[in] p_button Pointer to the button component.
@@ -449,7 +462,7 @@ void button_setBmpPadding(Button_s *p_button, const uint8_t left, const uint8_t 
  * @param[in] padding Left padding of the bitmap.
  *
  */
-void button_setLeftBmpPadding(Button_s *p_button, const uint8_t padding)
+void button_setBmpLeftPadding(Button_s *p_button, const uint8_t padding)
 {
     p_button->base.leftPadding = padding;
 }
@@ -461,7 +474,7 @@ void button_setLeftBmpPadding(Button_s *p_button, const uint8_t padding)
  * @param[in] padding Right padding of the bitmap.
  *
  */
-void button_setRightBmpPadding(Button_s *p_button, const uint8_t padding)
+void button_setBmpRightPadding(Button_s *p_button, const uint8_t padding)
 {
     p_button->base.rightPadding = padding;
 }
@@ -473,7 +486,7 @@ void button_setRightBmpPadding(Button_s *p_button, const uint8_t padding)
  * @param[in] padding Top padding of the bitmap.
  *
  */
-void button_setTopBmpPadding(Button_s *p_button, const uint8_t padding)
+void button_setBmpTopPadding(Button_s *p_button, const uint8_t padding)
 {
     p_button->base.topPadding = padding;
 }
@@ -485,13 +498,38 @@ void button_setTopBmpPadding(Button_s *p_button, const uint8_t padding)
  * @param[in] padding Bottom padding of the bitmap.
  *
  */
-void button_setBottomBmpPadding(Button_s *p_button, const uint8_t padding)
+void button_setBmpBottomPadding(Button_s *p_button, const uint8_t padding)
 {
     p_button->base.bottomPadding = padding;
 }
 
 
-static bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event)
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Set the anchor of the button.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] p_anchor Pointer to the anchor component.
+ *
+ */
+void button_addAnchor(Button_s *p_button, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_button->base, p_anchor);
+}
+
+/**
+ * @brief Add a new Anchor to the button using dynamic memory, (gui_mem_malloc).
+ * The new Anchor struct is initialized.
+ * @param[in] p_button Pointer to the button component.
+ *
+ */
+void button_addNewInitAnchor(Button_s *p_button)
+{
+    base_addNewInitAnchor(&p_button->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+
+bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event)
 {
     Button_s *p_button = (Button_s *)p_buttonBase;
     bool eventHandled = true;
@@ -582,6 +620,30 @@ static bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
 /**
+ * @brief Add a KeyNavigation to the button.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] p_keyNavigation Pointer to the KeyNavigation component.
+ *
+ */
+void button_addKeyNavigation(Button_s *p_button, KeyNavigation_s *p_keyNavigation)
+{
+    base_addKeyNavigation(&p_button->base, p_keyNavigation);
+}
+
+
+/**
+ * @brief Add a new KeyNavigation to the button using dynamic memory, (gui_mem_malloc).
+ * The new KeyNavigation struct is initialized.
+ * @param[in] p_button Pointer to the button component.
+ *
+ */
+void button_addNewInitKeyNavigation(Button_s *p_button)
+{
+    base_addNewInitKeyNavigation(&p_button->base);
+}
+
+
+/**
  * @brief Set the on-focus-changed callback function.
  * @param[in] p_button Pointer to the button component.
  * @param[in] onFocusChanged Pointer to the callback function, with a BaseComponent_s pointer variable.
@@ -593,5 +655,28 @@ void button_setOnFocusChanged(Button_s *p_button, void (*onFocusChanged)(BaseCom
 }
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
+#if GUI_CONFIG_USE_TOUCH
+/**
+ * @brief Add a Touch to the button.
+ * @param[in] p_button Pointer to the button component.
+ * @param[in] p_touch Pointer to the Touch component.
+ *
+ */
+void button_addTouch(Button_s *p_button, Touch_s *p_touch)
+{
+    base_addTouch(&p_button->base, p_touch);
+}
+
+/**
+ * @brief Add a new Touch to the button using dynamic memory, (gui_mem_malloc).
+ * The new Touch struct is initialized.
+ * @param[in] p_button Pointer to the button component.
+ *
+ */
+void button_addNewInitTouch(Button_s *p_button)
+{
+    base_addNewInitTouch(&p_button->base);
+}
+#endif /* GUI_CONFIG_USE_TOUCH */
 
 /*** end of file ***/

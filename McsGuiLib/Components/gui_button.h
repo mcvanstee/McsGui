@@ -30,6 +30,8 @@ typedef struct button_s
 
 Button_s *button_new(void);
 Button_s *button_newInit(void);
+void button_delete(BaseComponent_s *p_buttonBase);
+bool button_handleEvent(BaseComponent_s *p_buttonBase, const GuiEvent_s *p_event);
 
 void button_init(Button_s *p_button);
 void button_initBmp(Button_s *p_button, const uint32_t bmpKey);
@@ -49,7 +51,7 @@ void button_setPressedEvent(Button_s *p_button, void (*pressedEvent)(void));
 void button_setOnReleasedEvent(Button_s *p_button, void (*onReleasedEvent)(void));
 
 void button_display(Button_s *p_button);
-void button_setId(Button_s *p_button, const uint32_t id);
+void button_setId(Button_s *p_button, const uint8_t id);
 void button_setBmpKey(Button_s *p_button, const uint32_t bmpKey);
 
 void button_setX(Button_s *p_button, const uint16_t x);
@@ -65,20 +67,36 @@ void button_setDrawBackground(Button_s *p_button, const bool drawBackground);
 #if GUI_CONFIG_USE_BITMAP_COLORS
 void button_setForegroundColor(Button_s *p_button, const Color_t color);
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+void button_setBmpProperty(Button_s *p_button, const uint8_t propertyKey, const uint8_t propertyValue);
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 
 void button_setBmpAlignment(Button_s *p_button, const GuiAlignment_e horizontalAlignment, const GuiAlignment_e verticalAlignment);
 void button_setBmpHorizontalAlignment(Button_s *p_button, const GuiAlignment_e horizontalAlignment);
 void button_setBmpVerticalAlignment(Button_s *p_button, const GuiAlignment_e verticalAlignment);
 
 void button_setBmpPadding(Button_s *p_button, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
-void button_setLeftBmpPadding(Button_s *p_button, const uint8_t padding);
-void button_setRightBmpPadding(Button_s *p_button, const uint8_t padding);
-void button_setTopBmpPadding(Button_s *p_button, const uint8_t padding);
-void button_setBottomBmpPadding(Button_s *p_button, const uint8_t padding);
+void button_setBmpLeftPadding(Button_s *p_button, const uint8_t padding);
+void button_setBmpRightadding(Button_s *p_button, const uint8_t padding);
+void button_setBmpTopPadding(Button_s *p_button, const uint8_t padding);
+void button_setBmpBottomPadding(Button_s *p_button, const uint8_t padding);
+
+#if GUI_CONFIG_USE_ANCHOR
+void button_addAnchor(Button_s *p_button, Anchor_s *p_anchor);
+void button_addNewInitAnchor(Button_s *p_button);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
+void button_addKeyNavigation(Button_s *p_button, KeyNavigation_s *p_keyNavigation);
+void button_addNewInitKeyNavigation(Button_s *p_button);
 void button_setOnFocusChanged(Button_s *p_button, void (*onFocusChanged)(BaseComponent_s *p_base));
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+#if GUI_CONFIG_USE_TOUCH
+void button_addTouch(Button_s *p_button, Touch_s *p_touch);
+void button_addNewInitTouch(Button_s *p_button);
+#endif /* GUI_CONFIG_USE_TOUCH */
+
 
 #ifdef __cplusplus
 } /* extern "C" */

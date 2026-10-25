@@ -25,6 +25,8 @@ typedef struct gui_column_s
 
 Column_s *column_new(void);
 Column_s *column_newInit(void);
+void column_delete(BaseComponent_s *p_columnBase);
+void column_display(BaseComponent_s *p_columnBase);
 
 void column_init(Column_s *p_column);
 
@@ -41,6 +43,11 @@ void column_setPosition(Column_s *p_column, const uint16_t x, const uint16_t y);
 void column_setVisible(Column_s *p_column, const bool visible);
 void column_setBackgroundColor(Column_s *p_column, const Color_t color);
 void column_setDrawBackground(Column_s *p_column, const bool drawBackground);
+
+#if GUI_CONFIG_USE_ANCHOR
+void column_addAnchor(Column_s *p_column, Anchor_s *p_anchor);
+void column_addNewInitAnchor(Column_s *p_column);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #ifdef __cplusplus
 } /* extern "C" */

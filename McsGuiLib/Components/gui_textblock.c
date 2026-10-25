@@ -321,7 +321,7 @@ void textblock_setTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e 
  * @param[in] alignment.
  *
  */
-void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
+void textblock_setTextHorizontalAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
 {
     p_textBlock->base.horizontalAlignment = (uint8_t)alignment;
 }
@@ -333,7 +333,7 @@ void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAl
  * @param[in] alignment.
  *
  */
-void textblock_setVerticalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
+void textblock_setTextVerticalAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment)
 {
     p_textBlock->base.verticalAlignment = (uint8_t)alignment;
 }
@@ -363,7 +363,7 @@ void textblock_setTextPadding(TextBlock_s *p_textBlock, const uint8_t left, cons
  * @param[in] padding.
  *
  */
-void textblock_setLeftTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+void textblock_setTextLeftPadding(TextBlock_s *p_textBlock, const uint8_t padding)
 {
     p_textBlock->base.leftPadding = padding;
 }
@@ -375,7 +375,7 @@ void textblock_setLeftTextPadding(TextBlock_s *p_textBlock, const uint8_t paddin
  * @param[in] padding.
  *
  */
-void textblock_setRightTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+void textblock_setTextRightPadding(TextBlock_s *p_textBlock, const uint8_t padding)
 {
     p_textBlock->base.rightPadding = padding;
 }
@@ -387,7 +387,7 @@ void textblock_setRightTextPadding(TextBlock_s *p_textBlock, const uint8_t paddi
  * @param[in] padding.
  *
  */
-void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+void textblock_setTextTopPadding(TextBlock_s *p_textBlock, const uint8_t padding)
 {
     p_textBlock->base.topPadding = padding;
 }
@@ -399,7 +399,7 @@ void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding
  * @param[in] padding.
  *
  */
-void textblock_setBottomTextPadding(TextBlock_s *p_textBlock, const uint8_t padding)
+void textblock_setTextBottomPadding(TextBlock_s *p_textBlock, const uint8_t padding)
 {
     p_textBlock->base.bottomPadding = padding;
 }
@@ -539,6 +539,32 @@ void textblock_setDrawBackground(TextBlock_s *p_textBlock, const bool drawBackgr
 {
     p_textBlock->base.drawBackground = drawBackground;
 }
+
+
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add an anchor to the TextBlock component.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ * @param[in] p_anchor Pointer to the anchor to be added.
+ *
+ */
+void textblock_addAnchor(TextBlock_s *p_textBlock, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_textBlock->base, p_anchor);
+}
+
+
+/**
+ * @brief Add a new Anchor to the TextBlock component using dynamic memory, (gui_mem_malloc).
+ * The new Anchor struct is initialized.
+ * @param[in] p_textBlock Pointer to the TextBlock component.
+ *
+ */
+void textblock_addNewInitAnchor(TextBlock_s *p_textBlock)
+{
+    base_addNewInitAnchor(&p_textBlock->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 
 /*** end of file ***/

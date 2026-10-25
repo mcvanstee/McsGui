@@ -34,7 +34,7 @@ typedef enum
 	Gui_Anchor_Bottom,
 } AnchorPosition_e;
 
-typedef struct gui_anchor_s
+typedef struct anchor_s
 {
 	BaseComponent_s *p_horizontalAnchorToBase;    // Anchor to the left or right of this component
 	BaseComponent_s *p_verticalAnchorToBase;      // Anchor to the top or bottom of this component
@@ -47,12 +47,12 @@ typedef struct gui_anchor_s
 	uint16_t topMargin;
 	uint16_t bottomMargin;
 	AnchorPosition_e parentAnchor;
-} GuiAnchor_s;
+} Anchor_s;
 
 
-GuiAnchor_s *anchor_new(void);
-void anchor_delete(GuiAnchor_s *p_anchor);
-void anchor_init(GuiAnchor_s *p_anchor);
+Anchor_s *anchor_new(void);
+void anchor_delete(Anchor_s *p_anchor);
+void anchor_init(Anchor_s *p_anchor);
 void anchor_setLeftAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition);
 void anchor_setRightAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition);
 void anchor_setTopAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition);
@@ -62,6 +62,7 @@ void anchor_setCenterInParent(void *p_anchoredComponent, void *p_anchorToCompone
 void anchor_setHorizontalCenter(void *p_anchoredComponent, void *p_anchorToComponent);
 void anchor_setVerticalCenter(void *p_anchoredComponent, void *p_anchorToComponent);
 
+void anchor_setMargin(void *p_anchoredComponent, uint16_t left, uint16_t top, uint16_t right, uint16_t bottom);
 void anchor_setLeftMargin(void *p_anchoredComponent, uint16_t margin);
 void anchor_setRightMargin(void *p_anchoredComponent, uint16_t margin);
 void anchor_setTopMargin(void *p_anchoredComponent, uint16_t margin);

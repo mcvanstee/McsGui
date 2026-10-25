@@ -33,6 +33,8 @@ typedef struct checkbox_s
 
 Checkbox_s *checkbox_new(void);
 Checkbox_s *checkbox_newInit(void);
+void checkbox_delete(BaseComponent_s *p_checkboxBase);
+bool checkbox_handleEvent(BaseComponent_s *p_checkboxBase, const GuiEvent_s *p_event);
 
 void checkbox_init(Checkbox_s *p_checkbox);
 void checkbox_initBmp(Checkbox_s *p_checkbox, const uint32_t bmpKey);
@@ -52,7 +54,7 @@ void checkbox_setSelection(Checkbox_s *p_checkbox, const bool selected);
 void checkbox_setSelectionNotifyChanged(Checkbox_s *p_checkbox, const bool selected);
 
 void checkbox_display(Checkbox_s *p_checkbox);
-void checkbox_setId(Checkbox_s *p_checkbox, const uint32_t id);
+void checkbox_setId(Checkbox_s *p_checkbox, const uint8_t id);
 void checkbox_setBmpKey(Checkbox_s *p_checkbox, const uint32_t bmpKey);
 
 void checkbox_setX(Checkbox_s *p_checkbox, const uint16_t x);
@@ -68,20 +70,35 @@ void checkbox_setDrawBackground(Checkbox_s *p_checkbox, const bool drawBackgroun
 #if GUI_CONFIG_USE_BITMAP_COLORS
 void checkbox_setForegroundColor(Checkbox_s *p_checkbox, const Color_t color);
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+void checkbox_setBmpProperty(Checkbox_s *p_checkbox, const uint8_t propertyKey, const uint8_t propertyValue);
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 
 void checkbox_setBmpAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e horizontalAlignment, const GuiAlignment_e verticalAlignment);
 void checkbox_setBmpHorizontalAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e horizontalAlignment);
 void checkbox_setBmpVerticalAlignment(Checkbox_s *p_checkbox, const GuiAlignment_e verticalAlignment);
 
 void checkbox_setBmpPadding(Checkbox_s *p_checkbox, const uint8_t left, const uint8_t top, const uint8_t right, const uint8_t bottom);
-void checkbox_setLeftBmpPadding(Checkbox_s *p_checkbox, const uint8_t padding);
-void checkbox_setRightBmpPadding(Checkbox_s *p_checkbox, const uint8_t padding);
-void checkbox_setTopBmpPadding(Checkbox_s *p_checkbox, const uint8_t padding);
-void checkbox_setBottomBmpPadding(Checkbox_s *p_checkbox, const uint8_t padding);
+void checkbox_setBmpLeftPadding(Checkbox_s *p_checkbox, const uint8_t padding);
+void checkbox_setBmpRightPadding(Checkbox_s *p_checkbox, const uint8_t padding);
+void checkbox_setBmpTopPadding(Checkbox_s *p_checkbox, const uint8_t padding);
+void checkbox_setBmpBottomPadding(Checkbox_s *p_checkbox, const uint8_t padding);
+
+#if GUI_CONFIG_USE_ANCHOR
+void checkbox_addAnchor(Checkbox_s *p_checkbox, Anchor_s *p_anchor);
+void checkbox_addNewInitAnchor(Checkbox_s *p_checkbox);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
+void checkbox_addKeyNavigation(Checkbox_s *p_checkbox, KeyNavigation_s *p_keyNavigation);
+void checkbox_addNewInitKeyNavigation(Checkbox_s *p_checkbox);
 void checkbox_setOnFocusChanged(Checkbox_s *p_checkbox, void (*onFocusChanged)(BaseComponent_s *p_base));
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+#if GUI_CONFIG_USE_TOUCH
+void checkbox_addTouch(Checkbox_s *p_checkbox, Touch_s *p_touch);
+void checkbox_addNewInitTouch(Checkbox_s *p_checkbox);
+#endif /* GUI_CONFIG_USE_TOUCH */
 
 #ifdef __cplusplus
 } /* extern "C" */

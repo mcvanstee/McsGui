@@ -149,9 +149,9 @@ bool keynav_handleEvent(KeyNavigation_s *p_keyNavigation, const GuiEvent_s *p_ev
             eventHandled = base_setActiveFocus(p_keyNavigation->down);
         }
         break;
+#endif
     default:
         break;
-#endif
     }
 
     return eventHandled;

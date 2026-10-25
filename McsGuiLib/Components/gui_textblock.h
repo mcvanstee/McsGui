@@ -63,14 +63,14 @@ void textblock_setFontAndColor(TextBlock_s *p_textBlock, const uint8_t font, con
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 void textblock_setTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e horizontal, const TextAlignment_e vertical);
-void textblock_setHorizontalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment);
-void textblock_setVerticalTextAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment);
+void textblock_setTextHorizontalAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment);
+void textblock_setTextVerticalAlignment(TextBlock_s *p_textBlock, const TextAlignment_e alignment);
 
 void textblock_setTextPadding(TextBlock_s *p_textBlock, const uint8_t left, const uint8_t right, const uint8_t top, const uint8_t bottom);
-void textblock_setLeftTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
-void textblock_setRightTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
-void textblock_setTopTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
-void textblock_setBottomTextPadding(TextBlock_s *p_textBlock, const uint8_t padding);
+void textblock_setTextLeftPadding(TextBlock_s *p_textBlock, const uint8_t padding);
+void textblock_setTextRightPadding(TextBlock_s *p_textBlock, const uint8_t padding);
+void textblock_setTextTopPadding(TextBlock_s *p_textBlock, const uint8_t padding);
+void textblock_setTextBottomPadding(TextBlock_s *p_textBlock, const uint8_t padding);
 
 void textblock_display(TextBlock_s *p_textBlock);
 void textblock_setId(TextBlock_s *p_textBlock, const uint8_t id);
@@ -85,6 +85,11 @@ void textblock_setSize(TextBlock_s *p_textBlock, const uint16_t width, const uin
 void textblock_setVisible(TextBlock_s *p_textBlock, const bool visible);
 void textblock_setBackgroundColor(TextBlock_s *p_textBlock, const Color_t color);
 void textblock_setDrawBackground(TextBlock_s *p_textBlock, const bool drawBackground);
+
+#if GUI_CONFIG_USE_ANCHOR
+void textblock_addAnchor(TextBlock_s *p_textBlock, Anchor_s *p_anchor);
+void textblock_addNewInitAnchor(TextBlock_s *p_textBlock);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -6,7 +6,6 @@
 #include "Core/gui_log.h"
 #include "Core/gui_memory.h"
 
-static void label_delete(BaseComponent_s *p_labelBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticLabelMemInUse[GUI_CONFIG_LABEL_BUFFER_SIZE] = {0};
@@ -61,7 +60,7 @@ Label_s *label_newInit(void)
  * @param[in] p_labelBase Pointer to the label component to be freed.
  *
  */
-static void label_delete(BaseComponent_s *p_labelBase)
+void label_delete(BaseComponent_s *p_labelBase)
 {
     base_clear(p_labelBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -183,7 +182,7 @@ void label_display(Label_s *p_label)
  * @param[in] id Id of the label.
  *
  */
-void label_setId(Label_s *p_label, const uint32_t id)
+void label_setId(Label_s *p_label, const uint8_t id)
 {
     if (id > 0)
     {
@@ -328,6 +327,20 @@ void label_setForegroundColor(Label_s *p_label, const Color_t color)
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+/**
+ * @brief Set a property of the label.
+ * @param[in] p_label Pointer to the label component.
+ * @param[in] propertyKey Key of the property to set.
+ * @param[in] propertyValue Value of the property to set.
+ *
+ */
+void label_setBmpProperty(Label_s *p_label, const uint8_t propertyKey, const uint8_t propertyValue)
+{
+    base_setBmpProperty(&p_label->base, propertyKey, propertyValue);
+}
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+
 /**
  * @brief Set the alignment of the label bitmap.
  * @param[in] p_label Pointer to the label component.
@@ -389,7 +402,7 @@ void label_setBmpPadding(Label_s *p_label, const uint8_t left, const uint8_t top
  * @param[in] horizontalPadding Horizontal padding of the bitmap.
  *
  */
-void label_setLeftBmpPadding(Label_s *p_label, const uint8_t padding)
+void label_setBmpLeftPadding(Label_s *p_label, const uint8_t padding)
 {
     p_label->base.leftPadding = padding;
 }
@@ -401,7 +414,7 @@ void label_setLeftBmpPadding(Label_s *p_label, const uint8_t padding)
  * @param[in] horizontalPadding Horizontal padding of the bitmap.
  *
  */
-void label_setRightBmpPadding(Label_s *p_label, const uint8_t padding)
+void label_setBmpRightPadding(Label_s *p_label, const uint8_t padding)
 {
     p_label->base.rightPadding = padding;
 }
@@ -413,7 +426,7 @@ void label_setRightBmpPadding(Label_s *p_label, const uint8_t padding)
  * @param[in] verticalPadding Vertical padding of the bitmap.
  *
  */
-void label_setTopBmpPadding(Label_s *p_label, const uint8_t padding)
+void label_setBmpTopPadding(Label_s *p_label, const uint8_t padding)
 {
     p_label->base.topPadding = padding;
 }
@@ -425,9 +438,34 @@ void label_setTopBmpPadding(Label_s *p_label, const uint8_t padding)
  * @param[in] verticalPadding Vertical padding of the bitmap.
  *
  */
-void label_setBottomBmpPadding(Label_s *p_label, const uint8_t padding)
+void label_setBmpBottomPadding(Label_s *p_label, const uint8_t padding)
 {
     p_label->base.bottomPadding = padding;
 }
+
+
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add an Anchor to the label.
+ * @param[in] p_label Pointer to the label component.
+ * @param[in] p_anchor Pointer to the anchor component.
+ *
+ */
+void label_addAnchor(Label_s *p_label, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_label->base, p_anchor);
+}
+
+/**
+ * @brief Add a new Anchor to the label using dynamic memory, (gui_mem_malloc).
+ * The new Anchor struct is initialized.
+ * @param[in] p_label Pointer to the label component.
+ *
+ */
+void label_addNewInitAnchor(Label_s *p_label)
+{
+    base_addNewInitAnchor(&p_label->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 /*** end of file ***/

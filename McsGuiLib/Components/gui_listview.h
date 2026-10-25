@@ -42,12 +42,15 @@ typedef struct list_view_s
 
 ListView_s *listview_new(void);
 ListView_s *listview_newInit(void);
+void listview_delete(BaseComponent_s *p_listViewBase);
 
 void listview_init(ListView_s *p_listView);
 void listview_initPosSize(
         ListView_s *p_listView,
         const uint16_t x, const uint16_t y,
         const uint16_t width, const uint16_t height);
+
+bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event);
 
 void listview_setItemsVisible(ListView_s *p_listView, const int8_t itemsVisible);
 void listview_setRowHight(ListView_s *p_listView, const uint8_t rowHight);
@@ -71,11 +74,8 @@ void listview_setOnActiveItemChanged(ListView_s *p_listView, void (*p_onActiveIt
 void listview_setOnBeforeMoveUp(ListView_s *p_listView, bool (*p_onBeforeMoveUp)(ListView_s *p_listView));
 void listview_setOnBeforeMoveDown(ListView_s *p_listView, bool (*p_onBeforeMoveDown)(ListView_s *p_listView));
 void listview_setOnDisplayed(ListView_s *p_listView, void (*p_onDisplayed)(ListView_s *p_listView));
-#if GUI_CONFIG_USE_KEY_NAVIGATION
-void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_s *p_listView));
-void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListView_s *p_listView));
-#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
+void listview_display(ListView_s *p_listView);
 void listview_setId(ListView_s *p_listView, const uint8_t id);
 
 void listview_setX(ListView_s *p_listView, const uint16_t x);
@@ -88,6 +88,23 @@ void listview_setSize(ListView_s *p_listView, const uint16_t width, const uint16
 void listview_setVisible(ListView_s *p_listView, const bool visible);
 void listview_setBackgroundColor(ListView_s *p_listView, const Color_t color);
 void listview_setDrawBackground(ListView_s *p_listView, const bool drawBackground);
+
+#if GUI_CONFIG_USE_ANCHOR
+void listview_addAnchor(ListView_s *p_listView, Anchor_s *p_anchor);
+void listview_addNewInitAnchor(ListView_s *p_listView);
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+#if GUI_CONFIG_USE_KEY_NAVIGATION
+void listview_addKeyNavigation(ListView_s *p_listView, KeyNavigation_s *p_keyNavigation);
+void listview_addNewInitKeyNavigation(ListView_s *p_listView);
+void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_s *p_listView));
+void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListView_s *p_listView));
+#endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+#if GUI_CONFIG_USE_TOUCH
+void listview_addTouch(ListView_s *p_listView, Touch_s *p_touch);
+void listview_addNewInitTouch(ListView_s *p_listView);
+#endif /* GUI_CONFIG_USE_TOUCH */
 
 #ifdef __cplusplus
 } /* extern "C" */

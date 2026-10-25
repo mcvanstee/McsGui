@@ -7,8 +7,6 @@
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 
-static void grid_delete(BaseComponent_s *p_gridBase);
-static void grid_display(BaseComponent_s *p_gridBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticGridMemInUse[GUI_CONFIG_GRID_BUFFER_SIZE] = {0};
@@ -64,7 +62,7 @@ Grid_s *grid_newInit(void)
  * @param[in] p_gridBase Pointer to the Grid_s component to be freed.
  *
  */
-static void grid_delete(BaseComponent_s *p_gridBase)
+void grid_delete(BaseComponent_s *p_gridBase)
 {
     base_clear(p_gridBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -364,12 +362,37 @@ void grid_setDrawBackground(Grid_s *p_grid, const bool drawBackground)
 }
 
 
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add an anchor to the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ * @param[in] p_anchor Pointer to the anchor to be added.
+ *
+ */
+void grid_addAnchor(Grid_s *p_grid, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_grid->base, p_anchor);
+}
+
+
+/**
+ * @brief Add a new anchor to the grid.
+ * @param[in] p_grid Pointer to the Grid_s component.
+ *
+ */
+void grid_addNewInitAnchor(Grid_s *p_grid)
+{
+    base_addNewInitAnchor(&p_grid->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+
 /**
  * @brief Display the Grid component.
  * @param[in] p_gridBase Pointer to the Grid component.
  *
  */
-static void grid_display(BaseComponent_s *p_gridBase)
+void grid_display(BaseComponent_s *p_gridBase)
 {
     Grid_s *p_grid = (Grid_s*)p_gridBase;
 

@@ -42,7 +42,7 @@ void listviewitem_setOnPressedEvent(ListViewItem_s *p_listViewItem, void (*p_onP
 void listviewitem_setPressedEvent(ListViewItem_s *p_listViewItem, void (*p_pressed)(void));
 void listviewitem_setOnReleasedEvent(ListViewItem_s *p_listViewItem, void (*p_onReleased)(void));
 
-void listviewitem_setId(ListViewItem_s *p_listViewItem, const uint32_t id);
+void listviewitem_setId(ListViewItem_s *p_listViewItem, const uint8_t id);
 void listviewitem_setBackgroundColor(ListViewItem_s *p_listViewItem, const Color_t color);
 
 

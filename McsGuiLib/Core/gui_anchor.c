@@ -11,7 +11,7 @@
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticAnchorMemInUse[GUI_CONFIG_ANCHOR_BUFFER_SIZE] = {0};
-static GuiAnchor_s staticAnchorMem[GUI_CONFIG_ANCHOR_BUFFER_SIZE] = {0};
+static Anchor_s staticAnchorMem[GUI_CONFIG_ANCHOR_BUFFER_SIZE] = {0};
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 
 /**
@@ -20,7 +20,7 @@ static GuiAnchor_s staticAnchorMem[GUI_CONFIG_ANCHOR_BUFFER_SIZE] = {0};
  *
  * @warning The returned struct is not initialized.
  */
-GuiAnchor_s *anchor_new(void)
+Anchor_s *anchor_new(void)
 {
 #if GUI_USE_DYNAMIC_MEMORY
 return gui_mem_malloc(sizeof(GuiAnchor_s));
@@ -47,7 +47,7 @@ return gui_mem_malloc(sizeof(GuiAnchor_s));
  * @param[in] p_anchor Pointer to the GuiAnchor_s sturct to be freed.
  *
  */
-void anchor_delete(GuiAnchor_s *p_anchor)
+void anchor_delete(Anchor_s *p_anchor)
 {
     if (p_anchor != NULL)
     {
@@ -72,7 +72,7 @@ void anchor_delete(GuiAnchor_s *p_anchor)
  * @param[in] p_anchor Pointer to the GuiAnchor_s struct to be initialized.
  *
  */
-void anchor_init(GuiAnchor_s *p_anchor)
+void anchor_init(Anchor_s *p_anchor)
 {
     p_anchor->p_horizontalAnchorToBase = NULL;
     p_anchor->p_verticalAnchorToBase = NULL;
@@ -97,7 +97,7 @@ void anchor_init(GuiAnchor_s *p_anchor)
  */
 void anchor_setLeftAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -119,7 +119,7 @@ void anchor_setLeftAnchor(void *p_anchoredComponent, void *p_anchorToComponent, 
  */
 void anchor_setRightAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -141,7 +141,7 @@ void anchor_setRightAnchor(void *p_anchoredComponent, void *p_anchorToComponent,
  */
 void anchor_setTopAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -163,7 +163,7 @@ void anchor_setTopAnchor(void *p_anchoredComponent, void *p_anchorToComponent, A
  */
 void anchor_setBottomAnchor(void *p_anchoredComponent, void *p_anchorToComponent, AnchorPosition_e anchorToPosition)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -184,7 +184,7 @@ void anchor_setBottomAnchor(void *p_anchoredComponent, void *p_anchorToComponent
  */
 void anchor_setFillParent(void *p_anchoredComponent, void *p_anchorToComponent)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -205,7 +205,7 @@ void anchor_setFillParent(void *p_anchoredComponent, void *p_anchorToComponent)
  */
 void anchor_setCenterInParent(void *p_anchoredComponent, void *p_anchorToComponent)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -226,7 +226,7 @@ void anchor_setCenterInParent(void *p_anchoredComponent, void *p_anchorToCompone
  */
 void anchor_setHorizontalCenter(void *p_anchoredComponent, void *p_anchorToComponent)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -247,7 +247,7 @@ void anchor_setHorizontalCenter(void *p_anchoredComponent, void *p_anchorToCompo
  */
 void anchor_setVerticalCenter(void *p_anchoredComponent, void *p_anchorToComponent)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -261,6 +261,31 @@ void anchor_setVerticalCenter(void *p_anchoredComponent, void *p_anchorToCompone
 
 
 /**
+ * @brief Set the margins for the anchor.
+ * @param[in] p_anchor Pointer to the GuiAnchor_s struct.
+ * @param[in] left Left margin value.
+ * @param[in] top Top margin value.
+ * @param[in] right Right margin value.
+ * @param[in] bottom Bottom margin value.
+ *
+ */
+void anchor_setMargin(void *p_anchoredComponent, uint16_t left, uint16_t top, uint16_t right, uint16_t bottom)
+{
+    Anchor_s *p_anchor = ((BaseComponent_s*) p_anchoredComponent)->p_anchor;
+
+    if (p_anchor == NULL)
+    {
+        return;
+    }
+
+    p_anchor->leftMargin = left;
+    p_anchor->topMargin = top;
+    p_anchor->rightMargin = right;
+    p_anchor->bottomMargin = bottom;
+}
+
+
+/**
  * @brief Set the left margin of the anchor.
  * @param[in] p_anchor Pointer to the GuiAnchor_s struct.
  * @param[in] margin Margin value.
@@ -268,7 +293,7 @@ void anchor_setVerticalCenter(void *p_anchoredComponent, void *p_anchorToCompone
  */
 void anchor_setLeftMargin(void *p_anchoredComponent, uint16_t margin)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -287,7 +312,7 @@ void anchor_setLeftMargin(void *p_anchoredComponent, uint16_t margin)
  */
 void anchor_setRightMargin(void *p_anchoredComponent, uint16_t margin)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -306,7 +331,7 @@ void anchor_setRightMargin(void *p_anchoredComponent, uint16_t margin)
  */
 void anchor_setTopMargin(void *p_anchoredComponent, uint16_t margin)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{
@@ -325,7 +350,7 @@ void anchor_setTopMargin(void *p_anchoredComponent, uint16_t margin)
  */
 void anchor_setBottomMargin(void *p_anchoredComponent, uint16_t margin)
 {
-	GuiAnchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
+	Anchor_s *p_anchor = ((BaseComponent_s*)p_anchoredComponent)->p_anchor;
 
 	if (p_anchor == NULL)
 	{

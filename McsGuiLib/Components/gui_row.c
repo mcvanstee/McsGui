@@ -248,6 +248,32 @@ void row_setDrawBackground(Row_s *p_row, const bool drawBackground)
 }
 
 
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add an Anchor to the Row component.
+ * @param[in] p_row Pointer to the Row component.
+ * @param[in] p_anchor Pointer to the Anchor component.
+ *
+ */
+void row_addAnchor(Row_s *p_row, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_row->base, p_anchor);
+}
+
+
+/**
+ * @brief Add a new Anchor to the Row component using dynamic memory, (gui_mem_malloc).
+ * The new Anchor struct is initialized.
+ * @param[in] p_row Pointer to the Row component.
+ *
+ */
+void row_addNewInitAnchor(Row_s *p_row)
+{
+    base_addNewInitAnchor(&p_row->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+
 /**
  * @brief Display the Row component.
  * @param[in] p_rowBase Pointer to the Row component.

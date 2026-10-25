@@ -102,7 +102,7 @@ typedef struct base_component_s
     uint8_t id;
     GuiAction_s *p_action;
 #if GUI_CONFIG_USE_ANCHOR
-    GuiAnchor_s *p_anchor;
+    Anchor_s *p_anchor;
 #endif /* GUI_CONFIG_USE_ANCHOR */
 #if GUI_CONFIG_USE_KEY_NAVIGATION
     KeyNavigation_s *p_keyNavigation;
@@ -151,7 +151,7 @@ void base_setPosition(BaseComponent_s *p_base, const uint16_t x, const uint16_t 
 void base_setSize(BaseComponent_s *p_base, const uint16_t width, const uint16_t height);
 void base_setGuiSize(BaseComponent_s *p_base, const GuiSize_s guiSize);
 #if GUI_CONFIG_USE_FILE_PROPERTIES
-void base_setProperty(void *p_component, const uint8_t propertyKey, const uint8_t propertyValue);
+void base_setBmpProperty(BaseComponent_s *p_base, const uint8_t propertyKey, const uint8_t propertyValue);
 #endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
 void base_setBackgroundColor(BaseComponent_s *p_base, const Color_t color);
 #if GUI_CONFIG_USE_BITMAP_COLORS
@@ -189,13 +189,13 @@ void base_setOnBeforeDisplay(BaseComponent_s *p_base, void (*onBeforeDisplay)(Ba
 #endif /* GUI_CONFIG_USE_ON_BEFORE_DISPLAY */
 
 #if GUI_CONFIG_USE_ANCHOR
-void base_addAnchor(void *p_component, GuiAnchor_s *p_anchor);
-void base_addNewInitAnchor(void *p_component);
+void base_addAnchor(BaseComponent_s *p_base, Anchor_s *p_anchor);
+void base_addNewInitAnchor(BaseComponent_s *p_base);
 #endif /* GUI_CONFIG_USE_ANCHOR */
 
 #if GUI_CONFIG_USE_KEY_NAVIGATION
-void base_addKeyNavigation(void *p_component, KeyNavigation_s *p_keyNavigation);
-void base_addNewInitKeyNavigation(void *p_component);
+void base_addKeyNavigation(BaseComponent_s *p_base, KeyNavigation_s *p_keyNavigation);
+void base_addNewInitKeyNavigation(BaseComponent_s *p_base);
 bool base_setActiveFocus(void *p_component);
 void base_setFocus(void *p_component, const bool focus);
 void base_setFocusNotifyChanged(void *p_component, const bool focus);
@@ -203,8 +203,8 @@ void base_setOnFocusChanged(void *p_component, void (*onFocusChanged)(BaseCompon
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
 
 #if GUI_CONFIG_USE_TOUCH
-void base_addTouch(void *p_component, Touch_s *p_touch);
-void base_addNewInitTouch(void *p_component);
+void base_addTouch(BaseComponent_s *p_base, Touch_s *p_touch);
+void base_addNewInitTouch(BaseComponent_s *p_base);
 #endif /* GUI_CONFIG_USE_TOUCH */
 
 #ifdef __cplusplus

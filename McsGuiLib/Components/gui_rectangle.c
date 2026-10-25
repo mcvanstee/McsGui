@@ -236,7 +236,7 @@ void rectangle_display(Rectangle_s *p_rectangle)
  * @param[in] id Id of the Rectangle component.
  *
  */
-void rectangle_setId(Rectangle_s *p_rectangle, const uint32_t id)
+void rectangle_setId(Rectangle_s *p_rectangle, const uint8_t id)
 {
     if (id > 0)
     {
@@ -407,6 +407,31 @@ void rectangle_setVisible(Rectangle_s *p_rectangle, const bool visible)
 {
     p_rectangle->base.visible = visible;
 }
+
+
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add a new anchor to the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ * @param[in] p_anchor Pointer to the anchor to be added.
+ *
+ */
+void rectangle_addAnchor(Rectangle_s *p_rectangle, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_rectangle->base, p_anchor);
+}
+
+
+/**
+ * @brief Add a new anchor to the Rectangle component.
+ * @param[in] p_rectangle Pointer to the Rectangle component.
+ *
+ */
+void rectangle_addNewInitAnchor(Rectangle_s *p_rectangle)
+{
+    base_addNewInitAnchor(&p_rectangle->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 
 /*** end of file ***/

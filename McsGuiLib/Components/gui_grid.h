@@ -29,6 +29,8 @@ typedef struct gui_grid_s
 
 Grid_s *grid_new(void);
 Grid_s *grid_newInit(void);
+void grid_delete(BaseComponent_s *p_gridBase);
+void grid_display(BaseComponent_s *p_gridBase);
 
 void grid_init(Grid_s *p_grid);
 void grid_initRowCol(Grid_s *p_grid, const uint8_t rows, const uint8_t columns);
@@ -53,6 +55,11 @@ void grid_setPosition(Grid_s *p_grid, const uint16_t x, const uint16_t y);
 void grid_setVisible(Grid_s *p_grid, const bool visible);
 void grid_setBackgroundColor(Grid_s *p_grid, const Color_t color);
 void grid_setDrawBackground(Grid_s *p_grid, const bool drawBackground);
+
+#if GUI_CONFIG_USE_ANCHOR
+void grid_addAnchor(Grid_s *p_grid, Anchor_s *p_anchor);
+void grid_addNewInitAnchor(Grid_s *p_grid);
+#endif /* GUI_CONFIG_USE_ANCHOR */
 
 #ifdef __cplusplus
 } /* extern "C" */

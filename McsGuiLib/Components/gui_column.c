@@ -7,8 +7,6 @@
 #include "Graphics/gui_graphics.h"
 #include "gui_rectangle.h"
 
-static void column_delete(BaseComponent_s *p_columnBase);
-static void column_display(BaseComponent_s *p_columnBase);
 
 #if !GUI_USE_DYNAMIC_MEMORY
 static bool staticColumnMemInUse[GUI_CONFIG_COLUMN_BUFFER_SIZE] = {0};
@@ -50,7 +48,7 @@ return gui_mem_malloc(sizeof(Column_s));
  * @param[in] p_columnBase Pointer to the Column component to be freed.
  *
  */
-static void column_delete(BaseComponent_s *p_columnBase)
+void column_delete(BaseComponent_s *p_columnBase)
 {
     base_clear(p_columnBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -246,12 +244,37 @@ void column_setDrawBackground(Column_s *p_column, const bool drawBackground)
 }
 
 
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Add an anchor to the Column component.
+ * @param p_column Pointer to the component.
+ * @param p_anchor Pointer to the anchor to be added.
+ *
+ */
+void column_addAnchor(Column_s *p_column, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_column->base, p_anchor);
+}
+
+
+/**
+ * @brief Add a new anchor to the Column component.
+ * @param p_column Pointer to the component.
+ *
+ */
+void column_addNewInitAnchor(Column_s *p_column)
+{
+    base_addNewInitAnchor(&p_column->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+
 /**
  * @brief Display the Column component.
  * @param p_columnBase Pointer to the component.
  *
  */
-static void column_display(BaseComponent_s *p_columnBase)
+void column_display(BaseComponent_s *p_columnBase)
 {
     Column_s *p_column = (Column_s*) p_columnBase;
     p_column->base.height = 0;

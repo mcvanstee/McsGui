@@ -8,8 +8,6 @@
 
 
 /* Private function declarations */
-static void listview_delete(BaseComponent_s *p_listViewBase);
-static bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event);
 #if GUI_CONFIG_USE_KEY_NAVIGATION
 static void listview_onFocusChanged(BaseComponent_s *p_listBase);
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
@@ -63,7 +61,7 @@ ListView_s *listview_newInit(void)
 }
 
 
-static void listview_delete(BaseComponent_s *p_listViewBase)
+void listview_delete(BaseComponent_s *p_listViewBase)
 {
     base_clear(p_listViewBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -185,7 +183,7 @@ void listview_addItem(ListView_s *p_listView, ListViewItem_s *p_listViewItem)
     listview_updateVisibleItems(p_listView);
 }
 
-static bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event)
+bool listview_handleEvent(BaseComponent_s *p_listViewBase, const GuiEvent_s *p_event)
 {
     bool eventHandled = false;
     ListView_s *p_listView = (ListView_s *)p_listViewBase;
@@ -381,7 +379,49 @@ void listview_setOnDisplayed(ListView_s *p_listView, void (*p_onDisplayed)(ListV
     p_listView->onDisplayed = p_onDisplayed;
 }
 
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Adds a new Anchor_s component to the ListView_s.
+ * @param p_listView Pointer to the ListView_s component.
+ * @param p_anchor Pointer to the GuiAnchor_s component to be added.
+ */
+void listview_addAnchor(ListView_s *p_listView, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_listView->base, p_anchor);
+}
+
+
+/**
+ * @brief Adds a new Anchor_s component to the ListView_s and initializes it to default values.
+ * @param p_listView Pointer to the ListView_s component.
+ */
+void listview_addNewInitAnchor(ListView_s *p_listView)
+{
+    base_addNewInitAnchor(&p_listView->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
 #if GUI_CONFIG_USE_KEY_NAVIGATION
+/**
+ * @brief Adds a new KeyNavigation_s component to the ListView_s.
+ * @param p_listView Pointer to the ListView_s component.
+ * @param p_keyNavigation Pointer to the KeyNavigation_s component to be added.
+ */
+void listview_addKeyNavigation(ListView_s *p_listView, KeyNavigation_s *p_keyNavigation)
+{
+    base_addKeyNavigation(&p_listView->base, p_keyNavigation);
+}
+
+
+/**
+ * @brief Adds a new KeyNavigation_s component to the ListView_s and initializes it to default values.
+ * @param p_listView Pointer to the ListView_s component.
+ */
+void listview_addNewInitKeyNavigation(ListView_s *p_listView)
+{
+    base_addNewInitKeyNavigation(&p_listView->base);
+}
+
 void listview_setOnFocused(ListView_s *p_listView, void (*p_onFocused)(ListView_s *p_listView))
 {
     p_listView->onFocused = p_onFocused;
@@ -392,6 +432,28 @@ void listview_setOnFocusLost(ListView_s *p_listView, void (*p_onFocusLost)(ListV
     p_listView->onFocusLost = p_onFocusLost;
 }
 #endif /* GUI_CONFIG_USE_KEYNAVIGATION */
+
+#if GUI_CONFIG_USE_TOUCH
+/**
+ * @brief Adds a new Touch_s component to the ListView_s.
+ * @param p_listView Pointer to the ListView_s component.
+ * @param p_touch Pointer to the Touch_s component to be added.
+ */
+void listview_addTouch(ListView_s *p_listView, Touch_s *p_touch)
+{
+    base_addTouch(&p_listView->base, p_touch);
+}
+
+
+/**
+ * @brief Adds a new Touch_s component to the ListView_s and initializes it to default values.
+ * @param p_listView Pointer to the ListView_s component.
+ */
+void listview_addNewInitTouch(ListView_s *p_listView)
+{
+    base_addNewInitTouch(&p_listView->base);
+}
+#endif /* GUI_CONFIG_USE_TOUCH */
 
 int8_t listview_getActiveIndex(ListView_s *p_listView)
 {
@@ -428,6 +490,12 @@ BaseComponent_s *listview_getAtIndex(ListView_s *p_listView, const int8_t index)
     }
 
     return p_iterator;
+}
+
+
+void listview_display(ListView_s *p_listView)
+{
+    base_display(&p_listView->base);
 }
 
 

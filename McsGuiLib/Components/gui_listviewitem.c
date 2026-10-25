@@ -279,7 +279,7 @@ void listviewitem_setOnReleasedEvent(ListViewItem_s *p_listViewItem, void (*p_on
  * @param[in] id Id of the ListViewItem.
  *
  */
-void listviewitem_setId(ListViewItem_s *p_listViewItem, const uint32_t id)
+void listviewitem_setId(ListViewItem_s *p_listViewItem, const uint8_t id)
 {
     if (id > 0)
     {

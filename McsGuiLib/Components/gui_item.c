@@ -12,8 +12,6 @@ static bool staticItemMemInUse[GUI_CONFIG_ITEM_BUFFER_SIZE] = {0};
 static Item_s staticItemMem[GUI_CONFIG_ITEM_BUFFER_SIZE] = {0};
 #endif /* GUI_USE_DYNAMIC_MEMORY */
 
-static void item_delete(BaseComponent_s *p_itemBase);
-static void item_display(BaseComponent_s *p_itemBase);
 
 /**
  * @brief Creates a new malloced Item component.
@@ -112,7 +110,7 @@ void item_initPosSize(Item_s *p_item, const uint16_t x, const uint16_t y, const 
  * @param p_itemBase Pointer to the BaseComponent_s structure.
  *
  */
-static void item_delete(BaseComponent_s *p_itemBase)
+void item_delete(BaseComponent_s *p_itemBase)
 {
     base_clear(p_itemBase);
 #if GUI_USE_DYNAMIC_MEMORY
@@ -139,7 +137,7 @@ static void item_delete(BaseComponent_s *p_itemBase)
 void item_init(Item_s *p_item)
 {
     base_initParentComp(&p_item->base, item_delete);
-    p_item->base.onDisplay = item_display;
+    p_item->base.onDisplay = item_displayItem;
 }
 
 
@@ -152,6 +150,17 @@ void item_init(Item_s *p_item)
 void item_addComponent(Item_s *p_item, void *p_component)
 {
     base_addChild(&p_item->base, p_component);
+}
+
+
+/**
+ * @brief Displays the Item_s component.
+ * @param p_item Pointer to the Item_s structure.
+ *
+ */
+void item_display(Item_s *p_item)
+{
+    base_display(&p_item->base);
 }
 
 
@@ -253,7 +262,55 @@ void item_setVisible(Item_s *p_item, const bool visible)
 }
 
 
-static void item_display(BaseComponent_s *p_itemBase)
+/**
+ * @brief Sets the background color of the Item_s component.
+ * @param p_item Pointer to the Item_s structure.
+ * @param color Background color of the component.
+ *
+ */
+void item_setBackgroundColor(Item_s *p_item, const Color_t color)
+{
+    p_item->base.backgroundColor = color;
+}
+
+
+/**
+ * @brief Sets whether to draw the background of the Item_s component.
+ * @param p_item Pointer to the Item_s structure.
+ * @param drawBackground True to draw the background, false to not draw it.
+ *
+ */
+void item_setDrawBackground(Item_s *p_item, const bool drawBackground)
+{
+    p_item->base.drawBackground = drawBackground;
+}
+
+
+#if GUI_CONFIG_USE_ANCHOR
+/**
+ * @brief Adds an anchor to the Item_s component.
+ * @param p_item Pointer to the Item_s structure.
+ * @param anchor Anchor to be added.
+ *
+ */
+void item_addAnchor(Item_s *p_item, Anchor_s *p_anchor)
+{
+    base_addAnchor(&p_item->base, p_anchor);
+}
+
+/**
+ * @brief Adds a new anchor to the Item_s component and initializes it.
+ * @param p_item Pointer to the Item_s structure.
+ *
+ */
+void item_addNewInitAnchor(Item_s *p_item)
+{
+    base_addNewInitAnchor(&p_item->base);
+}
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
+
+void item_displayItem(BaseComponent_s *p_itemBase)
 {
 #if GUI_CONFIG_USE_ANCHOR
     if (p_itemBase->p_anchor != NULL)

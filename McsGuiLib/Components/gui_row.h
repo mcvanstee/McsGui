@@ -42,6 +42,11 @@ void row_setVisible(Row_s *p_row, const bool visible);
 void row_setBackgroundColor(Row_s *p_row, const Color_t color);
 void row_setDrawBackground(Row_s *p_row, const bool drawBackground);
 
+#if GUI_CONFIG_USE_ANCHOR
+void row_addAnchor(Row_s *p_row, Anchor_s *p_anchor);
+void row_addNewInitAnchor(Row_s *p_row);
+#endif /* GUI_CONFIG_USE_ANCHOR */
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
