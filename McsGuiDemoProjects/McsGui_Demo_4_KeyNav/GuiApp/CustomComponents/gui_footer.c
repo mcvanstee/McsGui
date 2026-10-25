@@ -110,7 +110,7 @@ void footer_resetButton(Footer_s *p_footer)
     {
         Rectangle_s background;
         rectangle_initFillPosSize(
-            &background, theme_getBackgroundColor(),
+            &background, theme_getFooterButtonColor(false),
             STYLE_FOOTER_BUTTON_X, STYLE_FOOTER_BUTTON_Y,
             STYLE_FOOTER_BUTTON_WIDTH, STYLE_FOOTER_BUTTON_HEIGHT);
         rectangle_display(&background);
@@ -118,6 +118,7 @@ void footer_resetButton(Footer_s *p_footer)
 
     button_setOnReleasedEvent(&p_footer->button, NULL);
     base_setFocus(&p_footer->button, false);
+    keynav_init(&p_footer->keyNavigation);
     button_setVisible(&p_footer->button, false);
 }
 

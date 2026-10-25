@@ -42,7 +42,7 @@ static void msmv_create(View_s *p_view)
     TextBlock_s *p_tempTextBlock = textblock_newInit();
     textblock_initTextSize(p_tempTextBlock, "0", 55, 30);
     textblock_setFont(p_tempTextBlock, theme_getDefaultFont());
-    textblock_setFontBackColor(p_tempTextBlock, theme_getPaneColor());
+    textblock_setBackgroundColor(p_tempTextBlock, theme_getPaneColor());
     textblock_setTextHorizontalAlignment(p_tempTextBlock, Text_Align_Right);
     textblock_setDrawBackground(p_tempTextBlock, true);
     textblock_setId(p_tempTextBlock, MV_TEMP_TEXT_BLOCK_ID);

@@ -31,6 +31,7 @@ Color_t theme_getBackgroundColor(void);
 Color_t theme_getSeparatorColor(void);
 Color_t theme_getHeaderColor(void);
 Color_t theme_getFooterColor(void);
+Color_t theme_getFooterButtonColor(const bool focused);
 Color_t theme_getFocusItemColor(const bool focused);
 
 Color_t theme_getSliderColor(void);

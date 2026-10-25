@@ -185,7 +185,7 @@ static void num_input_displayValue(NumberInput_s *p_numberInput)
     TextBlock_s textBlock;
     textblock_init(&textBlock);
     textblock_setFont(&textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
-    textblock_setFontBackColor(&textBlock, COLOR_BACKGROUND);
+    textblock_setBackgroundColor(&textBlock, COLOR_BACKGROUND);
     textblock_setDrawBackground(&textBlock, true);
 
     if (p_numberInput->orientation == NumberInput_Orientation_Horizontal)

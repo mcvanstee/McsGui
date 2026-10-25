@@ -70,7 +70,7 @@ static void ctv_create(View_s *p_view)
 	TextBlock_s *p_pointTB = textblock_new();
 	textblock_initText(p_pointTB, "(x, y) = (0, 0)");
 	textblock_setFont(p_pointTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-	textblock_setFontBackColor(p_pointTB, CTV_BACKGROUND_COLOR);
+	textblock_setBackgroundColor(p_pointTB, CTV_BACKGROUND_COLOR);
 	textblock_setWidth(p_pointTB, 200);
 	textblock_setDrawBackground(p_pointTB, true);
 	textblock_setId(p_pointTB, CTB_POINT_TEXTBLOCK_ID);
@@ -81,7 +81,7 @@ static void ctv_create(View_s *p_view)
 	TextBlock_s *p_adcValuesTB = textblock_new();
 	textblock_initText(p_adcValuesTB, "ADC (x,y,z): (0, 0, 0)");
 	textblock_setFont(p_adcValuesTB, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-	textblock_setFontBackColor(p_adcValuesTB, CTV_BACKGROUND_COLOR);
+	textblock_setBackgroundColor(p_adcValuesTB, CTV_BACKGROUND_COLOR);
 	textblock_setWidth(p_adcValuesTB, 200);
 	textblock_setId(p_adcValuesTB, CTB_ADC_VALUES_TEXTBLOCK_ID);
 	base_addNewInitAnchor(p_adcValuesTB);
@@ -91,7 +91,7 @@ static void ctv_create(View_s *p_view)
 	TextBlock_s *p_button = textblock_new();
 	textblock_initText(p_button, "Exit");
 	textblock_setFont(p_button, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-	textblock_setFontBackColor(p_button, COLOR_BACKGROUND);
+	textblock_setBackgroundColor(p_button, COLOR_BACKGROUND);
 	textblock_setId(p_button, CTB_EXIT_BUTTON_TEXT_ID);
 	textblock_setSize(p_button, 100, 20);
 	textblock_setVisible(p_button, false);

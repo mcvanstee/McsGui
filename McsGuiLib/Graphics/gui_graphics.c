@@ -153,7 +153,11 @@ void graphics_setSizeFromBmp(BaseComponent_s *p_base)
         uint8_t dataLocation = 0;
 
         const bool bmpFound = graphics_getBmpFileInfo(
-                p_base->bmpKey, p_base->properties, &width, &height, &dataOffset, &dataLocation);
+                p_base->bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+                , p_base->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+                , &width, &height, &dataOffset, &dataLocation);
 
         if (bmpFound)
         {
@@ -240,7 +244,7 @@ static inline void graphics_flushFillInstructions(const GraphicsInstruction_s *p
 static void graphics_addCompWithChilds(BaseComponent_s *p_baseComponent)
 {
     if ((p_baseComponent->baseType == BaseType_Parent) &&
-        (!p_baseComponent->transparent))
+        (p_baseComponent->drawBackground))
     {
         graphics_addBackgroundFill(p_baseComponent);
     }
@@ -323,8 +327,8 @@ static void graphics_addFillInstruction(BaseComponent_s *p_base)
     		&instruction,
             p_base->x, p_base->y,
             p_base->width, p_base->height,
-            p_base->background, p_borderData->borderColor,
-            !p_base->transparent, p_borderData->borderThickness,
+            p_base->backgroundColor, p_borderData->borderColor,
+            p_base->drawBackground, p_borderData->borderThickness,
 			p_borderData->radius);
 
     graphics_queueGraphicsInstruction(&instruction);
@@ -382,7 +386,7 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
     {
         // Clear the background if it is not transparent
         //
-        if (!p_baseComponent->transparent && (p_baseComponent->width > 0) && (p_baseComponent->height > 0))
+        if (p_baseComponent->drawBackground && (p_baseComponent->width > 0) && (p_baseComponent->height > 0))
         {
             graphics_addBackgroundFill(p_baseComponent);
         }
@@ -392,13 +396,13 @@ static void graphics_addTextInstruction(BaseComponent_s *p_baseComponent)
 
     const GuiSize_s textOffset = graphics_getTextOffset(p_baseComponent, size.width, size.height);
 
-    if (!p_baseComponent->transparent)
+    if (p_baseComponent->drawBackground)
     {
         graphics_addOptimizedBackgroundFill(
                 p_baseComponent->x, p_baseComponent->y, p_baseComponent->width, p_baseComponent->height,
                 (p_baseComponent->x + textOffset.width), (p_baseComponent->y + textOffset.height),
                 size.width, size.height,
-                p_baseComponent->background);
+                p_baseComponent->backgroundColor);
     }
 
     uint16_t characterXPos = p_baseComponent->x + textOffset.width;
@@ -471,9 +475,11 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
 #endif /* GUI_CONFIG_USE_ON_BEFORE_DISPLAY */
 
     const bool bmpFound = graphics_getBmpFileInfo(
-            p_baseComponent->bmpKey,
-			p_baseComponent->properties,
-			&width, &height,
+            p_baseComponent->bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+            , p_baseComponent->properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+            , &width, &height,
             &dataOffset,
             &dataLocation
             );
@@ -513,7 +519,7 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
     }
 #endif /* GUI_CONFIG_USE_ANCHOR */
 
-    const bool baseTransparent = p_baseComponent->transparent;
+    const bool drawBackground = p_baseComponent->drawBackground;
 
     if (bmpFound)
     {
@@ -528,8 +534,8 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
                 width, height, dataOffset, dataLocation
 #if GUI_CONFIG_USE_BITMAP_COLORS
                 ,
-                p_baseComponent->foreColor,
-                p_baseComponent->background
+                p_baseComponent->foregroundColor,
+                p_baseComponent->backgroundColor
 #endif /* GUI_CONFIG_USE_BITMAP_COLORS */
 
 #if GUI_USE_EXTERNAL_DISPLAY
@@ -543,19 +549,19 @@ static void graphics_addImageInstruction(BaseComponent_s *p_baseComponent)
 
         graphics_alignBmp(p_baseComponent, p_newInstruction);
 
-        if (!baseTransparent)
+        if (drawBackground)
         {
             graphics_addOptimizedBackgroundFill(
                     p_baseComponent->x, p_baseComponent->y, p_baseComponent->width, p_baseComponent->height,
                     p_newInstruction->xPos, p_newInstruction->yPos, p_newInstruction->width, p_newInstruction->height,
-                    p_baseComponent->background);
+                    p_baseComponent->backgroundColor);
         }
 
         graphics_queueGraphicsInstruction(p_newInstruction);
     }
     else
     {
-        if (!baseTransparent)
+        if (drawBackground)
         {
             graphics_addBackgroundFill(p_baseComponent);
         }
@@ -580,7 +586,7 @@ static void graphics_addBackgroundFill(const BaseComponent_s *p_baseComponent)
     		&instruction,
             p_baseComponent->x, p_baseComponent->y,
             p_baseComponent->width, p_baseComponent->height,
-            p_baseComponent->background, 0,
+            p_baseComponent->backgroundColor, 0,
             true, 0, 0);
 
     graphics_queueGraphicsInstruction(&instruction);
@@ -842,6 +848,7 @@ static void grapics_addOptBackRight(
         const uint16_t bmpX1, const uint16_t bmpX2, const uint16_t bmpY1, const uint16_t bmpY2,
         const Color_t color)
 {
+    (void)bmpX2; // Unused parameter
     const uint16_t width = (uint16_t) (baseX2 - baseX1);
     const uint16_t height = (uint16_t) (baseY2 - baseY1);
 
@@ -1006,7 +1013,7 @@ static inline GuiSize_s graphics_getTextSize(const char *p_text, const size_t st
 #if GUI_CONFIG_USE_ANCHOR
 void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
 {
-    GuiAnchor_s *p_anchor = p_base->p_anchor;
+    Anchor_s *p_anchor = p_base->p_anchor;
     uint16_t baseX = p_base->x;
     uint16_t baseY = p_base->y;
     uint16_t baseWidth = p_base->width;
@@ -1036,12 +1043,19 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                       + p_anchor->topMargin
                       - p_anchor->bottomMargin;
                 break;
+            case Gui_Anchor_None:
+            case Gui_Anchor_Horizontal_Center:
+            case Gui_Anchor_Vertical_Center:
+            case Gui_Anchor_Left:
+            case Gui_Anchor_Right:
+            case Gui_Anchor_Top:
+            case Gui_Anchor_Bottom:
             default:
                 break;
         }
 
         base_setPosition(p_base, baseX, baseY);
-        base_setDimensions(p_base, baseWidth, baseHeight);
+        base_setSize(p_base, baseWidth, baseHeight);
 
         return;
     }
@@ -1068,6 +1082,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                               + p_anchor->leftMargin
                               - p_anchor->rightMargin;
                         break;
+                    case Gui_Anchor_None:
+                    case Gui_Anchor_Fill_Parent:
+                    case Gui_Anchor_Center_In_Parent:
+                    case Gui_Anchor_Vertical_Center:
+                    case Gui_Anchor_Top:
+                    case Gui_Anchor_Bottom:
                     default:
                         break;
                 }
@@ -1093,6 +1113,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                               + p_anchor->leftMargin
                               - p_anchor->rightMargin;
                         break;
+                    case Gui_Anchor_None:
+                    case Gui_Anchor_Fill_Parent:
+                    case Gui_Anchor_Center_In_Parent:
+                    case Gui_Anchor_Vertical_Center:
+                    case Gui_Anchor_Top:
+                    case Gui_Anchor_Bottom:
                     default:
                         break;
                 }
@@ -1108,6 +1134,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                           - p_anchor->rightMargin;
                 }
                 break;
+            case Gui_Anchor_None:
+            case Gui_Anchor_Fill_Parent:
+            case Gui_Anchor_Center_In_Parent:
+            case Gui_Anchor_Vertical_Center:
+            case Gui_Anchor_Top:
+            case Gui_Anchor_Bottom:
             default:
                 break;
         }
@@ -1136,6 +1168,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                               + p_anchor->topMargin
                               - p_anchor->bottomMargin;
                         break;
+                    case Gui_Anchor_None:
+                    case Gui_Anchor_Fill_Parent:
+                    case Gui_Anchor_Horizontal_Center:
+                    case Gui_Anchor_Center_In_Parent:
+                    case Gui_Anchor_Left:
+                    case Gui_Anchor_Right:
                     default:
                         break;
                 }
@@ -1159,6 +1197,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                               + p_anchor->topMargin
                               - p_anchor->bottomMargin;
                         break;
+                    case Gui_Anchor_None:
+                    case Gui_Anchor_Fill_Parent:
+                    case Gui_Anchor_Horizontal_Center:
+                    case Gui_Anchor_Center_In_Parent:
+                    case Gui_Anchor_Left:
+                    case Gui_Anchor_Right:
                     default:
                         break;
                 }
@@ -1173,6 +1217,12 @@ void graphics_setPosistionFromAnchor(BaseComponent_s *p_base)
                           - p_anchor->bottomMargin;
                 }
                 break;
+            case Gui_Anchor_None:
+            case Gui_Anchor_Fill_Parent:
+            case Gui_Anchor_Horizontal_Center:
+            case Gui_Anchor_Center_In_Parent:
+            case Gui_Anchor_Left:
+            case Gui_Anchor_Right:
             default:
                 break;
         }

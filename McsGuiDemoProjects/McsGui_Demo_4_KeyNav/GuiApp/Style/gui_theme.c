@@ -53,6 +53,18 @@ Color_t theme_getFooterColor(void)
     return (m_p_themeSetting->theme == GuiTheme_Dark) ? COLOR_FOOTER_BACKGROUND_DARK : COLOR_FOOTER_BACKGROUND_LIGHT;
 }
 
+Color_t theme_getFooterButtonColor(const bool focused)
+{
+    if (focused)
+    {
+        return (m_p_themeSetting->theme == GuiTheme_Dark) ? COLOR_FOCUS_BACKGROUND_DARK : COLOR_FOCUS_BACKGROUND_LIGHT;
+    }
+    else
+    {
+        return theme_getFooterColor();
+    }
+}
+
 Color_t theme_getFocusItemColor(const bool focused)
 {
     if (focused)

@@ -103,7 +103,7 @@ static void mv_tempPaneAddContent(Pane_s *p_pane)
 	TextBlock_s *p_tempTextBlock = textblock_newInit();
     textblock_initTextSize(p_tempTextBlock, "-", 40, 24);
     textblock_setFont(p_tempTextBlock, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
-    textblock_setFontBackColor(p_tempTextBlock, COLOR_BACKGROUND);
+    textblock_setBackgroundColor(p_tempTextBlock, COLOR_BACKGROUND);
     textblock_setTextHorizontalAlignment(p_tempTextBlock, Text_Align_Right);
     textblock_setDrawBackground(p_tempTextBlock, true);
     textblock_setId(p_tempTextBlock, MV_TEMP_TEXTBLOCK_ID);
@@ -153,7 +153,7 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 
 		TextBlock_s *p_timeTextBlock = textblock_newInit();
 		textblock_setFont(p_timeTextBlock, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-		textblock_setFontBackColor(p_timeTextBlock, COLOR_PANE);
+		textblock_setBackgroundColor(p_timeTextBlock, COLOR_PANE);
 		textblock_setTextHorizontalAlignment(p_timeTextBlock, Text_Align_Left);
 		textblock_setTextTopPadding(p_timeTextBlock, 2);
 		textblock_setDrawBackground(p_timeTextBlock, true);
@@ -173,7 +173,7 @@ static void mv_timePaneAddContent(Pane_s *p_pane)
 
 		TextBlock_s *p_dateTextBlock = textblock_newInit();
 		textblock_setFont(p_dateTextBlock, FONT_KEY_ROBOTO_16_R_PANE_TEXT);
-		textblock_setFontBackColor(p_dateTextBlock, COLOR_PANE);
+		textblock_setBackgroundColor(p_dateTextBlock, COLOR_PANE);
 		textblock_setTextHorizontalAlignment(p_dateTextBlock, Text_Align_Left);
 		textblock_setTextTopPadding(p_dateTextBlock, 2);
 		textblock_setDrawBackground(p_dateTextBlock, true);

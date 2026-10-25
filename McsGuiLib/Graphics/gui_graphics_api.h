@@ -35,8 +35,11 @@ extern void graphics_drawRectFill(
         const uint8_t radius, const uint32_t color);
 
 extern bool graphics_getBmpFileInfo(
-        const uint32_t bmpKey, const uint8_t *p_properties,
-        uint16_t *p_out_width, uint16_t *p_out_height,
+        const uint32_t bmpKey
+#if GUI_CONFIG_USE_FILE_PROPERTIES
+        , const uint8_t *p_properties
+#endif /* GUI_CONFIG_USE_FILE_PROPERTIES */
+        , uint16_t *p_out_width, uint16_t *p_out_height,
         uint32_t *p_out_dataOffset, uint8_t *p_out_dataLocation);
 
 extern bool graphics_getCharacterInfo(

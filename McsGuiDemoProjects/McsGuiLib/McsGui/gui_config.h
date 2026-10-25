@@ -126,7 +126,7 @@ typedef unsigned long Color_t;
  *  FS_MAX_FILE_PROPERTIES value in fs_file_search.h
  */
 
-#define GUI_CONFIG_USE_BITMAP_COLORS 1
+#define GUI_CONFIG_USE_BITMAP_COLORS 0
 /* This option adds the bitmap colors to the BaseComponent_s
  *  0: Do not use bitmap colors
  *  1: Use bitmap colors

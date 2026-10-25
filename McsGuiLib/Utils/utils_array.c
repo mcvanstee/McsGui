@@ -17,6 +17,11 @@ void utils_array_addUint32(uint8_t *p_array, const uint32_t data, const int32_t 
     memcpy(&p_array[index], (uint8_t *)&data, sizeof(uint32_t));
 }
 
+void utils_array_addInt32(uint8_t *p_array, const int32_t data, const int32_t index)
+{
+    memcpy(&p_array[index], (uint8_t*) &data, sizeof(int32_t));
+}
+
 void utils_array_addInt16(uint8_t *p_array, const int16_t data, const int32_t index)
 {
     memcpy(&p_array[index], (uint8_t *)&data, sizeof(int16_t));
@@ -46,6 +51,14 @@ uint16_t utils_array_getUint16(const uint8_t *p_array, const int32_t index)
 uint8_t utils_array_getUint8(const uint8_t *p_array, const int32_t index)
 {
     return p_array[index];
+}
+
+int32_t utils_array_getInt32(const uint8_t *p_array, const int32_t index)
+{
+    int32_t number = 0;
+    memcpy((uint8_t*) &number, &p_array[index], sizeof(int32_t));
+
+    return number;
 }
 
 int16_t utils_array_getInt16(const uint8_t *p_array, const int32_t index)

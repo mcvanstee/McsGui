@@ -225,7 +225,7 @@ static void rc_createInfoLabel(Grid_s *p_grid, file_key_e label, uint8_t textBlo
     TextBlock_s *p_textBlock = textblock_newInit();
     textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
-    textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
+    textblock_setBackgroundColor(p_textBlock, COLOR_BACKGROUND);
     textblock_setTextHorizontalAlignment(p_textBlock, Text_Align_Left);
     textblock_setDrawBackground(p_textBlock, true);
     textblock_setId(p_textBlock, textBlockId);
@@ -254,7 +254,7 @@ static void rc_createInfoTempLabel(Grid_s *p_grid, file_key_e arrowIcon, uint8_t
     TextBlock_s *p_textBlock = textblock_newInit();
     textblock_setFont(p_textBlock, FONT_KEY_ROBOTO_16_R_DEFAULT_TEXT);
     textblock_setText(p_textBlock, " ");
-    textblock_setFontBackColor(p_textBlock, COLOR_BACKGROUND);
+    textblock_setBackgroundColor(p_textBlock, COLOR_BACKGROUND);
     textblock_setTextHorizontalAlignment(p_textBlock, Text_Align_Left);
     textblock_setDrawBackground(p_textBlock, true);
     textblock_setId(p_textBlock, textBlockId);

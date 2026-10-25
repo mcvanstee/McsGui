@@ -233,7 +233,7 @@ static void slider_displayValue(Slider_s *p_slider)
 	TextBlock_s textBlock;
 	textblock_init(&textBlock);
 	textblock_setFont(&textBlock, theme_getDefaultFont());
-	textblock_setFontBackColor(&textBlock, theme_getPaneColor());
+	textblock_setBackgroundColor(&textBlock, theme_getPaneColor());
 	textblock_setDrawBackground(&textBlock, true);
 	textblock_setPosition(&textBlock, x, (p_slider->base.y + GUI_SLIDER_BUTTON_HEIGHT + 8));
 	textblock_setWidth(&textBlock, GUI_SLIDER_TEXT_WIDTH);

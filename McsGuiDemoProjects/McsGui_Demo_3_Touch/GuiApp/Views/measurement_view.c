@@ -153,7 +153,7 @@ static void msmv_addInfoPaneContent(Pane_s *p_infoPane)
 
     TextBlock_s *p_recNumberTB = textblock_newInit();
     textblock_setFont(p_recNumberTB, FONT_KEY_ROBOTO_18_R_DEFAULT_TEXT);
-    textblock_setFontBackColor(p_recNumberTB, COLOR_BACKGROUND);
+    textblock_setBackgroundColor(p_recNumberTB, COLOR_BACKGROUND);
     textblock_setTextHorizontalAlignment(p_recNumberTB, Text_Align_Left);
     textblock_setDrawBackground(p_recNumberTB, true);
     textblock_setId(p_recNumberTB, MSMV_TEXTBLOCK_REC_NUMBER_ID);
